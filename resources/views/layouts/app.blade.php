@@ -27,10 +27,10 @@
 
 <body>
     <div id="app">
-        @if (Auth::check()){
+        @if (Auth::check())
             <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
                 <div class="container">
-                    <a class="navbar-brand" href="{{ url('/') }}">
+                    <a class="navbar-brand fw-bold" href="{{ url('/admin/home') }}" style="color: #37B052;">
                         {{ config('app.name', 'Laravel') }}
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -61,6 +61,9 @@
                                     </li>
                                 @endif
                             @else
+                                <li class="nav-item">
+                                    <a class="nav-link" href="usuarios">Usuarios</a>
+                                </li>
                                 <li class="nav-item dropdown">
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -85,12 +88,11 @@
                     </div>
                 </div>
             </nav>
-        }
         @endif
 
-            <main class="">
-                @yield('content')
-            </main>
+        <main class="">
+            @yield('content')
+        </main>
     </div>
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
 </body>
