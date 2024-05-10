@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Referrals\ReferralsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,10 +18,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix('admin')->group(function () {
-    Auth::routes();
+Route::prefix('admin')->middleware('auth')->group(function () {
+    Auth ::routes();
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::view('usuarios' , 'admin.users');
+    Route::apiResource('ReferralsApi', ReferralsController::class);
 });
 
 
