@@ -1,0 +1,3 @@
+<footer>
+    Mi footer
+</footer>

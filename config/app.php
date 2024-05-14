@@ -14,6 +14,8 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
+    'contact_email' => env('CONTAT_EMAIL', 'contacto@terrazon.mx'),
+    'contact_tel' => env('CONTAT_TEL', '+52 999 912 3456'),
 
     /*
     |--------------------------------------------------------------------------
@@ -80,7 +82,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'es',
 
     /*
     |--------------------------------------------------------------------------
