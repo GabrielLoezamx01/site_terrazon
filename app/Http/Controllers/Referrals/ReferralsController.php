@@ -16,7 +16,7 @@ class ReferralsController extends Controller
      */
     public function index()
     {
-        return Referrals::where('registration_user_id' , Auth::id())->get();
+        return Referrals::where('registration_user_id' , Auth::id())->paginate(10);
     }
 
     /**
@@ -27,7 +27,20 @@ class ReferralsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $validatedData = $request->validate([
+            'email' => 'unique:referrals'
+        ]);
+         Referrals::create([
+            'password' => bcrypt($request->password),
+            'registration_user_id' => Auth::id(),
+            'email' => $request->email,
+            'time_check' => date('Y-m-d H:i:s', strtotime('+6 minutes')),
+            'status' => 'pending'
+        ]);
+        // FALTA ENVIAR EL CORREO
+        return response()->json('Registrado', 200);
+
     }
 
     /**

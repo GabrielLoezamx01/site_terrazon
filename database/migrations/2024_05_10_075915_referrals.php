@@ -20,6 +20,7 @@ class Referrals extends Migration
             $table->foreign('registration_user_id')->references('id')->on('users');
             $table->string('email')->unique();
             $table->timestamp('time_check')->nullable();
+            $table->string('status')->default('pending');
             $table->softDeletes();
             $table->timestamps();
         });

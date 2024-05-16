@@ -1,0 +1,10 @@
+EVENTO DONDE SE ACTUALIZA LOS ESTADOS CADA 6 MINUTO DE LOS USUARIOS REFERIDOS:
+
+CREATE EVENT update_status_referrals
+ON SCHEDULE EVERY 6 MINUTE
+DO
+  UPDATE referrals
+  SET status = 'error'
+  WHERE status = 'pending'
+  AND NOW() > time_check;
+

@@ -17,9 +17,9 @@ use App\Http\Controllers\Referrals\ReferralsController;
 Route::get('/', function () {
     return view('welcome');
 });
+Auth::routes();
 
 Route::prefix('admin')->middleware('auth')->group(function () {
-    Auth ::routes();
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::view('usuarios' , 'admin.users');
     Route::apiResource('ReferralsApi', ReferralsController::class);
