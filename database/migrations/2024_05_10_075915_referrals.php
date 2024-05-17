@@ -15,11 +15,11 @@ class Referrals extends Migration
     {
         Schema::create('referrals', function (Blueprint $table) {
             $table->id('id_referral');
-            $table->string('password');
-            $table->unsignedBigInteger('registration_user_id')->nullable();
-            $table->foreign('registration_user_id')->references('id')->on('users');
+            $table->string('name');
             $table->string('email')->unique();
-            $table->timestamp('time_check')->nullable();
+            $table->string('password');
+            $table->string('verication_code', 6);
+            $table->timestamp('verication_code_expiration')->nullable();
             $table->string('status')->default('pending');
             $table->softDeletes();
             $table->timestamps();

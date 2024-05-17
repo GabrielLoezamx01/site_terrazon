@@ -21,8 +21,7 @@ Auth::routes();
 
 Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    Route::view('usuarios' , 'admin.users');
-    Route::apiResource('ReferralsApi', ReferralsController::class);
+    Route::apiResource('usuarios', ReferralsController::class);
 });
 
 

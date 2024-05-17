@@ -6,7 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Referrals;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Http;
+use App\Events\UserSendEmail;
+use Illuminate\Support\Facades\Crypt;
 class ReferralsController extends Controller
 {
     /**
@@ -16,7 +19,33 @@ class ReferralsController extends Controller
      */
     public function index()
     {
-        return Referrals::where('registration_user_id' , Auth::id())->paginate(10);
+        $referrals = Referrals::paginate(10);
+        $status = $this->statusBlade();
+        return view('admin.users' , compact('referrals' , 'status'));
+    }
+
+
+    /**
+     * Mapeo of status of model Referrals in desing blade
+     *
+     * @return Array
+     */
+
+    private function statusBlade(){
+       return [
+            'success' => [
+                'class' => 'border-5 fw-bold text-success',
+                'text' => 'Correcto',
+            ],
+            'pending' => [
+                'class' => 'border-5 fw-bold text-warning',
+                'text' => 'Pendiente',
+            ],
+            'error' => [
+                'class' => 'border-5 fw-bold text-danger',
+                'text' => 'Error',
+            ],
+        ];
     }
 
     /**
@@ -27,20 +56,26 @@ class ReferralsController extends Controller
      */
     public function store(Request $request)
     {
+        if ($request->password != $request->password_verify) {
+            return redirect()->back()->withErrors(['password' => 'Las contraseñas no coinciden'])->withInput();
+        }
 
-        $validatedData = $request->validate([
-            'email' => 'unique:referrals'
-        ]);
+        $token = Str::random(6);
+        $email = $request->email;
+        $dataToEncrypt = $email . '|' . $token;
+        $encryptedData = Crypt::encryptString($dataToEncrypt);
          Referrals::create([
-            'password' => bcrypt($request->password),
-            'registration_user_id' => Auth::id(),
-            'email' => $request->email,
-            'time_check' => date('Y-m-d H:i:s', strtotime('+6 minutes')),
+            'name' => $request->name,
+            'email' => $email,
+            'password' => $request->password,
+            'verication_code' =>   $token ,
+            'verication_code_expiration' => date('Y-m-d H:i:s', strtotime('+6 minutes')),
             'status' => 'pending'
         ]);
-        // FALTA ENVIAR EL CORREO
-        return response()->json('Registrado', 200);
 
+        event(new UserSendEmail($email, $encryptedData));
+
+        return redirect()->back()->withSuccess('¡Operación realizada con éxito! Se ha enviado un correo de verificación.');
     }
 
     /**
