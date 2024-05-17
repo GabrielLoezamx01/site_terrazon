@@ -5,9 +5,7 @@ namespace App\Http\Controllers\Referrals;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Referrals;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Http;
 use App\Events\UserSendEmail;
 use Illuminate\Support\Facades\Crypt;
 class ReferralsController extends Controller
