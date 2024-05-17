@@ -1,13 +1,22 @@
 <header class="d-flex align-items-center d-none d-md-flex">
-    <div class="container">
-        <div class="float-start px-3">
+    <div class="container d-flex bd-highligh align-items-center">
+        <div class="p-2 bd-highlight">
             <a href="mailto:{{ config('app.contact_email') }}">{{config('app.contact_email')}}</a>
         </div>
-        <div class="float-start px-3">
+        <div class="p-2 bd-highlight">
             <a href="tel:{{ config('app.contact_tel') }}">{{config('app.contact_tel')}}</a>
         </div>
-        <div class="float-end px-3">
-            <a href="javascriot:void(0)">Iniciar sesión / registrarme</a>
+        <div class="ms-auto p-2 bd-highlight">
+            @if (Route::has('login'))
+                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                    @auth
+                        <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
+                    @else
+                        <a href="{{ route('login') }}">Iniciar sesión / registrarme</a>
+                    @endauth
+                </div>
+            @endif
+           
         </div>
     </div>
 </header>
