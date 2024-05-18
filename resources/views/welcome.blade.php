@@ -1,6 +1,4 @@
 @extends('layouts.public')
 @section('content')
-<div class="container">
-   mi contenct
-</div>
+<x-banner-component></x-banner-component>
 @endsection

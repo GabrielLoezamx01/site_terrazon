@@ -22,5 +22,6 @@
 </head>
 <body>
     @include('includes.public.header')
+    @include('public.carrousel')
 </body>
 </html>
