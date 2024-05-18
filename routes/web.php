@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Referrals\ReferralsController;
+use App\Http\Controllers\Emails\VerifyController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,8 +23,8 @@ Auth::routes();
 
 Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    Route::view('usuarios' , 'admin.users');
-    Route::apiResource('ReferralsApi', ReferralsController::class);
+    Route::apiResource('usuarios', ReferralsController::class);
 });
 
 
+Route::apiResource('emails/verify', VerifyController::class);
