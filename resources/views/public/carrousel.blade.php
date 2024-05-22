@@ -68,14 +68,18 @@
     </div>
 </div>
 <div class="bg-light">
-    <div class="container p-2 min-content ">
+    <div class="container p-2  px-4 min-content">
         <div class="row">
             <div class="col-12 text-left pb-3">
-                <div class="title">Propiedades destacadas en la ciudad</div>
+                <div class="title">Propiedades destacadas en la playa</div>
                 <div class="subtitle">Descubre tu próximo hogar entre nuestras propiedades destacadas.</div>
             </div>
             <div class="col-12 col-md-4">
                 <div class="card card-property " style="width: 411px;">
+                    <span class="icon-fav fa-stack fa-2x">
+                        <i class="fa-solid fa-circle white fa-stack-2x"></i>
+                        <i class="fa-regular fa-heart fa-stack-1x"></i>
+                    </span>
                     <img src="{{ asset('images/card-img.png') }}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <span class="price">$ 1,000,000</span>
@@ -94,8 +98,8 @@
                                     <li><label class="detail-icon"><img src="{{ asset('images/icons/cart.svg') }}"></label><span class="detail-text">1 Estacionamiento</span></li>
                                 </ul>
                             </div>
-                            <div class="col-6 d-flex align-items-center">
-                                <button type="button" class="btn btn-primary">VER MAS DETALLES</button>
+                            <div class="col-6 d-flex align-items-end justify-content-center">
+                                <button type="button" class="btn btn-primary btn-detalle">VER MAS DETALLES</button>
                             </div>
                         </div>
                     </div>
@@ -103,6 +107,10 @@
             </div>
             <div class="col-12 col-md-4">
                 <div class="card card-property " style="width: 411px;">
+                    <span class="icon-fav fa-stack fa-2x">
+                        <i class="fa-solid fa-circle white fa-stack-2x"></i>
+                        <i class="fa-regular fa-heart fa-stack-1x"></i>
+                    </span>
                     <img src="{{ asset('images/card-img.png') }}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <span class="price">$ 1,000,000</span>
@@ -121,8 +129,8 @@
                                     <li><label class="detail-icon"><img src="{{ asset('images/icons/cart.svg') }}"></label><span class="detail-text">1 Estacionamiento</span></li>
                                 </ul>
                             </div>
-                            <div class="col-6 d-flex align-items-center">
-                                <button type="button" class="btn btn-primary">VER MAS DETALLES</button>
+                            <div class="col-6 d-flex align-items-end justify-content-center">
+                                <button type="button" class="btn btn-primary btn-detalle">VER MAS DETALLES</button>
                             </div>
                         </div>
                     </div>
@@ -130,6 +138,10 @@
             </div>
             <div class="col-12 col-md-4">
                 <div class="card card-property " style="width: 411px;">
+                    <span class="icon-fav fa-stack fa-2x">
+                        <i class="fa-solid fa-circle white fa-stack-2x"></i>
+                        <i class="fa-regular fa-heart fa-stack-1x"></i>
+                    </span>
                     <img src="{{ asset('images/card-img.png') }}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <span class="price">$ 1,000,000</span>
@@ -148,8 +160,8 @@
                                     <li><label class="detail-icon"><img src="{{ asset('images/icons/cart.svg') }}"></label><span class="detail-text">1 Estacionamiento</span></li>
                                 </ul>
                             </div>
-                            <div class="col-6 d-flex align-items-center">
-                                <button type="button" class="btn btn-primary">VER MAS DETALLES</button>
+                            <div class="col-6 d-flex align-items-end justify-content-center">
+                                <button type="button" class="btn btn-primary btn-detalle">VER MAS DETALLES</button>
                             </div>
                         </div>
                     </div>
@@ -159,13 +171,9 @@
     </div>
 </div>
 <div class="bg-light">
-    <div class="container p-2 min-content ">
-        <div class="row">
-            <div class="col-12 text-left pb-3">
-                <div class="title">Propiedades destacadas en la playa</div>
-                <div class="subtitle">Descubre tu próximo hogar entre nuestras propiedades destacadas.</div>
-            </div>
-            <div class="col-12 col-md-4">
+    <div class="container p-2  px-4 min-content">
+        <div class="owl-carousel owl-theme">
+            <div class="item" style="width: 411px;">
                 <div class="card card-property " style="width: 411px;">
                     <img src="{{ asset('images/card-img.png') }}" class="card-img-top" alt="...">
                     <div class="card-body">
@@ -185,15 +193,15 @@
                                     <li><label class="detail-icon"><img src="{{ asset('images/icons/cart.svg') }}"></label><span class="detail-text">1 Estacionamiento</span></li>
                                 </ul>
                             </div>
-                            <div class="col-6 d-flex align-items-center">
-                                <button type="button" class="btn btn-primary">VER MAS DETALLES</button>
+                            <div class="col-6 d-flex align-items-end justify-content-center">
+                                <button type="button" class="btn btn-primary btn-detalle">VER MAS DETALLES</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-4">
-                <div class="card card-property " style="width: 411px;">
+            <div class="item mb-3">
+                <div class="card card-property" style="width: 411px;">
                     <img src="{{ asset('images/card-img.png') }}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <span class="price">$ 1,000,000</span>
@@ -212,14 +220,14 @@
                                     <li><label class="detail-icon"><img src="{{ asset('images/icons/cart.svg') }}"></label><span class="detail-text">1 Estacionamiento</span></li>
                                 </ul>
                             </div>
-                            <div class="col-6 d-flex align-items-center">
-                                <button type="button" class="btn btn-primary">VER MAS DETALLES</button>
+                            <div class="col-6 d-flex align-items-end justify-content-center">
+                                <button type="button" class="btn btn-primary btn-detalle">VER MAS DETALLES</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-4">
+            <div class="item">
                 <div class="card card-property " style="width: 411px;">
                     <img src="{{ asset('images/card-img.png') }}" class="card-img-top" alt="...">
                     <div class="card-body">
@@ -239,8 +247,62 @@
                                     <li><label class="detail-icon"><img src="{{ asset('images/icons/cart.svg') }}"></label><span class="detail-text">1 Estacionamiento</span></li>
                                 </ul>
                             </div>
-                            <div class="col-6 d-flex align-items-center">
-                                <button type="button" class="btn btn-primary">VER MAS DETALLES</button>
+                            <div class="col-6 d-flex align-items-end justify-content-center">
+                                <button type="button" class="btn btn-primary btn-detalle">VER MAS DETALLES</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="card card-property " style="width: 411px;">
+                    <img src="{{ asset('images/card-img.png') }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <span class="price">$ 1,000,000</span>
+                        <span class="area">567 m2</span>
+                        <div class="clearfix"></div>
+                        <h5 class="card-title">Apartamentos Marinos</h5>
+                        <h5 class="card-location"><img src="{{ asset('images/icons/location.svg') }}"> Ubicación del desarrollo</h5>
+                        <p class="card-text">
+                            Breve descripción de la propiedad con un máximo de caracteres establecidos por el cliente para una rápida introducción.
+                        </p>
+                        <div class="row">
+                            <div class="col-6">
+                                <ul>
+                                    <li><label class="detail-icon"><img src="{{ asset('images/icons/bed.svg') }}"></label><span class="detail-text">2 Habitaciones<span></li>
+                                    <li><label class="detail-icon"><img src="{{ asset('images/icons/bath.svg') }}"></label><span class="detail-text">2 Baños</span></li>
+                                    <li><label class="detail-icon"><img src="{{ asset('images/icons/cart.svg') }}"></label><span class="detail-text">1 Estacionamiento</span></li>
+                                </ul>
+                            </div>
+                            <div class="col-6 d-flex align-items-end justify-content-center">
+                                <button type="button" class="btn btn-primary btn-detalle">VER MAS DETALLES</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="card card-property " style="width: 411px;">
+                    <img src="{{ asset('images/card-img.png') }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <span class="price">$ 1,000,000</span>
+                        <span class="area">567 m2</span>
+                        <div class="clearfix"></div>
+                        <h5 class="card-title">Apartamentos Marinos</h5>
+                        <h5 class="card-location"><img src="{{ asset('images/icons/location.svg') }}"> Ubicación del desarrollo</h5>
+                        <p class="card-text">
+                            Breve descripción de la propiedad con un máximo de caracteres establecidos por el cliente para una rápida introducción.
+                        </p>
+                        <div class="row">
+                            <div class="col-6">
+                                <ul>
+                                    <li><label class="detail-icon"><img src="{{ asset('images/icons/bed.svg') }}"></label><span class="detail-text">2 Habitaciones<span></li>
+                                    <li><label class="detail-icon"><img src="{{ asset('images/icons/bath.svg') }}"></label><span class="detail-text">2 Baños</span></li>
+                                    <li><label class="detail-icon"><img src="{{ asset('images/icons/cart.svg') }}"></label><span class="detail-text">1 Estacionamiento</span></li>
+                                </ul>
+                            </div>
+                            <div class="col-6 d-flex align-items-end justify-content-center">
+                                <button type="button" class="btn btn-primary btn-detalle">VER MAS DETALLES</button>
                             </div>
                         </div>
                     </div>

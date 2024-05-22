@@ -105,11 +105,13 @@ body {
 }
 
 .title {
+    font-weight: 600;
     color: #231D46;
     font-size: 32px;
 }
 
 .subtitle {
+    font-weight: 200;
     color: #231D46;
     font-size: 16px;
 
@@ -121,15 +123,36 @@ body {
 
 .card-property {
     width: 411px !important;
+    border: none !important;
+    border-radius: 5px;
+    .icon-fav {
+        position: absolute;
+        top: 18px;
+        right: 18px;
+        font-size: 16px;
+
+        .fa-circle {
+            color: #ffffff;
+        }
+    }
+    .btn-detalle{
+        font-size: 12px;
+        padding: 10px 30px;
+    }
 
     .card-body {
         position: relative;
-        padding-top: 54px;
+        padding-top: 42px;
+        -webkit-box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.25);
+        -moz-box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.25);
+        box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.25);
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
         .price {
             position: absolute;
             left: 0;
             top: 0;
-            padding: 20px;
+            padding: 16px;
             background-color: #7AE582;
             height: 33.62px;
             display: flex;
@@ -139,7 +162,8 @@ body {
             font-weight: 800;
             white-space: nowrap;
         }
-        .area{
+
+        .area {
             position: absolute;
             right: 0;
             top: 0;
@@ -148,39 +172,72 @@ body {
             font-size: 16px;
             font-weight: 600;
         }
+
         .card-title {
             font-size: 20px;
             font-weight: 600;
             color: #231D46;
         }
-        .card-location{
-            color:#1E612D;
+
+        .card-text {
+            font-size: 11px;
+            font-weight: 400;
+            margin-bottom: 0;
+        }
+
+        .card-location {
+            color: #1E612D;
             font-size: 11px;
             font-weight: 500;
-            img{
+
+            img {
                 height: 11px;
             }
         }
     }
-    .btn-primary{
+
+    .btn-primary {
         background-color: #37B052;
         border: none;
     }
-    ul{
+
+    ul {
         list-style: none;
         margin: 0;
         padding: 0;
-        .detail-icon{
+
+        li {
+            height: 18px;
+        }
+
+        .detail-icon {
             width: 25px !important;
-            img{
+
+            img {
                 height: 100%;
             }
+
             text-align: center;
         }
-        .detail-text{
-            font-size: 14px;
+
+        .detail-text {
+            font-size: 11px;
             color: #231D46;
             font-weight: 600;
+        }
+    }
+}
+
+
+.carousel-indicators{
+    margin-bottom: 2rem !important;
+    button{
+        width: 16px !important;
+        height: 16px !important;
+        border-radius: 50%;
+        opacity: 1 !important;
+        &.active{
+            background-color: #3830D9 !important;
         }
     }
 }

@@ -22456,11 +22456,13 @@ body {
 }
 
 .title {
+  font-weight: 600;
   color: #231D46;
   font-size: 32px;
 }
 
 .subtitle {
+  font-weight: 200;
   color: #231D46;
   font-size: 16px;
 }
@@ -22471,16 +22473,34 @@ body {
 
 .card-property {
   width: 411px !important;
+  border: none !important;
+  border-radius: 5px;
+}
+.card-property .icon-fav {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  font-size: 16px;
+}
+.card-property .icon-fav .fa-circle {
+  color: #ffffff;
+}
+.card-property .btn-detalle {
+  font-size: 12px;
+  padding: 10px 30px;
 }
 .card-property .card-body {
   position: relative;
-  padding-top: 54px;
+  padding-top: 42px;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.25);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 .card-property .card-body .price {
   position: absolute;
   left: 0;
   top: 0;
-  padding: 20px;
+  padding: 16px;
   background-color: #7AE582;
   height: 33.62px;
   display: flex;
@@ -22504,6 +22524,11 @@ body {
   font-weight: 600;
   color: #231D46;
 }
+.card-property .card-body .card-text {
+  font-size: 11px;
+  font-weight: 400;
+  margin-bottom: 0;
+}
 .card-property .card-body .card-location {
   color: #1E612D;
   font-size: 11px;
@@ -22521,6 +22546,9 @@ body {
   margin: 0;
   padding: 0;
 }
+.card-property ul li {
+  height: 18px;
+}
 .card-property ul .detail-icon {
   width: 25px !important;
   text-align: center;
@@ -22529,9 +22557,22 @@ body {
   height: 100%;
 }
 .card-property ul .detail-text {
-  font-size: 14px;
+  font-size: 11px;
   color: #231D46;
   font-weight: 600;
+}
+
+.carousel-indicators {
+  margin-bottom: 2rem !important;
+}
+.carousel-indicators button {
+  width: 16px !important;
+  height: 16px !important;
+  border-radius: 50%;
+  opacity: 1 !important;
+}
+.carousel-indicators button.active {
+  background-color: #3830D9 !important;
 }
 
 header {
