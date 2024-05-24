@@ -8,5 +8,8 @@
     "/webfonts/fa-solid-900.ttf": "/webfonts/fa-solid-900.ttf",
     "/webfonts/fa-solid-900.woff2": "/webfonts/fa-solid-900.woff2",
     "/webfonts/fa-v4compatibility.ttf": "/webfonts/fa-v4compatibility.ttf",
-    "/webfonts/fa-v4compatibility.woff2": "/webfonts/fa-v4compatibility.woff2"
+    "/webfonts/fa-v4compatibility.woff2": "/webfonts/fa-v4compatibility.woff2",
+    "/css/owl.carousel.css": "/css/owl.carousel.css",
+    "/css/owl.theme.default.css": "/css/owl.theme.default.css",
+    "/js/owl.carousel.min.js": "/js/owl.carousel.min.js"
 }
