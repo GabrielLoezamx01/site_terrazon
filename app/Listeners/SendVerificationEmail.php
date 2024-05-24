@@ -29,7 +29,7 @@ class SendVerificationEmail
     {
         $email = $event->email;
         $token = $event->token;
-
+        //Se debe mandar un desing con el token
         $payload = [
             'from' => 'TERRAZON  <Terrazon@echamelamano.online>',
             'to' => [$email],

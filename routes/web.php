@@ -16,6 +16,9 @@ use App\Http\Controllers\Emails\VerifyController;
 |
 */
 
+Route::get('/registerEMAIL', function () {
+    return view('emails.register');
+});
 Route::get('/', function () {
     return view('welcome');
 });
