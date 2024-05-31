@@ -20215,7 +20215,7 @@ readers do not read off random characters that represent icons */
   font-style: normal;
   font-weight: 400;
   font-display: block;
-  src: url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-regular-400.woff2?21cb8f55d8e0c5b89751a73a45c9bff5) format("woff2"), url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-regular-400.ttf?eb91f7b948a42799f67808dd728823b7) format("truetype");
+  src: url("../webfonts/fa-regular-400.woff2") format("woff2"), url("../webfonts/fa-regular-400.ttf") format("truetype");
 }
 .far,
 .fa-regular {
@@ -20237,7 +20237,7 @@ readers do not read off random characters that represent icons */
   font-style: normal;
   font-weight: 900;
   font-display: block;
-  src: url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.woff2?4d986b00ff9ca3828fbd873b097b1b12) format("woff2"), url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.ttf?bacd5de623fb563b961a30e8349e44a9) format("truetype");
+  src: url("../webfonts/fa-solid-900.woff2") format("woff2"), url("../webfonts/fa-solid-900.ttf") format("truetype");
 }
 .fas,
 .fa-solid {
@@ -20259,7 +20259,7 @@ readers do not read off random characters that represent icons */
   font-style: normal;
   font-weight: 400;
   font-display: block;
-  src: url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-brands-400.woff2?455ea818179b4def0c432c45ac2291c9) format("woff2"), url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-brands-400.ttf?60127e352b7a11f7f1bc22decf628ed2) format("truetype");
+  src: url("../webfonts/fa-brands-400.woff2") format("woff2"), url("../webfonts/fa-brands-400.ttf") format("truetype");
 }
 .fab,
 .fa-brands {
@@ -22371,7 +22371,7 @@ body {
   font-optical-sizing: auto;
   font-style: normal;
   font-variation-settings: "slnt" 0;
-  background: var(--Lightest, #F5F3F1);
+  background: var(--Lightest, #F5F3F1) !important;
 }
 
 * {
@@ -22385,6 +22385,16 @@ body {
     font-weight: 450;
   }
 }
+@media screen and (max-width: 500px) {
+  .title-banner {
+    font-size: 18px !important;
+  }
+}
+
+.header-icon-filter {
+  font-size: 18px !important;
+}
+
 .input-terrazon {
   padding: 10px;
   border: 1px solid #ddd;
@@ -22561,9 +22571,20 @@ body {
   color: #231D46;
   font-weight: 600;
 }
+@media screen and (max-width: 500px) {
+  .card-property {
+    width: 90% !important;
+  }
+}
 
+@media screen and (max-width: 500px) {
+  .owl-carousel .owl-stage-outer {
+    overflow: visible !important;
+  }
+}
 .carousel-indicators {
   margin-bottom: 2rem !important;
+  z-index: 9999 !important;
 }
 .carousel-indicators button {
   width: 16px !important;
@@ -22573,6 +22594,80 @@ body {
 }
 .carousel-indicators button.active {
   background-color: #3830D9 !important;
+}
+
+.carousel-container {
+  position: relative;
+}
+.carousel-container .car-nav {
+  z-index: 999;
+  top: 50%;
+  position: absolute;
+  cursor: pointer;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5019607843);
+  -webkit-text-shadow: 0 0 5px rgba(0, 0, 0, 0.5019607843);
+  -moz-text-shadow: 0 0 5px rgba(0, 0, 0, 0.5019607843);
+  -ms-text-shadow: 0 0 5px rgba(0, 0, 0, 0.5019607843);
+  -o-text-shadow: 0 0 5px rgba(0, 0, 0, 0.5019607843);
+}
+.carousel-container .car-nav .icon-nav {
+  font-size: 16px;
+}
+.carousel-container .car-nav .fa-circle {
+  color: #3830D9;
+}
+.carousel-container .car-back {
+  left: 0;
+}
+@media screen and (min-width: 501px) {
+  .carousel-container .car-next {
+    right: -20px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .carousel-container .car-next {
+    right: 20px;
+  }
+}
+
+.info-stack {
+  font-size: 24px;
+}
+.info-stack .fa-circle {
+  color: #A3DBAF;
+}
+
+.info-title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.info-description {
+  font-size: 14px;
+}
+
+.bg-divisor {
+  background-color: #5FC075;
+  background-image: url("../images/bg-image-divisor.png");
+  background-repeat: no-repeat;
+  background-size: 40%;
+}
+.bg-divisor .input-group {
+  background-color: white;
+  padding: 5px;
+  border-radius: 5px;
+}
+.bg-divisor .input-group input {
+  border: none;
+  font-size: 14px;
+}
+.bg-divisor .btn-primary {
+  background-color: #4a5cc4;
+  border-color: #4a5cc4;
+}
+.bg-divisor .form-control {
+  border-radius: 0;
+  border: none;
 }
 
 header {

@@ -1,9 +1,18 @@
+@mixin icon-shadow {
+    text-shadow: 0 0 5px #00000080;
+    -webkit-text-shadow: 0 0 5px #00000080;
+    -moz-text-shadow: 0 0 5px #00000080;
+    -ms-text-shadow: 0 0 5px #00000080;
+    -o-text-shadow: 0 0 5px #00000080;
+
+}
+
 body {
     font-family: "Inter", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
     font-variation-settings: "slnt"0;
-    background: var(--Lightest, #F5F3F1);
+    background: var(--Lightest, #F5F3F1) !important;
 }
 
 * {
@@ -18,6 +27,15 @@ body {
     }
 }
 
+.title-banner {
+    @media screen and (max-width: 500px) {
+        font-size: 18px !important;
+    }
+}
+
+.header-icon-filter {
+    font-size: 18px !important;
+}
 
 .input-terrazon {
     padding: 10px;
@@ -122,9 +140,11 @@ body {
 }
 
 .card-property {
+
     width: 411px !important;
     border: none !important;
     border-radius: 5px;
+
     .icon-fav {
         position: absolute;
         top: 18px;
@@ -135,7 +155,8 @@ body {
             color: #ffffff;
         }
     }
-    .btn-detalle{
+
+    .btn-detalle {
         font-size: 12px;
         padding: 10px 30px;
     }
@@ -148,6 +169,7 @@ body {
         box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.25);
         border-bottom-left-radius: 5px;
         border-bottom-right-radius: 5px;
+
         .price {
             position: absolute;
             left: 0;
@@ -226,18 +248,111 @@ body {
             font-weight: 600;
         }
     }
+
+    @media screen and (max-width: 500px) {
+        width: 90% !important;
+    }
+
+    // @media screen and (max-width: 500px) {
+    //     width: 400px !important;
+    // }
+}
+
+@media screen and (max-width: 500px) {
+    .owl-carousel .owl-stage-outer {
+        overflow: visible !important;
+    }
 }
 
 
-.carousel-indicators{
+.carousel-indicators {
     margin-bottom: 2rem !important;
-    button{
+    z-index: 9999 !important;
+
+    button {
         width: 16px !important;
         height: 16px !important;
         border-radius: 50%;
         opacity: 1 !important;
-        &.active{
+
+        &.active {
             background-color: #3830D9 !important;
         }
+    }
+}
+
+.carousel-container {
+    position: relative;
+
+    .car-nav {
+        z-index: 999;
+        top: 50%;
+        position: absolute;
+        cursor: pointer;
+        @include icon-shadow;
+
+        .icon-nav {
+            font-size: 16px;
+        }
+
+        .fa-circle {
+            color: #3830D9;
+        }
+    }
+
+    .car-back {
+        left: 0;
+    }
+
+    .car-next {
+        @media screen and (min-width: 501px) {
+            right: -20px;
+        }
+
+        @media screen and (max-width: 500px) {
+            right: 20px;
+        }
+    }
+}
+
+.info-stack {
+    font-size: 24px;
+
+    .fa-circle {
+        color: #A3DBAF;
+    }
+}
+
+.info-title {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.info-description {
+    font-size: 14px;
+}
+
+.bg-divisor {
+    background-color: #5FC075;
+    background-image: url('../images/bg-image-divisor.png');
+    background-repeat: no-repeat;
+    background-size: 40%;
+    .input-group{
+        background-color: white;
+        padding: 5px;
+        border-radius: 5px;
+        input {
+            border: none;
+            font-size: 14px;
+        }
+    }
+    .btn-primary {
+        background-color: #4a5cc4;
+        border-color: #4a5cc4;
+    }
+
+    .form-control {
+        border-radius: 0;
+        border: none;
     }
 }
