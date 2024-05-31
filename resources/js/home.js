@@ -4,7 +4,7 @@ require('owl.carousel');
 $(document).ready(function () {
 
     var owlOptions={
-        center: true,
+        center: false,
         loop: true,
         margin: 10,
         nav: false,
@@ -28,6 +28,6 @@ $(document).ready(function () {
         owl2.trigger('next.owl.carousel');
     });
     $('#carr3_next').click(function() {
-        owl2.trigger('next.owl.carousel');
+        owl3.trigger('next.owl.carousel');
     });
 });
