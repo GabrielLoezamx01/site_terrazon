@@ -258,9 +258,18 @@ body {
     // }
 }
 
+
+.owl-stage-outer {
+    margin-left: 10px;
+}
 @media screen and (max-width: 500px) {
-    .owl-carousel .owl-stage-outer {
-        overflow: visible !important;
+    .owl-carousel {
+        .owl-stage-outer {
+            padding-left: 15px;
+        }
+    }
+    .mobile-conteiner {
+        padding: 0 !important;
     }
 }
 
@@ -306,11 +315,11 @@ body {
 
     .car-next {
         @media screen and (min-width: 501px) {
-            right: -20px;
+            right: -10px;
         }
 
         @media screen and (max-width: 500px) {
-            right: 20px;
+            right: 40px;
         }
     }
 }
@@ -337,15 +346,18 @@ body {
     background-image: url('../images/bg-image-divisor.png');
     background-repeat: no-repeat;
     background-size: 40%;
-    .input-group{
+
+    .input-group {
         background-color: white;
         padding: 8px;
         border-radius: 5px;
+
         input {
             border: none;
             font-size: 14px;
         }
     }
+
     .btn-primary {
         background-color: #4a5cc4;
         border-color: #4a5cc4;

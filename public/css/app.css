@@ -22577,9 +22577,16 @@ body {
   }
 }
 
+.owl-stage-outer {
+  margin-left: 10px;
+}
+
 @media screen and (max-width: 500px) {
   .owl-carousel .owl-stage-outer {
-    overflow: visible !important;
+    padding-left: 15px;
+  }
+  .mobile-conteiner {
+    padding: 0 !important;
   }
 }
 .carousel-indicators {
@@ -22621,12 +22628,12 @@ body {
 }
 @media screen and (min-width: 501px) {
   .carousel-container .car-next {
-    right: -20px;
+    right: -10px;
   }
 }
 @media screen and (max-width: 500px) {
   .carousel-container .car-next {
-    right: 20px;
+    right: 40px;
   }
 }
 

@@ -6,14 +6,13 @@ $(document).ready(function () {
     var owlOptions={
         center: false,
         loop: true,
-        margin: 10,
         nav: false,
         dots: false,
         responsive: {
             0: {
-                items: 1
+                items: 1.2
             },
-            600: {
+            768: {
                 items: 3
             }
         }
@@ -30,4 +29,14 @@ $(document).ready(function () {
     $('#carr3_next').click(function() {
         owl3.trigger('next.owl.carousel');
     });
+
+    $(window).resize(function() {
+        owl1.trigger('refresh.owl.carousel');
+        owl2.trigger('refresh.owl.carousel');
+        owl3.trigger('refresh.owl.carousel');
+    });
+    
+    // owl1.trigger('refresh.owl.carousel');
+    // owl2.trigger('refresh.owl.carousel');
+    // owl3.trigger('refresh.owl.carousel');
 });

@@ -2,25 +2,29 @@
 @section('title', 'TERRAZÓN - INICIO')
 @section('content')
 @include('public.components.banner')
-<div class="bg-light">
-    <div class="container p-2 px-4 min-content">
+<div class="bg-light min-content">
+    <div class="container p-2 px-4">
         <div class="col-12 text-left pb-3">
             <div class="title">Propiedades destacadas en la ciudad</div>
             <div class="subtitle">Descubre tu próximo hogar entre nuestras propiedades destacadas.</div>
         </div>
-        <x-carousel :cards="$cards1" id="carr1" />
     </div>
+    <div class="container-md mobile-conteiner">
+        <x-carousel :cards="$cards1" id="carr1" />
+    </dvi>
 </div>
-<div class="bg-light">
-    <div class="container p-2 px-4 min-content">
+<div class="bg-light  min-content">
+    <div class="container p-2 px-4">
         <div class="col-12 text-left pb-3">
             <div class="title">Propiedades destacadas en la playa</div>
             <div class="subtitle">Descubre tu próximo hogar entre nuestras propiedades destacadas.</div>
         </div>
-        <x-carousel :cards="$cards2" id="carr2" />
     </div>
+    <div class="container-md  mobile-conteiner">
+        <x-carousel :cards="$cards2" id="carr2" />
+    </dvi>
 </div>
-<div class="container py-4">
+<div class="container py-4  min-content">
     <div class="row">
         <div class="col-12 col-md-6">
 
@@ -66,24 +70,28 @@
     </div>
 </div>
 <div class="bg-light">
-    <div class="container p-2 px-4 min-content">
+    <div class="container p-2 px-4">
         <div class="col-12 text-left pb-3">
             <div class="title">Vistos recientemente</div>
             <div class="subtitle">Explora las joyas inmobiliarias que tenemos reservadas para ti.</div>
         </div>
-        <x-carousel :cards="$cards2" id="carr3" />
     </div>
+    <div class="container-md mobile-conteiner">
+        <x-carousel :cards="$cards2" id="carr3" />
+    </dvi>
 </div>
-<div class="bg-divisor py-5">
-    <div class="row">
-        <div class="col-12 col-md-4 offset-md-2 text-light">
-            <h5>Suscríbete a nuestro boletín mensual para estar actualizado de las mejores propiedades</h5>
-        </div>
-        <div class="col-12 col-md-4 d-flex align-items-center text-center">
-            <div class="input-group">
-                <input type="email" class="form-control" placeholder="Escribe tu email para recibir nuestro boletín">
-                <div class="input-group-append">
-                    <button class="btn btn-primary" type="button">Suscribirme</button>
+<div class="bg-divisor  py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-4 offset-md-2 text-light">
+                <h5>Suscríbete a nuestro boletín mensual para estar actualizado de las mejores propiedades</h5>
+            </div>
+            <div class="col-12 col-md-4 d-flex align-items-center text-center">
+                <div class="input-group">
+                    <input type="email" class="form-control" placeholder="Escribe tu email para recibir nuestro boletín">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button">Suscribirme</button>
+                    </div>
                 </div>
             </div>
         </div>
