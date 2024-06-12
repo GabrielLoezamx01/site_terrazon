@@ -21,7 +21,6 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/owl.carousel.css') }}">
     <link rel="stylesheet" href="{{ asset('css/owl.theme.default.css') }}">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 
 <body>

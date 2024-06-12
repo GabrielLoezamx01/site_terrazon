@@ -260,7 +260,7 @@ body {
 
 
 .owl-stage-outer {
-    margin-left: 10px;
+    padding-left: 10px;
 }
 @media screen and (max-width: 500px) {
     .owl-carousel {
@@ -285,7 +285,7 @@ body {
         opacity: 1 !important;
 
         &.active {
-            background-color: #3830D9 !important;
+            background-color: $primary !important;
         }
     }
 }
@@ -305,7 +305,7 @@ body {
         }
 
         .fa-circle {
-            color: #3830D9;
+            color: $primary;
         }
     }
 
@@ -367,4 +367,24 @@ body {
         border-radius: 0;
         border: none;
     }
+}
+
+
+
+.carousel-progress-bar {
+    width: 100%;
+    height: 9px;
+    border-radius: 4px;
+    background-color: #e0e0e0;
+    position: relative;
+    margin-top: 14px;
+    overflow: auto;
+}
+
+.my-progress {
+    height: 9px;
+    border-radius: 4px;
+    width: 0;
+    background-color: $primary;
+    transition: width 0.3s;
 }

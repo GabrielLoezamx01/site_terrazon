@@ -2,7 +2,7 @@
 @section('title', 'TERRAZÓN - INICIO')
 @section('content')
 @include('public.components.banner')
-<div class="bg-light min-content">
+<div class="bg-white min-content">
     <div class="container p-2 px-4">
         <div class="col-12 text-left pb-3">
             <div class="title">Propiedades destacadas en la ciudad</div>
@@ -11,20 +11,20 @@
     </div>
     <div class="container-md mobile-conteiner">
         <x-carousel :cards="$cards1" id="carr1" />
-    </dvi>
+    </div>
 </div>
-<div class="bg-light  min-content">
+<div class="bg-white min-content">
     <div class="container p-2 px-4">
         <div class="col-12 text-left pb-3">
             <div class="title">Propiedades destacadas en la playa</div>
             <div class="subtitle">Descubre tu próximo hogar entre nuestras propiedades destacadas.</div>
         </div>
     </div>
-    <div class="container-md  mobile-conteiner">
+    <div class="container-md mobile-conteiner">
         <x-carousel :cards="$cards2" id="carr2" />
-    </dvi>
+    </div>
 </div>
-<div class="container py-4  min-content">
+<div class="container py-4 min-content">
     <div class="row">
         <div class="col-12 col-md-6">
 
@@ -65,11 +65,10 @@
                     <p class="info-description">Nuestra red de afiliados ofrece acceso exclusivo a una amplia gama de propiedades, respaldada por un equipo experto que te brindará asesoramiento personalizado en cada etapa.</p>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
-<div class="bg-light">
+<div class="bg-white py-5">
     <div class="container p-2 px-4">
         <div class="col-12 text-left pb-3">
             <div class="title">Vistos recientemente</div>
@@ -78,9 +77,9 @@
     </div>
     <div class="container-md mobile-conteiner">
         <x-carousel :cards="$cards2" id="carr3" />
-    </dvi>
+    </div>
 </div>
-<div class="bg-divisor  py-5">
+<div class="bg-divisor py-5">
     <div class="container">
         <div class="row">
             <div class="col-12 col-md-4 offset-md-2 text-light">
