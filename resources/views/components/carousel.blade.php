@@ -17,7 +17,7 @@
                 <div class="my-progress" id="progress-{{$id}}"></div>
             </div>
         </div>
-        <div class="col-md-3 text-center">
+        <div class="col-md-3 text-center d-grid gap-2 d-md-block">
             <button type="button" class="btn btn-primary btn-catalogo">EXPLORAR CATÁLOGO</button>
         </div>
     </div>
