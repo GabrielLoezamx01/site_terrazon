@@ -135,7 +135,56 @@
                                     </span>
                                 </a>
                             </li>
-
+                            <li class="nav-item dropdown    ">
+                                <a class="nav-link dropdown-toggle" href="#navbar-layout" data-bs-toggle="dropdown"
+                                    data-bs-auto-close="false" role="button" aria-expanded="false">
+                                    <span
+                                        class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/layout-2 -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            class="icon icon-tabler icons-tabler-outline icon-tabler-home-down">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path d="M19 12h2l-9 -9l-9 9h2v7a2 2 0 0 0 2 2h5.5" />
+                                            <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2" />
+                                            <path d="M19 16v6" />
+                                            <path d="M22 19l-3 3l-3 -3" />
+                                        </svg>
+                                    </span>
+                                    <span class="nav-link-title">
+                                        Propiedades
+                                    </span>
+                                </a>
+                                <div class="dropdown-menu">
+                                    <div class="dropdown-menu-columns">
+                                        <div class="dropdown-menu-column">
+                                            <a class="dropdown-item" href="amenidades">
+                                                Amenidades
+                                            </a>
+                                        </div>
+                                        <div class="dropdown-menu-column">
+                                            <a class="dropdown-item" href="tipos">
+                                                Tipos
+                                            </a>
+                                        </div>
+                                        <div class="dropdown-menu-column">
+                                            <a class="dropdown-item" href="características">
+                                                Características
+                                            </a>
+                                        </div>
+                                        <div class="dropdown-menu-column">
+                                            <a class="dropdown-item" href="condición">
+                                                Condición
+                                            </a>
+                                        </div>
+                                        <div class="dropdown-menu-column">
+                                            <a class="dropdown-item" href="lista_propiedades">
+                                                Lista de propiedades
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -324,7 +373,7 @@
                                 <span class="avatar avatar-sm"
                                     style="background-image: url(./static/avatars/000m.jpg)"></span>
                                 <div class="d-none d-xl-block ps-2">
-                                    <div>       {{ Auth::user()->name }}</div>
+                                    <div> {{ Auth::user()->name }}</div>
                                     <div class="mt-1 small text-muted">Admin</div>
                                 </div>
                             </a>
@@ -335,16 +384,16 @@
                                 <div class="dropdown-divider"></div>
                                 <a href="./settings.html" class="dropdown-item">Settings</a>
                                 <a href="{{ route('logout') }}" class="dropdown-item">
-                                  <a class="dropdown-item"
-                                            onclick="event.preventDefault();
+                                    <a class="dropdown-item"
+                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            {{ __('Logout') }}
-                                        </a>
+                                        {{ __('Logout') }}
+                                    </a>
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                            class="d-none">
-                                            @csrf
-                                        </form>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        class="d-none">
+                                        @csrf
+                                    </form>
                                 </a>
                             </div>
                         </div>
