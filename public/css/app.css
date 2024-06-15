@@ -33,7 +33,7 @@
   --bs-gray-900: #212529;
   --bs-primary: #3830D9;
   --bs-secondary: #6c757d;
-  --bs-tertiary: #094208;
+  --bs-tertiary: #1E612D;
   --bs-success: #37B052;
   --bs-info: #0dcaf0;
   --bs-warning: #ffc107;
@@ -42,7 +42,7 @@
   --bs-dark: #212529;
   --bs-primary-rgb: 56, 48, 217;
   --bs-secondary-rgb: 108, 117, 125;
-  --bs-tertiary-rgb: 9, 66, 8;
+  --bs-tertiary-rgb: 30, 97, 45;
   --bs-success-rgb: 55, 176, 82;
   --bs-info-rgb: 13, 202, 240;
   --bs-warning-rgb: 255, 193, 7;
@@ -3049,19 +3049,19 @@ textarea.form-control-lg {
 
 .btn-tertiary {
   --bs-btn-color: #fff;
-  --bs-btn-bg: #094208;
-  --bs-btn-border-color: #094208;
+  --bs-btn-bg: #1E612D;
+  --bs-btn-border-color: #1E612D;
   --bs-btn-hover-color: #fff;
-  --bs-btn-hover-bg: #083807;
-  --bs-btn-hover-border-color: #073506;
-  --bs-btn-focus-shadow-rgb: 46, 94, 45;
+  --bs-btn-hover-bg: #1a5226;
+  --bs-btn-hover-border-color: #184e24;
+  --bs-btn-focus-shadow-rgb: 64, 121, 77;
   --bs-btn-active-color: #fff;
-  --bs-btn-active-bg: #073506;
-  --bs-btn-active-border-color: #073206;
+  --bs-btn-active-bg: #184e24;
+  --bs-btn-active-border-color: #174922;
   --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   --bs-btn-disabled-color: #fff;
-  --bs-btn-disabled-bg: #094208;
-  --bs-btn-disabled-border-color: #094208;
+  --bs-btn-disabled-bg: #1E612D;
+  --bs-btn-disabled-border-color: #1E612D;
 }
 
 .btn-success {
@@ -3201,19 +3201,19 @@ textarea.form-control-lg {
 }
 
 .btn-outline-tertiary {
-  --bs-btn-color: #094208;
-  --bs-btn-border-color: #094208;
+  --bs-btn-color: #1E612D;
+  --bs-btn-border-color: #1E612D;
   --bs-btn-hover-color: #fff;
-  --bs-btn-hover-bg: #094208;
-  --bs-btn-hover-border-color: #094208;
-  --bs-btn-focus-shadow-rgb: 9, 66, 8;
+  --bs-btn-hover-bg: #1E612D;
+  --bs-btn-hover-border-color: #1E612D;
+  --bs-btn-focus-shadow-rgb: 30, 97, 45;
   --bs-btn-active-color: #fff;
-  --bs-btn-active-bg: #094208;
-  --bs-btn-active-border-color: #094208;
+  --bs-btn-active-bg: #1E612D;
+  --bs-btn-active-border-color: #1E612D;
   --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  --bs-btn-disabled-color: #094208;
+  --bs-btn-disabled-color: #1E612D;
   --bs-btn-disabled-bg: transparent;
-  --bs-btn-disabled-border-color: #094208;
+  --bs-btn-disabled-border-color: #1E612D;
   --bs-gradient: none;
 }
 
@@ -6921,8 +6921,8 @@ textarea.form-control-lg {
   text-decoration-color: RGBA(var(--bs-tertiary-rgb), var(--bs-link-underline-opacity, 1)) !important;
 }
 .link-tertiary:hover, .link-tertiary:focus {
-  color: RGBA(7, 53, 6, var(--bs-link-opacity, 1)) !important;
-  text-decoration-color: RGBA(7, 53, 6, var(--bs-link-underline-opacity, 1)) !important;
+  color: RGBA(24, 78, 36, var(--bs-link-opacity, 1)) !important;
+  text-decoration-color: RGBA(24, 78, 36, var(--bs-link-underline-opacity, 1)) !important;
 }
 
 .link-success {
@@ -22460,6 +22460,10 @@ readers do not read off random characters that represent icons */
   content: "\f3f6";
 }
 
+.box-shadow {
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.25);
+}
+
 body {
   font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
@@ -22940,12 +22944,71 @@ ul.list-info .detail-text {
     grid-area: five;
   }
 }
+.fs-7 {
+  font-size: 12px;
+}
+
+.text-tertiary {
+  color: #F5E9D6 !important;
+}
+
+@media screen and (max-width: 768px) {
+  .container-contact {
+    height: 120px;
+  }
+}
+
+.input-contact {
+  border: none;
+  border-bottom: 1px solid;
+  border-radius: 0;
+  background-color: white;
+}
+
+.image-contact {
+  position: absolute;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: 100% !important;
+  height: 100%;
+  width: 100%;
+  bottom: -44%;
+  right: 0;
+}
+@media screen and (min-width: 768px) {
+  .image-contact {
+    background-size: 50% !important;
+    bottom: -42%;
+    right: -25%;
+  }
+}
+
+.svg-social-icon {
+  position: absolute;
+  width: 40px !important;
+  height: 40px !important;
+  margin-right: 10px;
+  background-position: center;
+}
+
+.svg-social-facebook {
+  background: url("../svg/facebook.svg") no-repeat;
+}
+
+.svg-social-youtube {
+  background: url("../svg/youtube.svg") no-repeat;
+}
+
+.svg-social-whatsapp {
+  background: url("../svg/whatsapp.svg") no-repeat;
+}
+
 header {
   font-weight: 100;
   font-size: 8.454rpx;
   height: 61px;
   color: #ffffff;
-  background-color: #094208;
+  background-color: #1E612D;
 }
 header a {
   color: #ffffff;
@@ -22968,7 +23031,7 @@ header a:hover {
 
 .menu-container {
   height: 61px;
-  background: #094208;
+  background: #1E612D;
 }
 @media screen and (min-width: 768px) {
   .menu-container {

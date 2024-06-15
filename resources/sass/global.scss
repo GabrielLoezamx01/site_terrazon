@@ -6,7 +6,14 @@
     -o-text-shadow: 0 0 5px #00000080;
 
 }
-
+@mixin box-shadow{
+    -webkit-box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.25);
+}
+.box-shadow{
+    @include box-shadow;
+}
 body {
     font-family: "Inter", sans-serif;
     font-optical-sizing: auto;
@@ -567,4 +574,57 @@ ul.list-info {
     .img5 {
         grid-area: five;
     }
+}
+
+
+.fs-7{
+    font-size: 12px;
+}
+
+.text-tertiary{
+    color: $text-tertiary !important;
+}
+
+.container-contact{
+    @media screen and (max-width: 768px){
+        height: 120px;
+    }
+}
+.input-contact{
+    border: none;
+    border-bottom: 1px solid;
+    border-radius: 0;
+    background-color: white;
+}
+.image-contact{
+    position: absolute;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    background-size: 100% !important;
+    height: 100%;
+    width: 100%;
+    bottom: -44%;
+    right: 0;
+    @media screen and (min-width: 768px){
+        background-size: 50% !important;
+        bottom: -42%;
+        right: -25%;
+    }
+}
+
+.svg-social-icon{
+    position: absolute;
+    width: 40px !important;
+    height: 40px !important;
+    margin-right: 10px;
+    background-position: center;
+}
+.svg-social-facebook{  
+    background: url('../svg/facebook.svg') no-repeat;
+}
+.svg-social-youtube{  
+    background: url('../svg/youtube.svg') no-repeat;
+}
+.svg-social-whatsapp{  
+    background: url('../svg/whatsapp.svg') no-repeat;
 }

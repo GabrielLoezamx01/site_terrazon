@@ -215,6 +215,92 @@
 <div class="bg-white py-5">
     <div class="container">
         <div class="row">
+            <div class="col-12 col-lg-4 d-flex mb-3">
+                <div class="card p-5 text-tertiary bg-tertiary box-shadow">
+                    <div class="card-body ">
+                        <h1 class="mb-4">Conectemos</h1>
+                        <div class="row py-3">
+                            <div class="col-4 fs-7">
+                                Teléfono
+                            </div>
+                            <div class="col-8 fs-7">
+                                +52 999 1 23 45 67
+                            </div>
+                        </div>
+                        <div class="row py-3">
+                            <div class="col-4 fs-7">
+                                Email
+                            </div>
+                            <div class="col-8 fs-7">
+                                hola@terraazon.mx
+                            </div>
+                        </div>
+                        <div class="row py-3">
+                            <div class="col-4 fs-7">
+                                Direccion
+                            </div>
+                            <div class="col-8 fs-7">
+                                C. 12A 310, Santa Gertrudis Copo,
+                                97113 Mérida, Yuc.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 col-sm-2 text-center fs-7">
+                            <a href="https://www.facebook.com/share/bz85nrGpXmAPYVZQ/?mibextid=qi2Omg" target="_blank"><span class="svg-social-icon svg-social-facebook"></span></a>
+                        </div>
+                        <div class="col-4 col-sm-2 text-center fs-7">
+                            <a href="https://www.instagram.com/terrazon.mx?igsh=aW53ZmVwOTB1dWdi" target="_blank"><span class="svg-social-icon svg-social-youtube"></span></a>
+                        </div>
+                        <div class="col-4 col-sm-2 text-center fs-7">
+                            <a href="https://www.facebook.com/share/bz85nrGpXmAPYVZQ/?mibextid=qi2Omg" target="_blank"> <span class="svg-social-icon svg-social-whatsapp"></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-8 mb-3">
+                <div class="card p-5 pb-3 bg-white  box-shadow">
+                    <div class="card-body">
+                        <h2 class="card-title">¡Nos encantaría saber de ti!</h2>
+                        <div class="row">
+                            <div class="col-12 col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control input-contact" id="name" placeholder="Nombre">
+                                    <label for="name">Nombre</label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input type="email" class="form-control input-contact" id="email" placeholder="Email">
+                                    <label for="email">Email</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating mb-3">
+                                    <textarea class="form-control input-contact" style="height:100px" id="coments" placeholder="Deja tu comentario"></textarea>
+                                    <label for="coments">Deja tu comentario</label>
+                                </div>
+                            </div>
+                            <div class="col-12 py-2">
+                                <input type="checkbox" id="check"><label for="check" class="mx-2">Acepto los términos y condiciones</label>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <div class="pt-3 text-center text-md-start d-grid gap-2 d-block">
+                                    <button type="button" class="btn btn-primary btn-catalogo">ENVIAR MENSAJE</button>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-8 container-contact">
+                                <div class="image-contact" style="background: url({{asset('images/image-bg-white.png')}});"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
             <div class="col-12">
                 <div class="image-grid">
                     <div class="image-container img1">
