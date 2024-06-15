@@ -259,7 +259,7 @@
                 </div>
             </div>
             <div class="col-12 col-lg-8 mb-3">
-                <div class="card p-5 pb-3 bg-white  box-shadow">
+                <div class="card p-5 pb-3 bg-white  box-shadow" style="overflow: hidden;">
                     <div class="card-body">
                         <h2 class="card-title">¡Nos encantaría saber de ti!</h2>
                         <div class="row">
