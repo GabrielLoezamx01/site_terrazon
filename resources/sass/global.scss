@@ -134,10 +134,22 @@ body {
     font-size: 16px;
 
 }
+.price {
+    padding: 16px;
+    background-color: #7AE582;
+    height: 30px;
+    color: #231D46;
+    font-size: 16px;
+    font-weight: 800;
+    white-space: nowrap;
+    padding: 10px 20px 10px 30px;
+    text-align: center;
+}
 
 .min-content {
     min-height: 300px;
 }
+
 
 .card-property {
 
@@ -218,36 +230,12 @@ body {
         }
     }
 
-    .btn-primary {
-        background-color: #37B052;
-        border: none;
-    }
+    // .btn-succes {
+    //     background-color: #37B052;
+    //     border: none;
+    // }
 
-    ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-
-        li {
-            height: 18px;
-        }
-
-        .detail-icon {
-            width: 25px !important;
-
-            img {
-                height: 100%;
-            }
-
-            text-align: center;
-        }
-
-        .detail-text {
-            font-size: 11px;
-            color: #231D46;
-            font-weight: 600;
-        }
-    }
+    
 
     @media screen and (max-width: 500px) {
         width: 90% !important;
@@ -257,17 +245,51 @@ body {
     //     width: 400px !important;
     // }
 }
+ul.list-info {
+    list-style: none;
+    margin: 0;
+    padding: 0;
 
+    li {
+        height: 18px;
+    }
+
+    .detail-icon {
+        width: 25px !important;
+
+        img {
+            height: 100%;
+        }
+
+        text-align: center;
+    }
+
+    .detail-text {
+        font-size: 11px;
+        color: #231D46;
+        font-weight: 600;
+    }
+}
+.location {
+    color: #1E612D;
+    font-size: 11px;
+    font-weight: 500;
+    img {
+        height: 11px;
+    }
+}
 
 .owl-stage-outer {
     padding-left: 10px;
 }
+
 @media screen and (max-width: 500px) {
     .owl-carousel {
         .owl-stage-outer {
             padding-left: 15px;
         }
     }
+
     .mobile-conteiner {
         padding: 0 !important;
     }
@@ -322,6 +344,36 @@ body {
             right: 40px;
         }
     }
+}
+.carousel-control-prev{
+    justify-content: start !important;
+    opacity: 1 !important;
+
+}
+.carousel-control-next{
+    justify-content: end !important;
+    opacity: 1 !important;
+}
+.slider-nav {
+    z-index: 999;
+    top: 50%;
+    position: absolute;
+    cursor: pointer;
+    @include icon-shadow;
+
+    .icon-nav {
+        font-size: 16px;
+    }
+
+    .fa-circle {
+        color: $primary;
+    }
+}
+.slider-nav-prev{
+    left: -20px;
+}
+.slider-nav-next{
+    right: -20px;
 }
 
 .info-stack {
@@ -389,32 +441,41 @@ body {
     transition: width 0.3s;
 }
 
-.img-experience{
+.img-experience {
     position: relative;
     top: -30px;
     width: 85%;
 }
 
-.title-big{
+.title-big {
     font-weight: 800;
     font-size: 46px;
 }
-.hightlight{
+
+.hightlight {
     font-weight: 700;
     font-size: 20px;
 }
-.description{
+
+.description {
     font-weight: 300;
     font-size: 16px;
 }
 
-.btn-catalogo{
-    padding: 10px 30px;
+.btn-detalle {
+    color: white;
+    padding: 10px 25px;
 }
-.bg-teal{
+.btn-catalogo {
+    padding: 10px 25px;
+    white-space: nowrap;
+}
+
+.bg-teal {
     background-color: #E2F1E5;
 }
-.img-item{
+
+.img-item {
     background-position: center !important;
     background-size: cover !important;
     background-repeat: no-repeat !important;
@@ -427,10 +488,12 @@ body {
     display: grid;
     gap: 10px;
 }
+
 .image-container {
     padding: 3px;
 }
-@media (max-width: 990px ) {
+
+@media (max-width: 990px) {
     .image-grid {
         grid-template-columns: repeat(2, 1fr);
         grid-auto-rows: minmax(100px, auto);
@@ -449,12 +512,28 @@ body {
             "five five"
             "five five"
     }
-    .img1 { grid-area: one;  }
-    .img2 { grid-area: two;  }
-    .img3 { grid-area: thre; }
-    .img4 { grid-area: four; }
-    .img5 { grid-area: five; }
+
+    .img1 {
+        grid-area: one;
+    }
+
+    .img2 {
+        grid-area: two;
+    }
+
+    .img3 {
+        grid-area: thre;
+    }
+
+    .img4 {
+        grid-area: four;
+    }
+
+    .img5 {
+        grid-area: five;
+    }
 }
+
 @media (min-width: 992px) {
     .image-grid {
         grid-template-columns: repeat(3, 1fr);
@@ -468,9 +547,24 @@ body {
             "two thre five";
         // grid-template-columns: 1fr 1fr;
     }
-    .img1 { grid-area: one;  }
-    .img2 { grid-area: two;  }
-    .img3 { grid-area: thre; }
-    .img4 { grid-area: four; }
-    .img5 { grid-area: five; }
+
+    .img1 {
+        grid-area: one;
+    }
+
+    .img2 {
+        grid-area: two;
+    }
+
+    .img3 {
+        grid-area: thre;
+    }
+
+    .img4 {
+        grid-area: four;
+    }
+
+    .img5 {
+        grid-area: five;
+    }
 }

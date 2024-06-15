@@ -6,7 +6,7 @@
     <div class="container p-2 px-4">
         <div class="col-12 text-left pb-3">
             <div class="title">Propiedades destacadas en la ciudad</div>
-            <div class="subtitle">Descubre tu próximo hogar entre nuestras propiedades destacadas.</div>
+            <div class="description">Descubre tu próximo hogar entre nuestras propiedades destacadas.</div>
         </div>
     </div>
     <div class="container-md mobile-conteiner">
@@ -17,7 +17,7 @@
     <div class="container p-2 px-4">
         <div class="col-12 text-left pb-3">
             <div class="title">Propiedades destacadas en la playa</div>
-            <div class="subtitle">Descubre tu próximo hogar entre nuestras propiedades destacadas.</div>
+            <div class="description">Descubre tu próximo hogar entre nuestras propiedades destacadas.</div>
         </div>
     </div>
     <div class="container-md mobile-conteiner">
@@ -91,7 +91,7 @@
     <div class="container p-2 px-4">
         <div class="col-12 text-left pb-3">
             <div class="title">Vistos recientemente</div>
-            <div class="subtitle">Explora las joyas inmobiliarias que tenemos reservadas para ti.</div>
+            <div class="description">Explora las joyas inmobiliarias que tenemos reservadas para ti.</div>
         </div>
     </div>
     <div class="container-md mobile-conteiner">
@@ -118,10 +118,40 @@
 <div class="bg-teal py-5">
     <div class="container py-5">
         <div class="row">
-            <div class="col-12 col-md-5">
-                <div style="background-color: white;position: relative;height: 115%;width: 161%;margin: -36px auto;"> </div>
+            <div class="d-none d-lg-block" style="background-color: white;position: absolute;height: 74%;width: 50%;margin: -36px auto;z-index:0;"> </div>
+            <div class="col-12 col-lg-5" style="padding:0px 35px 0 35px;">
+                <div class="row py-3  bg-white" style="z-index:1; position:relative">
+                    <div class="col-12">
+                        <h2>Recomendaciones en la playa</h2>
+                        <div class="description">Descubre tu oasis perfecto en la playa y empieza a disfrutar de la vida junto al mar</div>
+                    </div>
+                    <div class="col-12 py-4">
+                        <span class="price">$ 1,234,567.00</span>
+                    </div>
+                    <div class="col-12">
+                        <div class="hightlight">Nombre de la propiedad</div>
+                        <div class="location py-2"><img src="{{ asset('images/icons/location.svg') }}"> Ubicación del desarrollo</div>
+                        <p class="description">Breve descripción de la propiedad con un máximo de caracteres establecidos por el cliente para una rápida introducción.</p>
+                    </div>
+
+                    <div class="col-12">
+                        <ul class="list-info">
+                            <li><label class="detail-icon"><img src="{{ asset('images/icons/bed.svg') }}"></label><span class="detail-text">2 Habitaciones<span></li>
+                            <li><label class="detail-icon"><img src="{{ asset('images/icons/bath.svg') }}"></label><span class="detail-text">2 Baños</span></li>
+                            <li><label class="detail-icon"><img src="{{ asset('images/icons/cart.svg') }}"></label><span class="detail-text">1 Estacionamiento</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row d-none d-lg-flex mt-4" style="z-index:1; position:relative">
+                    <div class="col-12 col-md-6 d-grid gap-2 d-md-block text-center py-2">
+                        <button type="button" class="btn btn-success btn-detalle">VER MAS DETALLES</button>
+                    </div>
+                    <div class="col-12 col-md-6 d-grid gap-2 d-md-block text-center py-2">
+                        <button type="button" class="btn btn-primary btn-catalogo">EXPLORAR CATÁLOGO</button>
+                    </div>
+                </div>
             </div>
-            <div class="col-12 col-md-7">
+            <div class="col-12 col-lg-7 px-4 px-lg-0">
                 <div id="carousel2" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-indicators">
                         <button type="button" data-bs-target="#carousel2" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -152,16 +182,33 @@
                         </div>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carousel2" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
+                        <span class="visually-hidden">Preview</span>
+                        <div class="slider-nav slider-nav-prev">
+                            <span class="icon-nav fa-stack fa-2x">
+                                <i class="fa-solid fa-circle fa-stack-2x"></i>
+                                <i class="fa-solid fa-chevron-left fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </div>
                     </button>
                     <button class="carousel-control-next" type="button" data-bs-target="#carousel2" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
+                        <div class="slider-nav slider-nav-next">
+                            <span class="icon-nav fa-stack fa-2x">
+                                <i class="fa-solid fa-circle fa-stack-2x"></i>
+                                <i class="fa-solid fa-chevron-right fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </div>
                     </button>
                 </div>
             </div>
-
+        </div>
+        <div class="row d-flex d-lg-none mt-4" style="z-index:1; position:relative">
+            <div class="col-12 col-lg-6 d-grid gap-2 d-lg-block text-center py-2">
+                <button type="button" class="btn btn-success btn-detalle">VER MAS DETALLES</button>
+            </div>
+            <div class="col-12 col-lg-6 d-grid gap-2 d-lg-block text-center py-2">
+                <button type="button" class="btn btn-primary btn-catalogo">EXPLORAR CATÁLOGO</button>
+            </div>
         </div>
     </div>
 </div>
