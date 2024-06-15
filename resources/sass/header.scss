@@ -31,7 +31,7 @@ header {
 
 .menu-container {
     height: 61px;
-    background: $primary;
+    background: $tertiary;
 
     @media screen {
 
@@ -136,4 +136,9 @@ header {
             }
         }
     }
+}
+
+.input-boletin{
+    background: white !important;
+    font-size: 13px !important;
 }

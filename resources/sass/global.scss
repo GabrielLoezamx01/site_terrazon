@@ -388,3 +388,89 @@ body {
     background-color: $primary;
     transition: width 0.3s;
 }
+
+.img-experience{
+    position: relative;
+    top: -30px;
+    width: 85%;
+}
+
+.title-big{
+    font-weight: 800;
+    font-size: 46px;
+}
+.hightlight{
+    font-weight: 700;
+    font-size: 20px;
+}
+.description{
+    font-weight: 300;
+    font-size: 16px;
+}
+
+.btn-catalogo{
+    padding: 10px 30px;
+}
+.bg-teal{
+    background-color: #E2F1E5;
+}
+.img-item{
+    background-position: center !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    border-radius: 5px;
+    height: 100%;
+    width: 100%;
+}
+
+.image-grid {
+    display: grid;
+    gap: 10px;
+}
+.image-container {
+    padding: 3px;
+}
+@media (max-width: 990px ) {
+    .image-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: minmax(100px, auto);
+        grid-template-areas:
+            "four four"
+            "four four"
+            "one two"
+            "one two"
+            "thre thre"
+            "thre thre"
+            "thre thre"
+            "thre thre"
+            "thre thre"
+            "thre thre"
+            "thre thre"
+            "five five"
+            "five five"
+    }
+    .img1 { grid-area: one;  }
+    .img2 { grid-area: two;  }
+    .img3 { grid-area: thre; }
+    .img4 { grid-area: four; }
+    .img5 { grid-area: five; }
+}
+@media (min-width: 992px) {
+    .image-grid {
+        grid-template-columns: repeat(3, 1fr);
+        grid-auto-rows: minmax(100px, auto);
+        grid-template-areas:
+            "one thre four"
+            "one thre four"
+            "one thre four"
+            "two thre four"
+            "two thre five"
+            "two thre five";
+        // grid-template-columns: 1fr 1fr;
+    }
+    .img1 { grid-area: one;  }
+    .img2 { grid-area: two;  }
+    .img3 { grid-area: thre; }
+    .img4 { grid-area: four; }
+    .img5 { grid-area: five; }
+}

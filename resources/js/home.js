@@ -32,7 +32,6 @@ $(document).ready(function () {
     }
 
     function updateProgressBar(event) {
-        console.log(event);
         var pageSize= event.page.size;
         var items = event.item.count + pageSize; // Número total de slides
         var item = event.item.index+1; // Slide actual (comienza en 0, por lo tanto sumamos 1)
