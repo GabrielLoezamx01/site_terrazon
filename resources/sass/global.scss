@@ -6,14 +6,17 @@
     -o-text-shadow: 0 0 5px #00000080;
 
 }
-@mixin box-shadow{
+
+@mixin box-shadow {
     -webkit-box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.25);
     -moz-box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.25);
     box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.25);
 }
-.box-shadow{
+
+.box-shadow {
     @include box-shadow;
 }
+
 body {
     font-family: "Inter", sans-serif;
     font-optical-sizing: auto;
@@ -141,6 +144,7 @@ body {
     font-size: 16px;
 
 }
+
 .price {
     padding: 16px;
     background-color: #7AE582;
@@ -242,7 +246,7 @@ body {
     //     border: none;
     // }
 
-    
+
 
     @media screen and (max-width: 500px) {
         width: 90% !important;
@@ -252,6 +256,7 @@ body {
     //     width: 400px !important;
     // }
 }
+
 ul.list-info {
     list-style: none;
     margin: 0;
@@ -277,10 +282,12 @@ ul.list-info {
         font-weight: 600;
     }
 }
+
 .location {
     color: #1E612D;
     font-size: 11px;
     font-weight: 500;
+
     img {
         height: 11px;
     }
@@ -352,15 +359,18 @@ ul.list-info {
         }
     }
 }
-.carousel-control-prev{
+
+.carousel-control-prev {
     justify-content: start !important;
     opacity: 1 !important;
 
 }
-.carousel-control-next{
+
+.carousel-control-next {
     justify-content: end !important;
     opacity: 1 !important;
 }
+
 .slider-nav {
     z-index: 999;
     top: 50%;
@@ -376,10 +386,12 @@ ul.list-info {
         color: $primary;
     }
 }
-.slider-nav-prev{
+
+.slider-nav-prev {
     left: -20px;
 }
-.slider-nav-next{
+
+.slider-nav-next {
     right: -20px;
 }
 
@@ -398,6 +410,58 @@ ul.list-info {
 
 .info-description {
     font-size: 14px;
+}
+
+.footer {
+    background-color: #5FC075;
+    .footer-title {
+        position: relative;
+        &:after {
+            position: absolute;
+            content: '';
+            width: 110%;
+            height: 5px !important;
+            background-color: $primary;
+            bottom: -10px;
+            left: 0;
+        }
+    }
+
+    .description {
+        font-size: 14px;
+    }
+
+    a {
+        color: black;
+        text-decoration: none !important;
+    }
+
+    ul.list-menu {
+        margin: 0;
+        padding: 12px;
+
+        li {
+            color: white;
+
+            &.active {
+                color: $primary !important;
+            }
+        }
+    }
+
+    ul.list-contact {
+        margin: 0;
+        padding: 0;
+
+        li {
+            list-style: none;
+            padding: 8px 0px;
+            i{
+                font-size: 1.5em !important;
+                margin-right: 10px;
+            }
+        }
+    }
 }
 
 .bg-divisor {
@@ -473,6 +537,7 @@ ul.list-info {
     color: white;
     padding: 10px 25px;
 }
+
 .btn-catalogo {
     padding: 10px 25px;
     white-space: nowrap;
@@ -577,26 +642,28 @@ ul.list-info {
 }
 
 
-.fs-7{
+.fs-7 {
     font-size: 12px;
 }
 
-.text-tertiary{
+.text-tertiary {
     color: $text-tertiary !important;
 }
 
-.container-contact{
-    @media screen and (max-width: 768px){
+.container-contact {
+    @media screen and (max-width: 768px) {
         height: 120px;
     }
 }
-.input-contact{
+
+.input-contact {
     border: none;
     border-bottom: 1px solid;
     border-radius: 0;
     background-color: white;
 }
-.image-contact{
+
+.image-contact {
     position: absolute;
     background-repeat: no-repeat !important;
     background-position: center !important;
@@ -605,26 +672,31 @@ ul.list-info {
     width: 100%;
     bottom: -44%;
     right: 0;
-    @media screen and (min-width: 768px){
+
+    @media screen and (min-width: 768px) {
         background-size: 50% !important;
         bottom: -42%;
         right: -25%;
     }
+    
 }
 
-.svg-social-icon{
+.svg-social-icon {
     position: absolute;
     width: 40px !important;
     height: 40px !important;
     margin-right: 10px;
     background-position: center;
 }
-.svg-social-facebook{  
+
+.svg-social-facebook {
     background: url('../svg/facebook.svg') no-repeat;
 }
-.svg-social-youtube{  
+
+.svg-social-youtube {
     background: url('../svg/youtube.svg') no-repeat;
 }
-.svg-social-whatsapp{  
+
+.svg-social-whatsapp {
     background: url('../svg/whatsapp.svg') no-repeat;
 }
