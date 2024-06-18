@@ -9,7 +9,7 @@ $(document).ready(function () {
         nav: false,
         dots: false,
         rewindNav: true,
-        autoplay: true,
+        autoplay: false,
         responsive: {
             0: {
                 items: 1.2
