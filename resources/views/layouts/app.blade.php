@@ -8,25 +8,12 @@
     <title>@yield('title')</title>
     <link href="{{ asset('css/tabler.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/tabler-flags.min.css') }}" rel="stylesheet" />
-    <link href="{{ asset('css/tabler-payments.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/tabler-vendors.min.css') }}" rel="stylesheet" />
-    <style>
-        @import url('https://rsms.me/inter/inter.css');
-
-        :root {
-            --tblr-font-sans-serif: 'Inter Var', -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif;
-        }
-
-        body {
-            font-feature-settings: "cv03", "cv04", "cv11";
-        }
-    </style>
+    <link href="{{ asset('css/demoapp.css') }}" rel="stylesheet" />
     @stack('styles')
     @stack('scripts')
 </head>
-
 <body>
-
     <div class="page">
         @if (Auth::check())
             <aside class="navbar navbar-vertical navbar-expand-lg">
@@ -73,8 +60,7 @@
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown"
                                 aria-label="Open user menu">
-                                <span class="avatar avatar-sm"
-                                    style="background-image: url(/static/avatars/000m.jpg)"></span>
+                                <span class="avatar avatar-sm" style="background-image: url(/img/demo.jpeg)"></span>
                                 <div class="d-none d-xl-block ps-2">
                                     <div> {{ Auth::user()->name }}</div>
                                     <div class="mt-1 small text-muted">Admin</div>
@@ -117,7 +103,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="usuarios">
+                                <a class="nav-link" href="users">
                                     <span class="nav-link-icon d-md-none d-lg-inline-block">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -158,12 +144,12 @@
                                 <div class="dropdown-menu">
                                     <div class="dropdown-menu-columns">
                                         <div class="dropdown-menu-column">
-                                            <a class="dropdown-item" href="amenidades">
+                                            <a class="dropdown-item" href="amenities">
                                                 Amenidades
                                             </a>
                                         </div>
                                         <div class="dropdown-menu-column">
-                                            <a class="dropdown-item" href="tipos">
+                                            <a class="dropdown-item" href="guys">
                                                 Tipos
                                             </a>
                                         </div>
@@ -370,8 +356,7 @@
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown"
                                 aria-label="Open user menu">
-                                <span class="avatar avatar-sm"
-                                    style="background-image: url(./static/avatars/000m.jpg)"></span>
+                                <span class="avatar avatar-sm" style="background-image: url(/img/demo.jpeg)"></span>
                                 <div class="d-none d-xl-block ps-2">
                                     <div> {{ Auth::user()->name }}</div>
                                     <div class="mt-1 small text-muted">Admin</div>
@@ -389,7 +374,6 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                         class="d-none">
                                         @csrf
@@ -422,7 +406,7 @@
                 </div>
             </header>
         @endif
-        <div class="page-wrapper">
+        <div class="page-wrapper" id="vueApp">
             @yield('content')
             <footer class="footer footer-transparent d-print-none">
                 <div class="container-xl">
@@ -496,7 +480,8 @@
         </main>
     </div> --}}
     <script src="{{ asset('js/tabler.min.js') }}" defer></script>
-    <script src="{{ asset('js/demo.min.js') }}" defer></script>
+    <script src="{{ asset('js/axios.min.js') }}"></script>
+    <script src="{{ asset('js/vue.js') }}"></script>
     @stack('scripts2')
 </body>
 

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePropertiesAmenitiesTable extends Migration
+class CreateConditionPropertyRelationshipTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class CreatePropertiesAmenitiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('properties_amenities', function (Blueprint $table) {
+        Schema::create('condition_property_relationship', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('property_id')->constrained('properties', 'id');
+            $table->foreignId('condition_id')->constrained('condition_property', 'id');
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ class CreatePropertiesAmenitiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('properties_amenities');
+        Schema::dropIfExists('condition_property_relationship');
     }
 }

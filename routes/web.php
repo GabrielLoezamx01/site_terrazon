@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Referrals\ReferralsController;
 use App\Http\Controllers\Emails\VerifyController;
 use App\Http\Controllers\Admin\AmenitiesController;
+use App\Http\Controllers\Admin\TypesController;
+
 
 
 /*
@@ -27,9 +29,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::prefix('admin')->middleware('auth')->group(function () {
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    Route::apiResource('usuarios', ReferralsController::class);
-    Route::apiResource('amenidades', AmenitiesController::class);
+    Route::get('/Home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::apiResource('users', ReferralsController::class);
+    Route::apiResource('amenities', AmenitiesController::class);
+    Route::apiResource('guys', TypesController::class);
 
 });
 

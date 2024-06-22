@@ -17,12 +17,16 @@ class CreatePropertiesTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('title');
-            $table->string('Invoice')->unique();
+            $table->string('slug')->unique();
             $table->text('description');
             $table->decimal('price', 8, 2);
             $table->decimal('latitude', 10, 7);
             $table->decimal('longitude', 10, 7);
             $table->string('address');
+            $table->string('rooms');
+            $table->string('bathrooms');
+            $table->string('parking');
+            $table->string('img');
             $table->boolean('available')->default(true);
         });
 

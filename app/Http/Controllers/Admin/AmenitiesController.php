@@ -14,7 +14,7 @@ class AmenitiesController extends Controller
      */
     public function index()
     {
-        $amenities =  Amenities::paginate(10);
+        $amenities =  Amenities::paginate(25);
         return view('admin.properties.amenities', compact('amenities'));
     }
 
@@ -31,8 +31,8 @@ class AmenitiesController extends Controller
                 'name' => 'required',
                 'svg' => 'required|file',
             ]);
-
             $fileName = $request->file('svg')->getClientOriginalName();
+            $fileName  =  $request->name  . '-' . $fileName;
             $request->file('svg')->storeAs('public/svg', $fileName);
             $insert = [
                 'name' => $request->name,
@@ -43,9 +43,8 @@ class AmenitiesController extends Controller
             return redirect()->back()->withSuccess('¡Operación realizada con éxito!');
 
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Error al crear el usuario: ' . $e->getMessage()], 500);
+            return response()->json(['error' => 'Error al crear : ' . $e->getMessage()], 500);
         }
-        return $request->all();
     }
 
     /**
@@ -56,7 +55,7 @@ class AmenitiesController extends Controller
      */
     public function show($id)
     {
-        //
+        return Amenities::find($id);
     }
 
     /**
@@ -68,7 +67,27 @@ class AmenitiesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $update = [
+                'name' => $request->name,
+                'created_at' => now(),
+            ];
+
+            if ($request->hasFile('svg')) {
+                $fileName = $request->file('svg')->getClientOriginalName();
+                $fileName  =  $request->name  . '-' . $fileName;
+                $request->file('svg')->storeAs('public/svg', $fileName);
+                $update['icon'] = $fileName;
+                $icon = Amenities::where('id', $id)->select('icon')->first();
+                if(!$icon->icon == null){
+                    unlink(storage_path('app/public/svg/' . $icon->icon));
+                }
+            }
+            Amenities::where('id', $id)->update($update);
+            return redirect()->back()->withSuccess('¡Operación realizada con éxito!');
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Error al actualizar: ' . $e->getMessage()], 500);
+        }
     }
 
     /**
@@ -79,6 +98,20 @@ class AmenitiesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $amenity = Amenities::find($id);
+            if ($amenity) {
+                $icon = $amenity->icon;
+                if (!empty($icon)) {
+                    unlink(storage_path('app/public/svg/' . $icon));
+                }
+                $amenity->delete();
+                return response()->json(['message' => 'Operación exitosa'], 200);
+            } else {
+                return response()->json(['message' => 'No se encontró la amenidad'], 404);
+            }
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Error al eliminar: ' . $e->getMessage()], 500);
+        }
     }
 }
