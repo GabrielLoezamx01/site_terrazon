@@ -3,6 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Referrals\ReferralsController;
+use App\Http\Controllers\Emails\VerifyController;
+use App\Http\Controllers\Admin\AmenitiesController;
+use App\Http\Controllers\Admin\TypesController;
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,15 +20,21 @@ use App\Http\Controllers\Referrals\ReferralsController;
 |
 */
 
+Route::get('/registerEMAIL', function () {
+    return view('emails.register');
+});
 Route::get('/', function () {
     return view('welcome');
 });
 Auth::routes();
 
 Route::prefix('admin')->middleware('auth')->group(function () {
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    Route::view('usuarios' , 'admin.users');
-    Route::apiResource('ReferralsApi', ReferralsController::class);
+    Route::get('/Home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::apiResource('users', ReferralsController::class);
+    Route::apiResource('amenities', AmenitiesController::class);
+    Route::apiResource('guys', TypesController::class);
+
 });
 
 
+Route::apiResource('emails/verify', VerifyController::class);

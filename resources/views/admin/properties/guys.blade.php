@@ -1,0 +1,286 @@
+@extends('layouts.app')
+@section('title', 'Amenidades')
+@push('scripts')
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.css" />
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
+@endpush
+@section('content')
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel" v-if="insertForm"> Insertar Amenidades</h5>
+                    <h5 v-if="UpdateForm" class="modal-title" id="staticBackdropLabel">Actualizar Amenidades</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {{-- GUARDAR --}}
+                    <form action="{{ url('admin/amenidades') }}" method="POST" enctype="multipart/form-data"
+                        v-if="insertForm">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="email">Nombre</label>
+                            <input type="text" placeholder="Ingresar el nombre" autocomplete="off" class="form-control"
+                                name="name" value="{{ old('name') }}" maxlength="30" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email">Icon</label>
+                            <input type="file" accept=".svg" autocomplete="off" placeholder="Ingresa el archivo SVG"
+                                class="form-control" name="svg" value="{{ old('svg') }}" required>
+                        </div>
+                        <div class="mb-3 text-center">
+                            <button class="btn btn-dark">Guardar</button>
+                        </div>
+                    </form>
+                    {{-- ACTUAZLIZAR --}}
+
+                    <form :action="'{{ url('admin/amenidades') }}/' + id" method="POST" v-if="UpdateForm"
+                        enctype="multipart/form-data">
+                        @csrf
+                        @method('PATCH')
+                        <div class="mb-3">
+                            <label for="email">Nombre</label>
+                            <input type="text" placeholder="Ingresar el nombre" autocomplete="off" class="form-control"
+                                name="name" v-model="name" value="{{ old('name') }}" maxlength="30" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email">Icon</label>
+                            <input type="file" accept=".svg" autocomplete="off" placeholder="Ingresa el archivo SVG"
+                                class="form-control" name="svg" value="{{ old('svg') }}">
+                        </div>
+                        <div class="mb-3 text-center">
+                            <button class="btn btn-dark">Actualizar</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    {{-- <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button> --}}
+                    {{-- <label for="">Se le enviara un email para su confirmacion</label> --}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="exampleModal" tabindex="-1">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-status bg-danger"></div>
+                <div class="modal-body text-center py-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon mb-2 text-danger icon-lg" width="24"
+                        height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M12 9v2m0 4v.01" />
+                        <path
+                            d="M5 19h14a2 2 0 0 0 1.84 -2.75l-7.1 -12.25a2 2 0 0 0 -3.5 0l-7.1 12.25a2 2 0 0 0 1.75 2.75" />
+                    </svg>
+                    <h3>¿Está seguro?</h3>
+                    <div class="text-secondary">
+                        @{{ alert }}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="w-100">
+                        <div class="row">
+                            <div class="col"><a href="#" class="btn w-100" data-bs-dismiss="modal">
+                                    Cancelar
+                                </a></div>
+                            <div class="col">
+
+                                <button @click="eliminar" class="btn btn-danger w-100" data-bs-dismiss="modal">
+                                    Eliminar
+                                </button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-header d-print-none">
+        <div class="container-xl">
+            <div class="row g-2 align-items-center">
+                <div class="col">
+                    <!-- Page pre-title -->
+                    <div class="page-pretitle">
+                        Overview
+                    </div>
+                    <h2 class="page-title">
+                        Lista de Amenidades
+                    </h2>
+                </div>
+                <!-- Page title actions -->
+
+                <div class="col-auto ms-auto d-print-none">
+                    <div class="btn-list">
+                        <div class="col"> <button class="btn btn-dark" @click="showModal(false)"> <svg
+                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="icon icon-tabler icons-tabler-outline icon-tabler-user-plus">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+                                    <path d="M16 19h6" />
+                                    <path d="M19 16v6" />
+                                    <path d="M6 21v-2a4 4 0 0 1 4 -4h4" />
+                                </svg>
+                                Nueva
+                                Amenidad</button></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-body">
+        <div class="container-xl">
+            <div class="row row-deck row-cards">
+
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Amenidades</h3>
+                        </div>
+                        <div class="card-body border-bottom py-3">
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                            @if (session('success'))
+                                <div class="alert alert-success alert-dismissible" role="alert">
+                                    <div class="d-flex">
+                                        <div>
+                                            <!-- Download SVG icon from http://tabler-icons.io/i/check -->
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon alert-icon"
+                                                width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                                                stroke="currentColor" fill="none" stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                <path d="M5 12l5 5l10 -10"></path>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            {{ session('success') }}
+                                        </div>
+                                    </div>
+                                    <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
+                                </div>
+                            @endif
+                            <div id="table-default" class="table-responsive">
+                                <table class="table card-table table-vcenter text-nowrap datatable display"
+                                    id="myTable">
+                                    <thead>
+                                        <tr>
+                                            <th class="w-1">Id</th>
+                                            <th>Nombre</th>
+                                            <th>icon</th>
+                                            <th>Fecha de creacion</th>
+                                            <th>Opciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($amenities as $item)
+                                            <tr>
+                                                <td>{{ $item->id }}</td>
+                                                <td>{{ $item->name }}</td>
+                                                <td><img src="{{ asset('storage/svg/' . $item->icon) }}" alt="Icon">
+                                                </td>
+                                                <td><label for=""
+                                                        class="text-muted">{{ $item->created_at }}</label>
+                                                </td>
+                                                <td>
+                                                    <button @click="showModal(true , {{ $item->id }})"
+                                                        class="btn btn-sm "><svg xmlns="http://www.w3.org/2000/svg"
+                                                            width="24" height="24" viewBox="0 0 24 24"
+                                                            fill="none" stroke="currentColor" stroke-width="2"
+                                                            stroke-linecap="round" stroke-linejoin="round"
+                                                            class="icon icon-tabler icons-tabler-outline icon-tabler-pencil">
+                                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                            <path
+                                                                d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+                                                            <path d="M13.5 6.5l4 4" />
+                                                        </svg></button>
+                                                    <button @click="deleteshow({{ $item->id }})"
+                                                        class="btn btn-sm text-danger" data-bs-toggle="modal"
+                                                        data-bs-target="#exampleModal"><svg
+                                                            xmlns="http://www.w3.org/2000/svg" width="24"
+                                                            height="24" viewBox="0 0 24 24" fill="none"
+                                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                            stroke-linejoin="round"
+                                                            class="icon icon-tabler icons-tabler-outline icon-tabler-trash">
+                                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                            <path d="M4 7l16 0" />
+                                                            <path d="M10 11l0 6" />
+                                                            <path d="M14 11l0 6" />
+                                                            <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                                                            <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                                                        </svg></button>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="card-footer d-flex align-items-center">
+                                <p class="m-0 text-muted">
+                                    Showing <span>{{ $amenities->firstItem() }}</span> to
+                                    <span>{{ $amenities->lastItem() }}</span> of <span>{{ $amenities->total() }}</span>
+                                    entries
+                                </p>
+                                <ul class="pagination m-0 ms-auto">
+                                    <!-- Botón de página anterior -->
+                                    @if ($amenities->onFirstPage())
+                                        <li class="page-item disabled">
+                                            <span class="page-link" tabindex="-1" aria-disabled="true">prev</span>
+                                        </li>
+                                    @else
+                                        <li class="page-item">
+                                            <a class="page-link" href="{{ $amenities->previousPageUrl() }}"
+                                                rel="prev">prev</a>
+                                        </li>
+                                    @endif
+
+                                    <!-- Enlaces de páginas -->
+                                    @foreach ($amenities as $amenity)
+                                        <li
+                                            class="page-item {{ $amenities->currentPage() == $amenity->id ? 'active' : '' }}">
+                                            <a class="page-link"
+                                                href="{{ $amenities->url($amenity->id) }}">{{ $amenity->id }}</a>
+                                        </li>
+                                    @endforeach
+
+                                    <!-- Botón de página siguiente -->
+                                    @if ($amenities->hasMorePages())
+                                        <li class="page-item">
+                                            <a class="page-link" href="{{ $amenities->nextPageUrl() }}"
+                                                rel="next">next</a>
+                                        </li>
+                                    @else
+                                        <li class="page-item disabled">
+                                            <span class="page-link" tabindex="-1" aria-disabled="true">next</span>
+                                        </li>
+                                    @endif
+                                </ul>
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+@push('scripts2')
+    <script src="{{ asset('js/admin/amenities.js') }}"></script>
+@endpush
