@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Caracteristicas')
+@section('title', 'Condiciones')
 @push('scripts')
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
         crossorigin="anonymous"></script>
@@ -11,33 +11,26 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel" v-if="insertForm"> Insertar </h5>
-                    <h5 v-if="UpdateForm" class="modal-title" id="staticBackdropLabel">Actualizar </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title" id="staticBackdropLabel" v-if="insertForm"> Insertar Tipo</h5>
+                    <h5 v-if="UpdateForm" class="modal-title" id="staticBackdropLabel">Actualizar Tipo</h5>
+                    <button value="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     {{-- GUARDAR --}}
-                    <form action="{{ url('admin/features') }}" method="POST" enctype="multipart/form-data"
-                        v-if="insertForm">
+                    <form action="{{ url('admin/condition') }}" method="POST" encvalue="multipart/form-data" v-if="insertForm">
                         @csrf
                         <div class="mb-3">
                             <label for="email">Nombre</label>
-                            <input type="text" placeholder="Ingresar el nombre" autocomplete="off" class="form-control"
+                            <input type="text"   placeholder="Ingresar el nombre" autocomplete="off" class="form-control"
                                 name="name" value="{{ old('name') }}" maxlength="30" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="email">Icon</label>
-                            <input type="file" accept=".svg" autocomplete="off" placeholder="Ingresa el archivo SVG"
-                                class="form-control" name="svg" value="{{ old('svg') }}" required>
                         </div>
                         <div class="mb-3 text-center">
                             <button class="btn btn-dark">Guardar</button>
                         </div>
                     </form>
                     {{-- ACTUAZLIZAR --}}
-
-                    <form :action="'{{ url('admin/features') }}/' + id" method="POST" v-if="UpdateForm"
-                        enctype="multipart/form-data">
+                    <form :action="'{{ url('admin/condition') }}/' + id" method="POST" v-if="UpdateForm"
+                        encvalue="multipart/form-data">
                         @csrf
                         @method('PATCH')
                         <div class="mb-3">
@@ -45,18 +38,13 @@
                             <input type="text" placeholder="Ingresar el nombre" autocomplete="off" class="form-control"
                                 name="name" v-model="name" value="{{ old('name') }}" maxlength="30" required>
                         </div>
-                        <div class="mb-3">
-                            <label for="email">Icon</label>
-                            <input type="file" accept=".svg" autocomplete="off" placeholder="Ingresa el archivo SVG"
-                                class="form-control" name="svg" value="{{ old('svg') }}">
-                        </div>
                         <div class="mb-3 text-center">
                             <button class="btn btn-dark">Actualizar</button>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    {{-- <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button> --}}
+                    {{-- <button value="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button> --}}
                     {{-- <label for="">Se le enviara un email para su confirmacion</label> --}}
                 </div>
             </div>
@@ -65,7 +53,7 @@
     <div class="modal" id="exampleModal" tabindex="-1">
         <div class="modal-dialog modal-sm" role="document">
             <div class="modal-content">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button value="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 <div class="modal-status bg-danger"></div>
                 <div class="modal-body text-center py-4">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon mb-2 text-danger icon-lg" width="24"
@@ -109,7 +97,7 @@
                         Overview
                     </div>
                     <h2 class="page-title">
-                        Lista de Características
+                        Lista de Condiciones de Propiedades
                     </h2>
                 </div>
                 <!-- Page title actions -->
@@ -117,17 +105,17 @@
                 <div class="col-auto ms-auto d-print-none">
                     <div class="btn-list">
                         <div class="col"> <button class="btn btn-dark" @click="showModal(false)">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round"
+
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round"
                                     class="icon icon-tabler icons-tabler-outline icon-tabler-circle-plus">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                     <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />
                                     <path d="M9 12h6" />
                                     <path d="M12 9v6" />
                                 </svg>
-                                Nueva
-                                Característica</button></div>
+                                Crear </button></div>
 
                     </div>
                 </div>
@@ -185,7 +173,6 @@
                                     <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
                                 </div>
                             @endif
-
                             <div id="table-default" class="table-responsive">
                                 <table class="table card-table table-vcenter text-nowrap datatable display"
                                     id="myTable">
@@ -193,17 +180,15 @@
                                         <tr>
                                             <th class="w-1">Id</th>
                                             <th>Nombre</th>
-                                            <th>icon</th>
                                             <th>Fecha de creacion</th>
                                             <th>Opciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($features as $item)
+                                        @foreach ($data as $item)
                                             <tr>
                                                 <td>{{ $item->id }}</td>
                                                 <td>{{ $item->name }}</td>
-                                                <td><img src="{{ asset('storage/svg/' . $item->icon) }}" alt="Icon">
                                                 </td>
                                                 <td><label for=""
                                                         class="text-muted">{{ $item->created_at }}</label>
@@ -243,36 +228,32 @@
                             </div>
                             <div class="card-footer d-flex align-items-center">
                                 <p class="m-0 text-muted">
-                                    Showing <span>{{ $features->firstItem() }}</span> to
-                                    <span>{{ $features->lastItem() }}</span> of <span>{{ $features->total() }}</span>
+                                    Showing <span>{{ $data->firstItem() }}</span> to
+                                    <span>{{ $data->lastItem() }}</span> of <span>{{ $data->total() }}</span>
                                     entries
                                 </p>
                                 <ul class="pagination m-0 ms-auto">
-                                    <!-- Botón de página anterior -->
-                                    @if ($features->onFirstPage())
+                                    @if ($data->onFirstPage())
                                         <li class="page-item disabled">
                                             <span class="page-link" tabindex="-1" aria-disabled="true">prev</span>
                                         </li>
                                     @else
                                         <li class="page-item">
-                                            <a class="page-link" href="{{ $features->previousPageUrl() }}"
+                                            <a class="page-link" href="{{ $data->previousPageUrl() }}"
                                                 rel="prev">prev</a>
                                         </li>
                                     @endif
 
-                                    <!-- Enlaces de páginas -->
-                                    @foreach ($features as $item)
-                                        <li
-                                            class="page-item {{ $features->currentPage() == $item->id ? 'active' : '' }}">
+                                    @foreach ($data as $value)
+                                        <li class="page-item {{ $data->currentPage() == $value->id ? 'active' : '' }}">
                                             <a class="page-link"
-                                                href="{{ $features->url($item->id) }}">{{ $item->id }}</a>
+                                                href="{{ $data->url($value->id) }}">{{ $value->id }}</a>
                                         </li>
                                     @endforeach
 
-                                    <!-- Botón de página siguiente -->
-                                    @if ($features->hasMorePages())
+                                    @if ($data->hasMorePages())
                                         <li class="page-item">
-                                            <a class="page-link" href="{{ $features->nextPageUrl() }}"
+                                            <a class="page-link" href="{{ $data->nextPageUrl() }}"
                                                 rel="next">next</a>
                                         </li>
                                     @else
@@ -283,6 +264,10 @@
                                 </ul>
                             </div>
                         </div>
+
+
+
+
                     </div>
                 </div>
             </div>
@@ -290,5 +275,5 @@
     </div>
 @endsection
 @push('scripts2')
-    <script src="{{ asset('js/admin/features.js') }}"></script>
+    <script src="{{ asset('js/admin/condition.js') }}"></script>
 @endpush

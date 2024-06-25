@@ -7,6 +7,8 @@ use App\Http\Controllers\Emails\VerifyController;
 use App\Http\Controllers\Admin\AmenitiesController;
 use App\Http\Controllers\Admin\TypesController;
 use App\Http\Controllers\Admin\FeaturesController;
+use App\Http\Controllers\Admin\ConditionController;
+
 
 
 
@@ -36,8 +38,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::apiResource('amenities', AmenitiesController::class);
     Route::apiResource('types', TypesController::class);
     Route::apiResource('features', FeaturesController::class);
-
-
+    Route::apiResource('condition', ConditionController::class);
 });
 
 

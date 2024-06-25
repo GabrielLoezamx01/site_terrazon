@@ -159,7 +159,7 @@
                                             </a>
                                         </div>
                                         <div class="dropdown-menu-column">
-                                            <a class="dropdown-item" href="condición">
+                                            <a class="dropdown-item" href="condition">
                                                 Condición
                                             </a>
                                         </div>
