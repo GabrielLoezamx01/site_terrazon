@@ -6,6 +6,8 @@ use App\Http\Controllers\Referrals\ReferralsController;
 use App\Http\Controllers\Emails\VerifyController;
 use App\Http\Controllers\Admin\AmenitiesController;
 use App\Http\Controllers\Admin\TypesController;
+use App\Http\Controllers\Admin\FeaturesController;
+
 
 
 
@@ -29,10 +31,12 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::prefix('admin')->middleware('auth')->group(function () {
-    Route::get('/Home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::apiResource('users', ReferralsController::class);
     Route::apiResource('amenities', AmenitiesController::class);
-    Route::apiResource('guys', TypesController::class);
+    Route::apiResource('types', TypesController::class);
+    Route::apiResource('features', FeaturesController::class);
+
 
 });
 

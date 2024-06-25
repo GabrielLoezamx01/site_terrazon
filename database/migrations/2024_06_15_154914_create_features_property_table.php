@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCharacteristicsPropertyTable extends Migration
+class CreateFeaturesPropertyTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateCharacteristicsPropertyTable extends Migration
      */
     public function up()
     {
-        Schema::create('characteristics_property', function (Blueprint $table) {
+        Schema::create('features_property', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->text('icon')->nullable();
@@ -28,6 +28,6 @@ class CreateCharacteristicsPropertyTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('characteristics_property');
+        Schema::dropIfExists('features_property');
     }
 }

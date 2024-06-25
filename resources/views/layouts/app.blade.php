@@ -149,12 +149,12 @@
                                             </a>
                                         </div>
                                         <div class="dropdown-menu-column">
-                                            <a class="dropdown-item" href="guys">
+                                            <a class="dropdown-item" href="types">
                                                 Tipos
                                             </a>
                                         </div>
                                         <div class="dropdown-menu-column">
-                                            <a class="dropdown-item" href="características">
+                                            <a class="dropdown-item" href="features">
                                                 Características
                                             </a>
                                         </div>

@@ -4,8 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-class Amenities extends Model
+
+class FeaturesProperty extends Model
 {
     use HasFactory;
+    protected  $table = 'features_property';
 }

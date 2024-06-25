@@ -11,13 +11,13 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel" v-if="insertForm"> Insertar Amenidades</h5>
-                    <h5 v-if="UpdateForm" class="modal-title" id="staticBackdropLabel">Actualizar Amenidades</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel" v-if="insertForm"> Insertar </h5>
+                    <h5 v-if="UpdateForm" class="modal-title" id="staticBackdropLabel">Actualizar </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     {{-- GUARDAR --}}
-                    <form action="{{ url('admin/amenities') }}" method="POST" enctype="multipart/form-data"
+                    <form action="{{ url('admin/features') }}" method="POST" enctype="multipart/form-data"
                         v-if="insertForm">
                         @csrf
                         <div class="mb-3">
@@ -36,7 +36,7 @@
                     </form>
                     {{-- ACTUAZLIZAR --}}
 
-                    <form :action="'{{ url('admin/amenities') }}/' + id" method="POST" v-if="UpdateForm"
+                    <form :action="'{{ url('admin/features') }}/' + id" method="POST" v-if="UpdateForm"
                         enctype="multipart/form-data">
                         @csrf
                         @method('PATCH')
@@ -109,7 +109,7 @@
                         Overview
                     </div>
                     <h2 class="page-title">
-                        Lista de Amenidades
+                        Lista de Características
                     </h2>
                 </div>
                 <!-- Page title actions -->
@@ -127,7 +127,7 @@
                                     <path d="M12 9v6" />
                                 </svg>
                                 Nueva
-                                Amenidad</button></div>
+                                Característica</button></div>
 
                     </div>
                 </div>
@@ -199,7 +199,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($amenities as $item)
+                                        @foreach ($features as $item)
                                             <tr>
                                                 <td>{{ $item->id }}</td>
                                                 <td>{{ $item->name }}</td>
@@ -243,36 +243,36 @@
                             </div>
                             <div class="card-footer d-flex align-items-center">
                                 <p class="m-0 text-muted">
-                                    Showing <span>{{ $amenities->firstItem() }}</span> to
-                                    <span>{{ $amenities->lastItem() }}</span> of <span>{{ $amenities->total() }}</span>
+                                    Showing <span>{{ $features->firstItem() }}</span> to
+                                    <span>{{ $features->lastItem() }}</span> of <span>{{ $features->total() }}</span>
                                     entries
                                 </p>
                                 <ul class="pagination m-0 ms-auto">
                                     <!-- Botón de página anterior -->
-                                    @if ($amenities->onFirstPage())
+                                    @if ($features->onFirstPage())
                                         <li class="page-item disabled">
                                             <span class="page-link" tabindex="-1" aria-disabled="true">prev</span>
                                         </li>
                                     @else
                                         <li class="page-item">
-                                            <a class="page-link" href="{{ $amenities->previousPageUrl() }}"
+                                            <a class="page-link" href="{{ $features->previousPageUrl() }}"
                                                 rel="prev">prev</a>
                                         </li>
                                     @endif
 
                                     <!-- Enlaces de páginas -->
-                                    @foreach ($amenities as $amenity)
+                                    @foreach ($features as $item)
                                         <li
-                                            class="page-item {{ $amenities->currentPage() == $amenity->id ? 'active' : '' }}">
+                                            class="page-item {{ $features->currentPage() == $item->id ? 'active' : '' }}">
                                             <a class="page-link"
-                                                href="{{ $amenities->url($amenity->id) }}">{{ $amenity->id }}</a>
+                                                href="{{ $features->url($item->id) }}">{{ $item->id }}</a>
                                         </li>
                                     @endforeach
 
                                     <!-- Botón de página siguiente -->
-                                    @if ($amenities->hasMorePages())
+                                    @if ($features->hasMorePages())
                                         <li class="page-item">
-                                            <a class="page-link" href="{{ $amenities->nextPageUrl() }}"
+                                            <a class="page-link" href="{{ $features->nextPageUrl() }}"
                                                 rel="next">next</a>
                                         </li>
                                     @else
@@ -283,10 +283,6 @@
                                 </ul>
                             </div>
                         </div>
-
-
-
-
                     </div>
                 </div>
             </div>
@@ -294,5 +290,5 @@
     </div>
 @endsection
 @push('scripts2')
-    <script src="{{ asset('js/admin/amenities.js') }}"></script>
+    <script src="{{ asset('js/admin/features.js') }}"></script>
 @endpush

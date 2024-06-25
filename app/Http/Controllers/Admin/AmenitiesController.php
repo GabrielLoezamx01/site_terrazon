@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Amenities;
+use Illuminate\Support\Facades\Storage;
+
 class AmenitiesController extends Controller
 {
     /**
@@ -68,11 +70,13 @@ class AmenitiesController extends Controller
     public function update(Request $request, $id)
     {
         try {
+            $this->validate($request, [
+                'name' => 'required',
+            ]);
             $update = [
                 'name' => $request->name,
-                'created_at' => now(),
+                'updated_at' => now(),
             ];
-
             if ($request->hasFile('svg')) {
                 $fileName = $request->file('svg')->getClientOriginalName();
                 $fileName  =  $request->name  . '-' . $fileName;
@@ -80,7 +84,7 @@ class AmenitiesController extends Controller
                 $update['icon'] = $fileName;
                 $icon = Amenities::where('id', $id)->select('icon')->first();
                 if(!$icon->icon == null){
-                    unlink(storage_path('app/public/svg/' . $icon->icon));
+                    \Storage::delete('public/svg/' .$icon->icon);
                 }
             }
             Amenities::where('id', $id)->update($update);
@@ -99,19 +103,14 @@ class AmenitiesController extends Controller
     public function destroy($id)
     {
         try {
-            $amenity = Amenities::find($id);
-            if ($amenity) {
-                $icon = $amenity->icon;
-                if (!empty($icon)) {
-                    unlink(storage_path('app/public/svg/' . $icon));
-                }
-                $amenity->delete();
-                return response()->json(['message' => 'Operación exitosa'], 200);
-            } else {
-                return response()->json(['message' => 'No se encontró la amenidad'], 404);
+            $amenity = Amenities::findOrFail($id);
+            if (!empty($amenity->icon)) {
+                \Storage::delete('public/svg/' . $amenity->icon);
             }
+            $amenity->delete();
+            session()->flash('success', 'Operación exitosa');
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Error al eliminar: ' . $e->getMessage()], 500);
+            session()->flash('errors', ['Error al eliminar '. $e->getMessage()]);
         }
     }
 }

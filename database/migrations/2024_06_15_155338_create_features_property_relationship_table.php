@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCharacteristicsPropertyRelationshipTable extends Migration
+class CreateFeaturesPropertyRelationshipTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateCharacteristicsPropertyRelationshipTable extends Migration
      */
     public function up()
     {
-        Schema::create('characteristics_property_relationship', function (Blueprint $table) {
+        Schema::create('features_property_relationship', function (Blueprint $table) {
             $table->id();
             $table->foreignId('property_id')->constrained('properties', 'id');
             $table->foreignId('characteristic_id')->constrained('characteristics' , 'id');
@@ -28,6 +28,6 @@ class CreateCharacteristicsPropertyRelationshipTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('characteristics_property_relationship');
+        Schema::dropIfExists('features_property_relationship');
     }
 }

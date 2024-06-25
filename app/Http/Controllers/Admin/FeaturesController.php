@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\TypesProperty;
+use App\Models\FeaturesProperty;
 
-class TypesController extends Controller
+class FeaturesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class TypesController extends Controller
      */
     public function index()
     {
-        $types = TypesProperty::paginate(25);
-        return view('admin.properties.types')->with(compact('types'));
+        $features =  FeaturesProperty::paginate(25);
+        return view('admin.properties.features', compact('features'));
     }
 
     /**
@@ -27,19 +27,24 @@ class TypesController extends Controller
      */
     public function store(Request $request)
     {
-        try {
+        try{
             $this->validate($request, [
                 'name' => 'required',
+                'svg' => 'required|file',
             ]);
+            $fileName = $request->file('svg')->getClientOriginalName();
+            $fileName =  'feature-' .$request->name  . '-' . $fileName;
+            $request->file('svg')->storeAs('public/svg', $fileName);
             $insert = [
                 'name' => $request->name,
+                'icon' => $fileName,
                 'created_at' => now(),
             ];
-            TypesProperty::insert($insert);
+            FeaturesProperty::insert($insert);
             return redirect()->back()->withSuccess('¡Operación realizada con éxito!');
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Error al crear : ' . $e->getMessage()], 500);
-        }
+                return response()->json(['error' => 'Error al crear : ' . $e->getMessage()], 500);
+            }
     }
 
     /**
@@ -50,7 +55,7 @@ class TypesController extends Controller
      */
     public function show($id)
     {
-        return TypesProperty::find($id);
+        return FeaturesProperty::find($id);
     }
 
     /**
@@ -63,11 +68,24 @@ class TypesController extends Controller
     public function update(Request $request, $id)
     {
         try {
+            $this->validate($request, [
+                'name' => 'required',
+            ]);
             $update = [
                 'name' => $request->name,
                 'updated_at' => now(),
             ];
-            TypesProperty::where('id', $id)->update($update);
+            if ($request->hasFile('svg')) {
+                $fileName = $request->file('svg')->getClientOriginalName();
+                $fileName =  'feature-' . $request->name  . '-' . $fileName;
+                $request->file('svg')->storeAs('public/svg', $fileName);
+                $update['icon'] = $fileName;
+                $icon = FeaturesProperty::where('id', $id)->select('icon')->first();
+                if (!$icon->icon == null) {
+                    \Storage::delete('public/svg/' . $icon->icon);
+                }
+            }
+            FeaturesProperty::where('id', $id)->update($update);
             return redirect()->back()->withSuccess('¡Operación realizada con éxito!');
         } catch (\Exception $e) {
             return response()->json(['error' => 'Error al actualizar: ' . $e->getMessage()], 500);
@@ -83,8 +101,11 @@ class TypesController extends Controller
     public function destroy($id)
     {
         try {
-            $types = TypesProperty::findOrFail($id);
-            $types->delete();
+            $feature = FeaturesProperty::findOrFail($id);
+            if (!empty($feature->icon)) {
+                \Storage::delete('public/svg/' . $feature->icon);
+            }
+            $feature->delete();
             session()->flash('success', 'Operación exitosa');
         } catch (\Exception $e) {
             session()->flash('errors', ['Error al eliminar ' . $e->getMessage()]);
