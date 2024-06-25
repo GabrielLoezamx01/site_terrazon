@@ -8,6 +8,8 @@ use App\Http\Controllers\Admin\AmenitiesController;
 use App\Http\Controllers\Admin\TypesController;
 use App\Http\Controllers\Admin\FeaturesController;
 use App\Http\Controllers\Admin\ConditionController;
+use App\Http\Controllers\Admin\Property\PropertyController;
+
 
 
 
@@ -39,6 +41,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::apiResource('types', TypesController::class);
     Route::apiResource('features', FeaturesController::class);
     Route::apiResource('condition', ConditionController::class);
+    Route::apiResource('property', PropertyController::class);
 });
 
 

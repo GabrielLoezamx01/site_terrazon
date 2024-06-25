@@ -164,7 +164,7 @@
                                             </a>
                                         </div>
                                         <div class="dropdown-menu-column">
-                                            <a class="dropdown-item" href="lista_propiedades">
+                                            <a class="dropdown-item" href="property">
                                                 Lista de propiedades
                                             </a>
                                         </div>
