@@ -18,33 +18,9 @@ class ReferralsController extends Controller
     public function index()
     {
         $referrals = Referrals::paginate(10);
-        $status = $this->statusBlade();
-        return view('admin.users' , compact('referrals' , 'status'));
+        return view('admin.users' , compact('referrals'));
     }
 
-
-    /**
-     * Mapeo of status of model Referrals in desing blade
-     *
-     * @return Array
-     */
-
-    private function statusBlade(){
-       return [
-            'success' => [
-                'class' => 'border-5 fw-bold text-success',
-                'text' => 'Correcto',
-            ],
-            'pending' => [
-                'class' => 'border-5 fw-bold text-warning',
-                'text' => 'Pendiente',
-            ],
-            'error' => [
-                'class' => 'border-5 fw-bold text-danger',
-                'text' => 'Error',
-            ],
-        ];
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -54,27 +30,32 @@ class ReferralsController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->password != $request->password_verify) {
-            return redirect()->back()->withErrors(['password' => 'Las contraseñas no coinciden'])->withInput();
+        try {
+            $password = $request->input('password');
+            $passwordVerify = $request->input('password_verify');
+            if ($password !== $passwordVerify) {
+                return redirect()->back()->withErrors(['password' => 'Las contraseñas no coinciden'])->withInput();
+            }
+            $token = Str::random(6);
+            $email = $request->input('email');
+
+            Referrals::create([
+                'name' => $request->input('name'),
+                'email' => $email,
+                'password' => $password,
+                'verication_code' =>   $token,
+                'verication_code_expiration' => date('Y-m-d H:i:s', strtotime('+6 minutes')),
+                'status' => 'pending'
+            ]);
+
+            event(new UserSendEmail($email, $token));
+
+            return redirect()->back()->withSuccess('¡Operación realizada con éxito! Se ha enviado un correo de verificación.');
+        } catch (\Exception $e) {
+                return redirect()->back()->withErrors(['error' => $e->getMessage()])->withInput();
         }
-
-        $token = Str::random(6);
-        $email = $request->email;
-        $dataToEncrypt = $email . '|' . $token;
-        $encryptedData = Crypt::encryptString($dataToEncrypt);
-         Referrals::create([
-            'name' => $request->name,
-            'email' => $email,
-            'password' => $request->password,
-            'verication_code' =>   $token ,
-            'verication_code_expiration' => date('Y-m-d H:i:s', strtotime('+6 minutes')),
-            'status' => 'pending'
-        ]);
-
-        event(new UserSendEmail($email, $encryptedData));
-
-        return redirect()->back()->withSuccess('¡Operación realizada con éxito! Se ha enviado un correo de verificación.');
     }
+
 
     /**
      * Display the specified resource.
