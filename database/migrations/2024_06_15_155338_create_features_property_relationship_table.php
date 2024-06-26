@@ -16,7 +16,7 @@ class CreateFeaturesPropertyRelationshipTable extends Migration
         Schema::create('features_property_relationship', function (Blueprint $table) {
             $table->id();
             $table->foreignId('property_id')->constrained('properties', 'id');
-            $table->foreignId('characteristic_id')->constrained('characteristics' , 'id');
+            $table->foreignId('features_property_id')->constrained('features_property' , 'id');
             $table->timestamps();
         });
     }
