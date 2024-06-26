@@ -1,2 +1,5 @@
-User-agent: *
-Disallow:
+
+UPDATE referrals
+  SET status = 'error'
+  WHERE status = 'pending'
+  AND NOW() > verication_code_expiration
