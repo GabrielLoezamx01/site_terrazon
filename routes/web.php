@@ -26,12 +26,19 @@ use App\Http\Controllers\Admin\Property\PropertyController;
 |
 */
 
-Route::get('/registerEMAIL', function () {
-    return view('emails.register');
-});
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [App\Http\Controllers\Public\HomeController::class, 'index'])->name('inicio');
+Route::get('/propiedades', function () {
+    return view('public.propiedades');
+})->name('propiedades');
+Route::get('/agentes', function () {
+    return view('public.agentes');
+})->name('agentes');
+Route::get('/acercade', function () {
+    return view('public.acercade');
+})->name('acercade');
+Route::get('/contacto', function () {
+    return view('public.contacto');
+})->name('contacto');
 Auth::routes();
 
 Route::prefix('admin')->middleware('auth')->group(function () {

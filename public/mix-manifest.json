@@ -1,5 +1,6 @@
 {
     "/js/app.js": "/js/app.js",
+    "/js/home.js": "/js/home.js",
     "/css/app.css": "/css/app.css",
     "/webfonts/fa-brands-400.ttf": "/webfonts/fa-brands-400.ttf",
     "/webfonts/fa-brands-400.woff2": "/webfonts/fa-brands-400.woff2",
@@ -9,6 +10,8 @@
     "/webfonts/fa-solid-900.woff2": "/webfonts/fa-solid-900.woff2",
     "/webfonts/fa-v4compatibility.ttf": "/webfonts/fa-v4compatibility.ttf",
     "/webfonts/fa-v4compatibility.woff2": "/webfonts/fa-v4compatibility.woff2",
+    "/css/fonts/bootstrap-icons.woff": "/css/fonts/bootstrap-icons.woff",
+    "/css/fonts/bootstrap-icons.woff2": "/css/fonts/bootstrap-icons.woff2",
     "/css/owl.carousel.css": "/css/owl.carousel.css",
     "/css/owl.theme.default.css": "/css/owl.theme.default.css",
     "/js/owl.carousel.min.js": "/js/owl.carousel.min.js"
