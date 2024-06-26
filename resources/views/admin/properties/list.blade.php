@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Tipos')
+@section('title', 'Lista de Propiedades')
 @push('scripts')
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
         crossorigin="anonymous"></script>
@@ -18,7 +18,8 @@
                 </div>
                 <div class="modal-body">
                     {{-- GUARDAR --}}
-                    <form action="{{ url('admin/types') }}" method="POST" enctype="multipart/form-data" v-if="insertForm">
+                    <form action="{{ url('admin/property') }}" method="POST" enctype="multipart/form-data"
+                        v-if="insertForm">
                         @csrf
                         <div class="mb-3">
                             <label for="email">Nombre</label>
@@ -30,7 +31,7 @@
                         </div>
                     </form>
                     {{-- ACTUAZLIZAR --}}
-                    <form :action="'{{ url('admin/types') }}/' + id" method="POST" v-if="UpdateForm"
+                    <form :action="'{{ url('admin/property') }}/' + id" method="POST" v-if="UpdateForm"
                         enctype="multipart/form-data">
                         @csrf
                         @method('PATCH')
@@ -98,7 +99,7 @@
                         Overview
                     </div>
                     <h2 class="page-title">
-                        Lista de Tipos
+                        Lista de propiedades
                     </h2>
                 </div>
                 <!-- Page title actions -->
@@ -116,8 +117,7 @@
                                     <path d="M9 12h6" />
                                     <path d="M12 9v6" />
                                 </svg>
-                                Nueva
-                                Tipo</button></div>
+                                Agregar Propiedad</button></div>
 
                     </div>
                 </div>
@@ -131,7 +131,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Tipos</h3>
+                            <h3 class="card-title">Propiedades</h3>
                         </div>
                         <div class="shadow border-bottom py-3">
                             @if (isset($errors) && $errors->any())
@@ -180,48 +180,57 @@
                                     id="myTable">
                                     <thead>
                                         <tr>
-                                            <th class="w-1">Id</th>
-                                            <th>Nombre</th>
-                                            <th>Fecha de creacion</th>
-                                            <th>Opciones</th>
+                                            <th class="w-1">ID</th>
+                                            <th>Folio</th>
+                                            <th>Propiedad</th>
+                                            <th>Ubicación</th>
+                                            <th>Precio</th>
+                                            <th>Estado</th>
+                                            <th>Fecha de Creación</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($types as $item)
+                                        @foreach ($property as $item)
                                             <tr>
                                                 <td>{{ $item->id }}</td>
-                                                <td>{{ $item->name }}</td>
+                                                <td>{{ $item->folio }}</td>
+                                                <td>{{ $item->title }}</td>
+                                                <td>{{ $item->municipality->name }} ,
+                                                    {{ $item->municipality->state->name }}</td>
+                                                <td>{{ $item->price }}</td>
+                                                <td>
+                                                    @switch($item->available)
+                                                        @case(1)
+                                                            <span class="badge bg-success me-1"></span>
+                                                            Disponible
+                                                        @break
+
+                                                        @case(2)
+                                                            <span class="badge bg-warning me-1"></span>
+                                                            Pendiente
+                                                        @break
+
+                                                        @case(3)
+                                                            <span class="badge bg-primary me-1"></span>
+                                                            Vendido
+                                                        @break
+
+                                                        @default
+                                                            <span class="badge bg-secondary me-1"></span>
+                                                            No Disponible
+                                                    @endswitch
+
+                                                </td>
+
                                                 </td>
                                                 <td><label for=""
                                                         class="text-muted">{{ $item->created_at }}</label>
                                                 </td>
-                                                <td>
-                                                    <button @click="showModal(true , {{ $item->id }})"
-                                                        class="btn btn-sm btn-icon "><svg xmlns="http://www.w3.org/2000/svg"
-                                                            width="24" height="24" viewBox="0 0 24 24"
-                                                            fill="none" stroke="currentColor" stroke-width="2"
-                                                            stroke-linecap="round" stroke-linejoin="round"
-                                                            class="icon icon-tabler icons-tabler-outline icon-tabler-pencil">
-                                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                            <path
-                                                                d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
-                                                            <path d="M13.5 6.5l4 4" />
-                                                        </svg></button>
-                                                    <button @click="deleteshow({{ $item->id }})"
-                                                        class="btn btn-sm text-danger btn-icon" data-bs-toggle="modal"
-                                                        data-bs-target="#exampleModal"><svg
-                                                            xmlns="http://www.w3.org/2000/svg" width="24"
-                                                            height="24" viewBox="0 0 24 24" fill="none"
-                                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                            stroke-linejoin="round"
-                                                            class="icon icon-tabler icons-tabler-outline icon-tabler-trash">
-                                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                            <path d="M4 7l16 0" />
-                                                            <path d="M10 11l0 6" />
-                                                            <path d="M14 11l0 6" />
-                                                            <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
-                                                            <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
-                                                        </svg></button>
+                                                <td class="text-end">
+                                                        <button class="btn dropdown-toggle align-text-top"
+                                                            data-bs-boundary="viewport" data-bs-toggle="dropdown"
+                                                            aria-expanded="false">Opciones</button>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -230,32 +239,32 @@
                             </div>
                             <div class="card-footer d-flex align-items-center">
                                 <p class="m-0 text-muted">
-                                    Showing <span>{{ $types->firstItem() }}</span> to
-                                    <span>{{ $types->lastItem() }}</span> of <span>{{ $types->total() }}</span>
+                                    Showing <span>{{ $property->firstItem() }}</span> to
+                                    <span>{{ $property->lastItem() }}</span> of <span>{{ $property->total() }}</span>
                                     entries
                                 </p>
                                 <ul class="pagination m-0 ms-auto">
-                                    @if ($types->onFirstPage())
+                                    @if ($property->onFirstPage())
                                         <li class="page-item disabled">
                                             <span class="page-link" tabindex="-1" aria-disabled="true">prev</span>
                                         </li>
                                     @else
                                         <li class="page-item">
-                                            <a class="page-link" href="{{ $types->previousPageUrl() }}"
+                                            <a class="page-link" href="{{ $property->previousPageUrl() }}"
                                                 rel="prev">prev</a>
                                         </li>
                                     @endif
 
-                                    @foreach ($types as $type)
-                                        <li class="page-item {{ $types->currentPage() == $type->id ? 'active' : '' }}">
+                                    @foreach ($property as $type)
+                                        <li class="page-item {{ $property->currentPage() == $type->id ? 'active' : '' }}">
                                             <a class="page-link"
-                                                href="{{ $types->url($type->id) }}">{{ $type->id }}</a>
+                                                href="{{ $property->url($type->id) }}">{{ $type->id }}</a>
                                         </li>
                                     @endforeach
 
-                                    @if ($types->hasMorePages())
+                                    @if ($property->hasMorePages())
                                         <li class="page-item">
-                                            <a class="page-link" href="{{ $types->nextPageUrl() }}"
+                                            <a class="page-link" href="{{ $property->nextPageUrl() }}"
                                                 rel="next">next</a>
                                         </li>
                                     @else
@@ -266,10 +275,6 @@
                                 </ul>
                             </div>
                         </div>
-
-
-
-
                     </div>
                 </div>
             </div>
@@ -277,5 +282,5 @@
     </div>
 @endsection
 @push('scripts2')
-    <script src="{{ asset('js/admin/types.js') }}"></script>
+    <script src="{{ asset('js/admin/list_property.js') }}"></script>
 @endpush

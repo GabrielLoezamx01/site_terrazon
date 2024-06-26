@@ -141,9 +141,9 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Amenidades</h3>
+                            <h3 class="card-title">Características</h3>
                         </div>
-                        <div class="card-body border-bottom py-3">
+                        <div class="shadow border-bottom py-3">
                             @if (isset($errors) && $errors->any())
                                 <div class="alert alert-danger">
                                     <ul>

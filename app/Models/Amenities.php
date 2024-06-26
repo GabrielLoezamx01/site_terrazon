@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Amenities extends Model
 {
     use HasFactory;
+
+    public function properties()
+    {
+        return $this->belongsToMany(Property::class, 'amenities_property_relationship', 'amenities_id', 'property_id');
+    }
 }

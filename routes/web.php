@@ -26,7 +26,7 @@ use App\Http\Controllers\Admin\Property\PropertyController;
 |
 */
 
-Route::get('/', [App\Http\Controllers\Public\HomeController::class, 'index'])->name('inicio');
+// Route::get('/', [App\Http\Controllers\Public\HomeController::class, 'index'])->name('inicio');
 Route::get('/propiedades', function () {
     return view('public.propiedades');
 })->name('propiedades');

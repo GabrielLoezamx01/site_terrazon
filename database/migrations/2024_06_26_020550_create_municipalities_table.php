@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDetailsPropertyRelationshipTable extends Migration
+class CreateMunicipalitiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateDetailsPropertyRelationshipTable extends Migration
      */
     public function up()
     {
-        Schema::create('details_property_relationship', function (Blueprint $table) {
+        Schema::create('municipalities', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('property_id')->constrained('properties', 'id');
-            $table->foreignId('detail_id')->constrained('details_property', 'id');
+            $table->string('name');
+            $table->unsignedBigInteger('state_id');
             $table->timestamps();
+            $table->foreign('state_id')->references('id')->on('states')->onDelete('cascade');
         });
     }
 
@@ -28,6 +29,6 @@ class CreateDetailsPropertyRelationshipTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('details_property_relationship');
+        Schema::dropIfExists('municipalities');
     }
 }

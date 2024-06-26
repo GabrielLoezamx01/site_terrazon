@@ -18,6 +18,7 @@ class VerifyController extends Controller
      */
     public function index(Request $request)
     {
+        return view('error.maintenance');
         if(isset($request->token)){
             $token = $request->token;
             $decryptedToken = Crypt::decryptString($token);

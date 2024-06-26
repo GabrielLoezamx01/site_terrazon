@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Usuarios Referidos')
+@section('title', 'users Referidos')
 @section('content')
     <div id="">
 
@@ -13,7 +13,7 @@
                     </div>
                     <div class="modal-body">
 
-                        <form action="{{ url('admin/usuarios') }}" method="POST">
+                        <form action="{{ url('admin/users') }}" method="POST">
                             @csrf
                             <div class="mb-3">
                                 <label for="email">Nombre Completo</label>
@@ -60,7 +60,7 @@
                             Overview
                         </div>
                         <h2 class="page-title">
-                            Lista de Usuarios
+                            Lista de users
                         </h2>
                     </div>
                     <!-- Page title actions -->
@@ -94,7 +94,7 @@
                         <div class="card">
 
                             <div class="card-header">
-                                <h3 class="card-title">Usuarios Referidos</h3>
+                                <h3 class="card-title">users Referidos</h3>
                             </div>
                             <div class="card-body border-bottom py-3">
                                 <div class="d-flex">

@@ -15,7 +15,8 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        return Property::paginate(25);
+        $property = Property::with(['municipality.state', 'types', 'amenities', 'conditions', 'details', 'features'])->paginate(10);
+        return view('admin.properties.list', compact('property'));
     }
 
     /**
@@ -37,7 +38,7 @@ class PropertyController extends Controller
      */
     public function show($id)
     {
-        //
+        return Property::find($id);
     }
 
     /**

@@ -10,6 +10,11 @@
     <link href="{{ asset('css/tabler-flags.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/tabler-vendors.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/demoapp.css') }}" rel="stylesheet" />
+    <style>
+        /* Define un mínimo de altura para las filas */
+/* Define un ancho mínimo para las columnas */
+
+    </style>
     @stack('styles')
     @stack('scripts')
 </head>
