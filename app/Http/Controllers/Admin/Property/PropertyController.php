@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Admin\Property;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Property;
-
+use App\Models\Municipality;
+use Illuminate\Support\Str;
 class PropertyController extends Controller
 {
     /**
@@ -19,15 +20,72 @@ class PropertyController extends Controller
         return view('admin.properties.list', compact('property'));
     }
 
+
+    /**
+     * Return view by insert item.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function createView()
+    {
+        $property = Property::where('available' , 0)->first();
+        if($property->count() >= 0){
+            session(['property_id' => $property->id]);
+        }
+        $municipality = Municipality::with('state')->get();
+        return view('admin.properties.create')->with(compact('municipality'));
+    }
+    public function continueView()
+    {
+        $property = Property::where('available', 0)->get();
+        return $property;
+    }
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    private function insert_modelo($request)
+    {
+        $slug = $this->slug_generate($request->name, $request->address);
+        $property = new Property();
+        $property->title = $request->name;
+        $property->slug = $slug;
+        $property->description = $request->description;
+        $property->price = $request->price;
+        $property->latitude = $request->latitude ?? 0;
+        $property->longitude = $request->longitud ?? 0;
+        $property->address = $request->address;
+        $property->rooms = $request->rooms;
+        $property->bathrooms = $request->bathrooms;
+        $property->parking = $request->bathrooms;
+        $property->img = 'defauld.jpg';
+        $property->folio = Str::upper(Str::random(8));
+        $property->available = 0;
+        $property->municipality_id = $request->municipality;
+        $property->save();
+        session(['property_id' => $property->id]);
+    }
     public function store(Request $request)
     {
-        //
+        try {
+        $this->validate($request, [
+            'name' => 'required',
+            'price' => 'required',
+            'rooms' => 'required',
+            'municipality' => 'required',
+            'description' => 'required',
+            'bathrooms' => 'required',
+            'address' => 'required',
+        ]);
+        $this->insert_modelo($request);
+        return response()->json(['success' => 'Propiedad creada con éxito. Continúa con el proceso de creación.'], 200);
+        return $request->all();
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Error al crear : ' . $e->getMessage()], 500);
+        }
     }
 
     /**
@@ -62,5 +120,19 @@ class PropertyController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Generate a slug based on the name and address.
+     *
+     * @param  string  $name
+     * @param  string  $address
+     * @return string
+     */
+    private function slug_generate(string $name, string $address)
+    {
+        $slug = str_replace(' ', '-', $name);
+        $slugLocation =  str_replace(' ', '-', $address);
+        return $slug . '-' . $slugLocation;
     }
 }

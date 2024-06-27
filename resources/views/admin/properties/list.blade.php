@@ -106,8 +106,8 @@
 
                 <div class="col-auto ms-auto d-print-none">
                     <div class="btn-list">
-                        <div class="col"> <button class="btn btn-dark" @click="showModal(false)">
-
+                        <div class="col">
+                            <a href="new_property" class="btn btn-dark">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round"
@@ -117,8 +117,9 @@
                                     <path d="M9 12h6" />
                                     <path d="M12 9v6" />
                                 </svg>
-                                Agregar Propiedad</button></div>
-
+                                Nueva Propiedad
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -186,6 +187,7 @@
                                             <th>Ubicación</th>
                                             <th>Precio</th>
                                             <th>Estado</th>
+                                            <th>Imagen</th>
                                             <th>Fecha de Creación</th>
                                             <th></th>
                                         </tr>
@@ -220,17 +222,28 @@
                                                             <span class="badge bg-secondary me-1"></span>
                                                             No Disponible
                                                     @endswitch
-
                                                 </td>
-
+                                                <td class="text-center">
+                                                    <img src="{{ asset('img/' . $item->img) }}" alt=""
+                                                        class="img-fluid" style="width: 50px">
                                                 </td>
                                                 <td><label for=""
                                                         class="text-muted">{{ $item->created_at }}</label>
                                                 </td>
                                                 <td class="text-end">
+                                                    <span class="dropdown">
                                                         <button class="btn dropdown-toggle align-text-top"
                                                             data-bs-boundary="viewport" data-bs-toggle="dropdown"
                                                             aria-expanded="false">Opciones</button>
+                                                        <div class="dropdown-menu dropdown-menu-end" style="">
+                                                            <a class="dropdown-item" href="#">
+                                                                Action
+                                                            </a>
+                                                            <a class="dropdown-item" href="#">
+                                                                Another action
+                                                            </a>
+                                                        </div>
+                                                    </span>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -282,5 +295,13 @@
     </div>
 @endsection
 @push('scripts2')
-    <script src="{{ asset('js/admin/list_property.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $("#myTable").DataTable({
+                info: false,
+                paging: false,
+                responsive: true,
+            });
+        });
+    </script>
 @endpush

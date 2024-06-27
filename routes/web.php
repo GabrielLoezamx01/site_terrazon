@@ -49,6 +49,9 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::apiResource('features', FeaturesController::class);
     Route::apiResource('condition', ConditionController::class);
     Route::apiResource('property', PropertyController::class);
+    Route::get('new_property', [PropertyController::class, 'createView']);
+    Route::get('continue_create', [PropertyController::class, 'continueView']);
+
 });
 
 
