@@ -8,9 +8,6 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', config('app.name', 'TERRAZON'))</title>
     <!-- Scripts -->
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <!-- Styles -->
     <style>
         :root {
@@ -29,6 +26,7 @@
     <script src="{{ asset('js/app.js') }}"></script>
     <!-- @yield('scripts') -->
     @stack('scripts')
+    @include('public.includes.footer')
 </body>
 
 </html>

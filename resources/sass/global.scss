@@ -295,6 +295,7 @@ ul.list-info {
 
 .owl-stage-outer {
     padding-left: 10px;
+    padding-bottom: 16px;
 }
 
 @media screen and (max-width: 500px) {
@@ -414,8 +415,10 @@ ul.list-info {
 
 .footer {
     background-color: #5FC075;
+
     .footer-title {
         position: relative;
+
         &:after {
             position: absolute;
             content: '';
@@ -456,7 +459,8 @@ ul.list-info {
         li {
             list-style: none;
             padding: 8px 0px;
-            i{
+
+            i {
                 font-size: 1.5em !important;
                 margin-right: 10px;
             }
@@ -678,7 +682,7 @@ ul.list-info {
         bottom: -42%;
         right: -25%;
     }
-    
+
 }
 
 .svg-social-icon {
@@ -699,4 +703,55 @@ ul.list-info {
 
 .svg-social-whatsapp {
     background: url('../svg/whatsapp.svg') no-repeat;
+}
+
+.breadcrumb {
+    .breadcrumb-item {
+        font-size: 12px;
+
+        a {
+            color: #8F8F8F;
+            text-decoration: none;
+        }
+
+    }
+
+    .active {
+        color: $tertiary;
+    }
+}
+
+.dd-order {
+    color: $tertiary;
+    text-decoration: none;
+}
+
+.pagination {
+    .page-item {
+        margin-left: 8px;
+        margin-right: 8px;
+
+        a {
+            border: none;
+        }
+    }
+}
+
+.svg-icon { 
+    display: inline-block;
+    width: 60px !important;
+    height: 60px !important;
+    background-position: center;
+    background-size: 100% !important;
+}
+
+.svg-icon-properties {
+    background: url('../svg/properties.svg') no-repeat;
+    
+}
+.svg-icon-shape {
+    background: url('../svg/shape.svg') no-repeat;
+}
+.svg-icon-secure {
+    background: url('../svg/secure.svg') no-repeat;
 }

@@ -6,7 +6,7 @@
             <i class="fa-solid fa-chevron-right fa-stack-1x fa-inverse"></i>
         </span>
     </div>
-    <div class="owl-carousel owl-theme" id="{{ $id }}">
+    <div class="owl-carousel owl-theme pb-2" id="{{ $id }}">
         @foreach ($cards as $index => $card)
         <x-card :title="$card['title']" :price="$card['price']" :area="$card['area']" :content="$card['content']" :imageUrl="$card['imageUrl']" />
         @endforeach
