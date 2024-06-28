@@ -13,7 +13,6 @@ class CreatePropertiesTable extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('properties');
         Schema::create('properties', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
@@ -33,6 +32,7 @@ class CreatePropertiesTable extends Migration
             $table->boolean('available')->default(true);
             $table->unsignedBigInteger('municipality_id');
             $table->foreign('municipality_id')->references('id')->on('municipalities');
+
         });
     }
 
