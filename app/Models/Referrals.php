@@ -11,18 +11,16 @@ class Referrals extends Model
     use HasFactory, SoftDeletes;
     protected $table = 'referrals';
     protected $primaryKey = 'id_referral';
-
-    protected $fillable = [
-        'password',
-        'registration_user_id',
-        'email',
-        'time_check',
-    ];
-
     protected $dates = ['deleted_at'];
+    protected $fillable = ['name', 'email', 'password', 'verication_code', 'verication_code_expiration', 'status'];
 
-    public function user()
+
+    protected static function boot()
     {
-        return $this->belongsTo(User::class, 'registration_user_id');
+        parent::boot();
+
+        static::creating(function ($referral) {
+            $referral->password = bcrypt($referral->password);
+        });
     }
 }
