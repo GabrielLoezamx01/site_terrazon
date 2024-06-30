@@ -37,7 +37,9 @@ class PropertyController extends Controller
     }
     public function continueView()
     {
-        $property = Property::where('available', 0)->get();
+        $property = Property::with(['municipality.state', 'types', 'amenities', 'conditions', 'details', 'features'])->where('id', 1)->get();
+
+        // $property = Property::where('id', 1)->get();
         return $property;
     }
     /**
