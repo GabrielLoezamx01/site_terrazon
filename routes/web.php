@@ -27,9 +27,7 @@ use App\Http\Controllers\Admin\Property\PropertyController;
 */
 
 Route::get('/', [App\Http\Controllers\Public\HomeController::class, 'index'])->name('inicio');
-Route::get('/propiedades', function () {
-    return view('public.propiedades');
-})->name('propiedades');
+Route::get('/propiedades', [App\Http\Controllers\Public\PropiedadesController::class, 'index'])->name('propiedades');
 Route::get('/agentes', function () {
     return view('public.agentes');
 })->name('agentes');
