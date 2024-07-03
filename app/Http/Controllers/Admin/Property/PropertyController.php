@@ -28,10 +28,6 @@ class PropertyController extends Controller
      */
     public function createView()
     {
-        $property = Property::where('available' , 0)->first();
-        if($property->count() >= 0){
-            session(['property_id' => $property->id]);
-        }
         $municipality = Municipality::with('state')->get();
         return view('admin.properties.create')->with(compact('municipality'));
     }
