@@ -6,19 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title')</title>
-    <link href="{{ asset('css/tabler.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/tabler.min.css?1684106062') }}" rel="stylesheet" />
     <link href="{{ asset('css/tabler-flags.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/tabler-vendors.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/demoapp.css') }}" rel="stylesheet" />
-    <style>
-        /* Define un mínimo de altura para las filas */
-/* Define un ancho mínimo para las columnas */
-
-    </style>
     @stack('styles')
     @stack('scripts')
 </head>
 <body>
+
     <div class="page">
         @if (Auth::check())
             <aside class="navbar navbar-vertical navbar-expand-lg">
@@ -484,6 +480,7 @@
             @yield('content')
         </main>
     </div> --}}
+    <script src="{{ asset('js/demo-theme.min.js') }}"></script>
     <script src="{{ asset('js/tabler.min.js') }}" defer></script>
     <script src="{{ asset('js/axios.min.js') }}"></script>
     <script src="{{ asset('js/vue.js') }}"></script>
