@@ -15,7 +15,7 @@ class ConditionController extends Controller
      */
     public function index()
     {
-        $data =  ConditionProperty::paginate(25);
+        $data =  ConditionProperty::paginate(15);
         return view('admin.properties.condition', compact('data'));
     }
 

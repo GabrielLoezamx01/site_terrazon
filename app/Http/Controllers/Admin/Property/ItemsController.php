@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Amenities;
 use App\Models\ConditionProperty;
-use App\Models\Property;
+use App\Models\TypeProperty;
+use App\Models\FeatureProperty;
+
 
 class ItemsController extends Controller
 {
@@ -17,7 +19,12 @@ class ItemsController extends Controller
      */
     public function index()
     {
-        //
+        return [
+            'amenities' => Amenities::all(),
+            'conditions' => ConditionProperty::all(),
+            'types' => TypeProperty::all(),
+            'feature' => FeatureProperty::all(),
+        ];
     }
 
     /**

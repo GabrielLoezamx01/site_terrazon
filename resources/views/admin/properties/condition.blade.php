@@ -17,11 +17,12 @@
                 </div>
                 <div class="modal-body">
                     {{-- GUARDAR --}}
-                    <form action="{{ url('admin/condition') }}" method="POST" encvalue="multipart/form-data" v-if="insertForm">
+                    <form action="{{ url('admin/condition') }}" method="POST" encvalue="multipart/form-data"
+                        v-if="insertForm">
                         @csrf
                         <div class="mb-3">
                             <label for="email">Nombre</label>
-                            <input type="text"   placeholder="Ingresar el nombre" autocomplete="off" class="form-control"
+                            <input type="text" placeholder="Ingresar el nombre" autocomplete="off" class="form-control"
                                 name="name" value="{{ old('name') }}" maxlength="30" required>
                         </div>
                         <div class="mb-3 text-center">
@@ -244,12 +245,11 @@
                                         </li>
                                     @endif
 
-                                    @foreach ($data as $value)
-                                        <li class="page-item {{ $data->currentPage() == $value->id ? 'active' : '' }}">
-                                            <a class="page-link"
-                                                href="{{ $data->url($value->id) }}">{{ $value->id }}</a>
+                                    @for ($i = 1; $i <= $data->lastPage(); $i++)
+                                        <li class="page-item {{ $data->currentPage() == $i ? 'active' : '' }}">
+                                            <a class="page-link" href="{{ $data->url($i) }}">{{ $i }}</a>
                                         </li>
-                                    @endforeach
+                                    @endfor
 
                                     @if ($data->hasMorePages())
                                         <li class="page-item">

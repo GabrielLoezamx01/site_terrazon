@@ -15,7 +15,7 @@ class FeaturesController extends Controller
      */
     public function index()
     {
-        $features =  FeaturesProperty::paginate(25);
+        $features =  FeaturesProperty::paginate(15);
         return view('admin.properties.features', compact('features'));
     }
 

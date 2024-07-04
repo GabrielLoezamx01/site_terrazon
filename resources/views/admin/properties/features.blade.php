@@ -260,14 +260,11 @@
                                         </li>
                                     @endif
 
-                                    <!-- Enlaces de páginas -->
-                                    @foreach ($features as $item)
-                                        <li
-                                            class="page-item {{ $features->currentPage() == $item->id ? 'active' : '' }}">
-                                            <a class="page-link"
-                                                href="{{ $features->url($item->id) }}">{{ $item->id }}</a>
+                                    @for ($i = 1; $i <= $features->lastPage(); $i++)
+                                        <li class="page-item {{ $features->currentPage() == $i ? 'active' : '' }}">
+                                            <a class="page-link" href="{{ $features->url($i) }}">{{ $i }}</a>
                                         </li>
-                                    @endforeach
+                                    @endfor
 
                                     <!-- Botón de página siguiente -->
                                     @if ($features->hasMorePages())

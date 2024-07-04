@@ -15,7 +15,7 @@ class TypesController extends Controller
      */
     public function index()
     {
-        $types = TypesProperty::paginate(25);
+        $types = TypesProperty::paginate(15);
         return view('admin.properties.types')->with(compact('types'));
     }
 

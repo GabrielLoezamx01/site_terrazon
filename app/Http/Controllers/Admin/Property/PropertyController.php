@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Property;
 use App\Models\Municipality;
 use Illuminate\Support\Str;
+
 class PropertyController extends Controller
 {
     /**
@@ -69,18 +70,25 @@ class PropertyController extends Controller
     public function store(Request $request)
     {
         try {
-        $this->validate($request, [
-            'name' => 'required',
-            'price' => 'required',
-            'rooms' => 'required',
-            'municipality' => 'required',
-            'description' => 'required',
-            'bathrooms' => 'required',
-            'address' => 'required',
-        ]);
-        $this->insert_modelo($request);
-        return response()->json(['success' => 'Propiedad creada con éxito. Continúa con el proceso de creación.'], 200);
-        return $request->all();
+            $this->validate($request, [
+                'informacion' => 'required',
+                'informacion.name' => 'required',
+                'informacion.address' => 'required',
+                'informacion.description' => 'required',
+                'informacion.rooms' => 'required',
+                'informacion.bathrooms' => 'required',
+                'informacion.price' => 'required',
+                'municipality' => 'required',
+                'amenities' => 'required',
+                'types' => 'required',
+                'conditions' => 'required',
+                'feature' => 'required',
+                'details' => 'required',
+            ]);
+            return $request->all();
+            $this->insert_modelo($request);
+            return response()->json(['success' => 'Propiedad creada con éxito. Continúa con el proceso de creación.'], 200);
+            return $request->all();
         } catch (\Exception $e) {
             return response()->json(['error' => 'Error al crear : ' . $e->getMessage()], 500);
         }
