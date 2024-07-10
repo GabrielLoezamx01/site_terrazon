@@ -19,7 +19,7 @@ class UserAdminSeeder extends Seeder
         ], [
             'id' => 1,
             'name' => 'sysadmin',
-            'email' => 'admin@terrazon.com',
+            'email' => 'imir.aguilar.salazar@gmail.com',
             'password' => 'Terr2024#'
         ]);
     }

@@ -5,7 +5,18 @@ namespace App\Http\Controllers\Admin\Property;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Property;
+use App\Models\TypeProperty;
 use App\Models\Municipality;
+use App\Models\DetailProperty;
+use App\Models\FeaturesProperty;
+use App\Models\Relationship\AmenitiesProperty;
+use App\Models\Amenities;
+use App\Models\Relationship\FeatureProperty;
+use App\Models\Relationship\TypesProperty;
+use App\Models\Relationship\DetailsProperty;
+use App\Models\Relationship\ConditionsProperty;
+use App\Models\ConditionProperty;
+
 use Illuminate\Support\Str;
 
 class PropertyController extends Controller
@@ -32,13 +43,7 @@ class PropertyController extends Controller
         $municipality = Municipality::with('state')->get();
         return view('admin.properties.create')->with(compact('municipality'));
     }
-    public function continueView()
-    {
-        $property = Property::with(['municipality.state', 'types', 'amenities', 'conditions', 'details', 'features'])->where('id', 1)->get();
 
-        // $property = Property::where('id', 1)->get();
-        return $property;
-    }
     /**
      * Store a newly created resource in storage.
      *
@@ -46,30 +51,135 @@ class PropertyController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    private function insert_modelo($request)
+    private function insert_property($request)
     {
-        $slug = $this->slug_generate($request->name, $request->address);
+        $name = $request->informacion['name'];
+        $address = $request->informacion['address'];
+        $slug = $this->slug_generate($name, $address);
         $property = new Property();
-        $property->title = $request->name;
+        $property->title = $name;
         $property->slug = $slug;
-        $property->description = $request->description;
-        $property->price = $request->price;
+        $property->description = $request->informacion['description'];
+        $property->price = $request->informacion['price'];
         $property->latitude = $request->latitude ?? 0;
         $property->longitude = $request->longitud ?? 0;
-        $property->address = $request->address;
-        $property->rooms = $request->rooms;
-        $property->bathrooms = $request->bathrooms;
-        $property->parking = $request->bathrooms;
+        $property->address = $address;
+        $property->rooms = $request->informacion['rooms'];
+        $property->bathrooms = $request->informacion['bathrooms'];
+        $property->parking = $request->parkingCheck ? $request->parking : 0;
         $property->img = 'defauld.jpg';
         $property->folio = Str::upper(Str::random(8));
         $property->available = 0;
         $property->municipality_id = $request->municipality;
         $property->save();
-        session(['property_id' => $property->id]);
+        return $property->id;
+    }
+
+    private function validate_insert($model, $data)
+    {
+        switch ($model) {
+            case 'amenities_property':
+                $database = new AmenitiesProperty();
+                break;
+            case 'types_property':
+                $database = new TypesProperty();
+                break;
+            case 'conditions_property':
+                $database = new ConditionsProperty();
+                break;
+            case 'feature_property':
+                $database = new FeatureProperty();
+                break;
+            case 'details_property':
+                $database = new DetailsProperty();
+                break;
+        }
+        if (!empty($data)) {
+            foreach ($data as $item) {
+                $database->updateOrCreate($item, $item);
+            }
+        }
+    }
+
+    private function amenities_property($amenities, $property_id)
+    {
+        $data = [];
+        foreach ($amenities as $amenity) {
+            $data[] = [
+                'property_id' => $property_id,
+                'amenities_id' => $amenity,
+            ];
+        }
+        $this->validate_insert('amenities_property', $data);
+    }
+
+    private function feature_property($features, $property_id)
+    {
+        $data = [];
+        foreach ($features as $feature) {
+            $data[] = [
+                'property_id' => $property_id,
+                'features_property_id' => $feature,
+            ];
+        }
+        $this->validate_insert('feature_property', $data);
+    }
+    private function types_property($types, $property_id)
+    {
+        $data = [];
+        foreach ($types as $type) {
+            $data[] = [
+                'property_id' => $property_id,
+                'types_id' => $type,
+            ];
+        }
+        $this->validate_insert('types_property', $data);
+    }
+
+    private function conditions_property($conditions, $property_id)
+    {
+        $data = [];
+        foreach ($conditions as $condition) {
+            $data[] = [
+                'property_id' => $property_id,
+                'condition_id' => $condition,
+            ];
+        }
+        $this->validate_insert('conditions_property', $data);
+    }
+
+    private function details_property($details_id, $property_id)
+    {
+        $data = [];
+        foreach ($details_id as $id) {
+            $data[] = [
+                'property_id' => $property_id,
+                'detail_id' => $id,
+            ];
+        }
+        $this->validate_insert('details_property', $data);
+    }
+
+    private function details_validate($request_details)
+    {
+        $detailsProperty = [];
+        foreach ($request_details as $detail) {
+            $model = DetailProperty::updateOrCreate(
+                [
+                    'name' => $detail
+                ],
+                [
+                    'name' => $detail
+                ]
+            );
+            $detailsProperty [] = $model->id;
+        }
+        return $detailsProperty;
     }
     public function store(Request $request)
     {
         try {
+
             $this->validate($request, [
                 'informacion' => 'required',
                 'informacion.name' => 'required',
@@ -85,10 +195,23 @@ class PropertyController extends Controller
                 'feature' => 'required',
                 'details' => 'required',
             ]);
-            return $request->all();
-            $this->insert_modelo($request);
+
+            $detailsProperty = self::details_validate($request->details);
+
+            $property_id = $this->insert_property($request);
+
+            self::details_property($detailsProperty, $property_id);
+
+            self::amenities_property($request->amenities, $property_id);
+
+            self::feature_property($request->feature, $property_id);
+
+            self::types_property($request->types, $property_id);
+
+            self::conditions_property($request->conditions, $property_id);
+
             return response()->json(['success' => 'Propiedad creada con éxito. Continúa con el proceso de creación.'], 200);
-            return $request->all();
+
         } catch (\Exception $e) {
             return response()->json(['error' => 'Error al crear : ' . $e->getMessage()], 500);
         }
@@ -102,7 +225,15 @@ class PropertyController extends Controller
      */
     public function show($id)
     {
-        return Property::find($id);
+        $property = Property::with(['municipality.state', 'types', 'amenities', 'conditions', 'details', 'features'])->where('folio', $id)->first();
+        $municipality = Municipality::with('state')->get();
+        $items = [
+            'amenities' => Amenities::all(),
+            'conditions' => ConditionProperty::all(),
+            'types' => TypeProperty::all(),
+            'feature' => FeaturesProperty::all(),
+        ];
+        return view('admin.properties.edit', compact('property', 'municipality', 'items'));
     }
 
     /**
@@ -114,9 +245,61 @@ class PropertyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'address' => 'required',
+            'description' => 'required',
+            'rooms' => 'required',
+            'bathrooms' => 'required',
+            'price' => 'required',
+            'municipality' => 'required',
+            'amenities' => 'required',
+            'types' => 'required',
+            'conditions' => 'required',
+            'features' => 'required',
+            'conditions' => 'required',
+            'parking' => 'required',
+        ]);
+        $name = $request->name;
+        $address = $request->address;
+        $slug = $this->slug_generate($name, $address);
+        $property = Property::where('folio', $id)->first();
+        $property_id = $property->id;
+        $property->title = $name;
+        $property->slug = $slug;
+        $property->address = $address;
+        $property->description = $request->description;
+        $property->price = $request->price;
+        $property->latitude = $request->latitude ?? 0;
+        $property->longitude = $request->longitud ?? 0;
+        $property->address = $request->address;
+        $property->rooms = $request->rooms;
+        $property->bathrooms = $request->bathrooms;
+        $property->parking = $request->parking;
+        $property->municipality_id = $request->municipality;
+        $property->save();
+
+        $this->delete_relationship($property_id);
+
+        self::amenities_property($request->amenities, $property_id);
+
+        self::feature_property($request->features, $property_id);
+
+        self::types_property($request->types, $property_id);
+
+        self::conditions_property($request->conditions, $property_id);
+
+        return redirect()->back()->withSuccess('¡Operación realizada con éxito!');
+
     }
 
+
+    private function  delete_relationship ($id){
+        AmenitiesProperty::where('property_id', $id)->delete();
+        FeatureProperty::where('property_id', $id)->delete();
+        TypesProperty::where('property_id', $id)->delete();
+        ConditionsProperty::where('property_id', $id)->delete();
+    }
     /**
      * Remove the specified resource from storage.
      *

@@ -14,11 +14,11 @@
     </div>
     <div class="mb-3">
         <label class="form-label">Latitud</label>
-        <input type="text" class="form-control" v-model="latitude" placeholder="Numero de baños">
+        <input type="text" class="form-control" v-model="latitude" placeholder="">
     </div>
     <div class="mb-3">
         <label class="form-label">Longitud</label>
-        <input type="text" class="form-control" v-model="longitud" placeholder="Numero de baños">
+        <input type="text" class="form-control" v-model="longitud" placeholder="">
     </div>
     <div class="mb-3" v-if="defaulview">
         <button class="btn btn-primary" @click="saveProperty">Siguiente</button>

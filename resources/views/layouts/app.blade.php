@@ -145,27 +145,27 @@
                                 <div class="dropdown-menu">
                                     <div class="dropdown-menu-columns">
                                         <div class="dropdown-menu-column">
-                                            <a class="dropdown-item" href="amenities">
+                                            <a class="dropdown-item" href="{{ url('admin/amenities') }}">
                                                 Amenidades
                                             </a>
                                         </div>
                                         <div class="dropdown-menu-column">
-                                            <a class="dropdown-item" href="types">
+                                            <a class="dropdown-item" href="{{ url('admin/types') }}">
                                                 Tipos
                                             </a>
                                         </div>
                                         <div class="dropdown-menu-column">
-                                            <a class="dropdown-item" href="features">
+                                            <a class="dropdown-item"  href="{{ url('admin/features') }}" >
                                                 Características
                                             </a>
                                         </div>
                                         <div class="dropdown-menu-column">
-                                            <a class="dropdown-item" href="condition">
+                                            <a class="dropdown-item"  href="{{ url('admin/condition') }}">
                                                 Condición
                                             </a>
                                         </div>
                                         <div class="dropdown-menu-column">
-                                            <a class="dropdown-item" href="property">
+                                            <a class="dropdown-item" href="{{ url('admin/property') }}" >
                                                 Lista de propiedades
                                             </a>
                                         </div>

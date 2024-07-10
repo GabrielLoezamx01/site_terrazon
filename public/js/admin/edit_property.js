@@ -17,11 +17,11 @@ const app = new Vue({
         feature: [],
         selectedFeatures: [],
         view1: true,
-        view2: false,
-        view3: false,
-        view4: false,
-        view5: false,
-        view6: false,
+        view2: true,
+        view3: true,
+        view4: true,
+        view5: true,
+        view6: true,
         view7: false,
         defaulview: true,
         checkbox: false,
@@ -124,7 +124,7 @@ const app = new Vue({
             axios
                 .get(items)
                 .then((response) => {
-                    this.amenities = response.data.amenities;
+                    this.amenities = "{{$property->amenities}}";
                     this.conditions = response.data.conditions;
                     this.feature = response.data.feature;
                     this.types = response.data.types;

@@ -26,7 +26,7 @@
                     </div>
                 </div> --}}
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-10">
                         @include('admin.properties.create.information')
                     </div>
                 </div>

@@ -236,12 +236,15 @@
                                                             data-bs-boundary="viewport" data-bs-toggle="dropdown"
                                                             aria-expanded="false">Opciones</button>
                                                         <div class="dropdown-menu dropdown-menu-end" style="">
-                                                            <a class="dropdown-item" href="#">
-                                                                Action
+                                                            <a class="dropdown-item"
+                                                                href="{{ route('property.show', ['property' => $item->folio]) }}">
+                                                                Editar
                                                             </a>
-                                                            <a class="dropdown-item" href="#">
-                                                                Another action
+                                                            <a class="dropdown-item"
+                                                                href="property_gallery?id={{ $item->folio }}">
+                                                                Galeria
                                                             </a>
+
                                                         </div>
                                                     </span>
                                                 </td>
