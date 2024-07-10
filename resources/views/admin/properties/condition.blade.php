@@ -11,8 +11,8 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel" v-if="insertForm"> Insertar Tipo</h5>
-                    <h5 v-if="UpdateForm" class="modal-title" id="staticBackdropLabel">Actualizar Tipo</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel" v-if="insertForm"> Insertar </h5>
+                    <h5 v-if="UpdateForm" class="modal-title" id="staticBackdropLabel">Actualizar </h5>
                     <button value="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
