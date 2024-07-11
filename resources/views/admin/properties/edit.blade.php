@@ -67,12 +67,11 @@
                         </div>
                         <div class="mb-3">
                             <label for="">Habitaciones</label>
-                            <input type="number" autocomplete="off" value="{{ $property['rooms'] }}" class="form-control" required
-                                name="rooms">
+                             <input type="number" autocomplete="off" value="{{ old('rooms') ?? $property['rooms'] }}" class="form-control" required name="rooms">
                         </div>
                         <div class="mb-3">
                             <label for="">Baños</label>
-                            <input type="number" autocomplete="off" value="{{ $property['bathrooms'] }}" class="form-control" required
+                            <input type="number" autocomplete="off" value="{{ old('bathrooms') ??  $property['bathrooms'] }}" class="form-control" required
                                 name="bathrooms">
                         </div>
                         <div class="mb-3">
@@ -83,7 +82,7 @@
                             <div class="mb-3">
                             <label for="">Precio</label>
                             <input type="number" autocomplete="off" class="form-control" required name="price"
-                                value="{{ $property['price'] }}">
+                                value="{{ old('price') ??  $property['price'] }}">
                         </div>
                         <div class="mb-3">
                             <h3 class="fs-2 fw-bold">Ubicación</h3>

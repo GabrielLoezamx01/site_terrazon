@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Property;
 use App\Models\Gallery;
 use Illuminate\Support\Facades\Storage;
-
+use Illuminate\Support\Facades\Session;
 class GalleryController extends Controller
 {
     /**
@@ -17,8 +17,10 @@ class GalleryController extends Controller
      */
     public function index(Request $request)
     {
-        $request->input('folio', '4UMP2D74');
-        $property = Property::where('folio', $request->id)->first();
+        if($request->id){
+            Session::put('gallery_property_id', $request->id);
+        }
+        $property = Property::where('folio', Session::get('gallery_property_id'))->first();
         $gallery = Gallery::where('property_id', $property->id)->get();
         return view('admin.properties.gallery')->with(compact('property', 'gallery'));
     }

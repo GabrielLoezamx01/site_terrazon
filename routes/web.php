@@ -54,7 +54,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('new_property', [PropertyController::class, 'createView']);
     Route::get('edit_property', [PropertyController::class, 'edit_property']);
     Route::apiResource('property_gallery', GalleryController::class);
-    Route::post('/property_gallery/{id}', [GalleryController::class, 'store'])->name('property_gallery.store');
+    Route::post('/property_image/{id}', [GalleryController::class, 'store'])->name('property_image.store');
     Route::post('/property_gallery/{id}', [GalleryController::class, 'gallery_property'])->name('property_gallery.all');
 
     Route::apiResource('items_property', ItemsController::class);

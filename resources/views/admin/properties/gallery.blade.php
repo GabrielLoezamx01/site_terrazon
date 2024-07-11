@@ -34,7 +34,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Ajustes de imagenes</h3>
+                            <h3 class="card-title">{{ $property['title'] }}</h3>
                         </div>
 
                         @if (session('success') || session('errors'))
@@ -86,7 +86,7 @@
                                             <div>
                                                 <div>Imagen Principal</div>
                                                 <form
-                                                    action="{{ route('property_gallery.store', ['id' => $property['folio']]) }}"
+                                                    action="{{ route('property_image.store', ['id' => $property['folio']]) }}"
                                                     method="POST" enctype="multipart/form-data">
                                                     @csrf
                                                     <input type="file" name="img" class="mt-5 form-control"
@@ -109,7 +109,7 @@
                                 </div>
                                 <div class="row row-cards">
                                     <form action="{{ route('property_gallery.all', ['id' => $property['folio']]) }}"
-                                        method="POST" enctype="multipart/form-data">
+                                        method="POST" enctype="multipart/form-data" class="p-5">
                                         @csrf
                                         <input type="file" name="img[]" class="mt-5 form-control" accept="image/*"
                                             multiple required>
