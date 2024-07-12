@@ -54,7 +54,7 @@ $(document).ready(function () {
 
     var owlOptions3 = {
         center: false,
-        loop: false,
+        loop: true,
         nav: true,
         navText: [
             '<span class="icon-nav fa-stack fa-2x"><i class="fa-solid fa-circle  text-light fa-stack-2x"></i><i class="fa-solid fa-chevron-left text-secondary fa-stack-1x fa-inverse"></i></span>', '<span class="icon-nav fa-stack fa-2x"><i class="fa-solid fa-circle text-light fa-stack-2x"></i><i class="fa-solid fa-chevron-right text-secondary fa-stack-1x fa-inverse"></i></span>'],
