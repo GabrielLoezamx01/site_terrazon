@@ -16,14 +16,14 @@
         <div class="row">
             <div class="col-12 col-md-6  mb-3 mb-md-2">
                 <ul class="list-info">
-                    <li><label class="detail-icon"><img src="{{ asset('images/icons/bed.svg') }}"></label><span class="detail-text">2 Habitaciones<span></li>
+                    <li><label class="detail-icon"><img src="{{ asset('images/icons/bed.svg') }}"></label><span class="detail-text">2 Habitaciones</span></li>
                     <li><label class="detail-icon"><img src="{{ asset('images/icons/bath.svg') }}"></label><span class="detail-text">2 Baños</span></li>
                     <li><label class="detail-icon"><img src="{{ asset('images/icons/cart.svg') }}"></label><span class="detail-text">1 Estacionamiento</span></li>
                 </ul>
             </div>
             <div class="col-12 col-md-6 d-md-flex align-items-end justify-content-center">
                 <div class="d-grid gap-2">
-                    <button type="button" class="btn btn-success btn-detalle">VER MAS DETALLES</button>
+                    <a href="/ficha/sku" class="btn btn-success btn-detalle">VER MAS DETALLES</a>
                 </div>
             </div>
         </div>

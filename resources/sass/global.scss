@@ -164,7 +164,7 @@ body {
 
 .card-property {
 
-    width: 411px !important;
+    width: 100% !important;
     border: none !important;
     border-radius: 5px;
 
@@ -248,9 +248,9 @@ body {
 
 
 
-    @media screen and (max-width: 500px) {
-        width: 90% !important;
-    }
+    // @media screen and (max-width: 500px) {
+    //     width: 90% !important;
+    // }
 
     // @media screen and (max-width: 500px) {
     //     width: 400px !important;
@@ -296,6 +296,10 @@ ul.list-info {
 .owl-stage-outer {
     padding-left: 10px;
     padding-bottom: 16px;
+}
+
+.owl-item {
+    padding-right: 16px;
 }
 
 @media screen and (max-width: 500px) {
@@ -540,6 +544,7 @@ ul.list-info {
 .btn-detalle {
     color: white;
     padding: 10px 25px;
+    // white-space: nowrap;
 }
 
 .btn-catalogo {
@@ -737,7 +742,7 @@ ul.list-info {
     }
 }
 
-.svg-icon { 
+.svg-icon {
     display: inline-block;
     width: 60px !important;
     height: 60px !important;
@@ -745,13 +750,305 @@ ul.list-info {
     background-size: 100% !important;
 }
 
-.svg-icon-properties {
-    background: url('../svg/properties.svg') no-repeat;
-    
+.svg-icon-ficha {
+    display: inline-block;
+    width: 20px !important;
+    height: 18px !important;
+    background-position: center;
+    background-size: 100% !important;
 }
-.svg-icon-shape {
-    background: url('../svg/shape.svg') no-repeat;
+
+.svg-icon-location {
+    background: url('../svg/location.svg') no-repeat;
 }
-.svg-icon-secure {
-    background: url('../svg/secure.svg') no-repeat;
+
+.svg-icon-distribution {
+    background: url('../svg/distribution.svg') no-repeat;
+}
+
+.svg-icon-360-degrees {
+    background: url('../svg/360-degrees.svg') no-repeat;
+}
+
+.svg-icon-video {
+    background: url('../svg/video.svg') no-repeat;
+}
+
+.svg-icon-check {
+    background: url('../svg/check.svg') no-repeat;
+}
+
+legend {
+    width: auto;
+    padding: 0 5px;
+    margin-bottom: 0;
+    font-size: inherit;
+    line-height: inherit;
+    border-bottom: none;
+    text-align: left;
+    position: absolute;
+    top: -13px;
+    left: 22px;
+}
+
+fieldset {
+    border: 1px solid $primary;
+    border-radius: 8px;
+    padding: 5px;
+    background-color: #F9F9F9;
+    position: relative;
+
+    &:before {
+        content: ' ';
+        width: 125px;
+        height: 1px;
+        position: absolute;
+        background-color: white;
+        top: -1px;
+        left: 20px;
+    }
+}
+
+.fielset-ficha {
+    border: 1px solid $secondary;
+    background-color: white;
+
+    legend {
+        font-weight: 600;
+        color: #231D46;
+        font-size: 18px;
+    }
+
+    &:before {
+        content: ' ';
+        width: 260px;
+        height: 1px;
+        position: absolute;
+        background-color: white;
+        top: -1px;
+        left: 20px;
+    }
+}
+
+.dd-select {
+    .chevron {
+        color: #ADA7A7;
+    }
+
+    &::after {
+        position: absolute;
+        right: 10px;
+        top: 45%;
+    }
+}
+
+.full {
+    width: 100%;
+}
+
+.fc-text {
+    font-size: 11px;
+    color: #3E3E3E;
+    white-space: nowrap;
+    margin: 5px 7px;
+}
+
+.range-text {
+    margin-top: -10px;
+    font-size: 12px;
+
+}
+
+.text-muted {
+    color: #231D46;
+}
+
+.carousel-thumbnails {
+    position: relative;
+    left: 0;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin-top: 10px;
+    margin-bottom: 1rem;
+    margin-right: 5%;
+    margin-left: 5%;
+
+
+    img {
+        border-radius: 6px !important;
+    }
+
+    .car-nav {
+        z-index: 999;
+        top: 30%;
+        position: absolute;
+        cursor: pointer;
+        @include icon-shadow;
+
+        .icon-nav {
+            font-size: 16px;
+        }
+
+        .fa-circle {
+            color: $primary;
+        }
+    }
+
+    .car-back {
+        left: -5%;
+    }
+
+    .car-next {
+        right: -5%;
+    }
+
+    @media screen and (max-width: 768px) {
+        margin-right: 10%;
+        margin-left: 10%;
+
+        .car-back {
+            left: -15%;
+        }
+
+        .car-next {
+            right: -15%;
+        }
+    }
+}
+
+.img-round {
+    border-radius: 6px;
+}
+
+.ficha-carouser-img {
+    height: 464px;
+    width: 100%;
+    background-position: center !important;
+    background-size: cover !important;
+    background-repeat: no-repeat;
+    border-radius: 6px;
+
+    @media screen and (max-width: 768px) {
+        height: 200px;
+    }
+}
+
+.carousel-img-thumb {
+    height: 106px;
+    width: 156px;
+    background-position: center !important;
+    background-size: cover !important;
+    background-repeat: no-repeat;
+    border-radius: 6px;
+
+    @media screen and (max-width: 568px) {
+        height: 100px;
+        width: 120px;
+    }
+}
+
+.ficha-nav {
+    background: $tertiary;
+    color: white;
+    border-radius: 6px;
+
+    .list-item {
+        width: 25%;
+        padding: 10px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .svg-icon-ficha {
+            margin-right: 5px;
+        }
+
+        &:nth-child(2),
+        &:nth-child(3),
+        &:nth-child(4) {
+            border-left: 1px solid white;
+        }
+    }
+}
+
+.ficha-title {
+    font-weight: 600;
+    color: #231D46;
+    font-size: 18px;
+}
+
+ul.ficha {
+    list-style: none;
+    /* Elimina los puntos predeterminados */
+    padding-left: 20px;
+
+    /* Ajusta según sea necesario */
+    li::before {
+        content: "\2022";
+        /* Código Unicode para un punto bullet */
+        color: $secondary;
+        /* Cambia esto al color que desees */
+        display: inline-block;
+        width: 1em;
+        margin-left: -1em;
+    }
+}
+
+
+.bold {
+    font-weight: bold !important;
+}
+
+.share-text {
+    font-size: 15px;
+}
+
+
+.testimonial-box {
+    position: relative;
+    background-color: white;
+    border-radius: 10px;
+    padding: 60px 30px;
+    margin: 50px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border: 1px solid #efefef;
+    min-height: 350px;
+
+}
+
+.quote-icon {
+    position: absolute;
+    top: -40px;
+    left: 20px;
+    width: 80px;
+    height: 80px;
+    background-color: #e9ecef;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quote-icon i {
+    color: $tertiary;
+    font-size: 50px;
+}
+
+.testimonial-author {
+    color: $tertiary;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.testimonial-text {
+    font-style: italic;
+    color: #495057;
+}
+
+.owl-theme .owl-nav [class*='owl-']:hover {
+    background: none !important;
+    color: gray !important;
 }

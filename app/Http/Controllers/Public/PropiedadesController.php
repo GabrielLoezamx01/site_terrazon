@@ -24,4 +24,24 @@ class PropiedadesController extends Controller
             'cards2' => $data,
         ]);
     }
+    public function ficha(){
+
+        $data = [];
+        for($i=0; $i<12; $i++){
+            $data[]=[
+                'title' => 'Apartamentos Marinos',
+                'price' => number_format(150000, 2,'.',','),
+                'area' => '520 m2',
+                'imageUrl' => asset('images/card-img.png'),
+                'content' => 'Breve descripción de la propiedad con un máximo de caracteres establecidos por el cliente para una rápida introducción.'
+            ];
+        }
+        return view('public.ficha', [
+            'cards1' => $data,
+            'busqueda' => $data[0],
+            'favoritos' => $data[1],
+            'otros' => $data[2],
+            'nuevo' => $data[3],
+        ]);
+    }
 }

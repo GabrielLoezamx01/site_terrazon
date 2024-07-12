@@ -1,6 +1,6 @@
 <div class="row">
     @foreach ($cards as $index => $card)
-    <div class="col-12 col-sm-6 col-lg-4 d-flex justify-content-center mb-4">
+    <div class="results-items col-12 col-sm-6 col-lg-4 d-flex justify-content-center mb-4">
         <x-card :title="$card['title']" :price="$card['price']" :area="$card['area']" :content="$card['content']" :imageUrl="$card['imageUrl']" />
     </div>
     @endforeach
