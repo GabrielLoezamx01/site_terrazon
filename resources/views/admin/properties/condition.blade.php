@@ -11,17 +11,18 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel" v-if="insertForm"> Insertar Tipo</h5>
-                    <h5 v-if="UpdateForm" class="modal-title" id="staticBackdropLabel">Actualizar Tipo</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel" v-if="insertForm"> Insertar </h5>
+                    <h5 v-if="UpdateForm" class="modal-title" id="staticBackdropLabel">Actualizar </h5>
                     <button value="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     {{-- GUARDAR --}}
-                    <form action="{{ url('admin/condition') }}" method="POST" encvalue="multipart/form-data" v-if="insertForm">
+                    <form action="{{ url('admin/condition') }}" method="POST" encvalue="multipart/form-data"
+                        v-if="insertForm">
                         @csrf
                         <div class="mb-3">
                             <label for="email">Nombre</label>
-                            <input type="text"   placeholder="Ingresar el nombre" autocomplete="off" class="form-control"
+                            <input type="text" placeholder="Ingresar el nombre" autocomplete="off" class="form-control"
                                 name="name" value="{{ old('name') }}" maxlength="30" required>
                         </div>
                         <div class="mb-3 text-center">
@@ -244,12 +245,11 @@
                                         </li>
                                     @endif
 
-                                    @foreach ($data as $value)
-                                        <li class="page-item {{ $data->currentPage() == $value->id ? 'active' : '' }}">
-                                            <a class="page-link"
-                                                href="{{ $data->url($value->id) }}">{{ $value->id }}</a>
+                                    @for ($i = 1; $i <= $data->lastPage(); $i++)
+                                        <li class="page-item {{ $data->currentPage() == $i ? 'active' : '' }}">
+                                            <a class="page-link" href="{{ $data->url($i) }}">{{ $i }}</a>
                                         </li>
-                                    @endforeach
+                                    @endfor
 
                                     @if ($data->hasMorePages())
                                         <li class="page-item">

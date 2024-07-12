@@ -16,7 +16,7 @@ class AmenitiesController extends Controller
      */
     public function index()
     {
-        $amenities =  Amenities::paginate(25);
+        $amenities =  Amenities::paginate(15);
         return view('admin.properties.amenities', compact('amenities'));
     }
 

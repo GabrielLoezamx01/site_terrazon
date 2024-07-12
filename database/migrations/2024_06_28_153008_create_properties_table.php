@@ -20,7 +20,7 @@ class CreatePropertiesTable extends Migration
             $table->string('title');
             $table->string('slug')->unique();
             $table->text('description');
-            $table->decimal('price', 12, 2);
+            $table->decimal('price', 15, 2);
             $table->decimal('latitude', 10, 7);
             $table->decimal('longitude', 10, 7);
             $table->string('address');

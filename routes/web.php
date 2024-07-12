@@ -9,6 +9,10 @@ use App\Http\Controllers\Admin\TypesController;
 use App\Http\Controllers\Admin\FeaturesController;
 use App\Http\Controllers\Admin\ConditionController;
 use App\Http\Controllers\Admin\Property\PropertyController;
+use App\Http\Controllers\Admin\Property\ItemsController;
+use App\Http\Controllers\Admin\Property\GalleryController;
+
+
 
 
 
@@ -49,9 +53,13 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::apiResource('condition', ConditionController::class);
     Route::apiResource('property', PropertyController::class);
     Route::get('new_property', [PropertyController::class, 'createView']);
-    Route::get('continue_create', [PropertyController::class, 'continueView']);
+    Route::get('edit_property', [PropertyController::class, 'edit_property']);
+    Route::apiResource('property_gallery', GalleryController::class);
+    Route::post('/property_image/{id}', [GalleryController::class, 'store'])->name('property_image.store');
+    Route::post('/property_gallery/{id}', [GalleryController::class, 'gallery_property'])->name('property_gallery.all');
+
+    Route::apiResource('items_property', ItemsController::class);
 
 });
-
 
 Route::apiResource('emails/verify', VerifyController::class);

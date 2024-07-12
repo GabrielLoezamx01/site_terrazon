@@ -197,10 +197,11 @@
                                                 </td>
                                                 <td>
                                                     <button @click="showModal(true , {{ $item->id }})"
-                                                        class="btn btn-sm btn-icon "><svg xmlns="http://www.w3.org/2000/svg"
-                                                            width="24" height="24" viewBox="0 0 24 24"
-                                                            fill="none" stroke="currentColor" stroke-width="2"
-                                                            stroke-linecap="round" stroke-linejoin="round"
+                                                        class="btn btn-sm btn-icon "><svg
+                                                            xmlns="http://www.w3.org/2000/svg" width="24"
+                                                            height="24" viewBox="0 0 24 24" fill="none"
+                                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                            stroke-linejoin="round"
                                                             class="icon icon-tabler icons-tabler-outline icon-tabler-pencil">
                                                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                             <path
@@ -245,13 +246,12 @@
                                                 rel="prev">prev</a>
                                         </li>
                                     @endif
-
-                                    @foreach ($types as $type)
-                                        <li class="page-item {{ $types->currentPage() == $type->id ? 'active' : '' }}">
+                                      @for ($i = 1; $i <= $types->lastPage(); $i++)
+                                        <li class="page-item {{ $types->currentPage() == $i ? 'active' : '' }}">
                                             <a class="page-link"
-                                                href="{{ $types->url($type->id) }}">{{ $type->id }}</a>
+                                                href="{{ $types->url($i) }}">{{ $i }}</a>
                                         </li>
-                                    @endforeach
+                                    @endfor
 
                                     @if ($types->hasMorePages())
                                         <li class="page-item">

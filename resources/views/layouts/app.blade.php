@@ -6,19 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title')</title>
-    <link href="{{ asset('css/tabler.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/tabler.min.css?1684106062') }}" rel="stylesheet" />
     <link href="{{ asset('css/tabler-flags.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/tabler-vendors.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/demoapp.css') }}" rel="stylesheet" />
-    <style>
-        /* Define un mínimo de altura para las filas */
-/* Define un ancho mínimo para las columnas */
-
-    </style>
     @stack('styles')
     @stack('scripts')
 </head>
 <body>
+
     <div class="page">
         @if (Auth::check())
             <aside class="navbar navbar-vertical navbar-expand-lg">
@@ -149,27 +145,27 @@
                                 <div class="dropdown-menu">
                                     <div class="dropdown-menu-columns">
                                         <div class="dropdown-menu-column">
-                                            <a class="dropdown-item" href="amenities">
+                                            <a class="dropdown-item" href="{{ url('admin/amenities') }}">
                                                 Amenidades
                                             </a>
                                         </div>
                                         <div class="dropdown-menu-column">
-                                            <a class="dropdown-item" href="types">
+                                            <a class="dropdown-item" href="{{ url('admin/types') }}">
                                                 Tipos
                                             </a>
                                         </div>
                                         <div class="dropdown-menu-column">
-                                            <a class="dropdown-item" href="features">
+                                            <a class="dropdown-item"  href="{{ url('admin/features') }}" >
                                                 Características
                                             </a>
                                         </div>
                                         <div class="dropdown-menu-column">
-                                            <a class="dropdown-item" href="condition">
+                                            <a class="dropdown-item"  href="{{ url('admin/condition') }}">
                                                 Condición
                                             </a>
                                         </div>
                                         <div class="dropdown-menu-column">
-                                            <a class="dropdown-item" href="property">
+                                            <a class="dropdown-item" href="{{ url('admin/property') }}" >
                                                 Lista de propiedades
                                             </a>
                                         </div>
@@ -484,6 +480,7 @@
             @yield('content')
         </main>
     </div> --}}
+    <script src="{{ asset('js/demo-theme.min.js') }}"></script>
     <script src="{{ asset('js/tabler.min.js') }}" defer></script>
     <script src="{{ asset('js/axios.min.js') }}"></script>
     <script src="{{ asset('js/vue.js') }}"></script>

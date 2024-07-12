@@ -60,7 +60,7 @@
                             Overview
                         </div>
                         <h2 class="page-title">
-                            Lista de users
+                            Lista de Usuarios
                         </h2>
                     </div>
                     <!-- Page title actions -->
