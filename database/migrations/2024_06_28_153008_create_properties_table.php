@@ -32,7 +32,6 @@ class CreatePropertiesTable extends Migration
             $table->boolean('available')->default(true);
             $table->unsignedBigInteger('municipality_id');
             $table->foreign('municipality_id')->references('id')->on('municipalities');
-
         });
     }
 

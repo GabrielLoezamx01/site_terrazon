@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Site\Home;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Models\Site\Home;
 class HomePropertyController extends Controller
 {
     /**
@@ -14,7 +14,8 @@ class HomePropertyController extends Controller
      */
     public function index()
     {
-        return view('admin.home.index');
+        $home = Home::all();
+        return view('admin.home.index')->with(compact('home'));
     }
 
     /**
@@ -36,7 +37,7 @@ class HomePropertyController extends Controller
      */
     public function show($id)
     {
-        //
+        return Home::find($id);
     }
 
     /**
@@ -48,7 +49,16 @@ class HomePropertyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return $request->all();
+        $this->validate($request, [
+            'input.name' => 'required',
+            'input.span' => 'required',
+        ]);
+        $home = Home::find($id);
+        $home->name = $request->input->name;
+        $home->span = $request->input->span;
+        $home->save();
+        return response()->json(['message' => 'Registro actualizado con éxito', 'home' => $home], 200);
     }
 
     /**
