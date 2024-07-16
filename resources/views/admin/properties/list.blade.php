@@ -31,7 +31,7 @@
             </div>
         </div>
     </div>
-    w <div class="page-body">
+     <div class="page-body">
         <div class="container-xl">
             <div class="row row-deck row-cards">
                 <div class="card">
@@ -96,7 +96,11 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($property as $item)
+                                    @if(count($item['details']))
                                         <tr class="p-2">
+                                    @else
+                                        <tr class="p-2  bg-orange-lt" title="No tiene detalles">
+                                    @endif
                                             <td class="text-start"><span class="fw-bold">{{ $item->folio }}</span></td>
                                             <td>{{ $item->title }}</td>
                                             <td class="text-start">{{ $item->rooms }}</td>
@@ -140,6 +144,23 @@
                                                         <path d="M13.5 6.5l4 4" />
                                                     </svg>
                                                 </a>
+                                                <a class="btn btn-sm btn-icon btn-warning text-white fw-bold"
+                                                    title="Detalles"
+                                                    href="{{ route('details_property', ['property' => $item->slug]) }}">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                                                        class="icon icon-tabler icons-tabler-outline icon-tabler-list">
+                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                        <path d="M9 6l11 0" />
+                                                        <path d="M9 12l11 0" />
+                                                        <path d="M9 18l11 0" />
+                                                        <path d="M5 6l0 .01" />
+                                                        <path d="M5 12l0 .01" />
+                                                        <path d="M5 18l0 .01" />
+                                                    </svg>
+                                                </a>
+
                                                 <a class="btn btn-sm btn-icon btn-primary" title="Galeria de Propiedad"
                                                     href="property_gallery?id={{ $item->folio }}">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"

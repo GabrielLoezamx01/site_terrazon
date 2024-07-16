@@ -52,13 +52,13 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::apiResource('condition', ConditionController::class);
     Route::apiResource('property', PropertyController::class);
     Route::get('new_property', [PropertyController::class, 'createView']);
-    Route::get('edit_property', [PropertyController::class, 'edit_property']);
+    Route::post('details_validate/{property}', [PropertyController::class, 'insert_detail'])->name('details_validate');
+    Route::post('edit_property', [PropertyController::class, 'edit_property']);
+    Route::get('details_property/{property}', [PropertyController::class, 'details'])->name('details_property');
     Route::apiResource('property_gallery', GalleryController::class);
     Route::post('/property_image/{id}', [GalleryController::class, 'store'])->name('property_image.store');
     Route::post('/property_gallery/{id}', [GalleryController::class, 'gallery_property'])->name('property_gallery.all');
-
     Route::apiResource('items_property', ItemsController::class);
-
 });
 
 Route::apiResource('emails/verify', VerifyController::class);

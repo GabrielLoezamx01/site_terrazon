@@ -160,6 +160,36 @@ class PropertyController extends Controller
         $this->validate_insert('details_property', $data);
     }
 
+    public function insert_detail(Request $request , $id)
+    {
+        try{
+            $this->validate($request, [
+                'name' => 'required',
+            ]);
+
+            if (empty($id)) {
+                return redirect()->back()->withErrors(['error' => 'Hubo un problema al procesar la solicitud. Inténtalo de nuevo.']);
+            }
+
+            $details_id = DetailProperty::updateOrCreate(
+                ['name' => $request->name],
+                ['name' => $request->name]
+            );
+
+            $data = [
+                'property_id' => $id,
+                'detail_id' => $details_id->id,
+            ];
+
+            DetailsProperty::updateOrCreate($data, $data);
+
+            return redirect()->back()->with('success', '¡Operación realizada con éxito!');
+
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => 'Hubo un problema al procesar la solicitud. Inténtalo de nuevo. ::: ' .$e->getMessage()]);
+        }
+    }
+
     private function details_validate($request_details)
     {
         $detailsProperty = [];
@@ -293,6 +323,14 @@ class PropertyController extends Controller
 
     }
 
+    public function details($property)
+    {
+        $details = Property::where('slug', $property)->with('details')->first();
+        $details = empty($details) ? ['error' => 'Error en la propiedad'] : $details;
+        return view('admin.properties.details', compact('details'));
+    }
+
+
 
     private function  delete_relationship ($id){
         AmenitiesProperty::where('property_id', $id)->delete();
@@ -306,10 +344,16 @@ class PropertyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        DetailsProperty::where('property_id', $id)
+            ->where('detail_id', $request->details_id)
+            ->delete();
+        return redirect()->back()->with('success', '¡Operación realizada con éxito!');
+
     }
+
+
 
     /**
      * Generate a slug based on the name and address.
