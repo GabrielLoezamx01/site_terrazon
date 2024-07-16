@@ -11,12 +11,7 @@ use App\Http\Controllers\Admin\ConditionController;
 use App\Http\Controllers\Admin\Property\PropertyController;
 use App\Http\Controllers\Admin\Property\ItemsController;
 use App\Http\Controllers\Admin\Property\GalleryController;
-
-
-
-
-
-
+use App\Http\Controllers\Site\Home\HomePropertyController;
 
 
 /*
@@ -43,8 +38,10 @@ Route::get('/contacto', function () {
 })->name('contacto');
 Auth::routes();
 
-Route::prefix('admin')->middleware('auth')->group(function () {
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::prefix('admin')->middleware('auth', 'logLastUserActivity')->group(function () {
+    // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::apiResource('home', HomePropertyController::class);
+    Route::get('new_property', [PropertyController::class, 'createView']);
     Route::apiResource('users', ReferralsController::class);
     Route::apiResource('amenities', AmenitiesController::class);
     Route::apiResource('types', TypesController::class);
