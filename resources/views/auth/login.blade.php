@@ -1,9 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Iniciar sesión')
 @section('content')
-
     <body class=" d-flex flex-column">
-        <script src="./dist/js/demo-theme.min.js?1684106062"></script>
         <div class="page page-center">
             <div class="container container-tight py-4">
 
