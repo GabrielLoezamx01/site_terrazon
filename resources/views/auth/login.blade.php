@@ -6,10 +6,7 @@
         <script src="./dist/js/demo-theme.min.js?1684106062"></script>
         <div class="page page-center">
             <div class="container container-tight py-4">
-                <div class="text-center mb-4">
-                    <a href="." class="navbar-brand navbar-brand-autodark"><img src="./static/logo.svg" height="36"
-                            alt=""></a>
-                </div>
+
                 <div class="card card-md">
                     <div class="card-body">
                         <div class="text-center p-3">
@@ -57,6 +54,5 @@
 
             </div>
         </div>
-        b
     </body>
 @endsection
