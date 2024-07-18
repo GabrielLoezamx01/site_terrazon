@@ -23,4 +23,6 @@ class HomeProperty extends Model
     {
         return $this->belongsTo(Home::class);
     }
+
+
 }

@@ -12,6 +12,8 @@ use App\Http\Controllers\Admin\Property\PropertyController;
 use App\Http\Controllers\Admin\Property\ItemsController;
 use App\Http\Controllers\Admin\Property\GalleryController;
 use App\Http\Controllers\Site\Home\HomePropertyController;
+use App\Http\Controllers\Site\Home\PropertyHome;
+
 
 
 /*
@@ -42,6 +44,7 @@ Auth::routes();
 Route::prefix('admin')->middleware('auth', 'logLastUserActivity')->group(function () {
     // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::apiResource('home', HomePropertyController::class);
+    Route::apiResource('home_propery', PropertyHome::class);
     Route::get('new_property', [PropertyController::class, 'createView']);
     Route::apiResource('users', ReferralsController::class);
     Route::apiResource('amenities', AmenitiesController::class);
@@ -50,6 +53,7 @@ Route::prefix('admin')->middleware('auth', 'logLastUserActivity')->group(functio
     Route::apiResource('condition', ConditionController::class);
     Route::apiResource('property', PropertyController::class);
     Route::get('new_property', [PropertyController::class, 'createView']);
+    Route::post('active_property', [PropertyController::class, 'active_property']);
     Route::post('details_validate/{property}', [PropertyController::class, 'insert_detail'])->name('details_validate');
     Route::post('edit_property', [PropertyController::class, 'edit_property']);
     Route::get('details_property/{property}', [PropertyController::class, 'details'])->name('details_property');

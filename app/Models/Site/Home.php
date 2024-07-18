@@ -4,7 +4,7 @@ namespace App\Models\Site;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use App\Models\Property;
 class Home extends Model
 {
     use HasFactory;
@@ -13,8 +13,9 @@ class Home extends Model
 
     protected $fillable = ['name', 'span'];
 
-    public function homeProperties()
+
+    public function properties()
     {
-        return $this->hasMany(HomeProperty::class);
+        return $this->belongsToMany(Property::class, 'home_property', 'home_id', 'property_id');
     }
 }

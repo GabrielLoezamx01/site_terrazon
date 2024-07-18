@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Site\Home;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Site\Home;
+use App\Models\Site\HomeProperty;
+
 class HomePropertyController extends Controller
 {
     /**
@@ -26,7 +28,23 @@ class HomePropertyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'span' => 'required',
+        ]);
+
+        $currentCount = Home::count();
+
+        if ($currentCount >= 6) {
+            return response()->json(['message' => 'Límite de 6 elementos alcanzado'], 400);
+        }
+
+        $home = new Home();
+        $home->name = $request->name;
+        $home->span = $request->span;
+        $home->save();
+
+        return response()->json(['message' => 'Registrado con éxito'], 200);
     }
 
     /**
@@ -49,16 +67,18 @@ class HomePropertyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return $request->all();
         $this->validate($request, [
-            'input.name' => 'required',
-            'input.span' => 'required',
+            'name' => 'required',
+            'span' => 'required',
         ]);
+        if(empty($id)){
+            return response()->json(['message' => 'Registro no encontrado'], 404);
+        }
         $home = Home::find($id);
-        $home->name = $request->input->name;
-        $home->span = $request->input->span;
+        $home->name = $request->name;
+        $home->span = $request->span;
         $home->save();
-        return response()->json(['message' => 'Registro actualizado con éxito', 'home' => $home], 200);
+        return response()->json(['message' => 'Registro actualizado con éxito'], 200);
     }
 
     /**
@@ -69,6 +89,17 @@ class HomePropertyController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $home = Home::find($id);
+        if ($home) {
+            HomeProperty::where('home_id', $id)->delete();
+            $home->delete();
+            return response()->json([
+                'message' => 'Registro eliminado exitosamente'
+            ], 200);
+        } else {
+            return response()->json([
+                'message' => 'Registro no encontrado'
+            ], 404);
+        }
     }
 }

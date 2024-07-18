@@ -9,13 +9,16 @@ use App\Models\TypeProperty;
 use App\Models\Municipality;
 use App\Models\DetailProperty;
 use App\Models\FeaturesProperty;
-use App\Models\Relationship\AmenitiesProperty;
 use App\Models\Amenities;
+use App\Models\ConditionProperty;
+use App\Models\Gallery;
+
 use App\Models\Relationship\FeatureProperty;
 use App\Models\Relationship\TypesProperty;
 use App\Models\Relationship\DetailsProperty;
 use App\Models\Relationship\ConditionsProperty;
-use App\Models\ConditionProperty;
+use App\Models\Relationship\AmenitiesProperty;
+
 
 use Illuminate\Support\Str;
 
@@ -368,4 +371,49 @@ class PropertyController extends Controller
         $slugLocation =  str_replace(' ', '-', $address);
         return $slug . '-' . $slugLocation;
     }
+
+    public function active_property(Request $request)
+    {
+        $propertyId = $request->property;
+        $validate = Property::where('id', $propertyId)->where(['available' => 1])->count();
+        if($validate > 0){
+            return response()->json(['error' => 'La propiedad ya se encuentra activa.'], 500);
+        }
+
+        $amenitiesExist = AmenitiesProperty::where('property_id', $propertyId)->exists();
+        if (!$amenitiesExist) {
+            return response()->json(['error' => 'No hay amenidades disponibles para esta propiedad.'], 500);
+        }
+
+        $typesExist = TypesProperty::where('property_id', $propertyId)->exists();
+        if (!$typesExist) {
+            return response()->json(['error' => 'No hay tipos disponibles para esta propiedad.'], 500);
+        }
+
+        $conditionsExist = ConditionsProperty::where('property_id', $propertyId)->exists();
+        if (!$conditionsExist) {
+            return response()->json(['error' => 'No hay condiciones disponibles para esta propiedad.'], 500);
+        }
+
+        $featuresExist = FeatureProperty::where('property_id', $propertyId)->exists();
+        if (!$featuresExist) {
+            return response()->json(['error' => 'No hay características disponibles para esta propiedad.'], 500);
+        }
+
+        $detailsExist = DetailsProperty::where('property_id', $propertyId)->exists();
+        if (!$detailsExist) {
+            return response()->json(['error' => 'No hay detalles disponibles para esta propiedad.'], 500);
+        }
+
+        $galleryExist = Gallery::where('property_id', $propertyId)->exists();
+        if (!$galleryExist) {
+            return response()->json(['error' => 'No hay galería disponible para esta propiedad.'], 500);
+        }
+
+        Property::where('id', $propertyId)->update(['available' => 1]);
+
+
+        return response()->json(['message' => 'Propiedad activada con éxito.'], 200);
+    }
+
 }
