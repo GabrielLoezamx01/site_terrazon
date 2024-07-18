@@ -44,4 +44,8 @@ class Property extends Model
     {
         return $this->belongsToMany(Home::class, 'home_property', 'property_id', 'home_id');
     }
+    public function galleries()
+    {
+        return $this->hasMany(Gallery::class, 'property_id');
+    }
 }

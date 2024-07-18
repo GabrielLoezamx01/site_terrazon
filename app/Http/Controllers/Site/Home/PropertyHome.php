@@ -16,7 +16,7 @@ class PropertyHome extends Controller
      */
     public function index()
     {
-        $properties = Property::with(['municipality.state', 'homes:id'])
+        $properties = Property::where('available',1)->with(['municipality.state', 'homes:id'])
         ->select('id', 'folio', 'title', 'price', 'municipality_id')
         ->get()
         ->map(function ($property) {
