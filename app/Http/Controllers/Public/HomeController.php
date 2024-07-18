@@ -89,5 +89,6 @@ class HomeController extends Controller
             'cards2' => $data,
             'home' => $home
         ]);
+
     }
 }
