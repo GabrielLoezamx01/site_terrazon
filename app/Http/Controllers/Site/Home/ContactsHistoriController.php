@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Site\Home;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Site\Contact;
-class ContactsController extends Controller
+
+class ContactsHistoriController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +14,6 @@ class ContactsController extends Controller
      */
     public function index()
     {
-        $contacts = Contact::orderByRaw('CASE WHEN status = 1 THEN 0 ELSE 1 END')
-        ->paginate(20);
-
-        return view('admin.contacts.index', compact('contacts'));
         //
     }
 

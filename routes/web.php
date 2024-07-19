@@ -43,12 +43,12 @@ Route::get('/contacto', function () {
 })->name('contacto');
 Auth::routes();
 
-Route::apiResource('new_contacts', [ContactsController::class, 'store']);
 
 
 Route::prefix('admin')->middleware('auth', 'logLastUserActivity')->group(function () {
     // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::apiResource('home', HomePropertyController::class);
+    Route::apiResource('contacts', ContactsController::class);
     Route::apiResource('home_propery', PropertyHome::class);
     Route::get('new_property', [PropertyController::class, 'createView']);
     Route::apiResource('users', ReferralsController::class);
@@ -56,7 +56,6 @@ Route::prefix('admin')->middleware('auth', 'logLastUserActivity')->group(functio
     Route::apiResource('types', TypesController::class);
     Route::apiResource('features', FeaturesController::class);
     Route::apiResource('condition', ConditionController::class);
-    Route::apiResource('users', ContactsController::class);
     Route::apiResource('property', PropertyController::class);
     Route::get('new_property', [PropertyController::class, 'createView']);
     Route::post('active_property', [PropertyController::class, 'active_property']);
