@@ -106,7 +106,7 @@
                             <div class="col-12">
                                 <div class="row pt-3">
                                     <div class="col-9">
-                                        <h2>$ {{ number_format($property->price,2,',','.') }}</h2>
+                                        <h2>$ {{ number_format($property->price,2,'.',',') }}</h2>
                                         <div class="text-tertiary">
                                             <h5 class="card-location"><img src="{{ asset('images/icons/location.svg') }}"> Ubicación del desarrollo</h5>
                                         </div>
