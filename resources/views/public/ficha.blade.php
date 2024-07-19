@@ -7,7 +7,9 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/">Home</a></li>
                 <li class="breadcrumb-item"><a href="/propiedades">Propiedades</a></li>
+                @isset($property->types[0])
                 <li class="breadcrumb-item"><a href="/propiedades">{{ $property->types[0]->name}}</a></li>
+                @endisset
                 <li class="breadcrumb-item active" aria-current="page">{{ $sku }}</li>
             </ol>
         </nav>
