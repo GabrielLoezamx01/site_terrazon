@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Public;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Models\Site\HomeProperty;
 
 class HomeController extends Controller
@@ -25,21 +26,26 @@ class HomeController extends Controller
         $home = [];
 
         foreach ($groupedProperties as $key => $item) {
+
             $data = [];
             $homeItem = ['name' => $key];
-
+            
             foreach ($item as $value) {
+                // dd($value->property);
                 if (isset($value->home)) {
                     $homeItem['span'] = $value->home->span;
                 }
 
+                $description = Str::limit($value->property->description, 300);
+                $detailsPage = '/ficha/'.$value->property->folio;
                 if (isset($value->property)) {
                     $data[] = [
-                        'title' => $value->property->title ?? '',
-                        'price' => number_format($value->property->price ?? 0, 2, '.', ','),
-                        'area' => $value->property->area ?? '',
-                        'imageUrl' => isset($value->property->img) ? asset('storage/' . $value->property->img) : '',
-                        'content' => $value->property->description ?? ''
+                        'title'       => $value->property->title ?? '',
+                        'price'       => number_format($value->property->price ?? 0, 2, '.', ','),
+                        'area'        => $value->property->area ?? '',
+                        'imageUrl'    => isset($value->property->img) ? asset('storage/' . $value->property->img) : '',
+                        'content'     => $description ?? '',
+                        'detailsPage' => $detailsPage
                     ];
                 }
             }
@@ -47,6 +53,7 @@ class HomeController extends Controller
             $homeItem['data'] = $data;
             $home[] = $homeItem;
         }
+       
         // $data = [
         //     [
         //         'title' => 'Apartamentos Marinos',

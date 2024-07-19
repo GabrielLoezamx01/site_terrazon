@@ -23,7 +23,8 @@
             </div>
             <div class="col-12 col-md-6 d-md-flex align-items-end justify-content-center">
                 <div class="d-grid gap-2">
-                    <a href="/ficha/sku" class="btn btn-success btn-detalle">VER MAS DETALLES</a>
+                    <!-- <a href="/ficha/sku" class="btn btn-success btn-detalle">VER MAS DETALLES</a> -->
+                    <a href="{{ $detailsPage }}" class="btn btn-success btn-detalle">VER MAS DETALLES</a>
                 </div>
             </div>
         </div>

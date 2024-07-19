@@ -29,7 +29,7 @@ use App\Http\Controllers\Site\Home\PropertyHome;
 
 Route::get('/', [App\Http\Controllers\Public\HomeController::class, 'index'])->name('inicio');
 Route::get('/propiedades', [App\Http\Controllers\Public\PropiedadesController::class, 'index'])->name('propiedades');
-Route::get('/ficha/sku', [App\Http\Controllers\Public\PropiedadesController::class, 'ficha']);
+Route::get('/ficha/{sku}', [App\Http\Controllers\Public\PropiedadesController::class, 'ficha']);
 Route::get('/agentes', function () {
     return view('public.agentes');
 })->name('agentes');

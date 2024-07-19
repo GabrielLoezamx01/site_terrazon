@@ -7,8 +7,8 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/">Home</a></li>
                 <li class="breadcrumb-item"><a href="/propiedades">Propiedades</a></li>
-                <li class="breadcrumb-item"><a href="/propiedades">En La Playa</a></li>
-                <li class="breadcrumb-item active" aria-current="page">SKU 1243456</li>
+                <li class="breadcrumb-item"><a href="/propiedades">{{ $property->types[0]->name}}</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ $sku }}</li>
             </ol>
         </nav>
 
@@ -18,30 +18,21 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12">
-                                <h3>Apartamentos Marinos</h3>
+                                <h3>{{ $property->title }}</h3>
                             </div>
                             <div class="col-12">
                                 <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
                                     <div class="carousel-indicators">
-                                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                                        @foreach($galery as $item)
+                                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{ $item['id'] }}" class="{{ $loop->first ? 'active' : '' }}" aria-current="{{ $loop->first ? 'true' : 'false' }}" aria-label="{{ $item['label'] }}"></button>
+                                        @endforeach
                                     </div>
                                     <div class="carousel-inner">
-                                        <div class="carousel-item active">
-                                            <div class="ficha-carouser-img" style="background: url({{ asset('images/ficha-main.png') }});"></div>
-                                            <!-- <img src="{{ asset('images/ficha-main.png') }}" class="d-block w-100 img-round" alt="..."> -->
+                                        @foreach($galery as $item)
+                                        <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+                                            <div class="ficha-carouser-img" style="background: url({{  $item['imageUrl'] }});"></div>
                                         </div>
-                                        <div class="carousel-item">
-                                            <div class="ficha-carouser-img" style="background: url(https://i.imgur.com/Rpxx6wU.jpg);"></div>
-                                        </div>
-                                        <div class="carousel-item">
-                                            <div class="ficha-carouser-img" style="background: url(https://i.imgur.com/83fandJ.jpg);"></div>
-                                        </div>
-                                        <div class="carousel-item">
-                                            <div class="ficha-carouser-img" style="background: url(https://i.imgur.com/JiQ9Ppv.jpg);"></div>
-                                        </div>
+                                        @endforeach
                                     </div>
                                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
                                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -67,13 +58,14 @@
                                         </span>
                                     </div>
                                     <div class="owl-carousel owl-theme" id="carr1">
+                                        @foreach($galery as $k => $item)
                                         <li class="list-inline-item">
-                                            <a id="carousel-selector-0" class="selected" data-bs-slide-to="0" data-bs-target="#carouselExampleCaptions">
-                                                <div class="carousel-img-thumb" style="background: url({{ asset('images/ficha-main.png') }});"></div>
+                                            <a id="carousel-selector-{{$k}}" class="{{ $loop->first ? 'selected' : '' }}" data-bs-slide-to="{{ $k }}" data-bs-target="#carouselExampleCaptions">
+                                                <div class="carousel-img-thumb" style="background: url({{  $item['imageUrl'] }});"></div>
                                             </a>
                                         </li>
-
-                                        <li class="list-inline-item">
+                                        @endforeach
+                                        <!-- <li class="list-inline-item">
                                             <a id="carousel-selector-1" data-bs-slide-to="1" data-bs-target="#carouselExampleCaptions">
                                                 <div class="carousel-img-thumb" style="background: url('https://i.imgur.com/Rpxx6wU.jpg');"></div>
                                             </a>
@@ -89,7 +81,7 @@
                                             <a id="carousel-selector-2" data-bs-slide-to="3" data-bs-target="#carouselExampleCaptions">
                                                 <div class="carousel-img-thumb" style="background: url('https://i.imgur.com/JiQ9Ppv.jpg');"></div>
                                             </a>
-                                        </li>
+                                        </li> -->
                                     </div>
                                 </div>
                             </div>
@@ -112,14 +104,14 @@
                             <div class="col-12">
                                 <div class="row pt-3">
                                     <div class="col-9">
-                                        <h2>$ 1,234,567</h2>
+                                        <h2>$ {{ number_format($property->price,2,',','.') }}</h2>
                                         <div class="text-tertiary">
                                             <h5 class="card-location"><img src="{{ asset('images/icons/location.svg') }}"> Ubicación del desarrollo</h5>
                                         </div>
                                     </div>
                                     <div class="col-3 text-end ">
                                         <div class="text-tertiary share-text d-flex align-items-center justify-content-end"><i class="bi bi-share-fill mx-1 fs-4"></i> Compartir</div>
-                                        <small>SKU 123456</small>
+                                        <small>SKU {{ $sku }}</small>
                                     </div>
                                     <div class="col-12">
                                         <hr class="m-0">
@@ -129,20 +121,21 @@
                                     <div class="col-12 col-md-6 py-3">
                                         <div class="ficha-title">Características principales</div>
                                         <ul class="list-info">
-                                            <li><label class="detail-icon"><img src="{{ asset('images/icons/bed.svg') }}"></label><span>2 Habitaciones</span></li>
-                                            <li><label class="detail-icon"><img src="{{ asset('images/icons/bath.svg') }}"></label><span>2 Baños</span></li>
-                                            <li><label class="detail-icon"><img src="{{ asset('images/icons/cart.svg') }}"></label><span>1 Estacionamiento</span></li>
+                                            @foreach($property->features as $kf => $vf)
+                                            <li><label class="detail-icon"><img src="{{ asset('storage/svg/'.$vf['icon']) }}"></label><span>{{ $vf["name"]}}</span></li>
+                                            @endforeach
+                                            <!-- <li><label class="detail-icon"><img src="{{ asset('images/icons/bath.svg') }}"></label><span>2 Baños</span></li> -->
+                                            <!-- <li><label class="detail-icon"><img src="{{ asset('images/icons/cart.svg') }}"></label><span>1 Estacionamiento</span></li> -->
                                         </ul>
                                     </div>
                                     <div class="col-12 col-md-6 py-3">
                                         <div class="ficha-title">Detalles para la adquisición</div>
                                         <ul class="list-info">
+                                            @foreach($property->details as $kd => $vd)
                                             <li class="d-flex align-items-center ">
-                                                <span class="svg-icon-ficha svg-icon-check mx-2"></span> <span>Lista para habitar</span>
+                                                <span class="svg-icon-ficha svg-icon-check mx-2"></span> <span>{{ $vd['name'] }} </span>
                                             </li>
-                                            <li class="d-flex align-items-center">
-                                                <span class="svg-icon-ficha svg-icon-check mx-2"></span> <span>Disponible solo para crédito bancario</span>
-                                            </li>
+                                            @endforeach
                                         </ul>
                                     </div>
                                 </div>
@@ -150,10 +143,9 @@
                                     <div class="col-12 col-md-6">
                                         <div class="ficha-title mb-3">Amenidades</div>
                                         <ul class="ficha">
-                                            <li>Aires acondicionados en todas las habitaciones</li>
-                                            <li>Piscina</li>
-                                            <li>Jardin</li>
-                                            <li>Cuarto de servicio</li>
+                                            @foreach($property->amenities as $ka => $va)
+                                            <li>{{ $va['name']}}</li>
+                                            @endforeach
                                         </ul>
                                     </div>
                                 </div>
@@ -161,7 +153,7 @@
                                     <div class="col-12">
                                         <fieldset class="p-3 fielset-ficha">
                                             <legend>Descripcion de la propiedad</legend>
-                                            Los Apartamentos Marinos ofrecen una experiencia de vida costera incomparable, ubicados en un entorno paradisíaco de arenas blancas y aguas cristalinas. Esta exclusiva propiedad presenta un diseño arquitectónico contemporáneo con amplios espacios abiertos que se integran armoniosamente con el paisaje marino. Con interiores lujosos y elegantes, que incluyen una cocina gourmet, dormitorios con vistas al océano y áreas de entretenimiento al aire libre, los Apartamentos Marinos redefinen el estilo de vida costero de alta gama. Disfruta de espectaculares atardeceres desde tu terraza privada o relájate en la piscina infinita que se funde con el horizonte. Estos apartamentos representan la excelencia en el lujo frente al mar, ofreciendo una experiencia de vida exclusiva y sofisticada.
+                                            {{ $property->description }}
                                         </fieldset>
                                     </div>
                                     <div class="col-12 py-3 ">
@@ -201,25 +193,25 @@
                         <div>
                             <h4>Basado en tu búsqueda</h4>
                         </div>
-                        <x-card :title="$busqueda['title']" :price="$busqueda['price']" :area="$busqueda['area']" :content="$busqueda['content']" :imageUrl="$busqueda['imageUrl']" />
+                        <x-card :title="$busqueda['title']" :price="$busqueda['price']" :area="$busqueda['area']" :content="$busqueda['content']" :imageUrl="$busqueda['imageUrl']" :detailsPage="$busqueda['detailsPage']" />
                     </div>
                     <div class="col-12 mb-3">
                         <div>
                             <h4>Mis Favoritos</h4>
                         </div>
-                        <x-card :title="$favoritos['title']" :price="$favoritos['price']" :area="$favoritos['area']" :content="$favoritos['content']" :imageUrl="$favoritos['imageUrl']" />
+                        <x-card :title="$favoritos['title']" :price="$favoritos['price']" :area="$favoritos['area']" :content="$favoritos['content']" :imageUrl="$favoritos['imageUrl']" :detailsPage="$favoritos['detailsPage']" />
                     </div>
                     <div class="col-12 mb-3">
                         <div>
                             <h4>Otros usuarios vieron</h4>
                         </div>
-                        <x-card :title="$otros['title']" :price="$otros['price']" :area="$otros['area']" :content="$otros['content']" :imageUrl="$otros['imageUrl']" />
+                        <x-card :title="$otros['title']" :price="$otros['price']" :area="$otros['area']" :content="$otros['content']" :imageUrl="$otros['imageUrl']" :detailsPage="$otros['detailsPage']" />
                     </div>
                     <div class="col-12 mb-3">
                         <div>
                             <h4>Lo más nuevo</h4>
                         </div>
-                        <x-card :title="$nuevo['title']" :price="$nuevo['price']" :area="$nuevo['area']" :content="$nuevo['content']" :imageUrl="$nuevo['imageUrl']" />
+                        <x-card :title="$nuevo['title']" :price="$nuevo['price']" :area="$nuevo['area']" :content="$nuevo['content']" :imageUrl="$nuevo['imageUrl']" :detailsPage="$nuevo['detailsPage']" />
                     </div>
                 </div>
             </div>
@@ -275,7 +267,7 @@
             </div>
         </div>
         <div>
-            <div class="owl-carousel owl-theme pb-2 m-0"  id="testimonials" >
+            <div class="owl-carousel owl-theme pb-2 m-0" id="testimonials">
                 <div class="testimonial-box">
                     <div class="quote-icon">
                         <i class="fas fa-quote-left fa-2xl"></i>
