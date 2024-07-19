@@ -11,9 +11,6 @@ class HomeController extends Controller
 {
     public function index()
     {
-        // Puedees traer las demas tablas relacionadas por ejemplo: amenities, features, types, condition.
-        // $properties = HomeProperty::with(['property', 'home'])->get(); // Trae todas las propiedades
-        // $properties = HomeProperty::with(['property.amenities', 'home'])->get(); // Trae todas las propiedades con sus amenities
         $properties = HomeProperty::with([
             'property' => function ($query) {
                 $query->where('available', 1);

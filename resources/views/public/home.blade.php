@@ -2,43 +2,20 @@
 @section('title', 'TERRAZÓN - INICIO')
 @section('content')
 @include('public.components.banner')
-        @foreach ($home as $item)
-        <div class="bg-white min-content">
-            <div class="container p-2 px-4">
-                <div class="col-12 text-left pb-3">
-                    <div class="title">{{ $item['name']}}</div>
-                    <div class="description">
-                        {{ $item['span'] }}
-                    </div>
-            </div>
-            <div class="container-md mobile-conteiner">
-
-                <x-carousel :cards="$item['data']" id="carr1" />
+<div class="bg-white min-content">
+    @foreach ($home as $k => $item)
+    <div class="container p-2 px-4">
+        <div class="col-12 text-left pb-3">
+            <div class="title">{{ $item['name']}}</div>
+            <div class="description">
+                {{ $item['span'] }}
             </div>
         </div>
+        <div class="container-md mobile-conteiner">
+            <x-carousel :cards="$item['data']" id="carr{{ $k+1 }}" />
+        </div>
+    </div>
     @endforeach
-    <div class="bg-white min-content">
-        <div class="container p-2 px-4">
-            <div class="col-12 text-left pb-3">
-                <div class="title">Propiedades destacadas en la ciudad</div>
-                <div class="description">Descubre tu próximo hogar entre nuestras propiedades destacadas.</div>
-            </div>
-        </div>
-        <div class="container-md mobile-conteiner">
-            <x-carousel :cards="$cards1" id="carr1" />
-        </div>
-    </div>
-    <div class="bg-white min-content">
-        <div class="container p-2 px-4">
-            <div class="col-12 text-left pb-3">
-                <div class="title">Propiedades destacadas en la playa</div>
-                <div class="description">Descubre tu próximo hogar entre nuestras propiedades destacadas.</div>
-            </div>
-        </div>
-        <div class="container-md mobile-conteiner">
-            <x-carousel :cards="$cards2" id="carr2" />
-        </div>
-    </div>
     <div class="container py-5 min-content">
         <div class="row">
             <div class="col-12 col-md-6 text-center">
@@ -127,8 +104,7 @@
                 </div>
                 <div class="col-12 col-md-4 d-flex align-items-center text-center">
                     <div class="input-group">
-                        <input type="email" class="form-control input-boletin"
-                            placeholder="Escribe tu email para recibir nuestro boletín">
+                        <input type="email" class="form-control input-boletin" placeholder="Escribe tu email para recibir nuestro boletín">
                         <div class="input-group-append">
                             <button class="btn btn-primary" type="button">Suscribirme</button>
                         </div>
@@ -140,8 +116,7 @@
     <div class="bg-teal py-5">
         <div class="container py-5">
             <div class="row">
-                <div class="d-none d-lg-block"
-                    style="background-color: white;position: absolute;height: 74%;width: 50%;margin: -36px auto;z-index:0;">
+                <div class="d-none d-lg-block" style="background-color: white;position: absolute;height: 74%;width: 50%;margin: -36px auto;z-index:0;">
                 </div>
                 <div class="col-12 col-lg-5" style="padding:0px 35px 0 35px;">
                     <div class="row py-3  bg-white" style="z-index:1; position:relative">
@@ -163,14 +138,11 @@
 
                         <div class="col-12">
                             <ul class="list-info">
-                                <li><label class="detail-icon"><img
-                                            src="{{ asset('images/icons/bed.svg') }}"></label><span class="detail-text">2
+                                <li><label class="detail-icon"><img src="{{ asset('images/icons/bed.svg') }}"></label><span class="detail-text">2
                                         Habitaciones<span></li>
-                                <li><label class="detail-icon"><img
-                                            src="{{ asset('images/icons/bath.svg') }}"></label><span class="detail-text">2
+                                <li><label class="detail-icon"><img src="{{ asset('images/icons/bath.svg') }}"></label><span class="detail-text">2
                                         Baños</span></li>
-                                <li><label class="detail-icon"><img
-                                            src="{{ asset('images/icons/cart.svg') }}"></label><span class="detail-text">1
+                                <li><label class="detail-icon"><img src="{{ asset('images/icons/cart.svg') }}"></label><span class="detail-text">1
                                         Estacionamiento</span></li>
                             </ul>
                         </div>
@@ -187,18 +159,12 @@
                 <div class="col-12 col-lg-7 px-4 px-lg-0">
                     <div id="carousel2" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-indicators">
-                            <button type="button" data-bs-target="#carousel2" data-bs-slide-to="0" class="active"
-                                aria-current="true" aria-label="Slide 1"></button>
-                            <button type="button" data-bs-target="#carousel2" data-bs-slide-to="1"
-                                aria-label="Slide 2"></button>
-                            <button type="button" data-bs-target="#carousel2" data-bs-slide-to="2"
-                                aria-label="Slide 3"></button>
-                            <button type="button" data-bs-target="#carousel2" data-bs-slide-to="3"
-                                aria-label="Slide 4"></button>
-                            <button type="button" data-bs-target="#carousel2" data-bs-slide-to="4"
-                                aria-label="Slide 5"></button>
-                            <button type="button" data-bs-target="#carousel2" data-bs-slide-to="5"
-                                aria-label="Slide 6"></button>
+                            <button type="button" data-bs-target="#carousel2" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#carousel2" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#carousel2" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                            <button type="button" data-bs-target="#carousel2" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                            <button type="button" data-bs-target="#carousel2" data-bs-slide-to="4" aria-label="Slide 5"></button>
+                            <button type="button" data-bs-target="#carousel2" data-bs-slide-to="5" aria-label="Slide 6"></button>
                         </div>
                         <div class="carousel-inner">
                             <div class="carousel-item active">
@@ -220,8 +186,7 @@
                                 <img src="{{ asset('images/carousel-2.png') }}" class="d-block w-100" alt="...">
                             </div>
                         </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carousel2"
-                            data-bs-slide="prev">
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carousel2" data-bs-slide="prev">
                             <span class="visually-hidden">Preview</span>
                             <div class="slider-nav slider-nav-prev">
                                 <span class="icon-nav fa-stack fa-2x">
@@ -230,8 +195,7 @@
                                 </span>
                             </div>
                         </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carousel2"
-                            data-bs-slide="next">
+                        <button class="carousel-control-next" type="button" data-bs-target="#carousel2" data-bs-slide="next">
                             <span class="visually-hidden">Next</span>
                             <div class="slider-nav slider-nav-next">
                                 <span class="icon-nav fa-stack fa-2x">
@@ -288,16 +252,13 @@
                         </div>
                         <div class="row">
                             <div class="col-4 col-sm-2 text-center fs-7">
-                                <a href="https://www.facebook.com/share/bz85nrGpXmAPYVZQ/?mibextid=qi2Omg"
-                                    target="_blank"><span class="svg-social-icon svg-social-facebook"></span></a>
+                                <a href="https://www.facebook.com/share/bz85nrGpXmAPYVZQ/?mibextid=qi2Omg" target="_blank"><span class="svg-social-icon svg-social-facebook"></span></a>
                             </div>
                             <div class="col-4 col-sm-2 text-center fs-7">
-                                <a href="https://www.instagram.com/terrazon.mx?igsh=aW53ZmVwOTB1dWdi"
-                                    target="_blank"><span class="svg-social-icon svg-social-youtube"></span></a>
+                                <a href="https://www.instagram.com/terrazon.mx?igsh=aW53ZmVwOTB1dWdi" target="_blank"><span class="svg-social-icon svg-social-youtube"></span></a>
                             </div>
                             <div class="col-4 col-sm-2 text-center fs-7">
-                                <a href="https://www.facebook.com/share/bz85nrGpXmAPYVZQ/?mibextid=qi2Omg"
-                                    target="_blank"> <span class="svg-social-icon svg-social-whatsapp"></span></a>
+                                <a href="https://www.facebook.com/share/bz85nrGpXmAPYVZQ/?mibextid=qi2Omg" target="_blank"> <span class="svg-social-icon svg-social-whatsapp"></span></a>
                             </div>
                         </div>
                     </div>
@@ -309,15 +270,13 @@
                             <div class="row">
                                 <div class="col-12 col-md-6">
                                     <div class="form-floating mb-3">
-                                        <input type="text" class="form-control input-contact" id="name"
-                                            placeholder="Nombre">
+                                        <input type="text" class="form-control input-contact" id="name" placeholder="Nombre">
                                         <label for="name">Nombre</label>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="form-floating mb-3">
-                                        <input type="email" class="form-control input-contact" id="email"
-                                            placeholder="Email">
+                                        <input type="email" class="form-control input-contact" id="email" placeholder="Email">
                                         <label for="email">Email</label>
                                     </div>
                                 </div>
@@ -338,8 +297,7 @@
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-8 container-contact">
-                                    <div class="image-contact"
-                                        style="background: url({{ asset('images/image-bg-white.png') }});"></div>
+                                    <div class="image-contact" style="background: url({{ asset('images/image-bg-white.png') }});"></div>
                                 </div>
                             </div>
                         </div>
@@ -383,7 +341,7 @@
             </div>
         </div>
     </div>
-@endsection
-@push('scripts')
+    @endsection
+    @push('scripts')
     <script src="{{ asset('js/home.js') }}"></script>
-@endpush
+    @endpush
