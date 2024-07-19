@@ -13,6 +13,8 @@ use App\Http\Controllers\Admin\Property\ItemsController;
 use App\Http\Controllers\Admin\Property\GalleryController;
 use App\Http\Controllers\Site\Home\HomePropertyController;
 use App\Http\Controllers\Site\Home\PropertyHome;
+use App\Http\Controllers\Site\Home\ContactsController;
+
 
 
 
@@ -41,6 +43,9 @@ Route::get('/contacto', function () {
 })->name('contacto');
 Auth::routes();
 
+Route::apiResource('new_contacts', [ContactsController::class, 'store']);
+
+
 Route::prefix('admin')->middleware('auth', 'logLastUserActivity')->group(function () {
     // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::apiResource('home', HomePropertyController::class);
@@ -51,6 +56,7 @@ Route::prefix('admin')->middleware('auth', 'logLastUserActivity')->group(functio
     Route::apiResource('types', TypesController::class);
     Route::apiResource('features', FeaturesController::class);
     Route::apiResource('condition', ConditionController::class);
+    Route::apiResource('users', ContactsController::class);
     Route::apiResource('property', PropertyController::class);
     Route::get('new_property', [PropertyController::class, 'createView']);
     Route::post('active_property', [PropertyController::class, 'active_property']);
@@ -62,5 +68,7 @@ Route::prefix('admin')->middleware('auth', 'logLastUserActivity')->group(functio
     Route::post('/property_gallery/{id}', [GalleryController::class, 'gallery_property'])->name('property_gallery.all');
     Route::apiResource('items_property', ItemsController::class);
 });
+
+
 
 Route::apiResource('emails/verify', VerifyController::class);

@@ -13,6 +13,7 @@
     @stack('styles')
     @stack('scripts')
 </head>
+
 <body>
 
     <div class="page">
@@ -31,7 +32,6 @@
                         </a>
                     </h1>
                     <div class="navbar-nav flex-row d-lg-none">
-
                         <div class="d-none d-lg-flex">
                             <a href="?theme=dark" class="nav-link px-0 hide-theme-dark" title="Enable dark mode"
                                 data-bs-toggle="tooltip" data-bs-placement="bottom">
@@ -46,7 +46,6 @@
                             </a>
                             <a href="?theme=light" class="nav-link px-0 hide-theme-light" title="Enable light mode"
                                 data-bs-toggle="tooltip" data-bs-placement="bottom">
-                                <!-- Download SVG icon from http://tabler-icons.io/i/sun -->
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                                     stroke-linecap="round" stroke-linejoin="round">
@@ -102,6 +101,22 @@
                                         Home
                                     </span>
                                 </a>
+                                <a class="nav-link" href="contacts">
+                                    <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
+                                            height="24" viewBox="0 0 24 24" stroke-width="2"
+                                            stroke="currentColor" fill="none" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path d="M5 12l-2 0l9 -9l9 9l-2 0" />
+                                            <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+                                            <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+                                        </svg>
+                                    </span>
+                                    <span class="nav-link-title">
+                                        Contactos
+                                    </span>
+                                </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="users">
@@ -155,17 +170,17 @@
                                             </a>
                                         </div>
                                         <div class="dropdown-menu-column">
-                                            <a class="dropdown-item"  href="{{ url('admin/features') }}" >
+                                            <a class="dropdown-item" href="{{ url('admin/features') }}">
                                                 Características
                                             </a>
                                         </div>
                                         <div class="dropdown-menu-column">
-                                            <a class="dropdown-item"  href="{{ url('admin/condition') }}">
+                                            <a class="dropdown-item" href="{{ url('admin/condition') }}">
                                                 Condición
                                             </a>
                                         </div>
                                         <div class="dropdown-menu-column">
-                                            <a class="dropdown-item" href="{{ url('admin/property') }}" >
+                                            <a class="dropdown-item" href="{{ url('admin/property') }}">
                                                 Lista de propiedades
                                             </a>
                                         </div>
@@ -213,20 +228,6 @@
                                 </svg>
                             </a>
                             <div class="nav-item dropdown d-none d-md-flex me-3">
-                                <a href="#" class="nav-link px-0" data-bs-toggle="dropdown" tabindex="-1"
-                                    aria-label="Show notifications">
-                                    <!-- Download SVG icon from http://tabler-icons.io/i/bell -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
-                                        height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                        fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                        <path
-                                            d="M10 5a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6">
-                                        </path>
-                                        <path d="M9 17v1a3 3 0 0 0 6 0v-1"></path>
-                                    </svg>
-                                    <span class="badge bg-red"></span>
-                                </a>
                                 <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-end dropdown-menu-card">
                                     <div class="card">
                                         <div class="card-header">
