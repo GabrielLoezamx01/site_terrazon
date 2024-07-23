@@ -28,23 +28,29 @@ class HomePropertyController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'span' => 'required',
-        ]);
+        try{
 
-        $currentCount = Home::count();
+            $this->validate($request, [
+                'name' => 'required',
+                'span' => 'required',
+            ]);
 
-        if ($currentCount >= 6) {
-            return response()->json(['message' => 'Límite de 6 elementos alcanzado'], 400);
+            $currentCount = Home::count();
+
+            if ($currentCount >= 6) {
+                return response()->json(['message' => 'Límite de 6 elementos alcanzado'], 400);
+            }
+
+            $home = new Home();
+            $home->name = $request->name;
+            $home->span = $request->span;
+            $home->save();
+
+            return response()->json(['message' => 'Registrado con éxito'], 200);
         }
-
-        $home = new Home();
-        $home->name = $request->name;
-        $home->span = $request->span;
-        $home->save();
-
-        return response()->json(['message' => 'Registrado con éxito'], 200);
+        catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage()], 404);
+        }
     }
 
     /**
@@ -57,7 +63,6 @@ class HomePropertyController extends Controller
     {
         return Home::find($id);
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -67,18 +72,22 @@ class HomePropertyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'span' => 'required',
-        ]);
-        if(empty($id)){
-            return response()->json(['message' => 'Registro no encontrado'], 404);
+        try {
+            if (empty($id)) {
+                return response()->json(['message' => 'Registro no encontrado'], 404);
+            }
+            $this->validate($request, [
+                'name' => 'required',
+                'span' => 'required',
+            ]);
+            $home = Home::find($id);
+            $home->name = $request->name;
+            $home->span = $request->span;
+            $home->save();
+            return response()->json(['message' => 'Registro actualizado con éxito'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage()], 404);
         }
-        $home = Home::find($id);
-        $home->name = $request->name;
-        $home->span = $request->span;
-        $home->save();
-        return response()->json(['message' => 'Registro actualizado con éxito'], 200);
     }
 
     /**
@@ -89,17 +98,22 @@ class HomePropertyController extends Controller
      */
     public function destroy($id)
     {
-        $home = Home::find($id);
-        if ($home) {
-            HomeProperty::where('home_id', $id)->delete();
-            $home->delete();
-            return response()->json([
-                'message' => 'Registro eliminado exitosamente'
-            ], 200);
-        } else {
-            return response()->json([
-                'message' => 'Registro no encontrado'
-            ], 404);
+        try {
+            $home = Home::find($id);
+            if ($home) {
+                HomeProperty::where('home_id', $id)->delete();
+                $home->delete();
+                return response()->json([
+                    'message' => 'Registro eliminado exitosamente'
+                ], 200);
+            } else {
+                return response()->json([
+                    'message' => 'Registro no encontrado'
+                ], 404);
+            }
+        }
+        catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage()], 404);
         }
     }
 }

@@ -44,6 +44,9 @@ Route::get('/contacto', function () {
 Auth::routes();
 
 
+Route::post('contacts_save', [ContactsController::class, 'store'])->name('contacts_save');
+
+
 
 Route::prefix('admin')->middleware('auth', 'logLastUserActivity')->group(function () {
     // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

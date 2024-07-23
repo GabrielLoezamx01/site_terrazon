@@ -74,6 +74,7 @@ class PropertyController extends Controller
         $property->folio = Str::upper(Str::random(8));
         $property->available = 0;
         $property->municipality_id = $request->municipality;
+        $property->m2 = $request->informacion['m2'];
         $property->save();
         return $property->id;
     }
@@ -212,10 +213,10 @@ class PropertyController extends Controller
     public function store(Request $request)
     {
         try {
-
             $this->validate($request, [
                 'informacion' => 'required',
                 'informacion.name' => 'required',
+                'informacion.m2' => 'required',
                 'informacion.address' => 'required',
                 'informacion.description' => 'required',
                 'informacion.rooms' => 'required',
@@ -280,6 +281,7 @@ class PropertyController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
+            'm2' => 'required',
             'address' => 'required',
             'description' => 'required',
             'rooms' => 'required|not_in:0',
@@ -310,6 +312,7 @@ class PropertyController extends Controller
         $property->bathrooms = $request->bathrooms;
         $property->parking = $request->parking;
         $property->municipality_id = $request->municipality;
+        $property->m2 = $request->m2;
         $property->save();
 
         $this->delete_relationship($property_id);

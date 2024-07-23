@@ -18,7 +18,7 @@ class CreateContactsTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->text('message');
-            $table->string('status')->default('pending'); // Nueva columna 'status'
+            $table->string('status')->default('No Contactados');
             $table->timestamps();
         });
     }

@@ -29,7 +29,24 @@ class ContactsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+
+            $this->validate($request, [
+                'email' => 'required',
+                'coments' => 'required',
+                'name' => 'required',
+                'check' => 'required',
+                '_token' => 'required',
+            ]);
+            $contact = new Contact ();
+            $contact->name = $request->name;
+            $contact->email = $request->email;
+            $contact->message = $request->coments;
+            $contact->save();
+            return redirect()->back()->withSuccess('¡Operación realizada con éxito!');
+        } catch (\Exception $e) {
+            session()->flash('errors', ['Error:  ' . $e->getMessage()]);
+        }
     }
 
     /**
@@ -40,7 +57,6 @@ class ContactsController extends Controller
      */
     public function show($id)
     {
-        //
     }
 
     /**
@@ -52,7 +68,20 @@ class ContactsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            if (empty($id)) {
+                return response()->json(['message' => 'Registro no encontrado'], 404);
+            }
+            $this->validate($request, [
+                'opcion' => 'required',
+            ]);
+            $contact = Contact::find($id);
+            $contact->status = $request->opcion;
+            $contact->save();
+            return redirect()->back()->withSuccess('¡Operación realizada con éxito!');
+        } catch (\Exception $e) {
+            session()->flash('errors', ['Error:  ' . $e->getMessage()]);
+        }
     }
 
     /**

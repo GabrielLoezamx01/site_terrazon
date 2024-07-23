@@ -46,7 +46,9 @@
                     <form action="{{ route('property.update', ['property' => $property['folio']]) }}" method="POST"
                         class="form-group">
                         @csrf
-                        @method('PUT') <div class="mb-3">
+                        @method('PUT')
+
+                        <div class="mb-3">
                             <label for="" class="fs-2 fw-bold">Informacion de la propiedad</label>
                         </div>
                         <div class="mb-3">
@@ -67,6 +69,11 @@
                             <label for="">Habitaciones</label>
                             <input type="number" autocomplete="off" value="{{ old('rooms') ?? $property['rooms'] }}"
                                 class="form-control" required name="rooms">
+                        </div>
+                         <div class="mb-3">
+                            <label for="">m2</label>
+                            <input type="text" autocomplete="off" value="{{ old('m2') ?? $property['m2'] }}"
+                                class="form-control" required name="m2">
                         </div>
                         <div class="mb-3">
                             <label for="">Baños</label>

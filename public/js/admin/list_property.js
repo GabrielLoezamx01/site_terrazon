@@ -65,6 +65,12 @@ const app = new Vue({
                 label: "Habitaciones",
                 value: "",
             },
+            {
+                type: "text",
+                request: "m2",
+                label: "m2",
+                value: "",
+            },
             { type: "number", request: "bathrooms", label: "Baños", value: "" },
             {
                 type: "checkbox",
