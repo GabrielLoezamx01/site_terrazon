@@ -32,13 +32,13 @@
         </div>
     </div>
     <div class="page-body">
-        <div class="container-xl">
-            <div class="row row-deck row-cards">
+        <div class="container-fluid ">
+            <div class="row m-4 row-deck row-cards">
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Propiedades</h3>
                     </div>
-                    <div class="shadow border-bottom py-3">
+                    <div class=" border-bottom py-3">
                         @if (isset($errors) && $errors->any())
                             <div class="alert alert-danger">
                                 <ul>
