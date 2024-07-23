@@ -145,16 +145,18 @@
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                            class="icon icon-tabler icons-tabler-outline icon-tabler-home-down">
+                                            class="icon icon-tabler icons-tabler-outline icon-tabler-list">
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M19 12h2l-9 -9l-9 9h2v7a2 2 0 0 0 2 2h5.5" />
-                                            <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2" />
-                                            <path d="M19 16v6" />
-                                            <path d="M22 19l-3 3l-3 -3" />
+                                            <path d="M9 6l11 0" />
+                                            <path d="M9 12l11 0" />
+                                            <path d="M9 18l11 0" />
+                                            <path d="M5 6l0 .01" />
+                                            <path d="M5 12l0 .01" />
+                                            <path d="M5 18l0 .01" />
                                         </svg>
                                     </span>
                                     <span class="nav-link-title">
-                                        Propiedades
+                                        Características
                                     </span>
                                 </a>
                                 <div class="dropdown-menu">
@@ -179,13 +181,28 @@
                                                 Condición
                                             </a>
                                         </div>
-                                        <div class="dropdown-menu-column">
-                                            <a class="dropdown-item" href="{{ url('admin/property') }}">
-                                                Lista de propiedades
-                                            </a>
-                                        </div>
+
                                     </div>
                                 </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('admin/property') }}">
+                                    <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            class="icon icon-tabler icons-tabler-outline icon-tabler-home-down">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path d="M19 12h2l-9 -9l-9 9h2v7a2 2 0 0 0 2 2h5.5" />
+                                            <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2" />
+                                            <path d="M19 16v6" />
+                                            <path d="M22 19l-3 3l-3 -3" />
+                                        </svg>
+                                    </span>
+                                    <span class="nav-link-title">
+                                        Propiedades
+                                    </span>
+                                </a>
                             </li>
                         </ul>
                     </div>

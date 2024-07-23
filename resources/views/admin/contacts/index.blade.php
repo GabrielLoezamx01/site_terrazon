@@ -4,30 +4,8 @@
     @push('scripts')
         <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
             crossorigin="anonymous"></script>
-        {{-- <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.css" /> --}}
+        <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.css" />
         <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
-    @endpush
-    @push('styles')
-        <style>
-            .dt-layout-row {
-                padding: 20px;
-            }
-
-            .dt-input {
-                width: 50%;
-                padding: 0.375rem 0.75rem;
-                font-size: 1rem;
-                font-weight: 400;
-                line-height: 1.5;
-                color: #495057;
-                background-color: #fff;
-                background-clip: padding-box;
-                border: 1px solid #000000;
-                border-radius: 0.25rem;
-                transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-
-            }
-        </style>
     @endpush
     {{-- <div class="modal modal-blur fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
         <div class="modal-dialog">
@@ -110,10 +88,10 @@
             <div class="row g-2 align-items-center">
                 <div class="col">
                     <div class="page-pretitle">
-                        Resumen
+                        Contactos
                     </div>
                     <h2 class="page-title">
-                        Página Principal
+                        {{-- Página Principal --}}
                     </h2>
                 </div>
 
@@ -125,7 +103,7 @@
         <div class="row mt-5">
             <div class="col-md-12 shadow">
                 <div class="p-5">
-                    <p class="fs-1 fw-bold">Usuarios Interesados en Contacto</p>
+                    <p class="fs-1 fw-bold">Usuarios Interesados:</p>
                 </div>
                 @isset($contacts)
                     <div id="table-default" class="table-responsive">

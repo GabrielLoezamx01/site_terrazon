@@ -1,13 +1,8 @@
 $(document).ready(function () {
-    var table = $("#myTable").DataTable({
+    $("#myTable").DataTable({
         info: false,
         paging: false,
-        searching: true,
-        ordering: false,
-
     });
-
-
 });
 
 // const app = new Vue({
