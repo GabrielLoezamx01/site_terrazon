@@ -8,7 +8,7 @@
     </div>
     <div class="owl-carousel owl-theme pb-2" id="{{ $id }}">
         @foreach ($cards as $index => $card)
-        <x-card :title="$card['title']" :price="$card['price']" :area="$card['area']" :content="$card['content']" :imageUrl="$card['imageUrl']" />
+        <x-card :title="$card['title']" :price="$card['price']" :area="$card['area']" :content="$card['content']" :imageUrl="$card['imageUrl']" :detailsPage="$card['detailsPage']" />
         @endforeach
     </div>
     <div class="row pt-3 px-3">

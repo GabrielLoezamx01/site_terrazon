@@ -142,6 +142,52 @@
                                     @endif
                                 </div>
                             </div>
+                            <hr>
+
+                            <div class="col-md-12">
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        Distribución
+                                    </h3>
+                                </div>
+                                <div class="row row-cards">
+                                    <form action="{{ route('distribution_gallery.store') }}" method="POST"
+                                        enctype="multipart/form-data" class="p-5">
+                                        @csrf
+                                        <input type="hidden" name="id" value="{{ $property['folio'] }}">
+                                        <input type="file" name="img[]" class="mt-5 form-control" accept="image/*"
+                                            multiple required>
+                                        <button class="mt-5 btn btn-primary">Subir</button>
+                                    </form>
+
+
+                                    @if (count($distribution) > 0)
+                                        @foreach ($distribution as $key => $img)
+                                            <div class="col-sm-6 col-lg-4">
+                                                <div class="card card-sm">
+                                                    <div class="d-block">
+                                                        <img src="{{ asset('storage/' . $img['url']) }}"
+                                                            class="card-img-top">
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <div class="d-flex align-items-center">
+                                                            <form
+                                                                action="{{ route('distribution_gallery.destroy', $img['id']) }}"
+                                                                method="POST">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit"
+                                                                    class="btn btn-danger btn-sm">Eliminar</button>
+                                                            </form>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    @endif
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

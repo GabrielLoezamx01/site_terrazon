@@ -7,7 +7,7 @@
     <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
 @endpush
 @section('content')
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+    <div class="modal modal-blur fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">

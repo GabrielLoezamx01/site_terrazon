@@ -9,46 +9,46 @@
             <div class="row  row-cards  card p-5">
                 <div class="col-md-10">
                     <div class="mb-3">
-                        <h1 class="fs-1 fw-bold">{{ $property['title'] }}  </h1>
+                        <h1 class="fs-1 fw-bold">{{ $property['title'] }} </h1>
                     </div>
                 </div>
 
-                              @if (session('success') || session('errors'))
-                                <div class="alert alert-{{ session('success') ? 'success' : 'danger' }} alert-dismissible"
-                                    role="alert">
-                                    <div class="d-flex">
-                                        <div>
-                                            @if (session('success'))
-                                                <!-- Download SVG icon from http://tabler-icons.io/i/check -->
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon alert-icon"
-                                                    width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                                    stroke="currentColor" fill="none" stroke-linecap="round"
-                                                    stroke-linejoin="round">
-                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                                    <path d="M5 12l5 5l10 -10"></path>
-                                                </svg>
-                                            @endif
-                                        </div>
-                                        <div>
-                                            @if (session('success'))
-                                                {{ session('success') }}
-                                            @else
-                                                <ul>
-                                                   @foreach ($errors->all() as $error)
+                @if (session('success') || session('errors'))
+                    <div class="alert alert-{{ session('success') ? 'success' : 'danger' }} alert-dismissible" role="alert">
+                        <div class="d-flex">
+                            <div>
+                                @if (session('success'))
+                                    <!-- Download SVG icon from http://tabler-icons.io/i/check -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon alert-icon" width="24"
+                                        height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                        fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path d="M5 12l5 5l10 -10"></path>
+                                    </svg>
+                                @endif
+                            </div>
+                            <div>
+                                @if (session('success'))
+                                    {{ session('success') }}
+                                @else
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
                                             <li>{{ $error }}</li>
                                         @endforeach
-                                                </ul>
-                                            @endif
-                                        </div>
-                                    </div>
-                                    <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
-                                </div>
-                            @endif
+                                    </ul>
+                                @endif
+                            </div>
+                        </div>
+                        <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
+                    </div>
+                @endif
                 <div class="row">
                     <form action="{{ route('property.update', ['property' => $property['folio']]) }}" method="POST"
                         class="form-group">
                         @csrf
-                        @method('PUT') <div class="mb-3">
+                        @method('PUT')
+
+                        <div class="mb-3">
                             <label for="" class="fs-2 fw-bold">Informacion de la propiedad</label>
                         </div>
                         <div class="mb-3">
@@ -58,20 +58,28 @@
                         </div>
                         <div class="mb-3">
                             <label for="">Dirreción</label>
-                            <input value="{{ $property['address'] }}" autocomplete="off" type="text" class="form-control" required
-                                name="address">
+                            <input value="{{ $property['address'] }}" autocomplete="off" type="text" class="form-control"
+                                required name="address">
                         </div>
                         <div class="mb-3">
                             <label for="">Descripción de la propiedad</label>
                             <textarea name="description" id="" cols="30" rows="10" class="form-control" required>{{ $property['description'] }}</textarea>
                         </div>
-                        <div class="mb-3">
-                            <label for="">Habitaciones</label>
-                             <input type="number" autocomplete="off" value="{{ old('rooms') ?? $property['rooms'] }}" class="form-control" required name="rooms">
+                          <div class="mb-3">
+                            <label for="">M2</label>
+                            <input type="text" autocomplete="off" value="{{ old('m2') ?? $property['m2'] }}"
+                                class="form-control" required name="m2">
                         </div>
                         <div class="mb-3">
+                            <label for="">Habitaciones</label>
+                            <input type="number" autocomplete="off" value="{{ old('rooms') ?? $property['rooms'] }}"
+                                class="form-control" required name="rooms">
+                        </div>
+
+                        <div class="mb-3">
                             <label for="">Baños</label>
-                            <input type="number" autocomplete="off" value="{{ old('bathrooms') ??  $property['bathrooms'] }}" class="form-control" required
+                            <input type="number" autocomplete="off"
+                                value="{{ old('bathrooms') ?? $property['bathrooms'] }}" class="form-control" required
                                 name="bathrooms">
                         </div>
                         <div class="mb-3">
@@ -79,10 +87,10 @@
                             <input type="number" autocomplete="off" class="form-control" required name="parking"
                                 value="{{ $property['parking'] }}">
                         </div>
-                            <div class="mb-3">
+                        <div class="mb-3">
                             <label for="">Precio</label>
                             <input type="number" autocomplete="off" class="form-control" required name="price"
-                                value="{{ old('price') ??  $property['price'] }}">
+                                value="{{ old('price') ?? $property['price'] }}">
                         </div>
                         <div class="mb-3">
                             <h3 class="fs-2 fw-bold">Ubicación</h3>
@@ -100,13 +108,13 @@
                         </div>
                         <div class="mb-3">
                             <label for="">Latitude</label>
-                            <input type="number" autocomplete="off" class="form-control" value="{{ $property['latitude'] }}" required
-                                name="latitude">
+                            <input type="number" autocomplete="off" class="form-control"
+                                value="{{ $property['latitude'] }}" required name="latitude">
                         </div>
                         <div class="mb-3">
                             <label for="">Longitud</label>
-                            <input type="number" autocomplete="off" class="form-control" value="{{ $property['longitude'] }}" required
-                                name="longitude">
+                            <input type="number" autocomplete="off" class="form-control"
+                                value="{{ $property['longitude'] }}" required name="longitude">
                         </div>
                         <hr>
                         <div class="row">
@@ -203,7 +211,6 @@
                                 <button class="btn btn-outline-success w-100">Actualizar</button>
                             </div>
                         </div>
-
                     </form>
                 </div>
 

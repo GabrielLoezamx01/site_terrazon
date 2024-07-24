@@ -9,13 +9,17 @@ use App\Models\TypeProperty;
 use App\Models\Municipality;
 use App\Models\DetailProperty;
 use App\Models\FeaturesProperty;
-use App\Models\Relationship\AmenitiesProperty;
 use App\Models\Amenities;
+use App\Models\ConditionProperty;
+use App\Models\Gallery;
+// use App\Models\Distribution;
+
 use App\Models\Relationship\FeatureProperty;
 use App\Models\Relationship\TypesProperty;
 use App\Models\Relationship\DetailsProperty;
 use App\Models\Relationship\ConditionsProperty;
-use App\Models\ConditionProperty;
+use App\Models\Relationship\AmenitiesProperty;
+
 
 use Illuminate\Support\Str;
 
@@ -71,6 +75,9 @@ class PropertyController extends Controller
         $property->folio = Str::upper(Str::random(8));
         $property->available = 0;
         $property->municipality_id = $request->municipality;
+        $property->m2 = $request->informacion['m2'];
+        $property->video = $request->informacion['video'] ?? '';
+
         $property->save();
         return $property->id;
     }
@@ -160,6 +167,36 @@ class PropertyController extends Controller
         $this->validate_insert('details_property', $data);
     }
 
+    public function insert_detail(Request $request , $id)
+    {
+        try{
+            $this->validate($request, [
+                'name' => 'required',
+            ]);
+
+            if (empty($id)) {
+                return redirect()->back()->withErrors(['error' => 'Hubo un problema al procesar la solicitud. Inténtalo de nuevo.']);
+            }
+
+            $details_id = DetailProperty::updateOrCreate(
+                ['name' => $request->name],
+                ['name' => $request->name]
+            );
+
+            $data = [
+                'property_id' => $id,
+                'detail_id' => $details_id->id,
+            ];
+
+            DetailsProperty::updateOrCreate($data, $data);
+
+            return redirect()->back()->with('success', '¡Operación realizada con éxito!');
+
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => 'Hubo un problema al procesar la solicitud. Inténtalo de nuevo. ::: ' .$e->getMessage()]);
+        }
+    }
+
     private function details_validate($request_details)
     {
         $detailsProperty = [];
@@ -179,10 +216,10 @@ class PropertyController extends Controller
     public function store(Request $request)
     {
         try {
-
             $this->validate($request, [
                 'informacion' => 'required',
                 'informacion.name' => 'required',
+                'informacion.m2' => 'required',
                 'informacion.address' => 'required',
                 'informacion.description' => 'required',
                 'informacion.rooms' => 'required',
@@ -247,6 +284,7 @@ class PropertyController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
+            'm2' => 'required',
             'address' => 'required',
             'description' => 'required',
             'rooms' => 'required|not_in:0',
@@ -277,6 +315,7 @@ class PropertyController extends Controller
         $property->bathrooms = $request->bathrooms;
         $property->parking = $request->parking;
         $property->municipality_id = $request->municipality;
+        $property->m2 = $request->m2;
         $property->save();
 
         $this->delete_relationship($property_id);
@@ -293,6 +332,14 @@ class PropertyController extends Controller
 
     }
 
+    public function details($property)
+    {
+        $details = Property::where('slug', $property)->with('details')->first();
+        $details = empty($details) ? ['error' => 'Error en la propiedad'] : $details;
+        return view('admin.properties.details', compact('details'));
+    }
+
+
 
     private function  delete_relationship ($id){
         AmenitiesProperty::where('property_id', $id)->delete();
@@ -306,10 +353,16 @@ class PropertyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        DetailsProperty::where('property_id', $id)
+            ->where('detail_id', $request->details_id)
+            ->delete();
+        return redirect()->back()->with('success', '¡Operación realizada con éxito!');
+
     }
+
+
 
     /**
      * Generate a slug based on the name and address.
@@ -324,4 +377,54 @@ class PropertyController extends Controller
         $slugLocation =  str_replace(' ', '-', $address);
         return $slug . '-' . $slugLocation;
     }
+
+    public function active_property(Request $request)
+    {
+        $propertyId = $request->property;
+        $validate = Property::where('id', $propertyId)->where(['available' => 1])->count();
+        if($validate > 0){
+            return response()->json(['error' => 'La propiedad ya se encuentra activa.'], 500);
+        }
+
+        $amenitiesExist = AmenitiesProperty::where('property_id', $propertyId)->exists();
+        if (!$amenitiesExist) {
+            return response()->json(['error' => 'No hay amenidades disponibles para esta propiedad.'], 500);
+        }
+        // $distributionExist = Distribution::where('property_id', $propertyId)->exists();
+
+        // if (!$distributionExist) {
+        //     return response()->json(['error' => 'No hay distribucion disponibles para esta propiedad.'], 500);
+        // }
+
+        $typesExist = TypesProperty::where('property_id', $propertyId)->exists();
+        if (!$typesExist) {
+            return response()->json(['error' => 'No hay tipos disponibles para esta propiedad.'], 500);
+        }
+
+        $conditionsExist = ConditionsProperty::where('property_id', $propertyId)->exists();
+        if (!$conditionsExist) {
+            return response()->json(['error' => 'No hay condiciones disponibles para esta propiedad.'], 500);
+        }
+
+        $featuresExist = FeatureProperty::where('property_id', $propertyId)->exists();
+        if (!$featuresExist) {
+            return response()->json(['error' => 'No hay características disponibles para esta propiedad.'], 500);
+        }
+
+        $detailsExist = DetailsProperty::where('property_id', $propertyId)->exists();
+        if (!$detailsExist) {
+            return response()->json(['error' => 'No hay detalles disponibles para esta propiedad.'], 500);
+        }
+
+        $galleryExist = Gallery::where('property_id', $propertyId)->exists();
+        if (!$galleryExist) {
+            return response()->json(['error' => 'No hay galería disponible para esta propiedad.'], 500);
+        }
+
+        Property::where('id', $propertyId)->update(['available' => 1]);
+
+
+        return response()->json(['message' => 'Propiedad activada con éxito.'], 200);
+    }
+
 }

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Site\Home;
 class Property extends Model
 {
     use SoftDeletes;
@@ -38,5 +39,17 @@ class Property extends Model
     public function features()
     {
         return $this->belongsToMany(FeatureProperty::class, 'features_property_relationship', 'property_id', 'features_property_id');
+    }
+    public function homes()
+    {
+        return $this->belongsToMany(Home::class, 'home_property', 'property_id', 'home_id');
+    }
+    public function galleries()
+    {
+        return $this->hasMany(Gallery::class, 'property_id');
+    }
+    public function distributions()
+    {
+        return $this->hasMany(Distribution::class);
     }
 }
