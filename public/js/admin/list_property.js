@@ -60,17 +60,24 @@ const app = new Vue({
                 value: "",
             },
             {
-                type: "number",
-                request: "rooms",
-                label: "Habitaciones",
+                type: "text",
+                request: "video",
+                label: "Link de video",
                 value: "",
             },
             {
                 type: "text",
                 request: "m2",
-                label: "m2",
+                label: "M2",
                 value: "",
             },
+            {
+                type: "number",
+                request: "rooms",
+                label: "Habitaciones",
+                value: "",
+            },
+
             { type: "number", request: "bathrooms", label: "Baños", value: "" },
             {
                 type: "checkbox",

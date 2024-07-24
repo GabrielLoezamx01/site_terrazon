@@ -12,6 +12,7 @@ use App\Models\FeaturesProperty;
 use App\Models\Amenities;
 use App\Models\ConditionProperty;
 use App\Models\Gallery;
+use App\Models\Distribution;
 
 use App\Models\Relationship\FeatureProperty;
 use App\Models\Relationship\TypesProperty;
@@ -75,6 +76,8 @@ class PropertyController extends Controller
         $property->available = 0;
         $property->municipality_id = $request->municipality;
         $property->m2 = $request->informacion['m2'];
+        $property->video = $request->informacion['video'] ?? '';
+
         $property->save();
         return $property->id;
     }
@@ -386,6 +389,11 @@ class PropertyController extends Controller
         $amenitiesExist = AmenitiesProperty::where('property_id', $propertyId)->exists();
         if (!$amenitiesExist) {
             return response()->json(['error' => 'No hay amenidades disponibles para esta propiedad.'], 500);
+        }
+        $distributionExist = Distribution::where('property_id', $propertyId)->exists();
+
+        if (!$distributionExist) {
+            return response()->json(['error' => 'No hay distribucion disponibles para esta propiedad.'], 500);
         }
 
         $typesExist = TypesProperty::where('property_id', $propertyId)->exists();

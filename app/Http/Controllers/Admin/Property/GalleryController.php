@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Property;
 use App\Models\Gallery;
+use App\Models\Distribution;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Session;
 class GalleryController extends Controller
@@ -22,7 +23,8 @@ class GalleryController extends Controller
         }
         $property = Property::where('folio', Session::get('gallery_property_id'))->first();
         $gallery = Gallery::where('property_id', $property->id)->get();
-        return view('admin.properties.gallery')->with(compact('property', 'gallery'));
+        $distribution = Distribution::where('property_id', $property->id)->get();
+        return view('admin.properties.gallery')->with(compact('property', 'gallery', 'distribution'));
     }
 
     /**
@@ -59,6 +61,7 @@ class GalleryController extends Controller
         $property = Property::where('folio', $id)->first();
         $insert = [];
         foreach ($request->img as $image){
+            $fileName = '';
             $fileName = $image->getClientOriginalName();
             $fileName  = $id . '/gallery/'.$fileName;
             $image->storeAs('public/', $fileName);

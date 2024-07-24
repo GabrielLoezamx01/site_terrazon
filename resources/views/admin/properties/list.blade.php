@@ -9,8 +9,6 @@
 @section('content')
     <div class="page-header d-print-none">
         <div class="container-xl">
-
-
             <div class="row g-2 align-items-center">
                 <div class="col-auto ms-auto d-print-none">
                     <div class="btn-list">
@@ -89,7 +87,7 @@
                                 <thead>
                                     <tr>
                                         <th class="text-start">Folio</th>
-                                        <th class="text-start">Propiedad</th>
+                                        <th class="text-start" >Propiedad</th>
                                         <th class="text-start">Habitaciones</th>
                                         <th class="text-start">Baños</th>
                                         <th class="text-start">Estacionamiento</th>
@@ -138,7 +136,7 @@
                                         </td>
                                         </td>
                                         <td>
-                                            <a class="btn btn-sm btn-icon btn-info" title="Editar Propiedad"
+                                            <a class="btn btn-sm btn-icon btn-info " title="Editar"
                                                 href="{{ route('property.show', ['property' => $item->folio]) }}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -149,7 +147,7 @@
                                                     <path d="M13.5 6.5l4 4" />
                                                 </svg>
                                             </a>
-                                            <a class="btn btn-sm btn-icon btn-warning text-white fw-bold" title="Detalles"
+                                            <a class="btn btn-sm btn-icon btn-warning" title="Detalles"
                                                 href="{{ route('details_property', ['property' => $item->slug]) }}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
