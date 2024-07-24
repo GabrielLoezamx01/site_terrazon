@@ -9,6 +9,8 @@
 @section('content')
     <div class="page-header d-print-none">
         <div class="container-xl">
+
+
             <div class="row g-2 align-items-center">
                 <div class="col-auto ms-auto d-print-none">
                     <div class="btn-list">
@@ -87,10 +89,11 @@
                                 <thead>
                                     <tr>
                                         <th class="text-start">Folio</th>
-                                        <th class="text-start" >Propiedad</th>
-                                        <th class="text-start">Habitaciones</th>
+                                        <th class="text-start">Propiedad</th>
+                                        {{-- <th class="text-start">Habitaciones</th>
                                         <th class="text-start">Baños</th>
-                                        <th class="text-start">Estacionamiento</th>
+                                        <th class="text-start">Estacionamiento</th> --}}
+                                        <th class="text-start">Detalles</th>
                                         <th class="text-start">Ubicación</th>
                                         <th class="text-start">Precio</th>
                                         <th class="text-start">Estado</th>
@@ -106,12 +109,23 @@
                                         @endif
                                         <td class="text-start"><span class="fw-bold">{{ $item->folio }}</span></td>
                                         <td>{{ $item->title }}</td>
-                                        <td class="text-start">{{ $item->rooms }}</td>
+                                        <td >
+                                            <button class="btn btn-sm btn-info toggle-details m-3">Ver detalles</button>
+                                            <div class="details-container mt-3 p-3 bg-light rounded" style="display: none;">
+                                                <h6 class="mb-3">Detalles:</h6>
+                                                <ul class="list-unstyled">
+                                                    <li class="text-dark"><strong>Habitaciones:</strong> {{ $item->rooms }}</li>
+                                                    <li class="text-dark"><strong>Baños:</strong> {{ $item->bathrooms }}</li>
+                                                    <li class="text-dark"><strong>Estacionamiento:</strong> {{ $item->parking }}</li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                        {{-- <td class="text-start">{{ $item->rooms }}</td>
                                         <td class="text-start">{{ $item->bathrooms }}</td>
-                                        <td class="text-start">{{ $item->parking }}</td>
+                                        <td class="text-start">{{ $item->parking }}</td> --}}
                                         <td class="text-start">{{ $item->municipality->name }} ,
                                             {{ $item->municipality->state->name }}</td>
-                                        <td class="text-start">{{ $item->price }}</td>
+                                        <td class="text-start">${{ number_format($item->price, 2) }}</td>
                                         <td>
                                             @switch($item->available)
                                                 @case(1)
@@ -136,7 +150,7 @@
                                         </td>
                                         </td>
                                         <td>
-                                            <a class="btn btn-sm btn-icon btn-info " title="Editar"
+                                            <a class="btn btn-sm btn-icon btn-info" title="Editar Propiedad"
                                                 href="{{ route('property.show', ['property' => $item->folio]) }}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -147,7 +161,7 @@
                                                     <path d="M13.5 6.5l4 4" />
                                                 </svg>
                                             </a>
-                                            <a class="btn btn-sm btn-icon btn-warning" title="Detalles"
+                                            <a class="btn btn-sm btn-icon btn-warning text-white fw-bold" title="Detalles"
                                                 href="{{ route('details_property', ['property' => $item->slug]) }}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -265,7 +279,8 @@
                                 this.message = response.data.error;
                             }
                             alert(this
-                            .message); // Asegúrate de que el alert esté dentro del then para mostrar el mensaje correctamente
+                                .message
+                            ); // Asegúrate de que el alert esté dentro del then para mostrar el mensaje correctamente
                         })
                         .catch((error) => {
                             this.message = error.response.data.error;
@@ -283,6 +298,12 @@
                 info: false,
                 paging: false,
                 responsive: true,
+            });
+        });
+        $(document).ready(function() {
+            $('.toggle-details').click(function() {
+                var detailsContainer = $(this).closest('tr').find('.details-container');
+                detailsContainer.slideToggle();
             });
         });
     </script>
