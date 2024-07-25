@@ -10,6 +10,7 @@
     <link href="{{ asset('css/tabler-flags.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/tabler-vendors.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/demoapp.css') }}" rel="stylesheet" />
+    @stack('stylesheet')
     @stack('styles')
     @stack('scripts')
 </head>

@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/owl.carousel.css') }}">
     <link rel="stylesheet" href="{{ asset('css/owl.theme.default.css') }}">
+    @stack('stylesheet')
+    @stack('styles')
 </head>
 
 <body>
