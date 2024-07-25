@@ -181,7 +181,7 @@
             Gallery.dom.image.style.display = 'none';
             Gallery.resize();
             
-            Gallery.dom.image.style.transform = 'scale(1)';
+            Gallery.dom.image.style.transform = 'translate(0px, 0px) scale(1)';
             Gallery.currentScale = 1;
 
             // Prefetch the next N image
@@ -317,55 +317,95 @@
             // Put it at the end so that it "gracefully" degrade if the browser sucks
             event.preventDefault();
         },
-        touchstart: function (event) {
-            if (event.touches.length === 2) {
-                event.preventDefault(); // Previene el zoom del navegador
-                Gallery.zooming = true;
-                Gallery.startDistance = Gallery.getDistance(event.touches[0], event.touches[1]);
-                Gallery.startScale = Gallery.currentScale || 1;
+        touchstart: function(event) {
+          Gallery.touchStartTime = new Date().getTime();
+          Gallery.touchStartX = event.touches[0].clientX;
+          Gallery.touchStartY = event.touches[0].clientY;
+          Gallery.isTouching = true;
+          Gallery.hasMoved = false;
+        
+          if (event.touches.length === 2) {
+            event.preventDefault();
+            Gallery.zooming = true;
+            Gallery.startDistance = Gallery.getDistance(event.touches[0], event.touches[1]);
+            Gallery.startScale = Gallery.currentScale || 1;
+          } else {
+            Gallery.zooming = false;
+          }
+        },
+        
+        touchmove: function(event) {
+          if (Gallery.zooming && event.touches.length === 2) {
+            event.preventDefault();
+            var newDistance = Gallery.getDistance(event.touches[0], event.touches[1]);
+            var scale = (newDistance / Gallery.startDistance) * Gallery.startScale;
+            Gallery.setImageScale(scale);
+          } else if (event.touches.length === 1) {
+            var touchMoveX = event.touches[0].clientX;
+            var touchMoveY = event.touches[0].clientY;
+            var deltaX = touchMoveX - Gallery.touchStartX;
+            var deltaY = touchMoveY - Gallery.touchStartY;
+        
+            if (Math.abs(deltaX) > 10 || Math.abs(deltaY) > 10) {
+              Gallery.hasMoved = true;
+            }
+        
+            if (Gallery.currentScale > 1) {
+              // Permite arrastrar la imagen cuando está ampliada
+              event.preventDefault();
+              Gallery.panImage(deltaX, deltaY);
+            }
+          }
+        },
+        
+        touchend: function(event) {
+          var touchEndTime = new Date().getTime();
+          var touchTime = touchEndTime - Gallery.touchStartTime;
+        
+          if (Gallery.zooming) {
+            Gallery.zooming = false;
+            Gallery.currentScale = Gallery.dom.image.style.transform ? 
+              parseFloat(Gallery.dom.image.style.transform.match(/scale\((.*?)\)/)[1]) : 1;
+          } else if (!Gallery.hasMoved && touchTime < 300) {
+            // Toque rápido sin movimiento, cambia la imagen
+            var touchEndX = event.changedTouches[0].clientX;
+            if (touchEndX < Gallery.width * Gallery.config.leftArea) {
+              Gallery.change(-1);
             } else {
-                Gallery.zooming = false;
-                Gallery.touchStartX = event.touches[0].clientX;
+              Gallery.change(+1);
             }
+          }
+        
+          Gallery.isTouching = false;
+          Gallery.hasMoved = false;
         },
-
-        touchmove: function (event) {
-            if (Gallery.zooming && event.touches.length === 2) {
-                event.preventDefault();
-                var newDistance = Gallery.getDistance(event.touches[0], event.touches[1]);
-                var scale = (newDistance / Gallery.startDistance) * Gallery.startScale;
-                Gallery.setImageScale(scale);
-            }
+        
+        panImage: function(deltaX, deltaY) {
+          var img = Gallery.dom.image;
+          var currentTransform = img.style.transform || '';
+          var currentTranslate = currentTransform.match(/translate\((.*?)\)/) || ['', '0px, 0px'];
+          var [currentX, currentY] = currentTranslate[1].split(',').map(val => parseInt(val));
+        
+          var newX = currentX + deltaX;
+          var newY = currentY + deltaY;
+        
+          img.style.transform = `translate(${newX}px, ${newY}px) scale(${Gallery.currentScale})`;
         },
-
-        touchend: function (event) {
-            if (Gallery.zooming) {
-                Gallery.zooming = false;
-                Gallery.currentScale = Gallery.dom.image.style.transform ?
-                    parseFloat(Gallery.dom.image.style.transform.replace('scale(', '').replace(')', '')) : 1;
-            } else {
-                var touchEndX = event.changedTouches[0].clientX;
-                var diff = Gallery.touchStartX - touchEndX;
-
-                if (Math.abs(diff) > 50) { // Umbral para considerar un deslizamiento
-                    if (diff > 0) {
-                        Gallery.change(+1);
-                    } else {
-                        Gallery.change(-1);
-                    }
-                }
-            }
+        
+        setImageScale: function(scale) {
+          scale = Math.max(1, Math.min(scale, 3)); // Limita el zoom entre 1x y 3x
+          var img = Gallery.dom.image;
+          var currentTransform = img.style.transform || '';
+          var currentTranslate = currentTransform.match(/translate\((.*?)\)/) || ['', '0px, 0px'];
+        
+          img.style.transform = `${currentTranslate[0]} scale(${scale})`;
         },
+        
 
         getDistance: function (touch1, touch2) {
             var dx = touch1.clientX - touch2.clientX;
             var dy = touch1.clientY - touch2.clientY;
             return Math.sqrt(dx * dx + dy * dy);
-        },
-
-        setImageScale: function (scale) {
-            scale = Math.max(1, Math.min(scale, 3)); // Limita el zoom entre 1x y 3x
-            Gallery.dom.image.style.transform = 'scale(' + scale + ')';
         },
     };
 
