@@ -12,7 +12,7 @@
         //     leftArea: 0.20,
         //     prefecth: 5
         // },
-        onfig: {
+        config: {
             minWidth: 300,
             minHeight: 300,
             horizontalPadding: 20, // Reducido para móviles
