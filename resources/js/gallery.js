@@ -180,7 +180,7 @@
             document.location.hash = 'image=' + Gallery.id + ':' + (Gallery.current + 1);
             Gallery.dom.image.style.display = 'none';
             Gallery.resize();
-            
+
             Gallery.dom.image.style.transform = 'translate(0px, 0px) scale(1)';
             Gallery.currentScale = 1;
 
@@ -262,7 +262,8 @@
             Gallery.dom.image.style.top = (Gallery.height / 2 - height / 2) + 'px';
 
             // Update the height of the overlay
-            Gallery.dom.overlay.style.height = window.innerHeight + 'px';
+            // Gallery.dom.overlay.style.height = window.innerHeight + 'px';
+            Gallery.dom.overlay.style.height = '100vh';
         },
 
         close: function () {
@@ -317,117 +318,125 @@
             // Put it at the end so that it "gracefully" degrade if the browser sucks
             event.preventDefault();
         },
-        touchstart: function(event) {
-          Gallery.touchStartTime = new Date().getTime();
-          Gallery.touchStartX = event.touches[0].clientX;
-          Gallery.touchStartY = event.touches[0].clientY;
-          Gallery.lastTouchX = Gallery.touchStartX;
-          Gallery.lastTouchY = Gallery.touchStartY;
-          Gallery.isTouching = true;
-          Gallery.hasMoved = false;
-      
-          if (event.touches.length === 2) {
-            event.preventDefault();
-            Gallery.zooming = true;
-            Gallery.startDistance = Gallery.getDistance(event.touches[0], event.touches[1]);
-            Gallery.startScale = Gallery.currentScale || 1;
-          } else {
-            Gallery.zooming = false;
-          }
-        },
-      
-        touchmove: function(event) {
-          if (Gallery.zooming && event.touches.length === 2) {
-            event.preventDefault();
-            var newDistance = Gallery.getDistance(event.touches[0], event.touches[1]);
-            var scale = (newDistance / Gallery.startDistance) * Gallery.startScale;
-            Gallery.setImageScale(scale);
-          } else if (event.touches.length === 1) {
-            var touchMoveX = event.touches[0].clientX;
-            var touchMoveY = event.touches[0].clientY;
-            var deltaX = touchMoveX - Gallery.lastTouchX;
-            var deltaY = touchMoveY - Gallery.lastTouchY;
-      
-            if (Math.abs(touchMoveX - Gallery.touchStartX) > 10 || Math.abs(touchMoveY - Gallery.touchStartY) > 10) {
-              Gallery.hasMoved = true;
+        touchstart: function (event) {
+            Gallery.touchStartTime = new Date().getTime();
+            Gallery.touchStartX = event.touches[0].clientX;
+            Gallery.touchStartY = event.touches[0].clientY;
+            Gallery.lastTouchX = Gallery.touchStartX;
+            Gallery.lastTouchY = Gallery.touchStartY;
+            Gallery.isTouching = true;
+            Gallery.hasMoved = false;
+
+            if (event.touches.length === 2) {
+                event.preventDefault();
+                Gallery.zooming = true;
+                Gallery.startDistance = Gallery.getDistance(event.touches[0], event.touches[1]);
+                Gallery.startScale = Gallery.currentScale || 1;
+            } else {
+                Gallery.zooming = false;
             }
-      
-            if (Gallery.currentScale > 1) {
-              event.preventDefault();
-              Gallery.panImage(deltaX, deltaY);
+        },
+
+        touchmove: function (event) {
+            if (Gallery.zooming && event.touches.length === 2) {
+                event.preventDefault();
+                var newDistance = Gallery.getDistance(event.touches[0], event.touches[1]);
+                var scale = (newDistance / Gallery.startDistance) * Gallery.startScale;
+                Gallery.setImageScale(scale);
+            } else if (event.touches.length === 1) {
+                var touchMoveX = event.touches[0].clientX;
+                var touchMoveY = event.touches[0].clientY;
+                var deltaX = touchMoveX - Gallery.lastTouchX;
+                var deltaY = touchMoveY - Gallery.lastTouchY;
+
+                if (Math.abs(touchMoveX - Gallery.touchStartX) > 10 || Math.abs(touchMoveY - Gallery.touchStartY) > 10) {
+                    Gallery.hasMoved = true;
+                }
+
+                if (Gallery.currentScale > 1) {
+                    event.preventDefault();
+                    Gallery.panImage(deltaX, deltaY);
+                }
+
+                Gallery.lastTouchX = touchMoveX;
+                Gallery.lastTouchY = touchMoveY;
             }
-      
-            Gallery.lastTouchX = touchMoveX;
-            Gallery.lastTouchY = touchMoveY;
-          }
         },
-      
-        touchend: function(event) {
-          var touchEndTime = new Date().getTime();
-          var touchTime = touchEndTime - Gallery.touchStartTime;
-      
-          if (Gallery.zooming) {
-            Gallery.zooming = false;
-            Gallery.currentScale = Gallery.getImageScale();
-          }
-          // } else if (!Gallery.hasMoved && touchTime < 300) {
-          //   var touchEndX = event.changedTouches[0].clientX;
-          //   if (touchEndX < Gallery.width * Gallery.config.leftArea) {
-          //     Gallery.change(-1);
-          //   } else {
-          //     Gallery.change(+1);
-          //   }
-          // }
-      
-          Gallery.isTouching = false;
-          Gallery.hasMoved = false;
+
+        touchend: function (event) {
+            var touchEndTime = new Date().getTime();
+            var touchTime = touchEndTime - Gallery.touchStartTime;
+
+            if (Gallery.zooming) {
+                Gallery.zooming = false;
+                Gallery.currentScale = Gallery.getImageScale();
+            }
+            // } else if (!Gallery.hasMoved && touchTime < 300) {
+            //   var touchEndX = event.changedTouches[0].clientX;
+            //   if (touchEndX < Gallery.width * Gallery.config.leftArea) {
+            //     Gallery.change(-1);
+            //   } else {
+            //     Gallery.change(+1);
+            //   }
+            // }
+
+            Gallery.isTouching = false;
+            Gallery.hasMoved = false;
         },
-      
-        panImage: function(deltaX, deltaY) {
-          var img = Gallery.dom.image;
-          var rect = img.getBoundingClientRect();
-          var containerRect = Gallery.dom.screen.getBoundingClientRect();
-      
-          var currentX = rect.left - containerRect.left;
-          var currentY = rect.top - containerRect.top;
-      
-          var newX = currentX + deltaX;
-          var newY = currentY + deltaY;
-      
-          // Limitar el arrastre para que la imagen no salga completamente de la pantalla
-          var maxX = Math.max(0, (rect.width - containerRect.width) / 2);
-          var maxY = Math.max(0, (rect.height - containerRect.height) / 2);
-      
-          newX = Math.max(-maxX, Math.min(newX, maxX));
-          newY = Math.max(-maxY, Math.min(newY, maxY));
-      
-          img.style.transform = `translate(${newX}px, ${newY}px) scale(${Gallery.currentScale})`;
+
+        panImage: function (deltaX, deltaY) {
+            var img = Gallery.dom.image;
+            var rect = img.getBoundingClientRect();
+            var containerRect = Gallery.dom.screen.getBoundingClientRect();
+
+            // Obtener la traslación actual
+            var currentTransform = img.style.transform || '';
+            var currentTranslate = currentTransform.match(/translate\((.*?)\)/) || ['', '0px, 0px'];
+            var [currentX, currentY] = currentTranslate[1].split(',').map(val => parseFloat(val) || 0);
+
+            // Calcular la nueva posición
+            var newX = currentX + deltaX;
+            var newY = currentY + deltaY;
+
+            // Calcular los límites de movimiento
+            var scaledWidth = rect.width / Gallery.currentScale;
+            var scaledHeight = rect.height / Gallery.currentScale;
+            var maxX = Math.max(0, (scaledWidth - containerRect.width) / 2);
+            var maxY = Math.max(0, (scaledHeight - containerRect.height) / 2);
+
+            // Limitar el movimiento
+            newX = Math.max(-maxX, Math.min(newX, maxX));
+            newY = Math.max(-maxY, Math.min(newY, maxY));
+
+            // Aplicar la nueva transformación
+            img.style.transform = `translate(${newX}px, ${newY}px) scale(${Gallery.currentScale})`;
         },
-      
-        setImageScale: function(scale) {
-          scale = Math.max(1, Math.min(scale, 3)); // Limita el zoom entre 1x y 3x
-          var img = Gallery.dom.image;
-          var currentTransform = img.style.transform || '';
-          var currentTranslate = currentTransform.match(/translate\((.*?)\)/) || ['translate(0px, 0px)'];
-      
-          img.style.transform = `${currentTranslate[0]} scale(${scale})`;
+
+        setImageScale: function (scale) {
+            scale = Math.max(1, Math.min(scale, 3)); // Limita el zoom entre 1x y 3x
+            Gallery.currentScale = scale;
+            var img = Gallery.dom.image;
+            var currentTransform = img.style.transform || '';
+            var currentTranslate = currentTransform.match(/translate\((.*?)\)/) || ['translate(0px, 0px)'];
+
+            img.style.transform = `${currentTranslate[0]} scale(${scale})`;
         },
-      
-        getImageScale: function() {
-          var transform = Gallery.dom.image.style.transform;
-          var scaleMatch = transform.match(/scale\((.*?)\)/);
-          return scaleMatch ? parseFloat(scaleMatch[1]) : 1;
+
+        getImageScale: function () {
+            var transform = Gallery.dom.image.style.transform;
+            var scaleMatch = transform.match(/scale\((.*?)\)/);
+            return scaleMatch ? parseFloat(scaleMatch[1]) : 1;
         },
-      
-        change: function(delta) {
-          var nextIndex = mod(Gallery.current + delta, Gallery.images.length);
-          var nextImg = new Image();
-          nextImg.onload = function() {
-            Gallery.current = nextIndex;
-            Gallery.dom.image.src = nextImg.src;
-            Gallery.update();
-          };
-          nextImg.src = Gallery.images[nextIndex].href;
+
+        change: function (delta) {
+            var nextIndex = mod(Gallery.current + delta, Gallery.images.length);
+            var nextImg = new Image();
+            nextImg.onload = function () {
+                Gallery.current = nextIndex;
+                Gallery.dom.image.src = nextImg.src;
+                Gallery.update();
+            };
+            nextImg.src = Gallery.images[nextIndex].href;
         },
 
         getDistance: function (touch1, touch2) {
