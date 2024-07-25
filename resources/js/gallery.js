@@ -321,9 +321,11 @@
           Gallery.touchStartTime = new Date().getTime();
           Gallery.touchStartX = event.touches[0].clientX;
           Gallery.touchStartY = event.touches[0].clientY;
+          Gallery.lastTouchX = Gallery.touchStartX;
+          Gallery.lastTouchY = Gallery.touchStartY;
           Gallery.isTouching = true;
           Gallery.hasMoved = false;
-        
+      
           if (event.touches.length === 2) {
             event.preventDefault();
             Gallery.zooming = true;
@@ -333,7 +335,7 @@
             Gallery.zooming = false;
           }
         },
-        
+      
         touchmove: function(event) {
           if (Gallery.zooming && event.touches.length === 2) {
             event.preventDefault();
@@ -343,31 +345,31 @@
           } else if (event.touches.length === 1) {
             var touchMoveX = event.touches[0].clientX;
             var touchMoveY = event.touches[0].clientY;
-            var deltaX = touchMoveX - Gallery.touchStartX;
-            var deltaY = touchMoveY - Gallery.touchStartY;
-        
-            if (Math.abs(deltaX) > 10 || Math.abs(deltaY) > 10) {
+            var deltaX = touchMoveX - Gallery.lastTouchX;
+            var deltaY = touchMoveY - Gallery.lastTouchY;
+      
+            if (Math.abs(touchMoveX - Gallery.touchStartX) > 10 || Math.abs(touchMoveY - Gallery.touchStartY) > 10) {
               Gallery.hasMoved = true;
             }
-        
+      
             if (Gallery.currentScale > 1) {
-              // Permite arrastrar la imagen cuando está ampliada
               event.preventDefault();
               Gallery.panImage(deltaX, deltaY);
             }
+      
+            Gallery.lastTouchX = touchMoveX;
+            Gallery.lastTouchY = touchMoveY;
           }
         },
-        
+      
         touchend: function(event) {
           var touchEndTime = new Date().getTime();
           var touchTime = touchEndTime - Gallery.touchStartTime;
-        
+      
           if (Gallery.zooming) {
             Gallery.zooming = false;
-            Gallery.currentScale = Gallery.dom.image.style.transform ? 
-              parseFloat(Gallery.dom.image.style.transform.match(/scale\((.*?)\)/)[1]) : 1;
+            Gallery.currentScale = Gallery.getImageScale();
           } else if (!Gallery.hasMoved && touchTime < 300) {
-            // Toque rápido sin movimiento, cambia la imagen
             var touchEndX = event.changedTouches[0].clientX;
             if (touchEndX < Gallery.width * Gallery.config.leftArea) {
               Gallery.change(-1);
@@ -375,32 +377,57 @@
               Gallery.change(+1);
             }
           }
-        
+      
           Gallery.isTouching = false;
           Gallery.hasMoved = false;
         },
-        
+      
         panImage: function(deltaX, deltaY) {
           var img = Gallery.dom.image;
-          var currentTransform = img.style.transform || '';
-          var currentTranslate = currentTransform.match(/translate\((.*?)\)/) || ['', '0px, 0px'];
-          var [currentX, currentY] = currentTranslate[1].split(',').map(val => parseInt(val));
-        
+          var rect = img.getBoundingClientRect();
+          var containerRect = Gallery.dom.screen.getBoundingClientRect();
+      
+          var currentX = rect.left - containerRect.left;
+          var currentY = rect.top - containerRect.top;
+      
           var newX = currentX + deltaX;
           var newY = currentY + deltaY;
-        
+      
+          // Limitar el arrastre para que la imagen no salga completamente de la pantalla
+          var maxX = Math.max(0, (rect.width - containerRect.width) / 2);
+          var maxY = Math.max(0, (rect.height - containerRect.height) / 2);
+      
+          newX = Math.max(-maxX, Math.min(newX, maxX));
+          newY = Math.max(-maxY, Math.min(newY, maxY));
+      
           img.style.transform = `translate(${newX}px, ${newY}px) scale(${Gallery.currentScale})`;
         },
-        
+      
         setImageScale: function(scale) {
           scale = Math.max(1, Math.min(scale, 3)); // Limita el zoom entre 1x y 3x
           var img = Gallery.dom.image;
           var currentTransform = img.style.transform || '';
-          var currentTranslate = currentTransform.match(/translate\((.*?)\)/) || ['', '0px, 0px'];
-        
+          var currentTranslate = currentTransform.match(/translate\((.*?)\)/) || ['translate(0px, 0px)'];
+      
           img.style.transform = `${currentTranslate[0]} scale(${scale})`;
         },
-        
+      
+        getImageScale: function() {
+          var transform = Gallery.dom.image.style.transform;
+          var scaleMatch = transform.match(/scale\((.*?)\)/);
+          return scaleMatch ? parseFloat(scaleMatch[1]) : 1;
+        },
+      
+        change: function(delta) {
+          var nextIndex = mod(Gallery.current + delta, Gallery.images.length);
+          var nextImg = new Image();
+          nextImg.onload = function() {
+            Gallery.current = nextIndex;
+            Gallery.dom.image.src = nextImg.src;
+            Gallery.update();
+          };
+          nextImg.src = Gallery.images[nextIndex].href;
+        },
 
         getDistance: function (touch1, touch2) {
             var dx = touch1.clientX - touch2.clientX;
