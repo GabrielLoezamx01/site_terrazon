@@ -48,4 +48,8 @@ class Property extends Model
     {
         return $this->hasMany(Gallery::class, 'property_id');
     }
+    public function distributions()
+    {
+        return $this->hasMany(Distribution::class);
+    }
 }

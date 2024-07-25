@@ -7,7 +7,9 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/">Home</a></li>
                 <li class="breadcrumb-item"><a href="/propiedades">Propiedades</a></li>
+                @isset($property->types[0])
                 <li class="breadcrumb-item"><a href="/propiedades">{{ $property->types[0]->name}}</a></li>
+                @endisset
                 <li class="breadcrumb-item active" aria-current="page">{{ $sku }}</li>
             </ol>
         </nav>
@@ -89,7 +91,7 @@
                             <div class="col-12">
                                 <div class="row pt-3">
                                     <div class="col-9">
-                                        <h2>$ {{ number_format($property->price,2,',','.') }}</h2>
+                                        <h2>$ {{ number_format($property->price,2,'.',',') }}</h2>
                                         <div class="text-tertiary">
                                             <h5 class="card-location"><img src="{{ asset('images/icons/location.svg') }}"> Ubicación del desarrollo</h5>
                                         </div>

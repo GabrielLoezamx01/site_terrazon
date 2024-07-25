@@ -9,6 +9,8 @@
 @section('content')
     <div class="page-header d-print-none">
         <div class="container-xl">
+
+
             <div class="row g-2 align-items-center">
                 <div class="col-auto ms-auto d-print-none">
                     <div class="btn-list">
@@ -29,16 +31,19 @@
                     </div>
                 </div>
             </div>
+
+
+            {{-- MEJORA DEL AMDIN LIST --}}
         </div>
     </div>
     <div class="page-body">
-        <div class="container-xl">
-            <div class="row row-deck row-cards">
+        <div class="container-fluid ">
+            <div class="row m-4 row-deck row-cards">
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Propiedades</h3>
                     </div>
-                    <div class="shadow border-bottom py-3">
+                    <div class=" border-bottom py-3">
                         @if (isset($errors) && $errors->any())
                             <div class="alert alert-danger">
                                 <ul>
@@ -85,9 +90,10 @@
                                     <tr>
                                         <th class="text-start">Folio</th>
                                         <th class="text-start">Propiedad</th>
-                                        <th class="text-start">Habitaciones</th>
+                                        {{-- <th class="text-start">Habitaciones</th>
                                         <th class="text-start">Baños</th>
-                                        <th class="text-start">Estacionamiento</th>
+                                        <th class="text-start">Estacionamiento</th> --}}
+                                        <th class="text-start">Detalles</th>
                                         <th class="text-start">Ubicación</th>
                                         <th class="text-start">Precio</th>
                                         <th class="text-start">Estado</th>
@@ -103,12 +109,23 @@
                                         @endif
                                         <td class="text-start"><span class="fw-bold">{{ $item->folio }}</span></td>
                                         <td>{{ $item->title }}</td>
-                                        <td class="text-start">{{ $item->rooms }}</td>
+                                        <td >
+                                            <button class="btn btn-sm btn-info toggle-details m-3">Ver detalles</button>
+                                            <div class="details-container mt-3 p-3 bg-light rounded" style="display: none;">
+                                                <h6 class="mb-3">Detalles:</h6>
+                                                <ul class="list-unstyled">
+                                                    <li class="text-dark"><strong>Habitaciones:</strong> {{ $item->rooms }}</li>
+                                                    <li class="text-dark"><strong>Baños:</strong> {{ $item->bathrooms }}</li>
+                                                    <li class="text-dark"><strong>Estacionamiento:</strong> {{ $item->parking }}</li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                        {{-- <td class="text-start">{{ $item->rooms }}</td>
                                         <td class="text-start">{{ $item->bathrooms }}</td>
-                                        <td class="text-start">{{ $item->parking }}</td>
+                                        <td class="text-start">{{ $item->parking }}</td> --}}
                                         <td class="text-start">{{ $item->municipality->name }} ,
                                             {{ $item->municipality->state->name }}</td>
-                                        <td class="text-start">{{ $item->price }}</td>
+                                        <td class="text-start">${{ number_format($item->price, 2) }}</td>
                                         <td>
                                             @switch($item->available)
                                                 @case(1)
@@ -262,7 +279,8 @@
                                 this.message = response.data.error;
                             }
                             alert(this
-                            .message); // Asegúrate de que el alert esté dentro del then para mostrar el mensaje correctamente
+                                .message
+                            ); // Asegúrate de que el alert esté dentro del then para mostrar el mensaje correctamente
                         })
                         .catch((error) => {
                             this.message = error.response.data.error;
@@ -280,6 +298,12 @@
                 info: false,
                 paging: false,
                 responsive: true,
+            });
+        });
+        $(document).ready(function() {
+            $('.toggle-details').click(function() {
+                var detailsContainer = $(this).closest('tr').find('.details-container');
+                detailsContainer.slideToggle();
             });
         });
     </script>

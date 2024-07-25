@@ -11,34 +11,30 @@ class HomeController extends Controller
 {
     public function index()
     {
-        // Puedees traer las demas tablas relacionadas por ejemplo: amenities, features, types, condition.
-        // $properties = HomeProperty::with(['property', 'home'])->get(); // Trae todas las propiedades
-        // $properties = HomeProperty::with(['property.amenities', 'home'])->get(); // Trae todas las propiedades con sus amenities
         $properties = HomeProperty::with([
             'property' => function ($query) {
                 $query->where('available', 1);
             },
             'home'
         ])->get();
-
         $groupedProperties = $properties->groupBy('home.name');
         $data = [];
         $home = [];
-
         foreach ($groupedProperties as $key => $item) {
 
             $data = [];
             $homeItem = ['name' => $key];
-            
+
             foreach ($item as $value) {
                 // dd($value->property);
                 if (isset($value->home)) {
                     $homeItem['span'] = $value->home->span;
                 }
 
-                $description = Str::limit($value->property->description, 300);
-                $detailsPage = '/ficha/'.$value->property->folio;
+
                 if (isset($value->property)) {
+                    $description = Str::limit($value->property->description, 300);
+                    $detailsPage = '/ficha/' . $value->property->folio;
                     $data[] = [
                         'title'       => $value->property->title ?? '',
                         'price'       => number_format($value->property->price ?? 0, 2, '.', ','),
@@ -53,7 +49,7 @@ class HomeController extends Controller
             $homeItem['data'] = $data;
             $home[] = $homeItem;
         }
-       
+
         // $data = [
         //     [
         //         'title' => 'Apartamentos Marinos',

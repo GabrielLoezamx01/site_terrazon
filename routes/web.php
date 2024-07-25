@@ -10,9 +10,12 @@ use App\Http\Controllers\Admin\FeaturesController;
 use App\Http\Controllers\Admin\ConditionController;
 use App\Http\Controllers\Admin\Property\PropertyController;
 use App\Http\Controllers\Admin\Property\ItemsController;
+use App\Http\Controllers\Admin\Property\DistributionController;
 use App\Http\Controllers\Admin\Property\GalleryController;
 use App\Http\Controllers\Site\Home\HomePropertyController;
 use App\Http\Controllers\Site\Home\PropertyHome;
+use App\Http\Controllers\Site\Home\ContactsController;
+
 
 
 
@@ -41,11 +44,16 @@ Route::get('/contacto', function () {
 })->name('contacto');
 Auth::routes();
 
+
+Route::post('contacts_save', [ContactsController::class, 'store'])->name('contacts_save');
+
+
+
 Route::prefix('admin')->middleware('auth', 'logLastUserActivity')->group(function () {
     // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::apiResource('home', HomePropertyController::class);
+    Route::apiResource('contacts', ContactsController::class);
     Route::apiResource('home_propery', PropertyHome::class);
-    Route::get('new_property', [PropertyController::class, 'createView']);
     Route::apiResource('users', ReferralsController::class);
     Route::apiResource('amenities', AmenitiesController::class);
     Route::apiResource('types', TypesController::class);
@@ -58,9 +66,12 @@ Route::prefix('admin')->middleware('auth', 'logLastUserActivity')->group(functio
     Route::post('edit_property', [PropertyController::class, 'edit_property']);
     Route::get('details_property/{property}', [PropertyController::class, 'details'])->name('details_property');
     Route::apiResource('property_gallery', GalleryController::class);
+    Route::apiResource('distribution_gallery', DistributionController::class);
     Route::post('/property_image/{id}', [GalleryController::class, 'store'])->name('property_image.store');
     Route::post('/property_gallery/{id}', [GalleryController::class, 'gallery_property'])->name('property_gallery.all');
     Route::apiResource('items_property', ItemsController::class);
 });
+
+
 
 Route::apiResource('emails/verify', VerifyController::class);
