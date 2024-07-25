@@ -171,3 +171,28 @@
   -ms-user-select: none;
   user-select: none;
 }
+
+.gallery-zoom-in{
+  padding: 0 5px;
+  margin: 8px 10px 8px 0;
+  float: right;
+  font-weight: bold;
+  color: #B3B3B3;
+  line-height: 22px;
+  text-decoration: none;
+  background: transparent;
+  color: white;
+  border: none;
+}
+.gallery-zoom-out{
+  padding: 0 5px;
+  margin: 8px 10px 8px 0;
+  float: right;
+  font-weight: bold;
+  color: #B3B3B3;
+  line-height: 22px;
+  text-decoration: none;
+  background: transparent;
+  color: white;
+  border: none;
+}
