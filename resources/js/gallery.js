@@ -369,14 +369,15 @@
           if (Gallery.zooming) {
             Gallery.zooming = false;
             Gallery.currentScale = Gallery.getImageScale();
-          } else if (!Gallery.hasMoved && touchTime < 300) {
-            var touchEndX = event.changedTouches[0].clientX;
-            if (touchEndX < Gallery.width * Gallery.config.leftArea) {
-              Gallery.change(-1);
-            } else {
-              Gallery.change(+1);
-            }
           }
+          // } else if (!Gallery.hasMoved && touchTime < 300) {
+          //   var touchEndX = event.changedTouches[0].clientX;
+          //   if (touchEndX < Gallery.width * Gallery.config.leftArea) {
+          //     Gallery.change(-1);
+          //   } else {
+          //     Gallery.change(+1);
+          //   }
+          // }
       
           Gallery.isTouching = false;
           Gallery.hasMoved = false;
