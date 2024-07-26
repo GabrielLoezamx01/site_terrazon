@@ -29,10 +29,12 @@
                                         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{ $item['id'] }}" class="{{ $loop->first ? 'active' : '' }}" aria-current="{{ $loop->first ? 'true' : 'false' }}" aria-label="{{ $item['label'] }}"></button>
                                         @endforeach
                                     </div>
-                                    <div class="carousel-inner">
+                                    <div class="carousel-inner gallery" id="gallery-property">
                                         @foreach($galery as $item)
                                         <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                                            <div class="ficha-carouser-img" style="background: url({{  $item['imageUrl'] }});"></div>
+                                            <a href="{{$item['imageUrl']}}">
+                                                <div class="ficha-carouser-img" style="background: url({{  $item['imageUrl'] }});"></div>
+                                            </a>
                                         </div>
                                         @endforeach
                                     </div>
@@ -67,23 +69,6 @@
                                             </a>
                                         </li>
                                         @endforeach
-                                        <!-- <li class="list-inline-item">
-                                            <a id="carousel-selector-1" data-bs-slide-to="1" data-bs-target="#carouselExampleCaptions">
-                                                <div class="carousel-img-thumb" style="background: url('https://i.imgur.com/Rpxx6wU.jpg');"></div>
-                                            </a>
-                                        </li>
-
-                                        <li class="list-inline-item">
-                                            <a id="carousel-selector-2" data-bs-slide-to="2" data-bs-target="#carouselExampleCaptions">
-                                                <div class="carousel-img-thumb" style="background: url('https://i.imgur.com/83fandJ.jpg');"></div>
-                                            </a>
-                                        </li>
-
-                                        <li class="list-inline-item">
-                                            <a id="carousel-selector-2" data-bs-slide-to="3" data-bs-target="#carouselExampleCaptions">
-                                                <div class="carousel-img-thumb" style="background: url('https://i.imgur.com/JiQ9Ppv.jpg');"></div>
-                                            </a>
-                                        </li> -->
                                     </div>
                                 </div>
                             </div>
@@ -499,4 +484,8 @@
 @endsection
 @push('scripts')
 <script src="{{ asset('js/ficha.js') }}"></script>
+<script src="{{ asset('js/gallery.js') }}"></script>
+@endpush
+@push('stylesheet')
+<link rel="stylesheet" href="{{ asset('css/gallery.css') }}" />
 @endpush
