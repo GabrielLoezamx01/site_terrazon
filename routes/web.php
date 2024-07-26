@@ -30,6 +30,15 @@ use App\Http\Controllers\Site\Home\ContactsController;
 |
 */
 
+
+/*
+*  Define routes for the public pages here.
+*/
+
+include __DIR__ . '/home.php';
+
+
+
 Route::get('/', [App\Http\Controllers\Public\HomeController::class, 'index'])->name('inicio');
 Route::get('/propiedades', [App\Http\Controllers\Public\PropiedadesController::class, 'index'])->name('propiedades');
 Route::get('/ficha/{sku}', [App\Http\Controllers\Public\PropiedadesController::class, 'ficha']);
