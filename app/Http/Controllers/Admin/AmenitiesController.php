@@ -31,17 +31,25 @@ class AmenitiesController extends Controller
         try {
             $this->validate($request, [
                 'name' => 'required',
-                'svg' => 'required|file',
+                // 'svg' => 'required|file',
             ]);
-            $fileName = $request->file('svg')->getClientOriginalName();
-            $fileName  =  $request->name  . '-' . $fileName;
-            $request->file('svg')->storeAs('public/svg', $fileName);
-            $insert = [
-                'name' => $request->name,
-                'icon' => $fileName,
-                'created_at' => now(),
-            ];
-            Amenities::insert($insert);
+            // $fileName = $request->file('svg')->getClientOriginalName();
+            // $fileName  =  $request->name  . '-' . $fileName;
+            // $request->file('svg')->storeAs('public/svg', $fileName);
+
+            $amenities = new Amenities();
+            $amenities->name = $request->name;
+            $amenities->icon = '';
+            $amenities->save();
+
+            // $insert = [
+            //     'name' => $request->name,
+            //     'icon' => '',
+            //     'created_at' => now(),
+            // ];
+
+            // Amenities::insert($insert);
+
             return redirect()->back()->withSuccess('¡Operación realizada con éxito!');
 
         } catch (\Exception $e) {
@@ -77,16 +85,16 @@ class AmenitiesController extends Controller
                 'name' => $request->name,
                 'updated_at' => now(),
             ];
-            if ($request->hasFile('svg')) {
-                $fileName = $request->file('svg')->getClientOriginalName();
-                $fileName  =  $request->name  . '-' . $fileName;
-                $request->file('svg')->storeAs('public/svg', $fileName);
-                $update['icon'] = $fileName;
-                $icon = Amenities::where('id', $id)->select('icon')->first();
-                if(!$icon->icon == null){
-                    \Storage::delete('public/svg/' .$icon->icon);
-                }
-            }
+            // if ($request->hasFile('svg')) {
+            //     $fileName = $request->file('svg')->getClientOriginalName();
+            //     $fileName  =  $request->name  . '-' . $fileName;
+            //     $request->file('svg')->storeAs('public/svg', $fileName);
+            //     $update['icon'] = $fileName;
+            //     $icon = Amenities::where('id', $id)->select('icon')->first();
+            //     if(!$icon->icon == null){
+            //         \Storage::delete('public/svg/' .$icon->icon);
+            //     }
+            // }
             Amenities::where('id', $id)->update($update);
             return redirect()->back()->withSuccess('¡Operación realizada con éxito!');
         } catch (\Exception $e) {
@@ -104,9 +112,9 @@ class AmenitiesController extends Controller
     {
         try {
             $amenity = Amenities::findOrFail($id);
-            if (!empty($amenity->icon)) {
-                \Storage::delete('public/svg/' . $amenity->icon);
-            }
+            // if (!empty($amenity->icon)) {
+            //     \Storage::delete('public/svg/' . $amenity->icon);
+            // }
             $amenity->delete();
             session()->flash('success', 'Operación exitosa');
         } catch (\Exception $e) {

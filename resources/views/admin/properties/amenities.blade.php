@@ -25,11 +25,11 @@
                             <input type="text" placeholder="Ingresar el nombre" autocomplete="off" class="form-control"
                                 name="name" value="{{ old('name') }}" maxlength="30" required>
                         </div>
-                        <div class="mb-3">
+                        {{-- <div class="mb-3">
                             <label for="email">Icon</label>
                             <input type="file" accept=".svg" autocomplete="off" placeholder="Ingresa el archivo SVG"
                                 class="form-control" name="svg" value="{{ old('svg') }}" required>
-                        </div>
+                        </div> --}}
                         <div class="mb-3 text-center">
                             <button class="btn btn-dark">Guardar</button>
                         </div>
@@ -45,11 +45,11 @@
                             <input type="text" placeholder="Ingresar el nombre" autocomplete="off" class="form-control"
                                 name="name" v-model="name" value="{{ old('name') }}" maxlength="30" required>
                         </div>
-                        <div class="mb-3">
+                        {{-- <div class="mb-3">
                             <label for="email">Icon</label>
                             <input type="file" accept=".svg" autocomplete="off" placeholder="Ingresa el archivo SVG"
                                 class="form-control" name="svg" value="{{ old('svg') }}">
-                        </div>
+                        </div> --}}
                         <div class="mb-3 text-center">
                             <button class="btn btn-dark">Actualizar</button>
                         </div>
@@ -193,7 +193,7 @@
                                         <tr>
                                             <th class="w-1">Id</th>
                                             <th>Nombre</th>
-                                            <th>icon</th>
+                                            {{-- <th>icon</th> --}}
                                             <th>Fecha de creacion</th>
                                             <th>Opciones</th>
                                         </tr>
@@ -203,8 +203,8 @@
                                             <tr>
                                                 <td>{{ $item->id }}</td>
                                                 <td>{{ $item->name }}</td>
-                                                <td><img src="{{ asset('storage/svg/' . $item->icon) }}" alt="Icon">
-                                                </td>
+                                                {{-- <td><img src="{{ asset('storage/svg/' . $item->icon) }}" alt="Icon">
+                                                </td> --}}
                                                 <td><label for=""
                                                         class="text-muted">{{ $item->created_at }}</label></td>
                                                 <td>
