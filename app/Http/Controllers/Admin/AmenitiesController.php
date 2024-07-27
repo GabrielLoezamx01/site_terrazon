@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Amenities;
+use App\Models\Relationship\AmenitiesProperty;
 use Illuminate\Support\Facades\Storage;
 
 class AmenitiesController extends Controller
@@ -111,14 +112,19 @@ class AmenitiesController extends Controller
     public function destroy($id)
     {
         try {
-            $amenity = Amenities::findOrFail($id);
-            // if (!empty($amenity->icon)) {
-            //     \Storage::delete('public/svg/' . $amenity->icon);
-            // }
-            $amenity->delete();
-            session()->flash('success', 'Operación exitosa');
+            $validacion = AmenitiesProperty::where('amenities_id',$id)->exists();
+            if($validacion){
+                session()->flash('errors', 'Hay propiedades asignadas a esta amenidad');
+            }else{
+                $amenity = Amenities::findOrFail($id);
+                if (!empty($amenity->icon)) {
+                    \Storage::delete('public/svg/' . $amenity->icon);
+                }
+                $amenity->delete();
+                session()->put('success', 'Operación exitosa');
+            }
         } catch (\Exception $e) {
-            session()->flash('errors', ['Error al eliminar '. $e->getMessage()]);
+            session()->flash('errors', $e->getMessage());
         }
     }
 }
