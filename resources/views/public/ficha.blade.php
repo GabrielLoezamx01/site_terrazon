@@ -119,9 +119,7 @@
                                                     <img src="{{ asset('storage/svg/'.$vf['icon']) }}">
                                                 @endif 
                                                 </label>
-                                                <span>{{ $vf["name"]}}
-                                                    {{$imagePath }}
-                                                </span>
+                                                <span>{{ $vf["name"]}}</span>
                                             </li>
                                             @endforeach
 
