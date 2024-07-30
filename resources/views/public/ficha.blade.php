@@ -109,10 +109,22 @@
                                         <div class="ficha-title">Características principales</div>
                                         <ul class="list-info">
                                             @foreach($property->features as $kf => $vf)
-                                            <li><label class="detail-icon"><img src="{{ asset('storage/svg/'.$vf['icon']) }}"></label><span>{{ $vf["name"]}}</span></li>
+                                            <li>
+                                                <label class="detail-icon">
+                                                @php
+                                                    $imagePath = 'storage/svg/'.$vf['icon'];
+                                                    $fullPath = public_path($imagePath);
+                                                @endphp
+                                                @if(file_exists($fullPath))
+                                                    <img src="{{ asset('storage/svg/'.$vf['icon']) }}">
+                                                @endif 
+                                                </label>
+                                                <span>{{ $vf["name"]}}
+                                                    {{$imagePath }}
+                                                </span>
+                                            </li>
                                             @endforeach
-                                            <!-- <li><label class="detail-icon"><img src="{{ asset('images/icons/bath.svg') }}"></label><span>2 Baños</span></li> -->
-                                            <!-- <li><label class="detail-icon"><img src="{{ asset('images/icons/cart.svg') }}"></label><span>1 Estacionamiento</span></li> -->
+
                                         </ul>
                                     </div>
                                     <div class="col-12 col-md-6 py-3">
