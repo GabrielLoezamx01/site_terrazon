@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'users Referidos')
+@section('title', 'Usuarios')
 @section('content')
     <div id="">
 
@@ -88,13 +88,13 @@
             </div>
         </div>
         <div class="page-body">
-            <div class="container-xl">
+            <div class="container-fluid">
                 <div class="row row-deck row-cards">
                     <div class="col-12">
                         <div class="card">
 
                             <div class="card-header">
-                                <h3 class="card-title">users Referidos</h3>
+                                <h3 class="card-title">Usuarios</h3>
                             </div>
                             <div class="card-body border-bottom py-3">
                                 <div class="d-flex">

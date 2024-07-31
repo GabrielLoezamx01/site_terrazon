@@ -116,30 +116,30 @@
                                         <button class="mt-5 btn btn-primary">Subir Galeria de imagenes</button>
                                     </form>
                                     @if (count($gallery) > 0)
-                                        @foreach ($gallery as $key => $img)
-                                            <div class="col-sm-6 col-lg-4">
-                                                <div class="card card-sm">
-                                                    <div class="d-block">
-                                                        <img src="{{ asset('storage/' . $img['original_image']) }}"
-                                                            class="card-img-top">
+                                        <div class="container-xl">
+                                            <div class="row row-cols-3 row-cols-md-4 row-cols-lg-6 g-3">
+                                                @foreach ($gallery as $key => $img)
+                                                    <div class="col">
+                                                        <a href="{{ asset('storage/' . $img['original_image']) }}"
+                                                            data-fslightbox="gallery">
+                                                            <div class="img-responsive img-responsive-1x1 rounded border"
+                                                                style="background-image: url('{{ asset('storage/' . $img['original_image']) }}');">
+                                                            </div>
+                                                        </a>
+                                                        <form class=" mt-5"
+                                                            action="{{ route('property_gallery.destroy', $img['id']) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit"
+                                                                class="btn btn-danger btn-sm">Eliminar</button>
+                                                        </form>
                                                     </div>
-                                                    <div class="card-body">
-                                                        <div class="d-flex align-items-center">
-                                                            <form
-                                                                action="{{ route('property_gallery.destroy', $img['id']) }}"
-                                                                method="POST">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <button type="submit"
-                                                                    class="btn btn-danger btn-sm">Eliminar</button>
-                                                            </form>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                @endforeach
                                             </div>
-                                        @endforeach
+                                        </div>
                                     @endif
+
                                 </div>
                             </div>
                             <hr>
@@ -159,33 +159,34 @@
                                             multiple required>
                                         <button class="mt-5 btn btn-primary">Subir</button>
                                     </form>
+                                    <div class="container-xl">
+                                        @if (count($distribution) > 0)
+                                            <div class="row row-cols-3 row-cols-md-4 row-cols-lg-6 g-3">
 
-
-                                    @if (count($distribution) > 0)
-                                        @foreach ($distribution as $key => $img)
-                                            <div class="col-sm-6 col-lg-4">
-                                                <div class="card card-sm">
-                                                    <div class="d-block">
-                                                        <img src="{{ asset('storage/' . $img['url']) }}"
-                                                            class="card-img-top">
+                                                @foreach ($distribution as $key => $img)
+                                                    <div class="col">
+                                                        <a href="{{ asset('storage/' . $img['url']) }}"
+                                                            data-fslightbox="gallery2">
+                                                            <div class="img-responsive img-responsive-1x1 rounded border"
+                                                                style="background-image: url('{{ asset('storage/' . $img['url']) }}');">
+                                                            </div>
+                                                        </a>
+                                                        <form class=" mt-5"
+                                                            action="{{ route('distribution_gallery.destroy', $img['id']) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit"
+                                                                class="btn btn-danger btn-sm">Eliminar</button>
+                                                        </form>
                                                     </div>
-                                                    <div class="card-body">
-                                                        <div class="d-flex align-items-center">
-                                                            <form
-                                                                action="{{ route('distribution_gallery.destroy', $img['id']) }}"
-                                                                method="POST">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <button type="submit"
-                                                                    class="btn btn-danger btn-sm">Eliminar</button>
-                                                            </form>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                @endforeach
                                             </div>
-                                        @endforeach
-                                    @endif
+
+                                        @endif
+                                    </div>
+
+
                                 </div>
                             </div>
                         </div>
@@ -197,4 +198,5 @@
     </div>
 @endsection
 @push('scripts2')
+    <script src="{{ asset('js/fslightbox.js') }}"></script>
 @endpush

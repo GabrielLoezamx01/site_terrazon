@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Inicio')
+@section('title', 'Contactos')
 @section('content')
     @push('scripts')
         <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
