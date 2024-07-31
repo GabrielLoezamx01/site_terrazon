@@ -3,7 +3,8 @@
         <i class="fa-solid fa-circle fa-stack-2x"></i>
         <i class="fa-regular fa-heart fa-stack-1x"></i>
     </span>
-    <img src="{{ $imageUrl }}" class="card-img-top" alt="...">
+    <div class="card-img-top" style="background: url({{ $imageUrl }});"></div>
+    <!-- <img src="" class="card-img-top" alt="..."> -->
     <div class="card-body">
         <span class="price">$ {{ $price }}</span>
         <span class="area">{{ $area }}</span>

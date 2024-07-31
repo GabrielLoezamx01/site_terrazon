@@ -91,6 +91,7 @@ body {
     }
 
     .card {
+
         .item {
             padding: 14px;
         }
@@ -167,7 +168,11 @@ body {
     width: 100% !important;
     border: none !important;
     border-radius: 5px;
-
+    .card-img-top{
+        height: 200px !important;
+        background-size: cover !important;
+        background-position: center !important;
+    }
     .icon-fav {
         position: absolute;
         top: 18px;
