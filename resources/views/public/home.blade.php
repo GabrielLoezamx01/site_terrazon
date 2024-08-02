@@ -11,8 +11,8 @@
                 {{ $item['span'] }}
             </div>
         </div>
-        <div class="container-md mobile-conteiner">
-            <x-carousel :cards="$item['data']" id="carr{{ $k+1 }}" />
+        <div class="container-md mobile-conteiner"> 
+            <x-carousel :cards="$item['cards']" id="carr{{ $k+1 }}" />
         </div>
     </div>
     @endforeach
@@ -266,72 +266,69 @@
                 <div class="col-12 col-lg-8 mb-3">
                     <div class="card p-5 pb-3 bg-white  box-shadow" style="overflow: hidden;">
                         <div class="card-body">
-                                @if (session('success') || session('errors'))
-                        <div class="alert alert-{{ session('success') ? 'success' : 'danger' }} alert-dismissible"
-                            role="alert">
-                            <div class="d-flex">
-                                <div>
-                                    @if (session('success'))
+                            @if (session('success') || session('errors'))
+                            <div class="alert alert-{{ session('success') ? 'success' : 'danger' }} alert-dismissible" role="alert">
+                                <div class="d-flex">
+                                    <div>
+                                        @if (session('success'))
                                         <!-- Download SVG icon from http://tabler-icons.io/i/check -->
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon alert-icon" width="24"
-                                            height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon alert-icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                             <path d="M5 12l5 5l10 -10"></path>
                                         </svg>
-                                    @endif
-                                </div>
-                                <div>
-                                    @if (session('success'))
+                                        @endif
+                                    </div>
+                                    <div>
+                                        @if (session('success'))
                                         {{ session('success') }}
-                                    @else
+                                        @else
                                         <ul>
                                             @foreach (session('errors') as $error)
-                                                <li>{{ $error }}</li>
+                                            <li>{{ $error }}</li>
                                             @endforeach
                                         </ul>
-                                    @endif
+                                        @endif
+                                    </div>
                                 </div>
+                                <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
                             </div>
-                            <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
-                        </div>
-                    @endif
+                            @endif
                             <h2 class="card-title">¡Nos encantaría saber de ti!</h2>
                             <form action="{{ route('contacts_save') }}" method="POST">
                                 @csrf
-                                 <div class="row">
-                                <div class="col-12 col-md-6">
-                                    <div class="form-floating mb-3">
-                                        <input required type="text" class="form-control input-contact" name="name" id="name" placeholder="Nombre">
-                                        <label for="name">Nombre</label>
+                                <div class="row">
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-floating mb-3">
+                                            <input required type="text" class="form-control input-contact" name="name" id="name" placeholder="Nombre">
+                                            <label for="name">Nombre</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-floating mb-3">
+                                            <input required type="email" class="form-control input-contact" name="email" id="email" placeholder="Email">
+                                            <label for="email">Email</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-floating mb-3">
+                                            <textarea maxlength="350" required class="form-control input-contact" name="coments" style="height:100px" id="coments" placeholder="Deja tu comentario"></textarea>
+                                            <label for="coments">Deja tu comentario</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 py-2">
+                                        <input type="checkbox" required id="check" name="check"><label for="check" class="mx-2">Acepto
+                                            los términos y condiciones</label>
+                                    </div>
+                                    <div class="col-12 col-md-4">
+                                        <div class="pt-3 text-center text-md-start d-grid gap-2 d-block">
+                                            <button class="btn btn-primary btn-catalogo">ENVIAR
+                                                MENSAJE</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-8 container-contact">
+                                        <div class="image-contact" style="background: url({{ asset('images/image-bg-white.png') }});"></div>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-6">
-                                    <div class="form-floating mb-3">
-                                        <input required type="email" class="form-control input-contact" name="email" id="email" placeholder="Email">
-                                        <label for="email">Email</label>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-floating mb-3">
-                                        <textarea maxlength="350" required class="form-control input-contact" name="coments" style="height:100px" id="coments" placeholder="Deja tu comentario"></textarea>
-                                        <label for="coments">Deja tu comentario</label>
-                                    </div>
-                                </div>
-                                <div class="col-12 py-2">
-                                    <input type="checkbox" required id="check" name="check"><label for="check" class="mx-2">Acepto
-                                        los términos y condiciones</label>
-                                </div>
-                                <div class="col-12 col-md-4">
-                                    <div class="pt-3 text-center text-md-start d-grid gap-2 d-block">
-                                        <button  class="btn btn-primary btn-catalogo">ENVIAR
-                                            MENSAJE</button>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-8 container-contact">
-                                    <div class="image-contact" style="background: url({{ asset('images/image-bg-white.png') }});"></div>
-                                </div>
-                            </div>
                             </form>
                         </div>
                     </div>

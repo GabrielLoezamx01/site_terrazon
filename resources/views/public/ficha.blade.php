@@ -190,25 +190,25 @@
                         <div>
                             <h4>Basado en tu búsqueda</h4>
                         </div>
-                        <x-card :title="$busqueda['title']" :price="$busqueda['price']" :area="$busqueda['area']" :content="$busqueda['content']" :imageUrl="$busqueda['imageUrl']" :detailsPage="$busqueda['detailsPage']" />
+                        <x-card :card="$busqueda" />
                     </div>
                     <div class="col-12 mb-3">
                         <div>
                             <h4>Mis Favoritos</h4>
                         </div>
-                        <x-card :title="$favoritos['title']" :price="$favoritos['price']" :area="$favoritos['area']" :content="$favoritos['content']" :imageUrl="$favoritos['imageUrl']" :detailsPage="$favoritos['detailsPage']" />
+                        <x-card :card="$favoritos" />
                     </div>
                     <div class="col-12 mb-3">
                         <div>
                             <h4>Otros usuarios vieron</h4>
                         </div>
-                        <x-card :title="$otros['title']" :price="$otros['price']" :area="$otros['area']" :content="$otros['content']" :imageUrl="$otros['imageUrl']" :detailsPage="$otros['detailsPage']" />
+                        <x-card :card="$otros" />
                     </div>
                     <div class="col-12 mb-3">
                         <div>
                             <h4>Lo más nuevo</h4>
                         </div>
-                        <x-card :title="$nuevo['title']" :price="$nuevo['price']" :area="$nuevo['area']" :content="$nuevo['content']" :imageUrl="$nuevo['imageUrl']" :detailsPage="$nuevo['detailsPage']" />
+                        <x-card :card="$nuevo"ƒ />
                     </div>
                 </div>
             </div>
