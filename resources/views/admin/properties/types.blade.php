@@ -178,7 +178,7 @@
                                         <tr>
                                             <th class="w-1">Id</th>
                                             <th>Nombre</th>
-                                            <th>Fecha de creacion</th>
+                                            {{-- <th>Fecha de creacion</th> --}}
                                             <th>Opciones</th>
                                         </tr>
                                     </thead>
@@ -188,9 +188,9 @@
                                                 <td>{{ $item->id }}</td>
                                                 <td>{{ $item->name }}</td>
                                                 </td>
-                                                <td><label for=""
+                                                {{-- <td><label for=""
                                                         class="text-muted">{{ $item->created_at }}</label>
-                                                </td>
+                                                </td> --}}
                                                 <td>
                                                     <button @click="showModal(true , {{ $item->id }})"
                                                         class="btn btn-sm btn-icon "><svg

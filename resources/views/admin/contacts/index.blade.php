@@ -1,12 +1,6 @@
 @extends('layouts.app')
 @section('title', 'Contactos')
 @section('content')
-    @push('scripts')
-        <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
-            crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.css" />
-        <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
-    @endpush
     {{-- <div class="modal modal-blur fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
