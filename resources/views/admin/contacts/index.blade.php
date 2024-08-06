@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Inicio')
+@section('title', 'Contactos')
 @section('content')
     @push('scripts')
         <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
@@ -146,7 +146,10 @@
                             <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
                         </div>
                     @endif
-                    <div id="table-default" class="table-responsive">
+                       <div class="m-3 search-box col-5">
+                                <input type="text" id="searchInput" class="form-control" placeholder="Buscar...">
+                            </div>
+                    <div id="table-default" class="table-responsive mt-5">
 
                         <table class="table card-table table-vcenter text-nowrap datatable display" id="myTable">
                             <thead>

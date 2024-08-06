@@ -15,7 +15,7 @@ use App\Http\Controllers\Admin\Property\GalleryController;
 use App\Http\Controllers\Site\Home\HomePropertyController;
 use App\Http\Controllers\Site\Home\PropertyHome;
 use App\Http\Controllers\Site\Home\ContactsController;
-
+use App\Http\Controllers\Auth\ProfileController;
 
 
 
@@ -56,9 +56,10 @@ Auth::routes();
 
 Route::post('contacts_save', [ContactsController::class, 'store'])->name('contacts_save');
 
+Route::get('aunlock', [ProfileController::class, 'lock_verify'])->name('aunlock');
 
 
-Route::prefix('admin')->middleware('auth', 'logLastUserActivity')->group(function () {
+Route::prefix('admin')->middleware('auth')->group(function () {
     // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::apiResource('home', HomePropertyController::class);
     Route::apiResource('contacts', ContactsController::class);
@@ -70,7 +71,10 @@ Route::prefix('admin')->middleware('auth', 'logLastUserActivity')->group(functio
     Route::apiResource('condition', ConditionController::class);
     Route::apiResource('property', PropertyController::class);
     Route::get('new_property', [PropertyController::class, 'createView']);
+
     Route::post('active_property', [PropertyController::class, 'active_property']);
+    Route::post('deactivate_property', [PropertyController::class, 'deactivate_property']);
+
     Route::post('details_validate/{property}', [PropertyController::class, 'insert_detail'])->name('details_validate');
     Route::post('edit_property', [PropertyController::class, 'edit_property']);
     Route::get('details_property/{property}', [PropertyController::class, 'details'])->name('details_property');
@@ -79,7 +83,14 @@ Route::prefix('admin')->middleware('auth', 'logLastUserActivity')->group(functio
     Route::post('/property_image/{id}', [GalleryController::class, 'store'])->name('property_image.store');
     Route::post('/property_gallery/{id}', [GalleryController::class, 'gallery_property'])->name('property_gallery.all');
     Route::apiResource('items_property', ItemsController::class);
+
+    Route::apiResource('Profile', ProfileController::class);
+    Route::post('update_password', [ProfileController::class, 'update_password'])->name('update_password');
 });
+
+Route::get('password', [ProfileController::class, 'lock']);
+
+
 
 
 

@@ -3,8 +3,6 @@
 @push('scripts')
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
         crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.css" />
-    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
 @endpush
 @section('content')
 
@@ -134,21 +132,11 @@
                             <h3 class="card-title">Tipos</h3>
                         </div>
                         <div class="shadow border-bottom py-3">
-                            @if (isset($errors) && $errors->any())
-                                <div class="alert alert-danger">
-                                    <ul>
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            @endif
-
                             @if (session('success') || session('errors'))
-                                <div class="alert alert-{{ session('success') ? 'success' : 'danger' }} alert-dismissible"
+                                <div class="alert m-5 alert-{{ session('success') ? 'success' : 'danger' }} alert-dismissible"
                                     role="alert">
                                     <div class="d-flex">
-                                        <div>
+                                        <div class="me-2">
                                             @if (session('success'))
                                                 <!-- Download SVG icon from http://tabler-icons.io/i/check -->
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon alert-icon"
@@ -163,19 +151,27 @@
                                         <div>
                                             @if (session('success'))
                                                 {{ session('success') }}
-                                            @else
-                                                <ul>
-                                                    @foreach (session('errors') as $error)
-                                                        <li>{{ $error }}</li>
-                                                    @endforeach
-                                                </ul>
+                                            @elseif(session('errors'))
+                                                @if (is_array(session('errors')))
+                                                    <ul class="mb-0">
+                                                        @foreach (session('errors') as $error)
+                                                            <li>{{ $error }}</li>
+                                                        @endforeach
+                                                    </ul>
+                                                @else
+                                                    {{ session('errors') }}
+                                                @endif
                                             @endif
                                         </div>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
                                     </div>
-                                    <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
                                 </div>
                             @endif
-                            <div id="table-default" class="table-responsive">
+                            <div class="m-3 search-box col-5">
+                                <input type="text" id="searchInput" class="form-control" placeholder="Buscar...">
+                            </div>
+                            <div id="table-default" class="table-responsive mt-5">
                                 <table class="table card-table table-vcenter text-nowrap datatable display"
                                     id="myTable">
                                     <thead>
@@ -246,10 +242,9 @@
                                                 rel="prev">prev</a>
                                         </li>
                                     @endif
-                                      @for ($i = 1; $i <= $types->lastPage(); $i++)
+                                    @for ($i = 1; $i <= $types->lastPage(); $i++)
                                         <li class="page-item {{ $types->currentPage() == $i ? 'active' : '' }}">
-                                            <a class="page-link"
-                                                href="{{ $types->url($i) }}">{{ $i }}</a>
+                                            <a class="page-link" href="{{ $types->url($i) }}">{{ $i }}</a>
                                         </li>
                                     @endfor
 

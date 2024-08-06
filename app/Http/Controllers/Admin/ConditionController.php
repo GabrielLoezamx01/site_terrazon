@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ConditionProperty;
+use App\Models\Relationship\ConditionsProperty;
+
 
 class ConditionController extends Controller
 {
@@ -83,9 +85,14 @@ class ConditionController extends Controller
     public function destroy($id)
     {
         try {
-            $types = ConditionProperty::findOrFail($id);
-            $types->delete();
-            session()->flash('success', 'Operación exitosa');
+            $validacion = ConditionsProperty::where('condition_id', $id)->exists();
+            if ($validacion) {
+                session()->flash('errors', 'Hay propiedades asignadas a esta condicion');
+            }else{
+                $types = ConditionProperty::findOrFail($id);
+                $types->delete();
+                session()->flash('success', 'Operación exitosa');
+            }
         } catch (\Exception $e) {
             session()->flash('errors', ['Error al eliminar ' . $e->getMessage()]);
         }

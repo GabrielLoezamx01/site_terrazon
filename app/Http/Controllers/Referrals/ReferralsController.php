@@ -17,8 +17,20 @@ class ReferralsController extends Controller
      */
     public function index()
     {
-        $referrals = Referrals::paginate(10);
-        return view('admin.users' , compact('referrals'));
+        $data = Referrals::all();
+        $columns = $this->columns_table();
+        return view('admin.users.index')->with('data')->with('columns');
+    }
+
+
+    private function columns_table() : array
+    {
+        return [
+            'name' => 'Nombre',
+            'email' => 'Correo',
+            'status' => 'Estado',
+            'created_at' => 'Fecha de registro'
+        ];
     }
 
 
