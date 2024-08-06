@@ -31,23 +31,26 @@ class ProfileController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|string|max:255',
+            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-        $fileName = Auth::user()->img;
-        if($request->hasFile('photo')){
-            $file = $request->file('photo');
-            $request->validate([
-                'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            ]);
-            $fileName = $request->file('photo')->getClientOriginalName();
-            $file->move(public_path('img'), $fileName);
-        }
+
         $auth = Auth::user();
-        $auth->name = $request->name;
+        $fileName = $auth->img;
+
+        if ($request->hasFile('photo')) {
+            $file = $request->file('photo');
+            $fileName = time() . '_' . $file->getClientOriginalName(); // Generar un nombre único
+            $filePath = $file->storeAs('public/img', $fileName); // Guardar el archivo en la carpeta 'public/img'
+        }
+
+        $auth->name = $request->input('name');
         $auth->img = $fileName;
         $auth->save();
-        return redirect()->back()->withSuccess('¡Operación realizada con éxito!');
+
+        return redirect()->back()->with('success', '¡Operación realizada con éxito!');
     }
+
 
     /**
      * Display the specified resource.
