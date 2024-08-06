@@ -1,13 +1,4 @@
 var api = "/admin/types";
-$(document).ready(function () {
-    $("#myTable").DataTable({
-        info: false,
-        paging: false,
-        responsive: true,
-        // autoWidth: true
-    });
-});
-
 const app = new Vue({
     el: "#vueApp",
     data: {

@@ -146,7 +146,10 @@
                             <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
                         </div>
                     @endif
-                    <div id="table-default" class="table-responsive">
+                       <div class="m-3 search-box col-5">
+                                <input type="text" id="searchInput" class="form-control" placeholder="Buscar...">
+                            </div>
+                    <div id="table-default" class="table-responsive mt-5">
 
                         <table class="table card-table table-vcenter text-nowrap datatable display" id="myTable">
                             <thead>

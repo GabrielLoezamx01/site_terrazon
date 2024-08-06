@@ -377,7 +377,16 @@ class PropertyController extends Controller
         $slugLocation =  str_replace(' ', '-', $address);
         return $slug . '-' . $slugLocation;
     }
-
+    public function deactivate_property(Request $request)
+    {
+        $propertyId = $request->property;
+        $validate = Property::where('id', $propertyId)->where(['available' => 0])->exists();
+        if($validate > 0){
+            return response()->json(['error' => 'La propiedad ya se encuentra desactivada.'], 402);
+        }
+        Property::where('id', $propertyId)->update(['available' => 0]);
+        return response()->json(['message' => 'Propiedad desactivada con éxito.'], 200);
+    }
     public function active_property(Request $request)
     {
         $propertyId = $request->property;

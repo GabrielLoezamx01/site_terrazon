@@ -3,8 +3,6 @@
 @push('scripts')
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
         crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.css" />
-    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
 @endpush
 @section('content')
 
@@ -170,8 +168,10 @@
                                     </div>
                                 </div>
                             @endif
-
-                            <div id="table-default" class="table-responsive">
+                            <div class="m-3 search-box col-5">
+                                <input type="text" id="searchInput" class="form-control" placeholder="Buscar...">
+                            </div>
+                            <div id="table-default" class="table-responsive mt-5">
                                 <table class="table card-table table-vcenter text-nowrap datatable display"
                                     id="myTable">
                                     <thead>
