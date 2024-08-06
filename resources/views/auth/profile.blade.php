@@ -68,7 +68,7 @@
 
                     <div class="card-body p-4 text-center">
                         <span class="avatar avatar-xl mb-3 rounded"
-                            style="background-image: url('{{ asset('img/' . Auth::user()->img) }}')"></span>
+                            style="background-image: url('{{ asset('storage/img/' . Auth::user()->img) }}')"></span>
                         <h3 class="m-0 mb-1">{{ $auth->name }}</h3>
                         <div class="text-secondary">{{ $auth->email }}</div>
                         <div class="mt-3">
