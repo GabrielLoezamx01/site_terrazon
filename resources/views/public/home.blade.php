@@ -221,8 +221,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 col-lg-4 d-flex mb-3">
-                    <div class="card p-5 text-tertiary bg-tertiary box-shadow">
-                        <div class="card-body ">
+                    <div class="card p-5 text-white bg-tertiary box-shadow">
+                        <div class="card-body white ">
                             <h1 class="mb-4">Contáctanos</h1>
                             <div class="row py-3">
                                 <div class="col-4 fs-7">
