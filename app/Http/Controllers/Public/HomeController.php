@@ -37,7 +37,7 @@ class HomeController extends Controller
             $homeItem['cards'] = $data;
             $home[] = $homeItem;
         }
-        // json_dd($groupedProperties);
+        // json_dd($homeItem);
         return view('public.home', [ 
             'cards2' => $data,
             'home' => $home
