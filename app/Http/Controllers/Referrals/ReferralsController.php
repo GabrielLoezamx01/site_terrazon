@@ -8,6 +8,7 @@ use App\Models\Referrals;
 use Illuminate\Support\Str;
 use App\Events\UserSendEmail;
 use Illuminate\Support\Facades\Crypt;
+
 class ReferralsController extends Controller
 {
     /**
@@ -19,11 +20,52 @@ class ReferralsController extends Controller
     {
         $data = Referrals::all();
         $columns = $this->columns_table();
-        return view('admin.users.index')->with('data')->with('columns');
+        return view('admin.users.index', [
+            'data' => $data,
+            'columns' => $columns,
+            'modal' => $this->form()
+        ]);
     }
 
+    private function form(): array
+    {
+        return [
+            'title_modal' => 'Registrar nuevo usuario',
+            'form' => [
+                'action' => route('users.store'),
+                'method' => 'POST',
+                'id' => 'form',
+                'class' => 'form',
+                'fields' =>
+                [
+                    'type' => 'text',
+                    'name' => 'name',
+                    'label' => 'Nombre',
+                    'placeholder' => 'Nombre',
+                    'required' => 'required',
+                    'value' => old('name'),
+                    'class' => 'form-control'
+                ],
+                [
+                    'type' => 'email',
+                    'name' => 'email',
+                    'label' => 'Correo',
+                    'placeholder' => 'Correo',
+                    'required' => 'required',
+                    'value' => old('email'),
+                    'class' => 'form-control'
+                ],
+                [
+                    'type' => 'btn',
+                    'name' => 'Enviar',
+                    'class' => 'btn btn-primary'
+                ]
+            ]
 
-    private function columns_table() : array
+        ];
+    }
+
+    private function columns_table(): array
     {
         return [
             'name' => 'Nombre',
@@ -64,7 +106,7 @@ class ReferralsController extends Controller
 
             return redirect()->back()->withSuccess('¡Operación realizada con éxito! Se ha enviado un correo de verificación.');
         } catch (\Exception $e) {
-                return redirect()->back()->withErrors(['error' => $e->getMessage()])->withInput();
+            return redirect()->back()->withErrors(['error' => $e->getMessage()])->withInput();
         }
     }
 

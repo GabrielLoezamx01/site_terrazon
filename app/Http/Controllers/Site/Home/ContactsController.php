@@ -14,9 +14,8 @@ class ContactsController extends Controller
      */
     public function index()
     {
-        $contacts = Contact::orderByRaw('CASE WHEN status = 1 THEN 0 ELSE 1 END')
+        $contacts = Contact::orderBy('created_at', 'desc')
         ->paginate(20);
-
         return view('admin.contacts.index', compact('contacts'));
         //
     }

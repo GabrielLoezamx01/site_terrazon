@@ -128,8 +128,8 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">                        Lista de Condiciones
-</h3>
+                            <h3 class="card-title"> Lista de Condiciones
+                            </h3>
                         </div>
                         @if (session('success') || session('errors'))
                             <div class="alert m-5 alert-{{ session('success') ? 'success' : 'danger' }} alert-dismissible"
@@ -169,9 +169,9 @@
                         @endif
 
                         <div class="card-body border-bottom py-3">
-                             <div class="search-box col-5">
-                            <input type="text" id="searchInput" class="form-control" placeholder="Buscar...">
-                        </div>
+                            <div class="search-box col-5">
+                                <input type="text" id="searchInput" class="form-control" placeholder="Buscar...">
+                            </div>
                             <div id="table-default" class="table-responsive mt-5">
                                 <table class="table card-table table-vcenter text-nowrap datatable display"
                                     id="myTable">
@@ -273,6 +273,5 @@
     </div>
 @endsection
 @push('scripts2')
-
     <script src="{{ asset('js/admin/condition.js') }}"></script>
 @endpush
