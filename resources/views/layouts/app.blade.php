@@ -10,6 +10,11 @@
     <link href="{{ asset('css/tabler-flags.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/tabler-vendors.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/demoapp.css') }}" rel="stylesheet" />
+    <style>
+        td {
+            font-size: 14px;
+        }
+    </style>
     @stack('stylesheet')
     @stack('styles')
     @stack('scripts')
@@ -61,23 +66,46 @@
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown"
                                 aria-label="Open user menu">
-                                <span class="avatar avatar-sm" style="background-image: url(/img/demo.jpeg)"></span>
+                                <span class="avatar avatar-sm"
+                                    style="background-image: url('{{ asset('storage/img/' . Auth::user()->img) }}')"></span>
+
                                 <div class="d-none d-xl-block ps-2">
                                     <div> {{ Auth::user()->name }}</div>
                                     <div class="mt-1 small text-muted">Admin</div>
                                 </div>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                <a href="./profile.html" class="dropdown-item">Profile</a>
-                                <div class="dropdown-divider"></div>
-                                <a href="./settings.html" class="dropdown-item">Settings</a>
+                                <a href="?theme=dark" class="nav-link px-0 hide-theme-dark" title="Enable dark mode"
+                                    data-bs-toggle="tooltip" data-bs-placement="bottom">
+                                    <!-- Download SVG icon from http://tabler-icons.io/i/moon -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                        <path
+                                            d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+                                    </svg>
+                                </a>
+                                <a href="?theme=light" class="nav-link px-0 hide-theme-light" title="Enable light mode"
+                                    data-bs-toggle="tooltip" data-bs-placement="bottom">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
+                                        height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                        fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                        <path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
+                                        <path
+                                            d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7" />
+                                    </svg>
+                                </a>
+                                <a href="Profile" class="dropdown-item">Perfil</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                    class="d-none">
                                     @csrf
                                 </form>
                             </div>
@@ -104,7 +132,19 @@
                                 </a>
                                 <a class="nav-link" href="contacts">
                                     <span class="nav-link-icon d-md-none d-lg-inline-block">
-                                        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-address-book"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20 6v12a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2z" /><path d="M10 16h6" /><path d="M13 11m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M4 8h3" /><path d="M4 12h3" /><path d="M4 16h3" /></svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            class="icon icon-tabler icons-tabler-outline icon-tabler-address-book">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path
+                                                d="M20 6v12a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2z" />
+                                            <path d="M10 16h6" />
+                                            <path d="M13 11m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                                            <path d="M4 8h3" />
+                                            <path d="M4 12h3" />
+                                            <path d="M4 16h3" />
+                                        </svg>
                                     </span>
                                     <span class="nav-link-title">
                                         Contactos
@@ -181,7 +221,15 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('admin/property') }}">
                                     <span class="nav-link-icon d-md-none d-lg-inline-block">
-                                      <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-home-check"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2" /><path d="M19 13.488v-1.488h2l-9 -9l-9 9h2v7a2 2 0 0 0 2 2h4.525" /><path d="M15 19l2 2l4 -4" /></svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            class="icon icon-tabler icons-tabler-outline icon-tabler-home-check">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2" />
+                                            <path d="M19 13.488v-1.488h2l-9 -9l-9 9h2v7a2 2 0 0 0 2 2h4.525" />
+                                            <path d="M15 19l2 2l4 -4" />
+                                        </svg>
                                     </span>
                                     <span class="nav-link-title">
                                         Propiedades
@@ -359,18 +407,16 @@
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown"
                                 aria-label="Open user menu">
-                                <span class="avatar avatar-sm" style="background-image: url(/img/demo.jpeg)"></span>
+                                <span class="avatar avatar-sm"
+                                    style="background-image: url('{{ asset('storage/img/' . Auth::user()->img) }}')"></span>
                                 <div class="d-none d-xl-block ps-2">
                                     <div> {{ Auth::user()->name }}</div>
                                     <div class="mt-1 small text-muted">Admin</div>
                                 </div>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                <a href="#" class="dropdown-item">Status</a>
-                                <a href="./profile.html" class="dropdown-item">Profile</a>
-                                <a href="#" class="dropdown-item">Feedback</a>
+                                <a href="Profile" class="dropdown-item">Perfil</a>
                                 <div class="dropdown-divider"></div>
-                                <a href="./settings.html" class="dropdown-item">Settings</a>
                                 <a href="{{ route('logout') }}" class="dropdown-item">
                                     <a class="dropdown-item"
                                         onclick="event.preventDefault();
@@ -386,25 +432,7 @@
                         </div>
                     </div>
                     <div class="collapse navbar-collapse" id="navbar-menu">
-                        <div>
-                            <form action="./" method="get" autocomplete="off" novalidate="">
-                                <div class="input-icon">
-                                    <span class="input-icon-addon">
-                                        <!-- Download SVG icon from http://tabler-icons.io/i/search -->
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
-                                            height="24" viewBox="0 0 24 24" stroke-width="2"
-                                            stroke="currentColor" fill="none" stroke-linecap="round"
-                                            stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                            <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"></path>
-                                            <path d="M21 21l-6 -6"></path>
-                                        </svg>
-                                    </span>
-                                    <input type="text" value="" class="form-control" placeholder="Search…"
-                                        aria-label="Search in website">
-                                </div>
-                            </form>
-                        </div>
+
                     </div>
                 </div>
             </header>
@@ -486,6 +514,16 @@
     <script src="{{ asset('js/tabler.min.js') }}" defer></script>
     <script src="{{ asset('js/axios.min.js') }}"></script>
     <script src="{{ asset('js/vue.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $("#searchInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tbody tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
     @stack('scripts2')
 </body>
 

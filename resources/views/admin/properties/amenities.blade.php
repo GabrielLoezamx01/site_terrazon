@@ -3,8 +3,6 @@
 @push('scripts')
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
         crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.css" />
-    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
 @endpush
 @section('content')
     <div class="modal modal-blur fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
@@ -167,7 +165,7 @@
                                                 {{ session('success') }}
                                             @else
                                                 @if (session('errors'))
-                                                {{session('errors')  }}
+                                                    {{ session('errors') }}
                                                 @endif
                                             @endif
                                         </div>
@@ -175,8 +173,10 @@
                                     <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
                                 </div>
                             @endif
-
-                            <div id="table-default" class="table-responsive">
+                            <div class="search-box col-5">
+                                <input type="text" id="searchInput" class="form-control" placeholder="Buscar...">
+                            </div>
+                            <div id="table-default" class="table-responsive mt-5">
                                 <table class="table card-table table-vcenter text-nowrap datatable display"
                                     id="myTable">
                                     <thead>
@@ -184,7 +184,7 @@
                                             <th class="w-1">Id</th>
                                             <th>Nombre</th>
                                             {{-- <th>icon</th> --}}
-                                            <th>Fecha de creacion</th>
+                                            {{-- <th>Fecha de creacion</th> --}}
                                             <th>Opciones</th>
                                         </tr>
                                     </thead>
@@ -195,8 +195,8 @@
                                                 <td>{{ $item->name }}</td>
                                                 {{-- <td><img src="{{ asset('storage/svg/' . $item->icon) }}" alt="Icon">
                                                 </td> --}}
-                                                <td><label for=""
-                                                        class="text-muted">{{ $item->created_at }}</label></td>
+                                                {{-- <td><label for=""
+                                                        class="text-muted">{{ $item->created_at }}</label></td> --}}
                                                 <td>
                                                     <button @click="showModal(true , {{ $item->id }})"
                                                         class="btn btn-sm ">

@@ -3,8 +3,6 @@
 @push('scripts')
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
         crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.css" />
-    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
 @endpush
 @section('content')
     <div class="modal modal-blur fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
@@ -144,21 +142,12 @@
                             <h3 class="card-title">Características</h3>
                         </div>
                         <div class="shadow border-bottom py-3">
-                            @if (isset($errors) && $errors->any())
-                                <div class="alert alert-danger">
-                                    <ul>
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            @endif
 
                             @if (session('success') || session('errors'))
-                                <div class="alert alert-{{ session('success') ? 'success' : 'danger' }} alert-dismissible"
+                                <div class="alert m-5 alert-{{ session('success') ? 'success' : 'danger' }} alert-dismissible"
                                     role="alert">
                                     <div class="d-flex">
-                                        <div>
+                                        <div class="me-2">
                                             @if (session('success'))
                                                 <!-- Download SVG icon from http://tabler-icons.io/i/check -->
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon alert-icon"
@@ -173,119 +162,129 @@
                                         <div>
                                             @if (session('success'))
                                                 {{ session('success') }}
-                                            @else
-                                                <ul>
-                                                    @foreach (session('errors') as $error)
-                                                        <li>{{ $error }}</li>
-                                                    @endforeach
-                                                </ul>
+                                            @elseif(session('errors'))
+                                                @if (is_array(session('errors')))
+                                                    <ul class="mb-0">
+                                                        @foreach (session('errors') as $error)
+                                                            <li>{{ $error }}</li>
+                                                        @endforeach
+                                                    </ul>
+                                                @else
+                                                    {{ session('errors') }}
+                                                @endif
                                             @endif
                                         </div>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
                                     </div>
-                                    <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
                                 </div>
                             @endif
-
-                            <div id="table-default" class="table-responsive">
-                                <table class="table card-table table-vcenter text-nowrap datatable display"
-                                    id="myTable">
-                                    <thead>
-                                        <tr>
-                                            <th class="w-1">Id</th>
-                                            <th>Nombre</th>
-                                            <th>icon</th>
-                                            <th>Fecha de creacion</th>
-                                            <th>Opciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($features as $item)
+                            <div class="card-body border-bottom py-3">
+                                <div class="search-box col-5">
+                                    <input type="text" id="searchInput" class="form-control" placeholder="Buscar...">
+                                </div>
+                                <div id="table-default" class="table-responsive mt-5">
+                                    <table class="table card-table table-vcenter text-nowrap datatable display"
+                                        id="myTable">
+                                        <thead>
                                             <tr>
-                                                <td>{{ $item->id }}</td>
-                                                <td>{{ $item->name }}</td>
-                                                <td><img src="{{ asset('storage/svg/' . $item->icon) }}" alt="Icon">
-                                                </td>
-                                                <td><label for=""
-                                                        class="text-muted">{{ $item->created_at }}</label>
-                                                </td>
-                                                <td>
-                                                    <button @click="showModal(true , {{ $item->id }})"
-                                                        class="btn btn-sm "><svg xmlns="http://www.w3.org/2000/svg"
-                                                            width="24" height="24" viewBox="0 0 24 24"
-                                                            fill="none" stroke="currentColor" stroke-width="2"
-                                                            stroke-linecap="round" stroke-linejoin="round"
-                                                            class="icon icon-tabler icons-tabler-outline icon-tabler-pencil">
-                                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                            <path
-                                                                d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
-                                                            <path d="M13.5 6.5l4 4" />
-                                                        </svg></button>
-                                                    <button @click="deleteshow({{ $item->id }})"
-                                                        class="btn btn-sm text-danger" data-bs-toggle="modal"
-                                                        data-bs-target="#exampleModal"><svg
-                                                            xmlns="http://www.w3.org/2000/svg" width="24"
-                                                            height="24" viewBox="0 0 24 24" fill="none"
-                                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                            stroke-linejoin="round"
-                                                            class="icon icon-tabler icons-tabler-outline icon-tabler-trash">
-                                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                            <path d="M4 7l16 0" />
-                                                            <path d="M10 11l0 6" />
-                                                            <path d="M14 11l0 6" />
-                                                            <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
-                                                            <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
-                                                        </svg></button>
-                                                </td>
+                                                <th class="w-1">Id</th>
+                                                <th>Nombre</th>
+                                                <th>icon</th>
+                                                {{-- <th>Fecha de creacion</th> --}}
+                                                <th>Opciones</th>
                                             </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="card-footer d-flex align-items-center">
-                                <p class="m-0 text-muted">
-                                    Showing <span>{{ $features->firstItem() }}</span> to
-                                    <span>{{ $features->lastItem() }}</span> of <span>{{ $features->total() }}</span>
-                                    entries
-                                </p>
-                                <ul class="pagination m-0 ms-auto">
-                                    <!-- Botón de página anterior -->
-                                    @if ($features->onFirstPage())
-                                        <li class="page-item disabled">
-                                            <span class="page-link" tabindex="-1" aria-disabled="true">prev</span>
-                                        </li>
-                                    @else
-                                        <li class="page-item">
-                                            <a class="page-link" href="{{ $features->previousPageUrl() }}"
-                                                rel="prev">prev</a>
-                                        </li>
-                                    @endif
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($features as $item)
+                                                <tr>
+                                                    <td>{{ $item->id }}</td>
+                                                    <td>{{ $item->name }}</td>
+                                                    <td><img src="{{ asset('storage/svg/' . $item->icon) }}"
+                                                            alt="Icon">
+                                                    </td>
+                                                    {{-- <td><label for=""
+                                                            class="text-muted">{{ $item->created_at }}</label>
+                                                    </td> --}}
+                                                    <td>
+                                                        <button @click="showModal(true , {{ $item->id }})"
+                                                            class="btn btn-sm "><svg xmlns="http://www.w3.org/2000/svg"
+                                                                width="24" height="24" viewBox="0 0 24 24"
+                                                                fill="none" stroke="currentColor" stroke-width="2"
+                                                                stroke-linecap="round" stroke-linejoin="round"
+                                                                class="icon icon-tabler icons-tabler-outline icon-tabler-pencil">
+                                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                                <path
+                                                                    d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+                                                                <path d="M13.5 6.5l4 4" />
+                                                            </svg></button>
+                                                        <button @click="deleteshow({{ $item->id }})"
+                                                            class="btn btn-sm text-danger" data-bs-toggle="modal"
+                                                            data-bs-target="#exampleModal"><svg
+                                                                xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                height="24" viewBox="0 0 24 24" fill="none"
+                                                                stroke="currentColor" stroke-width="2"
+                                                                stroke-linecap="round" stroke-linejoin="round"
+                                                                class="icon icon-tabler icons-tabler-outline icon-tabler-trash">
+                                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                                <path d="M4 7l16 0" />
+                                                                <path d="M10 11l0 6" />
+                                                                <path d="M14 11l0 6" />
+                                                                <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                                                                <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                                                            </svg></button>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="card-footer d-flex align-items-center">
+                                    <p class="m-0 text-muted">
+                                        Showing <span>{{ $features->firstItem() }}</span> to
+                                        <span>{{ $features->lastItem() }}</span> of <span>{{ $features->total() }}</span>
+                                        entries
+                                    </p>
+                                    <ul class="pagination m-0 ms-auto">
+                                        <!-- Botón de página anterior -->
+                                        @if ($features->onFirstPage())
+                                            <li class="page-item disabled">
+                                                <span class="page-link" tabindex="-1" aria-disabled="true">prev</span>
+                                            </li>
+                                        @else
+                                            <li class="page-item">
+                                                <a class="page-link" href="{{ $features->previousPageUrl() }}"
+                                                    rel="prev">prev</a>
+                                            </li>
+                                        @endif
 
-                                    @for ($i = 1; $i <= $features->lastPage(); $i++)
-                                        <li class="page-item {{ $features->currentPage() == $i ? 'active' : '' }}">
-                                            <a class="page-link" href="{{ $features->url($i) }}">{{ $i }}</a>
-                                        </li>
-                                    @endfor
+                                        @for ($i = 1; $i <= $features->lastPage(); $i++)
+                                            <li class="page-item {{ $features->currentPage() == $i ? 'active' : '' }}">
+                                                <a class="page-link"
+                                                    href="{{ $features->url($i) }}">{{ $i }}</a>
+                                            </li>
+                                        @endfor
 
-                                    <!-- Botón de página siguiente -->
-                                    @if ($features->hasMorePages())
-                                        <li class="page-item">
-                                            <a class="page-link" href="{{ $features->nextPageUrl() }}"
-                                                rel="next">next</a>
-                                        </li>
-                                    @else
-                                        <li class="page-item disabled">
-                                            <span class="page-link" tabindex="-1" aria-disabled="true">next</span>
-                                        </li>
-                                    @endif
-                                </ul>
+                                        <!-- Botón de página siguiente -->
+                                        @if ($features->hasMorePages())
+                                            <li class="page-item">
+                                                <a class="page-link" href="{{ $features->nextPageUrl() }}"
+                                                    rel="next">next</a>
+                                            </li>
+                                        @else
+                                            <li class="page-item disabled">
+                                                <span class="page-link" tabindex="-1" aria-disabled="true">next</span>
+                                            </li>
+                                        @endif
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-@endsection
-@push('scripts2')
-    <script src="{{ asset('js/admin/features.js') }}"></script>
-@endpush
+    @endsection
+    @push('scripts2')
+        <script src="{{ asset('js/admin/features.js') }}"></script>
+    @endpush

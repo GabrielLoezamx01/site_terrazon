@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\FeaturesProperty;
+use App\Models\Relationship\FeatureProperty;
+use Illuminate\Support\Facades\Storage;
 
 class FeaturesController extends Controller
 {
@@ -101,12 +103,18 @@ class FeaturesController extends Controller
     public function destroy($id)
     {
         try {
-            $feature = FeaturesProperty::findOrFail($id);
-            if (!empty($feature->icon)) {
-                \Storage::delete('public/svg/' . $feature->icon);
+            $validacion = FeatureProperty::where('features_property_id', $id)->exists();
+            if ($validacion) {
+                session()->flash('errors', 'Hay propiedades asignadas');
+            } else {
+                $feature = FeaturesProperty::findOrFail($id);
+                if (!empty($feature->icon)) {
+                    \Storage::delete('public/svg/' . $feature->icon);
+                }
+                $feature->delete();
+                session()->flash('success', 'Operación exitosa');
             }
-            $feature->delete();
-            session()->flash('success', 'Operación exitosa');
+
         } catch (\Exception $e) {
             session()->flash('errors', ['Error al eliminar ' . $e->getMessage()]);
         }
