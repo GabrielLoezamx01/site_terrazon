@@ -24760,6 +24760,12 @@ body {
 .card-property .card-body .card-location img {
   height: 11px;
 }
+.card-property .card-body .card-location a {
+  color: #1E612D;
+  font-size: 11px;
+  font-weight: 500;
+  text-decoration: none;
+}
 
 ul.list-info {
   list-style: none;

@@ -11,7 +11,9 @@
         <span class="area">{{ $card["area"] }}</span>
         <div class="clearfix"></div>
         <h5 class="card-title">{{ $card["title"] }}</h5>
-        <h5 class="card-location"><img src="{{ asset('images/icons/location.svg') }}"> Ubicación del desarrollo</h5>
+        <h5 class="card-location">
+            <a href="https://www.google.com/maps/search/?api=1&query={{ $card['latitude'] }},{{ $card['longitude'] }}" target="_blank"><img src="{{ asset('images/icons/location.svg') }}"> Ubicación del desarrollo</a>
+        </h5>
         <p class="card-text">
             {{ $card["description"] }}
         </p>

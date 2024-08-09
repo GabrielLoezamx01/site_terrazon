@@ -16,6 +16,8 @@ class CardResource extends JsonResource
         $imageUrl    = isset($this->img) ? asset('storage/' . $this->img) : '';
         $description = isset($this->description) ? Str::limit($this->description, 300) : '';
         $detailsPage = '/ficha/' . $this->folio;
+        $latitude    = $this->latitude ?? '';
+        $longitude  = $this->longitude ?? '';
         $features = [];
         if (isset($this->features)) {
             foreach ($this->features as $kf => $vf) {
@@ -33,6 +35,8 @@ class CardResource extends JsonResource
             'imageUrl'    => $imageUrl,
             'description' => $description,
             'features'    => $features,
+            'latitude'    => $latitude,
+            'longitude'   => $longitude,
             'detailsPage' => $detailsPage
         ];
     }
