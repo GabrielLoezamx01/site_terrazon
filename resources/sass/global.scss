@@ -197,7 +197,7 @@ body {
         box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.25);
         border-bottom-left-radius: 5px;
         border-bottom-right-radius: 5px;
-
+        min-height: 260px;
         .price {
             position: absolute;
             left: 0;
@@ -242,6 +242,12 @@ body {
 
             img {
                 height: 11px;
+            }
+            a{
+                color: #1E612D;
+                font-size: 11px;
+                font-weight: 500;
+                text-decoration: none;
             }
         }
     }
@@ -704,6 +710,16 @@ ul.list-info {
     margin-right: 10px;
     background-position: center;
 }
+.svg-service-icon {
+    display: inline-block;
+    width: 96px !important;
+    height: 96px !important;
+    background-color: #D9D9D9 !important;
+    margin-right: 10px;
+    background-position: center !important;
+    background-size: 64% !important;
+    border-radius: 50%;
+}
 
 .svg-social-facebook {
     background: url('../svg/facebook.svg') no-repeat;
@@ -716,7 +732,18 @@ ul.list-info {
 .svg-social-whatsapp {
     background: url('../svg/whatsapp.svg') no-repeat;
 }
-
+.svg-service-contract{
+    background: url('../svg/service-contract.svg') no-repeat;
+}
+.svg-service-deal{
+    background: url('../svg/service-deal.svg') no-repeat;
+}
+.svg-service-finance{
+    background: url('../svg/service-finance.svg') no-repeat;
+}
+.svg-service-online{
+    background: url('../svg/service-online.svg') no-repeat;
+}
 .breadcrumb {
     .breadcrumb-item {
         font-size: 12px;

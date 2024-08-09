@@ -1,0 +1,86 @@
+@import 'variables';
+
+.section-01 {
+    position: relative;
+    width: 100%;
+    height: auto; // Ajusta según sea necesario
+    background-color: $primary2; // Color azul/morado para el fondo
+    overflow: hidden;
+    z-index: 0;
+
+    .semicircle {
+        position: absolute;
+        width: 120%; 
+        height: 720px;
+        background-color: white;
+        border-bottom: 43px solid $tertiary; 
+        border-bottom-right-radius: 100%;
+        right: -10%;
+        z-index: -1;
+        @media screen and (min-width: 920px) {
+            height: 500px;
+        }
+    }
+}
+
+.section-03 {
+    position: relative;
+    width: 100%;
+    min-height: 500px;
+    height: auto; // Ajusta según sea necesario
+    background-color: $primary2; // Color azul/morado para el fondo
+    overflow: hidden;
+    z-index: 0;
+    color: white; 
+    .content-margin{
+        margin-top: 5px;
+        @media screen and (min-width: 920px) {
+            margin-top: 100px;
+        }
+        padding-bottom: 2rem;
+    }
+    .semicircle {
+        position: absolute;
+        width: 250%;
+        height: 1000px;
+        background: linear-gradient(to right, $primary2 100%, $secondary 100%);
+        background: rgb(45, 37, 73);
+        background: linear-gradient(180deg, rgba($primary2, 1) 0%, rgba($secondary, 1) 100%);
+        border-top: 30px solid $secondary;
+        border-top-left-radius: 60%;
+        border-top-right-radius: 50%;
+        z-index: -1;
+        left: -10%;
+        @media screen and (min-width: 920px) {
+            width: 150%;
+        }
+    }
+}
+
+.section-02 {
+    background-color: #2d2549;
+    color: white;
+}
+
+.img-persona {
+    width: 80%;
+
+    @media screen and (min-width: 720px) {
+        width: 100% !important;
+    }
+}
+
+.image-persona-02 {
+    background-color: white;
+    border-radius: 50%;
+}
+
+.image-02 {
+    padding: 30px;
+    background: linear-gradient(to right, $secondary 50%, $primary2 50%);
+}
+
+
+.fs-description {
+    font-size: 18px;
+}
