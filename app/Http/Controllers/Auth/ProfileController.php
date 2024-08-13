@@ -95,7 +95,7 @@ class ProfileController extends Controller
 
         if (Hash::check($request->pass, $auth->password)) {
             $auth = Auth::user();
-            $auth->password = Hash::make($request->pass_new);
+            $auth->password = $request->pass_new;
             $auth->save();
             $htmlContent = View::make('emails.password')->render();
 

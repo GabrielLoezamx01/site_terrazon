@@ -1,97 +1,28 @@
 @extends('layouts.app')
 @section('title', 'Contactos')
 @section('content')
-    {{-- <div class="modal modal-blur fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1>Opciones</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <input type="text" class="form-control" required placeholder="Nombre" v-model="input.name" />
-                    </div>
-                    <div class="mb-3">
-                        <textarea v-model="input.span" id="" cols="30" rows="10" class="form-control">
-                            @{{ input.span }}
-                        </textarea>
-                    </div>
-                    <div class="mb-3 text-center p-4">
-                        <button class="btn btn-primary" v-if="btnUpdate" @click="updateData">OK</button>
-                        <button class="btn btn-primary" v-if="btnSave" @click="saveData">Guardar</button>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal modal-blur fade" id="modal-full-width" data-bs-backdrop="static" data-bs-keyboard="false"
-        tabindex="-1" style="display: none;" aria-hidden="true">
-        <div class="modal-dialog modal-full-width modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Lista de propiedades</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="p-2">
-                        <p class="fw-light fs-3"> Seleccionados : @{{ selectedFolios.join(', ') }}</p>
-                    </div>
-                    <div>
-                        <input type="text" v-model="searchQuery" placeholder="Buscar por folio o nombre"
-                            class="form-control mb-3" />
-                    </div>
-                    <div class="table-responsive">
-                        <table class="table table-vcenter card-table">
-                            <thead>
-                                <tr>
-                                    <th>Folio</th>
-                                    <th>Nombre</th>
-                                    <th>Ubicación</th>
-                                    <th>Precio</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr v-for="(item, index) in filteredProperties" :key="index">
-                                    <td>@{{ item.folio }}</td>
-                                    <td>@{{ item.title }}</td>
-                                    <td>@{{ item.municipality.name }}, @{{ item.municipality.state.name }}</td>
-                                    <td>@{{ item.price }}</td>
-                                    <td>
-                                        <input type="checkbox" @change="updateSelectedFolios(item, $event)"
-                                            :checked="isHomeSelected(item.folio)" />
-                                    </td>
-                                </tr>
-
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn me-auto" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
-                        @click="saveHome()">Guardar</button>
-                </div>
-            </div>
-        </div>
-    </div> --}}
-    <div class="page-header d-print-none">
+    {{-- <div class="page-header d-print-none">
         <div class="container-xl">
             <div class="row g-2 align-items-center">
                 <div class="col">
                     <div class="page-pretitle">
-                        Contactos
+                        Overview
                     </div>
                     <h2 class="page-title">
-                        {{-- Página Principal --}}
+                        Contactos
                     </h2>
                 </div>
+                <div class="col-auto ms-auto d-print-none">
 
+                </div>
             </div>
         </div>
-    </div>
+    </div> --}}
+
+    {{-- <x-slot name="actions">
+        <a href="{{ route('contacts.create') }}" class="btn btn-primary">Nuevo Contacto</a>
+    </x-slot> --}}
+
     <div class="container mt-5">
 
         <div class="row mt-5">
@@ -140,9 +71,9 @@
                             <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
                         </div>
                     @endif
-                       <div class="m-3 search-box col-5">
-                                <input type="text" id="searchInput" class="form-control" placeholder="Buscar...">
-                            </div>
+                    <div class="m-3 search-box col-5">
+                        <input type="text" id="searchInput" class="form-control" placeholder="Buscar...">
+                    </div>
                     <div id="table-default" class="table-responsive mt-5">
 
                         <table class="table card-table table-vcenter text-nowrap datatable display" id="myTable">
@@ -287,6 +218,5 @@
     </div>
 @endsection
 @push('scripts2')
-
     <script src="{{ asset('js/home/contacts.js') }}"></script>
 @endpush

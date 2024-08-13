@@ -309,7 +309,7 @@ class PropertyController extends Controller
         $property->description = $request->description;
         $property->price = $request->price;
         $property->latitude = $request->latitude ?? 0;
-        $property->longitude = $request->longitud ?? 0;
+        $property->longitude = $request->longitude ?? 0;
         $property->address = $request->address;
         $property->rooms = $request->rooms;
         $property->bathrooms = $request->bathrooms;

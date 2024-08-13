@@ -51,7 +51,13 @@ Route::get('/acercade', function () {
 Route::get('/contacto', function () {
     return view('public.contacto');
 })->name('contacto');
+
 Auth::routes();
+
+Route::get('/register', function () {
+    return redirect('/');
+});
+// Auth::routes(['register' => false]);
 
 
 Route::post('contacts_save', [ContactsController::class, 'store'])->name('contacts_save');
