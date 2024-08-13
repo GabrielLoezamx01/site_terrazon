@@ -1,0 +1,32 @@
+body {
+    background: red !important;
+    position: relative;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+// body::before {
+//     content: "";
+//     position: absolute;
+//     top: 20%;
+//     left: 0;
+//     right: 0;
+//     bottom: 0;
+//     background-color: #1a237e; /* Color azul oscuro */
+//     border-top-left-radius: 50% 100px;
+//     border-top-right-radius: 50% 100px;
+//     z-index: -1;
+// }
+
+// body::after {
+//     content: "";
+//     position: absolute;
+//     bottom: 0;
+//     left: 0;
+//     right: 0;
+//     height: 20%;
+//     background-color: #4CAF50; /* Color verde */
+//     border-top-left-radius: 50% 100px;
+//     border-top-right-radius: 50% 100px;
+//     z-index: -1;
+// }

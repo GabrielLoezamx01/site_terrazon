@@ -14,6 +14,7 @@ class ContactsController extends Controller
      */
     public function index()
     {
+<<<<<<< HEAD
         $contacts = Contact::orderBy('status', 'asc')
         ->orderBy('created_at', 'desc')
         ->paginate(20);
@@ -21,6 +22,12 @@ class ContactsController extends Controller
             'contacts' => $contacts,
             'title' => 'Contactos',
         ]);
+=======
+        $contacts = Contact::orderBy('created_at', 'desc')
+        ->paginate(20);
+        return view('admin.contacts.index', compact('contacts'));
+        //
+>>>>>>> e24422ec0d3f2787df23db0abdf1ee997a22c134
     }
 
     /**

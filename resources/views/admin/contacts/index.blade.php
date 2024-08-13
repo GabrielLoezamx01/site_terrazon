@@ -1,7 +1,16 @@
 @extends('layouts.app')
 @section('title', 'Contactos')
 @section('content')
+<<<<<<< HEAD
     {{-- <div class="page-header d-print-none">
+=======
+@push('scripts')
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+        crossorigin="anonymous"></script>
+@endpush
+
+    <div class="page-header d-print-none">
+>>>>>>> e24422ec0d3f2787df23db0abdf1ee997a22c134
         <div class="container-xl">
             <div class="row g-2 align-items-center">
                 <div class="col">
@@ -79,6 +88,7 @@
                         <table class="table card-table table-vcenter text-nowrap datatable display" id="myTable">
                             <thead>
                                 <tr>
+                                    <th>Fecha</th>
                                     <th>Nombre</th>
                                     <th>Correo</th>
                                     <th>Mensaje</th>
@@ -89,6 +99,7 @@
                             <tbody>
                                 @foreach ($contacts as $item)
                                     <tr>
+                                        <td>{{ $item['created_at'] }}</td>
                                         <td>{{ $item['name'] }}</td>
                                         <td>{{ $item['email'] }}</td>
                                         <td>
