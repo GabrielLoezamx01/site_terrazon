@@ -29,10 +29,12 @@
                                         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{ $item['id'] }}" class="{{ $loop->first ? 'active' : '' }}" aria-current="{{ $loop->first ? 'true' : 'false' }}" aria-label="{{ $item['label'] }}"></button>
                                         @endforeach
                                     </div>
-                                    <div class="carousel-inner">
+                                    <div class="carousel-inner gallery" id="gallery-property">
                                         @foreach($galery as $item)
                                         <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                                            <div class="ficha-carouser-img" style="background: url({{  $item['imageUrl'] }});"></div>
+                                            <a href="{{$item['imageUrl']}}">
+                                                <div class="ficha-carouser-img" style="background: url({{  $item['imageUrl'] }});"></div>
+                                            </a>
                                         </div>
                                         @endforeach
                                     </div>
@@ -67,23 +69,6 @@
                                             </a>
                                         </li>
                                         @endforeach
-                                        <!-- <li class="list-inline-item">
-                                            <a id="carousel-selector-1" data-bs-slide-to="1" data-bs-target="#carouselExampleCaptions">
-                                                <div class="carousel-img-thumb" style="background: url('https://i.imgur.com/Rpxx6wU.jpg');"></div>
-                                            </a>
-                                        </li>
-
-                                        <li class="list-inline-item">
-                                            <a id="carousel-selector-2" data-bs-slide-to="2" data-bs-target="#carouselExampleCaptions">
-                                                <div class="carousel-img-thumb" style="background: url('https://i.imgur.com/83fandJ.jpg');"></div>
-                                            </a>
-                                        </li>
-
-                                        <li class="list-inline-item">
-                                            <a id="carousel-selector-2" data-bs-slide-to="3" data-bs-target="#carouselExampleCaptions">
-                                                <div class="carousel-img-thumb" style="background: url('https://i.imgur.com/JiQ9Ppv.jpg');"></div>
-                                            </a>
-                                        </li> -->
                                     </div>
                                 </div>
                             </div>
@@ -124,10 +109,20 @@
                                         <div class="ficha-title">Características principales</div>
                                         <ul class="list-info">
                                             @foreach($property->features as $kf => $vf)
-                                            <li><label class="detail-icon"><img src="{{ asset('storage/svg/'.$vf['icon']) }}"></label><span>{{ $vf["name"]}}</span></li>
+                                            <li>
+                                                <label class="detail-icon">
+                                                @php
+                                                    $imagePath = 'storage/svg/'.$vf['icon'];
+                                                    $fullPath = public_path($imagePath);
+                                                @endphp
+                                                @if(file_exists($fullPath))
+                                                    <img src="{{ asset('storage/svg/'.$vf['icon']) }}">
+                                                @endif 
+                                                </label>
+                                                <span>{{ $vf["name"]}}</span>
+                                            </li>
                                             @endforeach
-                                            <!-- <li><label class="detail-icon"><img src="{{ asset('images/icons/bath.svg') }}"></label><span>2 Baños</span></li> -->
-                                            <!-- <li><label class="detail-icon"><img src="{{ asset('images/icons/cart.svg') }}"></label><span>1 Estacionamiento</span></li> -->
+
                                         </ul>
                                     </div>
                                     <div class="col-12 col-md-6 py-3">
@@ -195,25 +190,25 @@
                         <div>
                             <h4>Basado en tu búsqueda</h4>
                         </div>
-                        <x-card :title="$busqueda['title']" :price="$busqueda['price']" :area="$busqueda['area']" :content="$busqueda['content']" :imageUrl="$busqueda['imageUrl']" :detailsPage="$busqueda['detailsPage']" />
+                        <x-card :card="$busqueda" />
                     </div>
                     <div class="col-12 mb-3">
                         <div>
                             <h4>Mis Favoritos</h4>
                         </div>
-                        <x-card :title="$favoritos['title']" :price="$favoritos['price']" :area="$favoritos['area']" :content="$favoritos['content']" :imageUrl="$favoritos['imageUrl']" :detailsPage="$favoritos['detailsPage']" />
+                        <x-card :card="$favoritos" />
                     </div>
                     <div class="col-12 mb-3">
                         <div>
                             <h4>Otros usuarios vieron</h4>
                         </div>
-                        <x-card :title="$otros['title']" :price="$otros['price']" :area="$otros['area']" :content="$otros['content']" :imageUrl="$otros['imageUrl']" :detailsPage="$otros['detailsPage']" />
+                        <x-card :card="$otros" />
                     </div>
                     <div class="col-12 mb-3">
                         <div>
                             <h4>Lo más nuevo</h4>
                         </div>
-                        <x-card :title="$nuevo['title']" :price="$nuevo['price']" :area="$nuevo['area']" :content="$nuevo['content']" :imageUrl="$nuevo['imageUrl']" :detailsPage="$nuevo['detailsPage']" />
+                        <x-card :card="$nuevo"ƒ />
                     </div>
                 </div>
             </div>
@@ -499,4 +494,8 @@
 @endsection
 @push('scripts')
 <script src="{{ asset('js/ficha.js') }}"></script>
+<script src="{{ asset('js/gallery.js') }}"></script>
+@endpush
+@push('stylesheet')
+<link rel="stylesheet" href="{{ asset('css/gallery.css') }}" />
 @endpush

@@ -17,7 +17,8 @@ class HomePropertyController extends Controller
     public function index()
     {
         $home = Home::all();
-        return view('admin.home.index')->with(compact('home'));
+        $title = 'Home';
+        return view('admin.home.index')->with(compact('home', 'title'));
     }
 
     /**

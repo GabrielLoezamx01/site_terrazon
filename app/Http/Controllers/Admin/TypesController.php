@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\TypesProperty;
+use App\Models\Relationship\TypesProperty as TypesPropertyRelationship;
+
 
 class TypesController extends Controller
 {
@@ -82,10 +84,16 @@ class TypesController extends Controller
      */
     public function destroy($id)
     {
+
         try {
-            $types = TypesProperty::findOrFail($id);
-            $types->delete();
-            session()->flash('success', 'Operación exitosa');
+            $validacion = TypesPropertyRelationship::where('types_id', $id)->exists();
+            if ($validacion) {
+                session()->flash('errors', 'Hay propiedades asignadas a este tipo de propiedad');
+            } else {
+                $types = TypesProperty::findOrFail($id);
+                $types->delete();
+                session()->flash('success', 'Operación exitosa');
+            }
         } catch (\Exception $e) {
             session()->flash('errors', ['Error al eliminar ' . $e->getMessage()]);
         }

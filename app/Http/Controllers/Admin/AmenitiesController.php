@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Amenities;
+use App\Models\Relationship\AmenitiesProperty;
 use Illuminate\Support\Facades\Storage;
 
 class AmenitiesController extends Controller
@@ -31,17 +32,25 @@ class AmenitiesController extends Controller
         try {
             $this->validate($request, [
                 'name' => 'required',
-                'svg' => 'required|file',
+                // 'svg' => 'required|file',
             ]);
-            $fileName = $request->file('svg')->getClientOriginalName();
-            $fileName  =  $request->name  . '-' . $fileName;
-            $request->file('svg')->storeAs('public/svg', $fileName);
-            $insert = [
-                'name' => $request->name,
-                'icon' => $fileName,
-                'created_at' => now(),
-            ];
-            Amenities::insert($insert);
+            // $fileName = $request->file('svg')->getClientOriginalName();
+            // $fileName  =  $request->name  . '-' . $fileName;
+            // $request->file('svg')->storeAs('public/svg', $fileName);
+
+            $amenities = new Amenities();
+            $amenities->name = $request->name;
+            $amenities->icon = '';
+            $amenities->save();
+
+            // $insert = [
+            //     'name' => $request->name,
+            //     'icon' => '',
+            //     'created_at' => now(),
+            // ];
+
+            // Amenities::insert($insert);
+
             return redirect()->back()->withSuccess('¡Operación realizada con éxito!');
 
         } catch (\Exception $e) {
@@ -77,16 +86,16 @@ class AmenitiesController extends Controller
                 'name' => $request->name,
                 'updated_at' => now(),
             ];
-            if ($request->hasFile('svg')) {
-                $fileName = $request->file('svg')->getClientOriginalName();
-                $fileName  =  $request->name  . '-' . $fileName;
-                $request->file('svg')->storeAs('public/svg', $fileName);
-                $update['icon'] = $fileName;
-                $icon = Amenities::where('id', $id)->select('icon')->first();
-                if(!$icon->icon == null){
-                    \Storage::delete('public/svg/' .$icon->icon);
-                }
-            }
+            // if ($request->hasFile('svg')) {
+            //     $fileName = $request->file('svg')->getClientOriginalName();
+            //     $fileName  =  $request->name  . '-' . $fileName;
+            //     $request->file('svg')->storeAs('public/svg', $fileName);
+            //     $update['icon'] = $fileName;
+            //     $icon = Amenities::where('id', $id)->select('icon')->first();
+            //     if(!$icon->icon == null){
+            //         \Storage::delete('public/svg/' .$icon->icon);
+            //     }
+            // }
             Amenities::where('id', $id)->update($update);
             return redirect()->back()->withSuccess('¡Operación realizada con éxito!');
         } catch (\Exception $e) {
@@ -103,14 +112,19 @@ class AmenitiesController extends Controller
     public function destroy($id)
     {
         try {
-            $amenity = Amenities::findOrFail($id);
-            if (!empty($amenity->icon)) {
-                \Storage::delete('public/svg/' . $amenity->icon);
+            $validacion = AmenitiesProperty::where('amenities_id',$id)->exists();
+            if($validacion){
+                session()->flash('errors', 'Hay propiedades asignadas a esta amenidad');
+            }else{
+                $amenity = Amenities::findOrFail($id);
+                if (!empty($amenity->icon)) {
+                    \Storage::delete('public/svg/' . $amenity->icon);
+                }
+                $amenity->delete();
+                session()->put('success', 'Operación exitosa');
             }
-            $amenity->delete();
-            session()->flash('success', 'Operación exitosa');
         } catch (\Exception $e) {
-            session()->flash('errors', ['Error al eliminar '. $e->getMessage()]);
+            session()->flash('errors', $e->getMessage());
         }
     }
 }

@@ -3,13 +3,24 @@
 @push('scripts')
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
         crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.css" />
-    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
 @endpush
+
 @section('content')
     <div class="page-header d-print-none">
         <div class="container-xl">
-
+             <div class="row g-2 align-items-center">
+            <div class="col">
+                <div class="page-pretitle">
+                    Overview
+                </div>
+                <h2 class="page-title">
+                   Propiedades
+                </h2>
+            </div>
+            <div class="col-auto ms-auto d-print-none">
+                {{ $slot ?? ''}}
+            </div>
+        </div>
 
             <div class="row g-2 align-items-center">
                 <div class="col-auto ms-auto d-print-none">
@@ -84,7 +95,10 @@
                                 <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
                             </div>
                         @endif
-                        <div id="table-default" class="table-responsive">
+                        <div class="search-box col-5">
+                            <input type="text" id="searchInput" class="form-control" placeholder="Buscar...">
+                        </div>
+                        <div id="table-defassult" class="table-responsive mt-5">
                             <table class="table card-table table-vcenter text-nowrap datatable display" id="myTable">
                                 <thead>
                                     <tr>
@@ -108,15 +122,18 @@
                                             <tr class="p-2  bg-orange-lt" title="No tiene detalles">
                                         @endif
                                         <td class="text-start"><span class="fw-bold">{{ $item->folio }}</span></td>
-                                        <td>{{ $item->title }}</td>
-                                        <td >
+                                        <td class="fs-5">{{ $item->title }}</td>
+                                        <td>
                                             <button class="btn btn-sm btn-info toggle-details m-3">Ver detalles</button>
                                             <div class="details-container mt-3 p-3 bg-light rounded" style="display: none;">
                                                 <h6 class="mb-3">Detalles:</h6>
                                                 <ul class="list-unstyled">
-                                                    <li class="text-dark"><strong>Habitaciones:</strong> {{ $item->rooms }}</li>
-                                                    <li class="text-dark"><strong>Baños:</strong> {{ $item->bathrooms }}</li>
-                                                    <li class="text-dark"><strong>Estacionamiento:</strong> {{ $item->parking }}</li>
+                                                    <li class="text-dark"><strong>Habitaciones:</strong> {{ $item->rooms }}
+                                                    </li>
+                                                    <li class="text-dark"><strong>Baños:</strong> {{ $item->bathrooms }}
+                                                    </li>
+                                                    <li class="text-dark"><strong>Estacionamiento:</strong>
+                                                        {{ $item->parking }}</li>
                                                 </ul>
                                             </div>
                                         </td>
@@ -189,25 +206,47 @@
                                                     <path d="M7 14l3 -3l2 2l3 -3l2 2" />
                                                 </svg>
                                             </a>
+                                            @if ($item->available == 0)
+                                                <button title="Activar Propiedad" class="btn btn-sm btn-icon btn-success"
+                                                    @click="activeProperty('{{ $item['id'] }}')">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                        class="icon icon-tabler icons-tabler-outline icon-tabler-circle-dashed-check">
+                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                        <path d="M8.56 3.69a9 9 0 0 0 -2.92 1.95" />
+                                                        <path d="M3.69 8.56a9 9 0 0 0 -.69 3.44" />
+                                                        <path d="M3.69 15.44a9 9 0 0 0 1.95 2.92" />
+                                                        <path d="M8.56 20.31a9 9 0 0 0 3.44 .69" />
+                                                        <path d="M15.44 20.31a9 9 0 0 0 2.92 -1.95" />
+                                                        <path d="M20.31 15.44a9 9 0 0 0 .69 -3.44" />
+                                                        <path d="M20.31 8.56a9 9 0 0 0 -1.95 -2.92" />
+                                                        <path d="M15.44 3.69a9 9 0 0 0 -3.44 -.69" />
+                                                        <path d="M9 12l2 2l4 -4" />
+                                                    </svg>
+                                                </button>
+                                            @elseif($item->available == 1)
+                                                <button title="Desactivar Propiedad"
+                                                    class="btn btn-sm btn-icon btn-danger"
+                                                    @click="deactivate_property('{{ $item['id'] }}')">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                        class="icon icon-tabler icons-tabler-outline icon-tabler-circle-dashed-check">
+                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                        <path d="M8.56 3.69a9 9 0 0 0 -2.92 1.95" />
+                                                        <path d="M3.69 8.56a9 9 0 0 0 -.69 3.44" />
+                                                        <path d="M3.69 15.44a9 9 0 0 0 1.95 2.92" />
+                                                        <path d="M8.56 20.31a9 9 0 0 0 3.44 .69" />
+                                                        <path d="M15.44 20.31a9 9 0 0 0 2.92 -1.95" />
+                                                        <path d="M20.31 15.44a9 9 0 0 0 .69 -3.44" />
+                                                        <path d="M20.31 8.56a9 9 0 0 0 -1.95 -2.92" />
+                                                        <path d="M15.44 3.69a9 9 0 0 0 -3.44 -.69" />
+                                                        <path d="M9 12l2 2l4 -4" />
+                                                    </svg>
+                                                </button>
+                                            @endif
 
-                                            <button title="Activar Propiedad" class="btn btn-sm btn-icon btn-success"
-                                                @click="activeProperty('{{ $item['id'] }}')">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                    class="icon icon-tabler icons-tabler-outline icon-tabler-circle-dashed-check">
-                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                    <path d="M8.56 3.69a9 9 0 0 0 -2.92 1.95" />
-                                                    <path d="M3.69 8.56a9 9 0 0 0 -.69 3.44" />
-                                                    <path d="M3.69 15.44a9 9 0 0 0 1.95 2.92" />
-                                                    <path d="M8.56 20.31a9 9 0 0 0 3.44 .69" />
-                                                    <path d="M15.44 20.31a9 9 0 0 0 2.92 -1.95" />
-                                                    <path d="M20.31 15.44a9 9 0 0 0 .69 -3.44" />
-                                                    <path d="M20.31 8.56a9 9 0 0 0 -1.95 -2.92" />
-                                                    <path d="M15.44 3.69a9 9 0 0 0 -3.44 -.69" />
-                                                    <path d="M9 12l2 2l4 -4" />
-                                                </svg>
-                                            </button>
                                         </td>
                                         </tr>
                                     @endforeach
@@ -289,17 +328,36 @@
                         });
 
                 },
+                 deactivate_property: function(id) {
+                    const request = {
+                        property: id,
+                    };
+                    axios.post('deactivate_property', request)
+                        .then((response) => {
+                            console.log(response.data);
+                            if (response.status === 200) {
+                                this.message = response.data.message;
+                                setTimeout(() => {
+                                    location.reload();
+                                }, 1000);
+                            } else {
+                                this.message = response.data.error;
+                            }
+                            alert(this
+                                .message
+                            ); // Asegúrate de que el alert esté dentro del then para mostrar el mensaje correctamente
+                        })
+                        .catch((error) => {
+                            this.message = error.response.data.error;
+
+                            alert(this.message); // Manejo básico de errores
+                        });
+
+                },
             },
         });
     </script>
     <script>
-        $(document).ready(function() {
-            $("#myTable").DataTable({
-                info: false,
-                paging: false,
-                responsive: true,
-            });
-        });
         $(document).ready(function() {
             $('.toggle-details').click(function() {
                 var detailsContainer = $(this).closest('tr').find('.details-container');

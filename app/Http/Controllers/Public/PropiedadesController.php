@@ -2,25 +2,15 @@
 namespace App\Http\Controllers\Public;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CardResource;
 use App\Models\Property;
-use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 class PropiedadesController extends Controller
 {
     public function index()
     {
         $properties= Property::with('types','amenities','conditions','details','features','galleries')->where('available',1)->get();
         foreach($properties as $kp => $vp){
-            $description = Str::limit($vp->description, 150);
-            $detailsPage = '/ficha/'.$vp->folio;
-            $data[]=[
-                'title' => $vp->title,
-                'price' => number_format($vp->price, 2,'.',','),
-                'area' => '520 m2',
-                'imageUrl' => asset('storage/'.$vp->img),
-                'content' => $description,
-                'detailsPage' => $detailsPage
-            ];
+            $data[]=new CardResource($vp);
         }
         shuffle($data);
         return view('public.propiedades', [
@@ -29,8 +19,8 @@ class PropiedadesController extends Controller
         ]);
     }
     public function ficha($sku){
-        $properties= Property::with('types','amenities','conditions','details','features','galleries')->where('available',1)->get();
-        $property= Property::with('types','amenities','conditions','details','features','galleries')->where('folio',$sku)->first();
+        $properties = Property::with('types','amenities','conditions','details','features','galleries')->where('available',1)->get();
+        $property   = Property::with('types','amenities','conditions','details','features','galleries')->where('folio',$sku)->first();
         $galery=[];
         if(isset($property->galleries)){
             foreach($property->galleries as $key => $value){
@@ -44,17 +34,8 @@ class PropiedadesController extends Controller
         }
         $data = [];
         // for($i=0; $i<12; $i++){
-        foreach($properties as $kp => $vp){
-            $description = Str::limit($vp->description, 150);
-            $detailsPage = '/ficha/'.$vp->folio;
-            $data[]=[
-                'title' => $vp->title,
-                'price' => number_format($vp->price, 2,'.',','),
-                'area' => '520 m2',
-                'imageUrl' => asset('storage/'.$vp->img),
-                'content' => $description,
-                'detailsPage' => $detailsPage
-            ];
+        foreach($properties as $kp => $vp){ 
+            $data[] = new CardResource($vp);
         }
         shuffle($data);
         // $busqueda=[];

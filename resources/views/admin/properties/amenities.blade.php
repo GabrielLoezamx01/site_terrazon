@@ -3,8 +3,6 @@
 @push('scripts')
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
         crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.css" />
-    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
 @endpush
 @section('content')
     <div class="modal modal-blur fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
@@ -25,11 +23,11 @@
                             <input type="text" placeholder="Ingresar el nombre" autocomplete="off" class="form-control"
                                 name="name" value="{{ old('name') }}" maxlength="30" required>
                         </div>
-                        <div class="mb-3">
+                        {{-- <div class="mb-3">
                             <label for="email">Icon</label>
                             <input type="file" accept=".svg" autocomplete="off" placeholder="Ingresa el archivo SVG"
                                 class="form-control" name="svg" value="{{ old('svg') }}" required>
-                        </div>
+                        </div> --}}
                         <div class="mb-3 text-center">
                             <button class="btn btn-dark">Guardar</button>
                         </div>
@@ -45,11 +43,11 @@
                             <input type="text" placeholder="Ingresar el nombre" autocomplete="off" class="form-control"
                                 name="name" v-model="name" value="{{ old('name') }}" maxlength="30" required>
                         </div>
-                        <div class="mb-3">
+                        {{-- <div class="mb-3">
                             <label for="email">Icon</label>
                             <input type="file" accept=".svg" autocomplete="off" placeholder="Ingresa el archivo SVG"
                                 class="form-control" name="svg" value="{{ old('svg') }}">
-                        </div>
+                        </div> --}}
                         <div class="mb-3 text-center">
                             <button class="btn btn-dark">Actualizar</button>
                         </div>
@@ -117,9 +115,9 @@
                 <div class="col-auto ms-auto d-print-none">
                     <div class="btn-list">
                         <div class="col"> <button class="btn btn-dark" @click="showModal(false)">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round"
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round"
                                     class="icon icon-tabler icons-tabler-outline icon-tabler-circle-plus">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                     <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />
@@ -144,15 +142,7 @@
                             <h3 class="card-title">Amenidades</h3>
                         </div>
                         <div class="card-body border-bottom py-3">
-                            @if (isset($errors) && $errors->any())
-                                <div class="alert alert-danger">
-                                    <ul>
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            @endif
+
 
                             @if (session('success') || session('errors'))
                                 <div class="alert alert-{{ session('success') ? 'success' : 'danger' }} alert-dismissible"
@@ -174,27 +164,27 @@
                                             @if (session('success'))
                                                 {{ session('success') }}
                                             @else
-                                                <ul>
-                                                    @foreach (session('errors') as $error)
-                                                        <li>{{ $error }}</li>
-                                                    @endforeach
-                                                </ul>
+                                                @if (session('errors'))
+                                                    {{ session('errors') }}
+                                                @endif
                                             @endif
                                         </div>
                                     </div>
                                     <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
                                 </div>
                             @endif
-
-                            <div id="table-default" class="table-responsive">
+                            <div class="search-box col-5">
+                                <input type="text" id="searchInput" class="form-control" placeholder="Buscar...">
+                            </div>
+                            <div id="table-default" class="table-responsive mt-5">
                                 <table class="table card-table table-vcenter text-nowrap datatable display"
                                     id="myTable">
                                     <thead>
                                         <tr>
                                             <th class="w-1">Id</th>
                                             <th>Nombre</th>
-                                            <th>icon</th>
-                                            <th>Fecha de creacion</th>
+                                            {{-- <th>icon</th> --}}
+                                            {{-- <th>Fecha de creacion</th> --}}
                                             <th>Opciones</th>
                                         </tr>
                                     </thead>
@@ -203,10 +193,10 @@
                                             <tr>
                                                 <td>{{ $item->id }}</td>
                                                 <td>{{ $item->name }}</td>
-                                                <td><img src="{{ asset('storage/svg/' . $item->icon) }}" alt="Icon">
-                                                </td>
-                                                <td><label for=""
-                                                        class="text-muted">{{ $item->created_at }}</label></td>
+                                                {{-- <td><img src="{{ asset('storage/svg/' . $item->icon) }}" alt="Icon">
+                                                </td> --}}
+                                                {{-- <td><label for=""
+                                                        class="text-muted">{{ $item->created_at }}</label></td> --}}
                                                 <td>
                                                     <button @click="showModal(true , {{ $item->id }})"
                                                         class="btn btn-sm ">

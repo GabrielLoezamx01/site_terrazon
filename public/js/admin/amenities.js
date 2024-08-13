@@ -1,10 +1,4 @@
 var api = "/admin/amenities";
- $(document).ready(function () {
-     $("#myTable").DataTable({
-         info: false,
-         paging: false,
-     });
- });
 const app = new Vue({
     el: "#vueApp",
     data: {

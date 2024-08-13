@@ -3,24 +3,13 @@
 namespace App\View\Components;
 
 use Illuminate\View\Component;
-
+use App\Http\Resources\CardResource;
 class Card extends Component
 {
-    public $title;
-    public $content;
-    public $imageUrl;
-    public $price;
-    public $area;
-    public $detailsPage;
-
-    public function __construct($title, $content, $imageUrl, $price, $area, $detailsPage)
+    public $card;
+    public function __construct(CardResource $card)
     {
-        $this->title       = $title;
-        $this->content     = $content;
-        $this->imageUrl    = $imageUrl;
-        $this->price       = $price;
-        $this->area        = $area;
-        $this->detailsPage = $detailsPage;
+        $this->card = $card->toArray(request());
     }
 
     public function render()
