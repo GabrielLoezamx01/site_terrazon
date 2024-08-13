@@ -1,16 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Contactos')
 @section('content')
-<<<<<<< HEAD
     {{-- <div class="page-header d-print-none">
-=======
-@push('scripts')
-    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
-        crossorigin="anonymous"></script>
-@endpush
-
-    <div class="page-header d-print-none">
->>>>>>> e24422ec0d3f2787df23db0abdf1ee997a22c134
         <div class="container-xl">
             <div class="row g-2 align-items-center">
                 <div class="col">
