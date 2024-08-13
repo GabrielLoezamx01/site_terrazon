@@ -6,6 +6,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\View;
 
 class SendVerificationEmail
 {
@@ -29,13 +30,14 @@ class SendVerificationEmail
     {
         $email = $event->email;
         $token = $event->token;
-        //Se debe mandar un desing con el token
+        $htmlContent = View::make('emails.new_user')->with('token', $token)->render();
+
         $payload = [
             'from' => 'TERRAZON  <Terrazon@echamelamano.online>',
             'to' => [$email],
             'subject' => 'Verificación de usuario',
-            'html' => '<h1 style="font-weight: 800;">Bienvenido a Terrazon.</h1><div style="margin-top: 50px;">Gracias por registrarte en Terrazon. Para completar tu registro, por favor haz clic en el siguiente enlace: <a href="http://127.0.0.1:8000/emails/verify?token=' . $token . '">Verificar mi cuenta</a></div>',
-            'headers' => [
+            'html' => $htmlContent,
+             'headers' => [
                 'X-Entity-Ref-ID' => Str::random(6)
             ],
         ];

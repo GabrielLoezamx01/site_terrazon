@@ -62,8 +62,9 @@ Route::get('/register', function () {
 
 Route::post('contacts_save', [ContactsController::class, 'store'])->name('contacts_save');
 
-Route::get('aunlock', [ProfileController::class, 'lock_verify'])->name('aunlock');
+// Route::get('aunlock', [ProfileController::class, 'lock_verify'])->name('aunlock');
 
+// route::view('new_user', 'emails.new_user');
 
 Route::prefix('admin')->middleware('auth')->group(function () {
     // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -94,10 +95,11 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::post('update_password', [ProfileController::class, 'update_password'])->name('update_password');
 });
 
-Route::get('password', [ProfileController::class, 'lock']);
+// Route::get('password', [ProfileController::class, 'lock']);
 
 
 
+include __DIR__ . '/referrals.php';
 
 
-Route::apiResource('emails/verify', VerifyController::class);
+// Route::apiResource('emails/verify', VerifyController::class);
