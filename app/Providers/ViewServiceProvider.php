@@ -27,14 +27,12 @@ class ViewServiceProvider extends ServiceProvider
     public function boot()
     {
         $list = ListSidebar::pluck('name')->toArray();
-
-        $viewsArray = array_map('trim', $list); // Limpiar cualquier espacio adicional
-
+        $viewsArray = array_map('trim', $list);
         View::composer(
-            $viewsArray, // Usa el array de vistas
+            $viewsArray,
             function ($view) {
-                $sidebarItems = SidebarItem::all(); // Obtén los datos que deseas pasar a la vista
-                $view->with('sidebarItems', $sidebarItems); // Inyecta los datos en la vista
+                $sidebarItems = SidebarItem::orderBy('created_at', 'desc')->get();
+                $view->with('sidebarItems', $sidebarItems);
             }
         );
     }

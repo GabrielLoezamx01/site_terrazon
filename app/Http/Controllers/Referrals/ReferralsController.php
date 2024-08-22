@@ -37,9 +37,9 @@ class ReferralsController extends Controller
 
             $email = $request->email;
 
-            if (Referrals::where('email', $email)->exists()) {
-                return redirect()->back()->withErrors(['email' => 'El correo electrónico ya está registrado.'])->withInput();
-            }
+            // if (Referrals::where('email', $email)->exists()) {
+            //     return redirect()->back()->withErrors(['email' => 'El correo electrónico ya está registrado.'])->withInput();
+            // }
 
             $token = Str::random(6);
 

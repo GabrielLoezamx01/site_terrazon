@@ -7,6 +7,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Crypt;
 
 class SendVerificationEmail
 {
@@ -30,14 +31,19 @@ class SendVerificationEmail
     {
         $email = $event->email;
         $token = $event->token;
-        $htmlContent = View::make('emails.new_user')->with('token', $token)->render();
+
+        $encryptedEmail = base64_encode(Crypt::encryptString($email));
+        $encryptedToken = base64_encode(Crypt::encryptString($token));
+        $encryptedParam = $encryptedEmail . '.' . $encryptedToken;
+
+        $htmlContent = View::make('emails.new_user')->with('token', $encryptedParam)->render();
 
         $payload = [
             'from' => 'TERRAZON  <Terrazon@echamelamano.online>',
             'to' => [$email],
             'subject' => 'Verificación de usuario',
             'html' => $htmlContent,
-             'headers' => [
+            'headers' => [
                 'X-Entity-Ref-ID' => Str::random(6)
             ],
         ];

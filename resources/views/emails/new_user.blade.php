@@ -5,72 +5,105 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro Exitoso</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
+        body {
+            background-color: #f4f4f4;
+            font-family: 'Arial', sans-serif;
+        }
+
         .email-container {
-            background-color: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
             max-width: 600px;
-            margin: 0 auto;
+            margin: 20px auto;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
-        .email-header,
-        .email-footer {
+        .email-header {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
 
-        .email-footer {
-            font-size: 0.875rem;
-            color: #6c757d;
+        .email-header img {
+            max-width: 150px;
+            margin-bottom: 20px;
         }
 
         .email-body {
             font-size: 1rem;
-            line-height: 1.5;
-            color: #212529;
+            line-height: 1.6;
+            color: #333333;
+            margin-bottom: 30px;
+        }
+
+        .email-body h2 {
+            color: #37B052;
+            margin-bottom: 20px;
+            font-weight: bold;
         }
 
         .token {
             display: block;
             font-size: 1.5rem;
             font-weight: bold;
-            margin-top: 10px;
-            color: #007bff;
+            margin: 20px 0;
+            color: #37B052;
+            text-align: center;
         }
 
         .button {
             display: inline-block;
-            padding: 10px 20px;
+            padding: 12px 25px;
             font-size: 1rem;
             font-weight: bold;
             color: #ffffff;
-            background-color: #007bff;
+            background-color: #37B052;
             text-decoration: none;
             border-radius: 5px;
-            margin-top: 20px;
+            text-align: center;
+            margin: 20px auto;
+            display: block;
+        }
+
+        .email-footer {
+            font-size: 0.875rem;
+            color: #6c757d;
+            text-align: center;
+        }
+
+        .email-footer p {
+            margin-bottom: 5px;
+        }
+
+        .email-footer a {
+            color: #37B052;
+            text-decoration: none;
         }
     </style>
 </head>
 
 <body>
-    <div class="container email-container mt-5 mb-5">
+    <div class="container email-container">
         <div class="email-header">
+            <img src="https://example.com/logo.png" alt="Terrazon Logo">
             <h1 class="fw-bold">¡Bienvenido a Terrazon!</h1>
         </div>
 
         <div class="email-body">
             <h2>¡Registro Exitoso!</h2>
-            <p>Gracias por registrarte. Aquí está tu token de verificación:</p>
-            <span class="token">{{ $token }}</span>
-            <p>Si tienes alguna pregunta o necesitas asistencia, no dudes en ponerte en contacto con nuestro equipo de soporte.</p>
-            <p>¡Gracias por unirte a nosotros!</p>
-            <!-- Puedes añadir un botón si es necesario -->
+            <p>Gracias por unirte a nuestra comunidad. Tu token de verificación está listo:</p>
+            <p>Por favor, sigue el enlace a continuación para continuar:</p>
+            <a href="{{ env('URL_REFERRALS') . $token }}" class="button">Click Aquí Para Continuar</a>
+            <p>Si tienes alguna pregunta o necesitas ayuda, no dudes en contactarnos.</p>
+            <p>¡Estamos aquí para ti!</p>
         </div>
 
         <div class="email-footer">
             <p>&copy; {{ date('Y') }} Terrazon. Todos los derechos reservados.</p>
+            <p><a href="https://terrazon.com/terms">Términos y Condiciones</a> | <a
+                    href="https://terrazon.com/privacy">Política de Privacidad</a></p>
         </div>
     </div>
 </body>

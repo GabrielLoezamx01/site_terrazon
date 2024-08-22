@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,29 +13,39 @@
     @stack('styles')
     @stack('scripts')
 </head>
+
 <body>
     <div class="page">
         @if (Auth::check())
-            @include('layouts.aside')
-        @endif
-        <div class="page-wrapper" id="vueApp">
-            {{-- <x-page-header title="{{ $title ?? 'Configurar vista' }}" /> --}}
-            @yield('content')
-            <footer class="footer footer-transparent d-print-none">
-                <div class="container-xl">
-                    <span>Terrazon Admin</span>
-                </div>
-            </footer>
-        </div>
+            @if (!isset($validate))
+                @include('layouts.aside')
+            @endif
+            <div class="page-wrapper" id="vueApp">
+                {{-- <x-page-header title="{{ $title ?? 'Configurar vista' }}" /> --}}
+                @yield('content')
+                <footer class="footer footer-transparent d-print-none">
+                    <div class="container-xl">
+                        <span>Terrazon Admin</span>
+                    </div>
+                </footer>
+            </div>
 
     </div>
-    <script src="{{ asset('js/demo-theme.min.js') }}"></script>
-    <script src="{{ asset('js/tabler.min.js') }}" defer></script>
+
     <script src="{{ asset('js/axios.min.js') }}"></script>
     <script src="{{ asset('js/vue.js') }}"></script>
     <script src="{{ asset('js/search.js') }}"></script>
 
     @stack('scripts2')
+@else
+    <div class="page-wrapper" id="vueApp">
+        {{-- <x-page-header title="{{ $title ?? 'Configurar vista' }}" /> --}}
+        @yield('content')
+    </div>
+    @endif
+    <script src="{{ asset('js/demo-theme.min.js') }}"></script>
+    <script src="{{ asset('js/tabler.min.js') }}" defer></script>
+
 </body>
 
 </html>
