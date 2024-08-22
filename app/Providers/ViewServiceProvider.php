@@ -33,11 +33,7 @@ class ViewServiceProvider extends ServiceProvider
             if (Schema::hasTable('list_sidebar')) {
                 $list = ListSidebar::pluck('name')->toArray();
                 $viewsArray = array_map('trim', $list);
- 
-                // Si la tabla tiene vistas registradas
                 if (count($viewsArray) > 0) {
-                    $viewsArray = 'admin/home';
-   
                     View::composer($viewsArray, function ($view) {
                         $sidebarItems = SidebarItem::all();
                         $view->with('sidebarItems', $sidebarItems);

@@ -56,7 +56,6 @@
                </div>
            </div>
            <div class="collapse navbar-collapse" id="sidebar-menu">
-           <div>HELLO</div>
                @if (isset($sidebarItems) && count($sidebarItems) > 0)
                <ul class="navbar-nav pt-lg-3">
                    @foreach ($sidebarItems as $item)
