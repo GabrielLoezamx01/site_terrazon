@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Referrals;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Referrals;
 
 class LoginController extends Controller
 {
@@ -12,9 +13,15 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('referrals.login');
+        $encryptedParam = $request->token ?? false;
+        $email = null;
+        if(is_string($encryptedParam)){
+            $email = Referrals::expiration($encryptedParam)->email;
+        }
+        $validation = $encryptedParam ? true : false;
+        return view('referrals.login')->with(compact('validation','email'));
     }
 
     /**
