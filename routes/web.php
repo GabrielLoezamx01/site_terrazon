@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Referrals\ReferralsController;
+use App\Http\Controllers\Referrals\ReferralsPropertyController;
 use App\Http\Controllers\Emails\VerifyController;
 use App\Http\Controllers\Admin\AmenitiesController;
 use App\Http\Controllers\Admin\TypesController;
@@ -72,6 +73,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::apiResource('contacts', ContactsController::class);
     Route::apiResource('home_propery', PropertyHome::class);
     Route::apiResource('users', ReferralsController::class);
+    Route::apiResource('list_users', ReferralsPropertyController::class);
     Route::apiResource('amenities', AmenitiesController::class);
     Route::apiResource('types', TypesController::class);
     Route::apiResource('features', FeaturesController::class);
