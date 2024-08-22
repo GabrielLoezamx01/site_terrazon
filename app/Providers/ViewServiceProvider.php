@@ -29,20 +29,31 @@ class ViewServiceProvider extends ServiceProvider
     public function boot()
     {
         try {
-            if (Schema::hasTable('list_sidebars')) {
+            // Verificar si la tabla list_sidebar existe
+            if (Schema::hasTable('list_sidebar')) {
                 $list = ListSidebar::pluck('name')->toArray();
+                $viewsArray = array_map('trim', $list);
+ 
+                // Si la tabla tiene vistas registradas
+                if (count($viewsArray) > 0) {
+                    $viewsArray = 'admin/home';
+   
+                    View::composer($viewsArray, function ($view) {
+                        $sidebarItems = SidebarItem::all();
+                        $view->with('sidebarItems', $sidebarItems);
+                    });
+                } else {
 
-                $viewsArray = array_map('trim', $list); // Limpiar cualquier espacio adicional
-
-                View::composer(
-                    $viewsArray, // Usa el array de vistas
-                    function ($view) {
-                        $sidebarItems = SidebarItem::all(); // Obtén los datos que deseas pasar a la vista
-                        $view->with('sidebarItems', $sidebarItems); // Inyecta los datos en la vista
-                    }
-                );
+                    // Si la tabla no tiene vistas registradas, compartir con todas las vistas
+                    View::share('sidebarItems', SidebarItem::all());
+                }
+            } else {
+                // Si la tabla no existe, compartir un array vacío
+                View::share('sidebarItems', []);
             }
         } catch (QueryException $e) {
+            // Manejo de excepciones de la consulta
+            View::share('sidebarItems', []);
         }
     }
 }

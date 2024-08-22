@@ -9,14 +9,15 @@ class SidebarItemsSeeder extends Seeder
 {
     public function run()
     {
-        $items = [
+
+        $parents = [
             [
                 'id' => 1,
                 'name' => 'Home',
                 'svg' => 'home.svg',
                 'link' => 'admin/home',
                 'parent_id' => null,
-                'created_at' => '2024-08-09 03:15:23',
+                'created_at' => now(),
                 'updated_at' => null,
             ],
             [
@@ -25,79 +26,81 @@ class SidebarItemsSeeder extends Seeder
                 'svg' => 'usuario.svg',
                 'link' => 'admin/users',
                 'parent_id' => null,
-                'created_at' => '2024-08-09 03:15:54',
+                'created_at' => now(),
                 'updated_at' => null,
             ],
             [
                 'id' => 3,
-                'name' => 'Amenidades',
-                'svg' => 'amenidades.svg',
-                'link' => 'admin/amenities',
-                'parent_id' => 9,
-                'created_at' => '2024-08-09 03:18:47',
-                'updated_at' => null,
-            ],
-            [
-                'id' => 4,
-                'name' => 'Tipos',
-                'svg' => 'tipos.svg',
-                'link' => 'admin/types',
-                'parent_id' => 9,
-                'created_at' => '2024-08-09 03:18:50',
-                'updated_at' => null,
-            ],
-            [
-                'id' => 5,
-                'name' => 'Características',
-                'svg' => 'características.svg',
-                'link' => 'admin/features',
-                'parent_id' => 9,
-                'created_at' => '2024-08-09 03:18:50',
-                'updated_at' => null,
-            ],
-            [
-                'id' => 6,
-                'name' => 'Condición',
-                'svg' => 'condicion.svg',
-                'link' => 'admin/condition',
-                'parent_id' => 9,
-                'created_at' => '2024-08-09 03:18:50',
-                'updated_at' => null,
-            ],
-            [
-                'id' => 7,
                 'name' => 'Propiedades',
                 'svg' => 'propiedades.svg',
                 'link' => 'admin/property',
                 'parent_id' => null,
-                'created_at' => '2024-08-09 03:47:01',
+                'created_at' => now(),
+                'updated_at' => null,
+            ],
+            [
+                'id' => 4,
+                'name' => 'Características',
+                'svg' => 'características.svg',
+                'link' => 'dropdown',
+                'parent_id' => null,
+                'created_at' => now(),
+                'updated_at' => null,
+            ],
+            [
+                'id' => 5,
+                'name' => 'Ventas',
+                'svg' => 'propiedades.svg',
+                'link' => 'admin/process',
+                'parent_id' => null,
+                'created_at' => now(),
+                'updated_at' => null,
+            ]
+        ];
+
+        $childs = [
+            [
+                'id' => 6,
+                'name' => 'Amenidades',
+                'svg' => 'amenidades.svg',
+                'link' => 'admin/amenities',
+                'parent_id' => 5,
+                'created_at' => now(),
+                'updated_at' => null,
+            ],
+            [
+                'id' => 7,
+                'name' => 'Tipos',
+                'svg' => 'tipos.svg',
+                'link' => 'admin/types',
+                'parent_id' => 5,
+                'created_at' => now(),
                 'updated_at' => null,
             ],
             [
                 'id' => 8,
                 'name' => 'Características',
                 'svg' => 'características.svg',
-                'link' => 'dropdown',
-                'parent_id' => null,
-                'created_at' => '2024-08-09 04:06:22',
+                'link' => 'admin/features',
+                'parent_id' => 5,
+                'created_at' => now(),
                 'updated_at' => null,
             ],
             [
                 'id' => 9,
-                'name' => 'Ventas',
-                'svg' => 'propiedades.svg',
-                'link' => 'admin/process',
-                'parent_id' => null,
-                'created_at' => '2024-08-09 04:22:24',
+                'name' => 'Condición',
+                'svg' => 'condicion.svg',
+                'link' => 'admin/condition',
+                'parent_id' => 5,
+                'created_at' => now(),
                 'updated_at' => null,
-            ],
+            ]
         ];
-
-        foreach ($items as $item) {
-            DB::table('sidebar_items')->updateOrInsert(
-                ['id' => $item['id']],
-            );
+        foreach ($parents as $item) {
+            DB::table('sidebar_items')->updateOrInsert(['id' => $item['id']], $item);
         }
-
+        foreach ($childs as $item) {
+            DB::table('sidebar_items')->updateOrInsert(['id' => $item['id']], $item);
+        }
     }
 }
