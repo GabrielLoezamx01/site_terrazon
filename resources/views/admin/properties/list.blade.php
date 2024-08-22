@@ -8,47 +8,21 @@
 @section('content')
     <div class="page-header d-print-none">
         <div class="container-xl">
-             <div class="row g-2 align-items-center">
-            <div class="col">
-                <div class="page-pretitle">
-                    Overview
-                </div>
-                <h2 class="page-title">
-                   Propiedades
-                </h2>
-            </div>
-            <div class="col-auto ms-auto d-print-none">
-                {{ $slot ?? ''}}
-            </div>
-        </div>
-
             <div class="row g-2 align-items-center">
+                <div class="col">
+                    <div class="page-pretitle">Overview</div>
+                    <h2 class="page-title">Lista de propiedades</h2>
+                </div>
                 <div class="col-auto ms-auto d-print-none">
-                    <div class="btn-list">
-                        <div class="col">
-                            <a href="new_property" class="btn btn-dark">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    class="icon icon-tabler icons-tabler-outline icon-tabler-circle-plus">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />
-                                    <path d="M9 12h6" />
-                                    <path d="M12 9v6" />
-                                </svg>
-                                Nueva Propiedad
-                            </a>
-                        </div>
-                    </div>
+                    {{ $slot ?? '' }}
                 </div>
             </div>
-
-
-            {{-- MEJORA DEL AMDIN LIST --}}
         </div>
     </div>
+
     <div class="page-body">
-        <div class="container-fluid ">
+
+        <div class="container-fluid">
             <div class="row m-4 row-deck row-cards">
                 <div class="card">
                     <div class="card-header">
@@ -124,7 +98,7 @@
                                         <td class="text-start"><span class="fw-bold">{{ $item->folio }}</span></td>
                                         <td class="fs-5">{{ $item->title }}</td>
                                         <td>
-                                            <button class="btn btn-sm btn-info toggle-details m-3">Ver detalles</button>
+                                            <button class="btn btn-sm btn-info toggle-details">Ver detalles</button>
                                             <div class="details-container mt-3 p-3 bg-light rounded" style="display: none;">
                                                 <h6 class="mb-3">Detalles:</h6>
                                                 <ul class="list-unstyled">
@@ -165,88 +139,102 @@
                                                     No Disponible
                                             @endswitch
                                         </td>
-                                        </td>
-                                        <td>
-                                            <a class="btn btn-sm btn-icon btn-info" title="Editar Propiedad"
-                                                href="{{ route('property.show', ['property' => $item->folio]) }}">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                    class="icon icon-tabler icons-tabler-outline icon-tabler-pencil">
-                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                    <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
-                                                    <path d="M13.5 6.5l4 4" />
-                                                </svg>
-                                            </a>
-                                            <a class="btn btn-sm btn-icon btn-warning text-white fw-bold" title="Detalles"
-                                                href="{{ route('details_property', ['property' => $item->slug]) }}">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                                                    class="icon icon-tabler icons-tabler-outline icon-tabler-list">
-                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                    <path d="M9 6l11 0" />
-                                                    <path d="M9 12l11 0" />
-                                                    <path d="M9 18l11 0" />
-                                                    <path d="M5 6l0 .01" />
-                                                    <path d="M5 12l0 .01" />
-                                                    <path d="M5 18l0 .01" />
-                                                </svg>
-                                            </a>
-
-                                            <a class="btn btn-sm btn-icon btn-primary" title="Galeria de Propiedad"
-                                                href="property_gallery?id={{ $item->folio }}">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                    class="icon icon-tabler icons-tabler-outline icon-tabler-graph">
-                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                    <path
-                                                        d="M4 18v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" />
-                                                    <path d="M7 14l3 -3l2 2l3 -3l2 2" />
-                                                </svg>
-                                            </a>
-                                            @if ($item->available == 0)
-                                                <button title="Activar Propiedad" class="btn btn-sm btn-icon btn-success"
-                                                    @click="activeProperty('{{ $item['id'] }}')">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                        class="icon icon-tabler icons-tabler-outline icon-tabler-circle-dashed-check">
-                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                        <path d="M8.56 3.69a9 9 0 0 0 -2.92 1.95" />
-                                                        <path d="M3.69 8.56a9 9 0 0 0 -.69 3.44" />
-                                                        <path d="M3.69 15.44a9 9 0 0 0 1.95 2.92" />
-                                                        <path d="M8.56 20.31a9 9 0 0 0 3.44 .69" />
-                                                        <path d="M15.44 20.31a9 9 0 0 0 2.92 -1.95" />
-                                                        <path d="M20.31 15.44a9 9 0 0 0 .69 -3.44" />
-                                                        <path d="M20.31 8.56a9 9 0 0 0 -1.95 -2.92" />
-                                                        <path d="M15.44 3.69a9 9 0 0 0 -3.44 -.69" />
-                                                        <path d="M9 12l2 2l4 -4" />
-                                                    </svg>
+                                        <td class="text-end">
+                                            <div class="dropdown">
+                                                <button class="btn dropdown-toggle align-text-top"
+                                                    data-bs-boundary="viewport" data-bs-toggle="dropdown"
+                                                    aria-expanded="false">
+                                                    Opciones
                                                 </button>
-                                            @elseif($item->available == 1)
-                                                <button title="Desactivar Propiedad"
-                                                    class="btn btn-sm btn-icon btn-danger"
-                                                    @click="deactivate_property('{{ $item['id'] }}')">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                        class="icon icon-tabler icons-tabler-outline icon-tabler-circle-dashed-check">
-                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                        <path d="M8.56 3.69a9 9 0 0 0 -2.92 1.95" />
-                                                        <path d="M3.69 8.56a9 9 0 0 0 -.69 3.44" />
-                                                        <path d="M3.69 15.44a9 9 0 0 0 1.95 2.92" />
-                                                        <path d="M8.56 20.31a9 9 0 0 0 3.44 .69" />
-                                                        <path d="M15.44 20.31a9 9 0 0 0 2.92 -1.95" />
-                                                        <path d="M20.31 15.44a9 9 0 0 0 .69 -3.44" />
-                                                        <path d="M20.31 8.56a9 9 0 0 0 -1.95 -2.92" />
-                                                        <path d="M15.44 3.69a9 9 0 0 0 -3.44 -.69" />
-                                                        <path d="M9 12l2 2l4 -4" />
-                                                    </svg>
-                                                </button>
-                                            @endif
-
+                                                <div class="dropdown-menu dropdown-menu-end">
+                                                    @if ($item->available == 0)
+                                                        <a class="dropdown-item" title="Activar Propiedad" href="#"
+                                                            @click="activeProperty('{{ $item['id'] }}')">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                height="24" viewBox="0 0 24 24" fill="none"
+                                                                stroke="currentColor" stroke-width="2"
+                                                                stroke-linecap="round" stroke-linejoin="round"
+                                                                class="icon me-2">
+                                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                                <path d="M8.56 3.69a9 9 0 0 0 -2.92 1.95" />
+                                                                <path d="M3.69 8.56a9 9 0 0 0 -.69 3.44" />
+                                                                <path d="M3.69 15.44a9 9 0 0 0 1.95 2.92" />
+                                                                <path d="M8.56 20.31a9 9 0 0 0 3.44 .69" />
+                                                                <path d="M15.44 20.31a9 9 0 0 0 2.92 -1.95" />
+                                                                <path d="M20.31 15.44a9 9 0 0 0 .69 -3.44" />
+                                                                <path d="M20.31 8.56a9 9 0 0 0 -1.95 -2.92" />
+                                                                <path d="M15.44 3.69a9 9 0 0 0 -3.44 -.69" />
+                                                                <path d="M9 12l2 2l4 -4" />
+                                                            </svg>
+                                                            Activar Propiedad
+                                                        </a>
+                                                    @elseif($item->available == 1)
+                                                        <a class="dropdown-item" title="Desactivar Propiedad" href="#"
+                                                            @click="deactivate_property('{{ $item['id'] }}')">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                height="24" viewBox="0 0 24 24" fill="none"
+                                                                stroke="currentColor" stroke-width="2"
+                                                                stroke-linecap="round" stroke-linejoin="round"
+                                                                class="icon me-2">
+                                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                                <path d="M8.56 3.69a9 9 0 0 0 -2.92 1.95" />
+                                                                <path d="M3.69 8.56a9 9 0 0 0 -.69 3.44" />
+                                                                <path d="M3.69 15.44a9 9 0 0 0 1.95 2.92" />
+                                                                <path d="M8.56 20.31a9 9 0 0 0 3.44 .69" />
+                                                                <path d="M15.44 20.31a9 9 0 0 0 2.92 -1.95" />
+                                                                <path d="M20.31 15.44a9 9 0 0 0 .69 -3.44" />
+                                                                <path d="M20.31 8.56a9 9 0 0 0 -1.95 -2.92" />
+                                                                <path d="M15.44 3.69a9 9 0 0 0 -3.44 -.69" />
+                                                                <path d="M9 12l2 2l4 -4" />
+                                                            </svg>
+                                                            Desactivar Propiedad
+                                                        </a>
+                                                    @endif
+                                                    <a class="dropdown-item" title="Editar Propiedad"
+                                                        href="{{ route('property.show', ['property' => $item->folio]) }}">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                            height="24" viewBox="0 0 24 24" fill="none"
+                                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                            stroke-linejoin="round" class="icon me-2">
+                                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                            <path
+                                                                d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+                                                            <path d="M13.5 6.5l4 4" />
+                                                        </svg>
+                                                        Editar Propiedad
+                                                    </a>
+                                                    <a class="dropdown-item" title="Detalles"
+                                                        href="{{ route('details_property', ['property' => $item->slug]) }}">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                            height="24" viewBox="0 0 24 24" fill="none"
+                                                            stroke="currentColor" stroke-width="1.5"
+                                                            stroke-linecap="round" stroke-linejoin="round"
+                                                            class="icon me-2">
+                                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                            <path d="M9 6l11 0" />
+                                                            <path d="M9 12l11 0" />
+                                                            <path d="M9 18l11 0" />
+                                                            <path d="M5 6l0 .01" />
+                                                            <path d="M5 12l0 .01" />
+                                                            <path d="M5 18l0 .01" />
+                                                        </svg>
+                                                        Detalles
+                                                    </a>
+                                                    <a class="dropdown-item" title="Galeria de Propiedad"
+                                                        href="property_gallery?id={{ $item->folio }}">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                            height="24" viewBox="0 0 24 24" fill="none"
+                                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                            stroke-linejoin="round" class="icon me-2">
+                                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                            <path
+                                                                d="M4 18v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" />
+                                                            <path d="M7 14l3 -3l2 2l3 -3l2 2" />
+                                                        </svg>
+                                                        Imagenes
+                                                    </a>
+                                                </div>
+                                            </div>
                                         </td>
                                         </tr>
                                     @endforeach
@@ -328,7 +316,7 @@
                         });
 
                 },
-                 deactivate_property: function(id) {
+                deactivate_property: function(id) {
                     const request = {
                         property: id,
                     };
