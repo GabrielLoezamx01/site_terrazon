@@ -8,7 +8,9 @@
     <div class="card-body">
 
         <span class="price">$ {{ $card["price"] }}</span>
-        <span class="area">{{ $card["area"] }}</span>
+        @if(trim($card["area"])!='')
+        <span class="area">{{ $card["area"] }} m<sup>2</sup></span>
+        @endif
         <div class="clearfix"></div>
         <h5 class="card-title">{{ $card["title"] }}</h5>
         <h5 class="card-location">
