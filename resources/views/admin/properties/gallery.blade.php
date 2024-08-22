@@ -11,7 +11,9 @@
     </style>
 @endpush
 
-@section('content') <div class="page-header d-print-none">
+@section('content')
+
+    <div class="page-header d-print-none">
         <div class="container-xl">
             <div class="row g-2 align-items-center">
                 <div class="col">
@@ -28,10 +30,133 @@
         </div>
     </div>
     <div class="page-body">
+
         <div class="container-xl">
             <div class="row row-deck row-cards">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <ul class="nav nav-tabs card-header-tabs nav-fill" data-bs-toggle="tabs" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <a href="#tabs-home-5" class="nav-link active" data-bs-toggle="tab"
+                                        aria-selected="false" role="tab" tabindex="-1">Imagen Principal</a>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <a href="#tabs-profile-5" class="nav-link " data-bs-toggle="tab" aria-selected="true"
+                                        role="tab">Galeria de imagenes</a>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <a href="#tabs-activity-5" class="nav-link" data-bs-toggle="tab" aria-selected="false"
+                                        role="tab" tabindex="-1">Distribución</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card-body">
+                            <div class="tab-content">
+                                <div class="tab-pane active " id="tabs-home-5" role="tabpanel">
+                                    <div class="row">
+                                        @if ($property->img == 'default.jpg')
+                                            <img src="{{ asset('img/' . $property->img) }}" class="img-fluid w-50 mx-auto">
+                                        @else
+                                            <img src="{{ asset('storage/' . $property->img) }}"
+                                                class="img-fluid w-50 mx-auto">
+                                        @endif
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 mx-auto">
+                                            <form action="{{ route('property_image.store', ['id' => $property['folio']]) }}"
+                                                method="POST" enctype="multipart/form-data">
+                                                @csrf
+                                                <input type="file" name="img" class="mt-5 form-control"
+                                                    accept="image/*" required>
+                                                <div class="text-center">
+                                                    <button class="mt-5 btn btn-dark">Actualizar</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane  " id="tabs-profile-5" role="tabpanel">
+                                    <div class="row row-cards">
+                                        <form action="{{ route('property_gallery.all', ['id' => $property['folio']]) }}"
+                                            method="POST" enctype="multipart/form-data" class="p-5">
+                                            @csrf
+                                            <input type="file" name="img[]" class="mt-5 form-control" accept="image/*"
+                                                multiple required>
+                                            <button class="mt-5 btn btn-primary">Subir Galeria de imagenes</button>
+                                        </form>
+                                        @if (count($gallery) > 0)
+                                            <div class="container-xl">
+                                                <div class="row row-cols-3 row-cols-md-4 row-cols-lg-6 g-3">
+                                                    @foreach ($gallery as $key => $img)
+                                                        <div class="col">
+                                                            <a href="{{ asset('storage/' . $img['original_image']) }}"
+                                                                data-fslightbox="gallery">
+                                                                <div class="img-responsive img-responsive-1x1 rounded border"
+                                                                    style="background-image: url('{{ asset('storage/' . $img['original_image']) }}');">
+                                                                </div>
+                                                            </a>
+                                                            <form class=" mt-5"
+                                                                action="{{ route('property_gallery.destroy', $img['id']) }}"
+                                                                method="POST">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit"
+                                                                    class="btn btn-danger btn-sm">Eliminar</button>
+                                                            </form>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        @endif
 
-                <div class="col-12">
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="tabs-activity-5" role="tabpanel">
+                                    <div class="row row-cards">
+                                        <form action="{{ route('distribution_gallery.store') }}" method="POST"
+                                            enctype="multipart/form-data" class="p-5">
+                                            @csrf
+                                            <input type="hidden" name="id" value="{{ $property['folio'] }}">
+                                            <input type="file" name="img[]" class="mt-5 form-control" accept="image/*"
+                                                multiple required>
+                                            <button class="mt-5 btn btn-primary">Subir</button>
+                                        </form>
+                                        <div class="container-xl">
+                                            @if (count($distribution) > 0)
+                                                <div class="row row-cols-3 row-cols-md-4 row-cols-lg-6 g-3">
+
+                                                    @foreach ($distribution as $key => $img)
+                                                        <div class="col">
+                                                            <a href="{{ asset('storage/' . $img['url']) }}"
+                                                                data-fslightbox="gallery2">
+                                                                <div class="img-responsive img-responsive-1x1 rounded border"
+                                                                    style="background-image: url('{{ asset('storage/' . $img['url']) }}');">
+                                                                </div>
+                                                            </a>
+                                                            <form class=" mt-5"
+                                                                action="{{ route('distribution_gallery.destroy', $img['id']) }}"
+                                                                method="POST">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit"
+                                                                    class="btn btn-danger btn-sm">Eliminar</button>
+                                                            </form>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+
+                                            @endif
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{-- <div class="col-12">
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">{{ $property['title'] }}</h3>
@@ -190,7 +315,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
             </div>
         </div>
