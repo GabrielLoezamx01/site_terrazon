@@ -8,11 +8,14 @@ class PropiedadesController extends Controller
 {
     public function index()
     {
+        $data=[];
         $properties= Property::with('types','amenities','conditions','details','features','galleries')->where('available',1)->get();
         foreach($properties as $kp => $vp){
             $data[]=new CardResource($vp);
         }
-        shuffle($data);
+        if(!empty($data)){
+            shuffle($data);
+        }
         return view('public.propiedades', [
             'cards1' => $data,
             'cards2' => $data,
