@@ -314,6 +314,7 @@ class PropertyController extends Controller
         $property->rooms = $request->rooms;
         $property->bathrooms = $request->bathrooms;
         $property->parking = $request->parking;
+        $property->video = $request->video;
         $property->municipality_id = $request->municipality;
         $property->m2 = $request->m2;
         $property->save();

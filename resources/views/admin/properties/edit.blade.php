@@ -47,7 +47,6 @@
                         class="form-group">
                         @csrf
                         @method('PUT')
-
                         <div class="mb-3">
                             <label for="" class="fs-2 fw-bold">Informacion de la propiedad</label>
                         </div>
@@ -65,7 +64,11 @@
                             <label for="">Descripción de la propiedad</label>
                             <textarea name="description" id="" cols="30" rows="10" class="form-control" required>{{ $property['description'] }}</textarea>
                         </div>
-                          <div class="mb-3">
+                        <div class="mb-3">
+                            <label class="form-label required">Link de video</label>
+                            <input type="text" name="video" value="{{ $property['video'] }}" class="form-control">
+                        </div>
+                        <div class="mb-3">
                             <label for="">M2</label>
                             <input type="text" autocomplete="off" value="{{ old('m2') ?? $property['m2'] }}"
                                 class="form-control" required name="m2">
@@ -108,13 +111,13 @@
                         </div>
                         <div class="mb-3">
                             <label for="">Latitude</label>
-                            <input type="number" autocomplete="off" class="form-control"
-                                value="{{ $property['latitude'] }}" required name="latitude">
+                            <input type="number" name="latitude" autocomplete="off" class="form-control"
+                                value="{{ $property['latitude'] }}" min="-180" max="180" step="any">
                         </div>
                         <div class="mb-3">
                             <label for="">Longitud</label>
-                            <input type="number" autocomplete="off" class="form-control"
-                                value="{{ $property['longitude'] }}" required name="longitude">
+                            <input type="number" name="longitude" autocomplete="off" class="form-control"
+                                value="{{ $property['longitude'] }}" min="-180" max="180" step="any">
                         </div>
                         <hr>
                         <div class="row">
