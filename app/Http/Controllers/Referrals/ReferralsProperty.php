@@ -4,12 +4,10 @@ namespace App\Http\Controllers\Referrals;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\PropertyReferral;
 use App\Models\Referrals;
-use Illuminate\Support\Str;
-use App\Events\UserSendEmail;
-use Illuminate\Support\Facades\Crypt;
 
-class ReferralsController extends Controller
+class ReferralsProperty extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +16,14 @@ class ReferralsController extends Controller
      */
     public function index()
     {
-        return view('admin.users.index');
+        $collection = Referrals::with('properties')->paginate(25);
+        return view('admin.referrals.property')->with(compact('collection'));
+        // $property = Property::find(1);
+        // $referral = Referral::find(1);
+
+        // $property->referrals()->attach($referral->id);
+        // // o
+        // $referral->properties()->attach($property->id);
     }
 
     /**
@@ -29,30 +34,8 @@ class ReferralsController extends Controller
      */
     public function store(Request $request)
     {
-        try {
-            $request->validate([
-                'email' => 'required|email',
-            ]);
-
-            $email = $request->email;
-
-            Referrals::create([
-                'name' => 'Invitado',
-                'email' => $email,
-                'password' => bcrypt($request->pass),
-                'verication_code' => '',
-                'verication_code_expiration' => now()->addMinutes(6),
-                'status' => 'pending',
-            ]);
-
-
-            return redirect()->back()->withSuccess('¡Operación realizada con éxito! Se ha enviado un correo de verificación.');
-        } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => $e->getMessage()])->withInput();
-        }
+        //
     }
-
-
 
     /**
      * Display the specified resource.

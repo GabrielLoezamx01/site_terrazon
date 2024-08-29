@@ -26,7 +26,18 @@ class ReferralsPropertyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            if(isset($request->id)){
+                $id = $request->id;
+                $user = Referrals::find($id);
+                $user->status = isset($request->active) && $request->active == true ? 'active' : 'blocked';
+                $user->save();
+            }
+            return redirect()->route('list_users.index');
+        }
+        catch(\Exception $e){
+            return $e->getMessage();
+        }
     }
 
     /**

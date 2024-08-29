@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Crear Usuario')
+@section('title', 'Lista de Usuario')
 @section('content')
 
     <div class="page-header d-print-none">
@@ -40,18 +40,29 @@
                                             </div>
                                         </div>
                                         <div class="col-auto d-flex mb-2 mb-md-0">
-                                            @if ($item->status == 'pending')
-                                               <a href="#" class=" ms-2 ">
-                                                <button class="btn btn-sm btn-warning">Verificar</button>
-                                            </a>
+                                            {{-- @if ($item->status == 'pending')
+                                             <form action="" class="ms-2">
+                                                <button class="btn btn-warning btn-sm">Verificar</button>
+                                            </form>
+                                            @endif --}}
+                                            @if ($item->status == 'blocked')
+                                                 <form action="{{ url('admin/list_users?active=true&id=' . $item->id_referral) }}"
+                                                    method="POST" class="ms-2">
+                                                    @csrf
+                                                    <button class="btn btn-success btn-sm">Activar</button>
+                                                </form>
+                                            @else
+                                                <form action="{{ url('admin/list_users?id=' . $item->id_referral) }}"
+                                                    method="POST" class="ms-2">
+                                                    @csrf
+                                                    <button class="btn btn-danger btn-sm">Bloquear</button>
+                                                </form>
                                             @endif
 
-                                            <a href="#" class=" ms-2 ">
-                                                <button class="btn btn-sm btn-danger">Bloquear</button>
-                                            </a>
-                                            <a href="#" class=" ms-2 ">
+
+                                            {{-- <a href="#" class=" ms-2 ">
                                                 <button class="btn btn-sm btn-info">Propiedades</button>
-                                            </a>
+                                            </a> --}}
                                         </div>
                                     </div>
                                 </div>

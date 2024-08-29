@@ -37,4 +37,10 @@ class Referrals extends Model
     static function decryptString($data){
         return Crypt::decryptString(base64_decode($data));
     }
+
+
+    public function properties()
+    {
+        return $this->hasMany(PropertyReferral::class, 'id_referral');
+    }
 }
