@@ -361,11 +361,28 @@ class PropertyController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        DetailsProperty::where('property_id', $id)
-            ->where('detail_id', $request->details_id)
-            ->delete();
-        return redirect()->back()->with('success', '¡Operación realizada con éxito!');
+        $property = Property::where('folio', $id)->first();
 
+        if (!$property) {
+            return [
+                'message' => 'Propiedad no encontrada',
+                'status' => 404
+            ];
+        }
+
+        if ($property->available == 1 || $property->available == 3) {
+            return [
+                'message' => 'Propiedad no se puede eliminar',
+                'status' => 404
+            ];
+        }
+
+        $property->delete();
+
+        return [
+            'message' => 'Propiedad eliminada correctamente',
+            'status' => 200
+        ];
     }
 
 
