@@ -18,10 +18,17 @@ class Property extends Model
     {
         return $this->belongsTo(Municipality::class);
     }
+
+    public function location()
+    {
+        return $this->belongsTo(Location::class, 'location_id');
+    }
+
     public function types()
     {
         return $this->belongsToMany(TypeProperty::class, 'types_property_relationship', 'property_id', 'types_id');
     }
+
     public function amenities()
     {
         return $this->belongsToMany(Amenities::class, 'amenities_property_relationship', 'property_id', 'amenities_id');
@@ -36,18 +43,22 @@ class Property extends Model
     {
         return $this->belongsToMany(DetailProperty::class, 'details_property_relationship', 'property_id', 'detail_id');
     }
+
     public function features()
     {
         return $this->belongsToMany(FeatureProperty::class, 'features_property_relationship', 'property_id', 'features_property_id');
     }
+
     public function homes()
     {
         return $this->belongsToMany(Home::class, 'home_property', 'property_id', 'home_id');
     }
+
     public function galleries()
     {
         return $this->hasMany(Gallery::class, 'property_id');
     }
+
     public function distributions()
     {
         return $this->hasMany(Distribution::class);

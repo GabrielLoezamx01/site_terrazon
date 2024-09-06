@@ -100,13 +100,27 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Localidad</label>
-                            <select name="municipality" class="form-control"
+                            <select name="municipality" class="form-control">
                                 @foreach ($municipality as $item)
-                                        <option value="{{ $item->id }}"
-                                            {{ $item->id == $property['municipality']['id'] ? 'selected' : '' }}>
-                                            {{ $item->name }}, {{ $item->state->name }}
-                                        </option> @endforeach
-                                </select>
+                                    <option value="{{ $item->id }}"
+                                        {{ $item->id == $property['municipality']['id'] ? 'selected' : '' }}>
+                                        {{ $item->name }}, {{ $item->state->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Tipo</label>
+                            <select name="tipo_location" class="form-control">
+                                @foreach ($location as $item)
+                                    <option value="{{ $item->id }}"
+                                        {{ isset($property['location_id']) && $item->id == $property['location_id'] ? 'selected' : '' }}>
+                                        {{ $item->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+
 
                         </div>
                         <div class="mb-3">
