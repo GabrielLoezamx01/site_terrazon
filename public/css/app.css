@@ -25149,6 +25149,20 @@ ul.list-info .detail-text {
   background-position: center;
 }
 
+.svg-social-icon-footer {
+  display: inline-block;
+  width: 24px !important;
+  height: 24px !important;
+  margin-right: 5px;
+  background-position: center !important;
+  background-size: 24px !important;
+}
+
+.social-link {
+  position: relative;
+  display: inline;
+}
+
 .svg-service-icon {
   display: inline-block;
   width: 96px !important;
@@ -25161,15 +25175,23 @@ ul.list-info .detail-text {
 }
 
 .svg-social-facebook {
-  background: url("../svg/facebook.svg") no-repeat;
+  background: url("../svg/social/facebook.svg") no-repeat;
+}
+
+.svg-social-instagram {
+  background: url("../svg/social/instagram.svg") no-repeat;
 }
 
 .svg-social-youtube {
-  background: url("../svg/youtube.svg") no-repeat;
+  background: url("../svg/social/youtube.svg") no-repeat;
+}
+
+.svg-social-tiktok {
+  background: url("../svg/social/tiktok.svg") no-repeat;
 }
 
 .svg-social-whatsapp {
-  background: url("../svg/whatsapp.svg") no-repeat;
+  background: url("../svg/social/whatsapp.svg") no-repeat;
 }
 
 .svg-service-contract {
