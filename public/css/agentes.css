@@ -1,0 +1,148 @@
+.name {
+  font-family: "Inter";
+  font-size: 4em;
+  font-weight: bolder;
+  line-height: 1em;
+}
+
+.lead {
+  font-family: "Inter";
+  font-size: 1.5em;
+  text-transform: uppercase;
+}
+
+.container-avatar {
+  position: relative;
+  width: 100%;
+  height: 700px;
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background-color: #ddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.25);
+  border: 3px solid white;
+}
+@media screen and (max-width: 768px) {
+  .center {
+    width: 290px;
+    height: 290px;
+    top: 30% !important;
+    left: 75% !important;
+  }
+}
+
+.profile-pic {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.circle {
+  position: absolute;
+  border-radius: 50%;
+  background-color: #3830D9;
+  border: 3px solid white;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.25);
+}
+
+.circle1 {
+  width: 100px;
+  height: 100px;
+  top: 22%;
+  left: 22%;
+  background-color: #3830D9;
+}
+@media screen and (max-width: 768px) {
+  .circle1 {
+    top: 10% !important;
+    left: 10% !important;
+  }
+}
+
+.circle2 {
+  width: 100px;
+  height: 100px;
+  top: 65%;
+  left: 65%;
+  background-color: #3830D9;
+}
+
+.circle3 {
+  width: 150px;
+  height: 150px;
+  top: 65%;
+  left: 18%;
+  background-color: #159E12;
+}
+
+.circle4 {
+  width: 150px;
+  height: 150px;
+  top: 10%;
+  right: 16%;
+  background-color: #159E12;
+}
+@media screen and (max-width: 768px) {
+  .circle4 {
+    top: 50% !important;
+    left: 10% !important;
+  }
+}
+
+.circle5 {
+  width: 80px;
+  height: 80px;
+  top: 18%;
+  right: 40%;
+  background-color: #7AE582;
+}
+@media screen and (max-width: 768px) {
+  .circle5 {
+    top: 30% !important;
+    left: 5% !important;
+  }
+}
+
+.circle6 {
+  width: 80px;
+  height: 80px;
+  bottom: 10%;
+  right: 40%;
+  background-color: #7AE582;
+}
+
+.circle7 {
+  width: 80px;
+  height: 80px;
+  top: 50%;
+  left: 8%;
+  background-color: #37B052;
+}
+
+.circle8 {
+  width: 80px;
+  height: 80px;
+  top: 50%;
+  right: 20%;
+  background-color: #231D46;
+}
+
+.circle9 {
+  width: 60px;
+  height: 60px;
+  bottom: 2%;
+  left: 38%;
+  background-color: #3830D9;
+}
