@@ -196,9 +196,9 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($features as $item)
+                                            @foreach ($features as $key => $item)
                                                 <tr>
-                                                    <td>{{ $item->id }}</td>
+                                                    <td>{{ $key + 1}}</td>
                                                     <td>{{ $item->name }}</td>
                                                     <td><img src="{{ asset('storage/svg/' . $item->icon) }}"
                                                             alt="Icon">
@@ -208,7 +208,7 @@
                                                     </td> --}}
                                                     <td>
                                                         <button @click="showModal(true , {{ $item->id }})"
-                                                            class="btn btn-sm "><svg xmlns="http://www.w3.org/2000/svg"
+                                                            class="btn btn-icon "><svg xmlns="http://www.w3.org/2000/svg"
                                                                 width="24" height="24" viewBox="0 0 24 24"
                                                                 fill="none" stroke="currentColor" stroke-width="2"
                                                                 stroke-linecap="round" stroke-linejoin="round"
@@ -219,7 +219,7 @@
                                                                 <path d="M13.5 6.5l4 4" />
                                                             </svg></button>
                                                         <button @click="deleteshow({{ $item->id }})"
-                                                            class="btn btn-sm text-danger" data-bs-toggle="modal"
+                                                            class="btn btn-icon text-danger" data-bs-toggle="modal"
                                                             data-bs-target="#exampleModal"><svg
                                                                 xmlns="http://www.w3.org/2000/svg" width="24"
                                                                 height="24" viewBox="0 0 24 24" fill="none"

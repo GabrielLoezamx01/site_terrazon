@@ -189,9 +189,9 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($amenities as $item)
+                                        @foreach ($amenities as $key => $item)
                                             <tr>
-                                                <td>{{ $item->id }}</td>
+                                                <td>{{ $key + 1 }}</td>
                                                 <td>{{ $item->name }}</td>
                                                 {{-- <td><img src="{{ asset('storage/svg/' . $item->icon) }}" alt="Icon">
                                                 </td> --}}
@@ -199,7 +199,7 @@
                                                         class="text-muted">{{ $item->created_at }}</label></td> --}}
                                                 <td>
                                                     <button @click="showModal(true , {{ $item->id }})"
-                                                        class="btn btn-sm ">
+                                                        class="btn btn-icon ">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24"
                                                             height="24" viewBox="0 0 24 24" fill="none"
                                                             stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -212,7 +212,7 @@
                                                         </svg>
                                                     </button>
                                                     <button @click="deleteshow({{ $item->id }})"
-                                                        class="btn btn-sm text-danger" data-bs-toggle="modal"
+                                                        class="btn btn-icon text-danger" data-bs-toggle="modal"
                                                         data-bs-target="#exampleModal">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24"
                                                             height="24" viewBox="0 0 24 24" fill="none"

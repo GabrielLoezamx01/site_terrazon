@@ -68,6 +68,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'logLastUserActivity' => \App\Http\Middleware\LogLastUserActivity::class,
         'SuperProfile' => \App\Http\Middleware\SuperProfile::class,
-        'referrals' => \App\Http\Middleware\ReferralsMiddleware::class,
+        'auth.referral' => \App\Http\Middleware\ReferralAuthenticated::class,
     ];
 }

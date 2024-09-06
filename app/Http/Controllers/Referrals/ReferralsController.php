@@ -7,8 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Referrals;
 use Illuminate\Support\Str;
 use App\Events\UserSendEmail;
-use Illuminate\Support\Facades\Crypt;
-
+use Illuminate\Support\Facades\Hash;
 class ReferralsController extends Controller
 {
     /**
@@ -35,11 +34,10 @@ class ReferralsController extends Controller
             ]);
 
             $email = $request->email;
-
             Referrals::create([
                 'name' => 'Invitado',
                 'email' => $email,
-                'password' => bcrypt($request->pass),
+                'password' => $request->pass,
                 'verication_code' => '',
                 'verication_code_expiration' => now()->addMinutes(6),
                 'status' => 'pending',

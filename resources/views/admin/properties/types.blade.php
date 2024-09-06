@@ -183,9 +183,9 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($types as $item)
+                                        @foreach ($types as $key => $item)
                                             <tr>
-                                                <td>{{ $item->id }}</td>
+                                                <td>{{ $key  + 1 }}</td>
                                                 <td>{{ $item->name }}</td>
                                                 </td>
                                                 {{-- <td><label for=""
@@ -193,7 +193,7 @@
                                                 </td> --}}
                                                 <td>
                                                     <button @click="showModal(true , {{ $item->id }})"
-                                                        class="btn btn-sm btn-icon "><svg
+                                                        class="btn btn-icon btn-icon "><svg
                                                             xmlns="http://www.w3.org/2000/svg" width="24"
                                                             height="24" viewBox="0 0 24 24" fill="none"
                                                             stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -205,7 +205,7 @@
                                                             <path d="M13.5 6.5l4 4" />
                                                         </svg></button>
                                                     <button @click="deleteshow({{ $item->id }})"
-                                                        class="btn btn-sm text-danger btn-icon" data-bs-toggle="modal"
+                                                        class="btn btn-icon text-danger btn-icon" data-bs-toggle="modal"
                                                         data-bs-target="#exampleModal"><svg
                                                             xmlns="http://www.w3.org/2000/svg" width="24"
                                                             height="24" viewBox="0 0 24 24" fill="none"
