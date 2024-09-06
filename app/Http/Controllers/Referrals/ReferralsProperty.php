@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Referrals;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Referrals;
-class ReferralsPropertyController extends Controller
+
+class ReferralsProperty extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +15,14 @@ class ReferralsPropertyController extends Controller
      */
     public function index()
     {
-        $users = Referrals::orderBy('created_at', 'asc')->paginate(15);
-        return view('admin.referrals.index')->with(compact('users'));
+        $collection = Referrals::with('properties')->paginate(25);
+        return view('admin.referrals.property')->with(compact('collection'));
+        // $property = Property::find(1);
+        // $referral = Referral::find(1);
+
+        // $property->referrals()->attach($referral->id);
+        // // o
+        // $referral->properties()->attach($property->id);
     }
 
     /**
@@ -26,18 +33,7 @@ class ReferralsPropertyController extends Controller
      */
     public function store(Request $request)
     {
-        try{
-            if(isset($request->id)){
-                $id = $request->id;
-                $user = Referrals::find($id);
-                $user->status = isset($request->active) && $request->active == true ? 'active' : 'blocked';
-                $user->save();
-            }
-            return redirect()->route('list_users.index');
-        }
-        catch(\Exception $e){
-            return $e->getMessage();
-        }
+        //
     }
 
     /**

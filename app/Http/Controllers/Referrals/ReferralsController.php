@@ -7,8 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Referrals;
 use Illuminate\Support\Str;
 use App\Events\UserSendEmail;
-use Illuminate\Support\Facades\Crypt;
-
+use Illuminate\Support\Facades\Hash;
 class ReferralsController extends Controller
 {
     /**
@@ -30,30 +29,20 @@ class ReferralsController extends Controller
     public function store(Request $request)
     {
         try {
-            // Validar el formato del email
             $request->validate([
                 'email' => 'required|email',
             ]);
 
             $email = $request->email;
-
-            // if (Referrals::where('email', $email)->exists()) {
-            //     return redirect()->back()->withErrors(['email' => 'El correo electrónico ya está registrado.'])->withInput();
-            // }
-
-            $token = Str::random(6);
-
             Referrals::create([
                 'name' => 'Invitado',
                 'email' => $email,
-                'password' => '',
-                'verication_code' => $token,
+                'password' => $request->pass,
+                'verication_code' => '',
                 'verication_code_expiration' => now()->addMinutes(6),
                 'status' => 'pending',
             ]);
 
-            // Enviar el correo de verificación
-            event(new UserSendEmail($email, $token));
 
             return redirect()->back()->withSuccess('¡Operación realizada con éxito! Se ha enviado un correo de verificación.');
         } catch (\Exception $e) {

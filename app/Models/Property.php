@@ -52,4 +52,9 @@ class Property extends Model
     {
         return $this->hasMany(Distribution::class);
     }
+
+    public function referrals()
+    {
+        return $this->belongsToMany(Referrals::class, 'property_referral');
+    }
 }

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Lista de Propiedades')
+@section('title', 'Crear Propiedades')
 @push('scripts')
 @endpush
 @section('content')
