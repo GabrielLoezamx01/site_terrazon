@@ -168,11 +168,13 @@ body {
     width: 100% !important;
     border: none !important;
     border-radius: 5px;
-    .card-img-top{
+
+    .card-img-top {
         height: 200px !important;
         background-size: cover !important;
         background-position: center !important;
     }
+
     .icon-fav {
         position: absolute;
         top: 18px;
@@ -198,6 +200,7 @@ body {
         border-bottom-left-radius: 5px;
         border-bottom-right-radius: 5px;
         min-height: 260px;
+
         .price {
             position: absolute;
             left: 0;
@@ -243,7 +246,8 @@ body {
             img {
                 height: 11px;
             }
-            a{
+
+            a {
                 color: #1E612D;
                 font-size: 11px;
                 font-weight: 500;
@@ -282,6 +286,7 @@ ul.list-info {
 
     .detail-icon {
         width: 25px !important;
+
         img {
             height: 23px;
         }
@@ -710,6 +715,21 @@ ul.list-info {
     margin-right: 10px;
     background-position: center;
 }
+
+.svg-social-icon-footer {
+    display: inline-block;
+    width: 24px !important;
+    height: 24px !important;
+    margin-right: 5px;
+    background-position: center !important;
+    background-size: 24px !important;
+}
+
+.social-link {
+    position: relative;
+    display: inline;
+}
+
 .svg-service-icon {
     display: inline-block;
     width: 96px !important;
@@ -722,28 +742,41 @@ ul.list-info {
 }
 
 .svg-social-facebook {
-    background: url('../svg/facebook.svg') no-repeat;
+    background: url('../svg/social/facebook.svg') no-repeat;
+}
+
+.svg-social-instagram {
+    background: url('../svg/social/instagram.svg') no-repeat;
 }
 
 .svg-social-youtube {
-    background: url('../svg/youtube.svg') no-repeat;
+    background: url('../svg/social/youtube.svg') no-repeat;
+}
+
+.svg-social-tiktok {
+    background: url('../svg/social/tiktok.svg') no-repeat;
 }
 
 .svg-social-whatsapp {
-    background: url('../svg/whatsapp.svg') no-repeat;
+    background: url('../svg/social/whatsapp.svg') no-repeat;
 }
-.svg-service-contract{
+
+.svg-service-contract {
     background: url('../svg/service-contract.svg') no-repeat;
 }
-.svg-service-deal{
+
+.svg-service-deal {
     background: url('../svg/service-deal.svg') no-repeat;
 }
-.svg-service-finance{
+
+.svg-service-finance {
     background: url('../svg/service-finance.svg') no-repeat;
 }
-.svg-service-online{
+
+.svg-service-online {
     background: url('../svg/service-online.svg') no-repeat;
 }
+
 .breadcrumb {
     .breadcrumb-item {
         font-size: 12px;

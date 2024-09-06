@@ -5,9 +5,21 @@
                 <h3 class="text-white">TERRAZON</h3>
                 <p class="description">Nuestra misión es guiar a nuestros clientes hacia su patrimonio perfecto, aquel que se adapte a sus necesidades y estilo de vida. Lo hacemos ofreciendo un servicio excepcional que facilita un proceso de compra o venta transparente y sin inconvenientes.</p>
                 <div class="social-icons">
-                    <a class="px-1" href="#"><i class="bi bi-facebook fs-2 text-white"></i></a>
-                    <a class="px-1" href="#"><i class="bi bi-instagram fs-2 text-white"></i></a>
-                    <a class="px-1" href="#"><i class="bi bi-whatsapp fs-2 text-white"></i></a>
+                    @if(config('app.link_facebook')!='')
+                    <a class="px-1 social-link" target="_blank" href="{{ config('app.link_facebook') }}"><i class="svg-social-icon-footer svg-social-facebook display-inline"></i></a>
+                    @endif
+                    @if(config('app.link_instagram')!='')
+                    <a class="px-1 social-link" target="_blank" href="{{ config('app.link_instagram') }}"><i class="svg-social-icon-footer svg-social-instagram display-inline"></i></a>
+                    @endif
+                    @if(config('app.link_youtube')!='')
+                    <a class="px-1 social-link" target="_blank" href="{{ config('app.link_youtube') }}"><i class="svg-social-icon-footer svg-social-youtube text-white"></i></a>
+                    @endif
+                    @if(config('app.link_tiktok')!='')
+                    <a class="px-1 social-link" target="_blank" href="{{ config('app.link_tiktok') }}"><i class="svg-social-icon-footer svg-social-tiktok text-white"></i></a>
+                    @endif
+                    @if(config('app.contact_tel_scape')!='')
+                    <a class="px-1 social-link" target="_blank" href="https://wa.me/{{ config('app.contact_tel_scape') }}"><i class="svg-social-icon-footer svg-social-whatsapp text-white"></i></a>
+                    @endif
                 </div>
             </div>
             <div class="col-12 col-md-3 mt-4">
