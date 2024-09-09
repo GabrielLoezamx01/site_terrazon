@@ -93,7 +93,11 @@
                                     <div class="col-9">
                                         <h2>$ {{ number_format($property->price,2,'.',',') }}</h2>
                                         <div class="text-tertiary">
-                                            <h5 class="card-location"><img src="{{ asset('images/icons/location.svg') }}"> Ubicación del desarrollo</h5>
+                                            <h5 class="ficha-location">
+                                                <a href="https://www.google.com/maps/search/?api=1&query={{ $property->latitude }},{{ $property->longitude }}" target="_blank">
+                                                    <i class="bi bi-geo-alt"></i> Ubicación
+                                                </a>
+                                            </h5>
                                         </div>
                                     </div>
                                     <div class="col-3 text-end ">
@@ -108,16 +112,22 @@
                                     <div class="col-12 col-md-6 py-3">
                                         <div class="ficha-title">Características principales</div>
                                         <ul class="list-info">
+                                            <li>
+                                                <label class="detail-icon">
+                                                    <span class="svg-icon-chars svg-icon-area"></span>
+                                                </label>
+                                                <span>{{ $property->m2 }} m2 </span>
+                                            </li>
                                             @foreach($property->features as $kf => $vf)
                                             <li>
                                                 <label class="detail-icon">
-                                                @php
+                                                    @php
                                                     $imagePath = 'storage/svg/'.$vf['icon'];
                                                     $fullPath = public_path($imagePath);
-                                                @endphp
-                                                @if(file_exists($fullPath))
+                                                    @endphp
+                                                    @if(file_exists($fullPath))
                                                     <img src="{{ asset('storage/svg/'.$vf['icon']) }}">
-                                                @endif 
+                                                    @endif
                                                 </label>
                                                 <span>{{ $vf["name"]}}</span>
                                             </li>
@@ -208,7 +218,7 @@
                         <div>
                             <h4>Lo más nuevo</h4>
                         </div>
-                        <x-card :card="$nuevo"ƒ />
+                        <x-card :card="$nuevo" ƒ />
                     </div>
                 </div>
             </div>
