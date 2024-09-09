@@ -25250,6 +25250,18 @@ ul.list-info .detail-text {
   background-size: 100% !important;
 }
 
+.svg-icon-chars {
+  display: inline-block;
+  width: 20px !important;
+  height: 20px !important;
+  background-position: center;
+  background-size: 100% !important;
+}
+
+.svg-icon-area {
+  background: url("../svg/area.svg") no-repeat;
+}
+
 .svg-icon-properties {
   background: url("../svg/properties.svg") no-repeat;
 }
@@ -25468,6 +25480,21 @@ fieldset:before {
   font-weight: 600;
   color: #231D46;
   font-size: 18px;
+}
+
+.ficha-location {
+  color: #1E612D;
+  font-size: 20px;
+  font-weight: 500;
+}
+.ficha-location img {
+  height: 11px;
+}
+.ficha-location a {
+  color: #1E612D;
+  font-size: 20px;
+  font-weight: 500;
+  text-decoration: none;
 }
 
 ul.ficha {

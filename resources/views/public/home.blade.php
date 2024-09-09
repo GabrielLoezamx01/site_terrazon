@@ -130,8 +130,7 @@
                         </div>
                         <div class="col-12">
                             <div class="hightlight">Nombre de la propiedad</div>
-                            <div class="location py-2"><img src="{{ asset('images/icons/location.svg') }}"> Ubicación del
-                                desarrollo</div>
+                            <div class="location py-2"><img src="{{ asset('images/icons/location.svg') }}"> Ubicación</div>
                             <p class="description">Breve descripción de la propiedad con un máximo de caracteres
                                 establecidos por el cliente para una rápida introducción.</p>
                         </div>
