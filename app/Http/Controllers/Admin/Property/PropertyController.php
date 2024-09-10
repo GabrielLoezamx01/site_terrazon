@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Property;
 use App\Models\TypeProperty;
 use App\Models\Municipality;
+use App\Models\Location;
 use App\Models\DetailProperty;
 use App\Models\FeaturesProperty;
 use App\Models\Amenities;
@@ -45,7 +46,9 @@ class PropertyController extends Controller
     public function createView()
     {
         $municipality = Municipality::with('state')->get();
-        return view('admin.properties.create')->with(compact('municipality'));
+        $location = Location::where('status', 1)->get();
+
+        return view('admin.properties.create')->with(compact('municipality','location'));
     }
 
     /**
@@ -77,7 +80,7 @@ class PropertyController extends Controller
         $property->municipality_id = $request->municipality;
         $property->m2 = $request->informacion['m2'];
         $property->video = $request->informacion['video'] ?? '';
-
+        $property->location_id = $request->tipo_location;
         $property->save();
         return $property->id;
     }
@@ -264,13 +267,14 @@ class PropertyController extends Controller
     {
         $property = Property::with(['municipality.state', 'types', 'amenities', 'conditions', 'details', 'features'])->where('folio', $id)->first();
         $municipality = Municipality::with('state')->get();
+        $location = Location::where('status', 1)->get();
         $items = [
             'amenities' => Amenities::all(),
             'conditions' => ConditionProperty::all(),
             'types' => TypeProperty::all(),
             'feature' => FeaturesProperty::all(),
         ];
-        return view('admin.properties.edit', compact('property', 'municipality', 'items'));
+        return view('admin.properties.edit', compact('property', 'municipality', 'location', 'items'));
     }
 
     /**
@@ -316,6 +320,7 @@ class PropertyController extends Controller
         $property->parking = $request->parking;
         $property->video = $request->video;
         $property->municipality_id = $request->municipality;
+        $property->location_id = $request->tipo_location;
         $property->m2 = $request->m2;
         $property->save();
 
@@ -356,11 +361,28 @@ class PropertyController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        DetailsProperty::where('property_id', $id)
-            ->where('detail_id', $request->details_id)
-            ->delete();
-        return redirect()->back()->with('success', '¡Operación realizada con éxito!');
+        $property = Property::where('folio', $id)->first();
 
+        if (!$property) {
+            return [
+                'message' => 'Propiedad no encontrada',
+                'status' => 404
+            ];
+        }
+
+        if ($property->available == 1 || $property->available == 3) {
+            return [
+                'message' => 'Propiedad no se puede eliminar',
+                'status' => 404
+            ];
+        }
+
+        $property->delete();
+
+        return [
+            'message' => 'Propiedad eliminada correctamente',
+            'status' => 200
+        ];
     }
 
 
@@ -391,9 +413,17 @@ class PropertyController extends Controller
     public function active_property(Request $request)
     {
         $propertyId = $request->property;
-        $validate = Property::where('id', $propertyId)->where(['available' => 1])->count();
-        if($validate > 0){
-            return response()->json(['error' => 'La propiedad ya se encuentra activa.'], 500);
+        $validate = Property::where('id', $propertyId)->first();
+
+        if ($validate) {
+            $status = match (true) {
+                $validate->available == 1 => 'La propiedad ya se encuentra activa.',
+                $validate->location_id == null => 'No está asignado un tipo de locación.',
+                default => null,
+            };
+            if ($status) {
+                return response()->json(['error' => $status], 500);
+            }
         }
 
         $amenitiesExist = AmenitiesProperty::where('property_id', $propertyId)->exists();

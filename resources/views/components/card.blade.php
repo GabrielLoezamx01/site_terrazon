@@ -15,7 +15,7 @@
         <h5 class="card-title">{{ $card["title"] }}</h5>
         <h5 class="card-location">
             <a href="https://www.google.com/maps/search/?api=1&query={{ $card['latitude'] }},{{ $card['longitude'] }}" target="_blank">
-                <i class="bi bi-geo-alt"></i> Ubicación del desarrollo
+                <i class="bi bi-geo-alt"></i> Ubicación
             </a>
         </h5>
         <p class="card-text">

@@ -72,8 +72,8 @@
                         <div class="search-box col-5">
                             <input type="text" id="searchInput" class="form-control" placeholder="Buscar...">
                         </div>
-                        <div id="table-defassult" class="table-responsive mt-5">
-                            <table class="table card-table table-vcenter text-nowrap datatable display" id="myTable">
+                        <div id="table-defassult" class="table-responsive mt-5 h-100">
+                            <table class="table card-table " id="myTable">
                                 <thead>
                                     <tr>
                                         <th class="text-start">Folio</th>
@@ -91,9 +91,9 @@
                                 <tbody>
                                     @foreach ($property as $item)
                                         @if (count($item['details']))
-                                            <tr class="p-2">
+                                            <tr class="">
                                             @else
-                                            <tr class="p-2  bg-orange-lt" title="No tiene detalles">
+                                            <tr class="  bg-orange-lt" title="No tiene detalles">
                                         @endif
                                         <td class="text-start"><span class="fw-bold">{{ $item->folio }}</span></td>
                                         <td class="fs-5">{{ $item->title }}</td>
@@ -233,6 +233,21 @@
                                                         </svg>
                                                         Imagenes
                                                     </a>
+                                                    <button @click="delete_property('{{ $item->folio }} ')"
+                                                        class="dropdown-item">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                            height="24" viewBox="0 0 24 24" fill="none"
+                                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                            stroke-linejoin="round" class="icon me-2">
+                                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                            <path d="M4 7l16 0" />
+                                                            <path d="M10 11l0 6" />
+                                                            <path d="M14 11l0 6" />
+                                                            <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                                                            <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                                                        </svg>
+                                                        Eliminar
+                                                    </button>
                                                 </div>
                                             </div>
                                         </td>
@@ -342,6 +357,20 @@
                         });
 
                 },
+                delete_property: function(id) {
+                    if (confirm("¿Estás seguro de que deseas eliminar esta propiedad?")) {
+                        axios
+                            .delete('property' + "/" + id)
+                            .then((response) => {
+                               alert(response.data.message);
+                                location.reload();
+                            })
+                            .catch((error) => {
+                                alert(error);
+                            });
+                    }
+                }
+
             },
         });
     </script>

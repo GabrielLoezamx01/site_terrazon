@@ -15,7 +15,7 @@ class HomeController extends Controller
                 $query->where('available', 1);
             },
             'home'
-        ])->get(); 
+        ])->get();
         $groupedProperties = $properties->groupBy('home.name');
         $data = [];
         $home = [];
@@ -38,7 +38,7 @@ class HomeController extends Controller
             $home[] = $homeItem;
         }
         // json_dd($homeItem);
-        return view('public.home', [ 
+        return view('public.home', [
             'cards2' => $data,
             'home' => $home
         ]);

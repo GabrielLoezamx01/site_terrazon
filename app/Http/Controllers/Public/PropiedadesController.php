@@ -24,6 +24,7 @@ class PropiedadesController extends Controller
     public function ficha($sku){
         $properties = Property::with('types','amenities','conditions','details','features','galleries')->where('available',1)->get();
         $property   = Property::with('types','amenities','conditions','details','features','galleries')->where('folio',$sku)->first();
+        // json_dd($property);
         $galery=[];
         if(isset($property->galleries)){
             foreach($property->galleries as $key => $value){

@@ -29,6 +29,7 @@ const app = new Vue({
         longitud: "",
         latitude: "",
         municipality: 1,
+        tipo_location: 1,
         price: 0,
         parking: 0,
         bathrooms: 0,
@@ -158,6 +159,7 @@ const app = new Vue({
                 return "error";
             }
             this.post_data["municipality"] = this.municipality;
+            this.post_data["tipo_location"] = this.tipo_location;
             this.post_data["latitude"] = this.latitude;
             this.post_data["longitud"] = this.longitud;
             this.view2 = false;
@@ -194,6 +196,7 @@ const app = new Vue({
             this.longitud = "";
             this.latitude = "";
             this.municipality = "";
+            this.tipo_location = "";
             this.price = "";
             this.parking = "";
             this.bathrooms = "";
@@ -207,6 +210,7 @@ const app = new Vue({
                 longitud: this.longitud,
                 latitude: this.latitude,
                 municipality: this.municipality,
+                tipo_location: this.tipo_location,
                 price: this.price,
                 parking: this.parking,
                 bathrooms: this.bathrooms,
@@ -356,6 +360,7 @@ const app = new Vue({
                 parking: this.parking,
                 parkingCheck: this.checkbox,
                 municipality: this.municipality,
+                tipo_location: this.tipo_location,
                 latitude: this.latitude,
                 longitud: this.longitud,
                 conditions: this.selectedConditions,
