@@ -52,6 +52,22 @@ body {
     height: 250px;
 }
 
+.modal-close{
+    background: white;
+    border: none;
+    border-radius: 50%;
+    position: absolute;
+    left: 45%;
+    width: 54px;
+    height: 54px;
+    top: -10px;
+    z-index: 1;
+    @include box-shadow;
+    i{
+        font-size: 1.3rem;
+    }
+}
+
 .banner-propiedades {
     background: url('../images/banners/propiedades.png') no-repeat;
     background-size: cover;
@@ -91,7 +107,7 @@ body {
     justify-content: center;
     width: 100%;
     height: 100%;
-    z-index: 9999;
+    z-index: 1;
 
     h1 {
         color: white;

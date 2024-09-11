@@ -11,7 +11,7 @@
                 {{ $item['span'] }}
             </div>
         </div>
-        <div class="container-md mobile-conteiner"> 
+        <div class="container-md mobile-conteiner">
             <x-carousel :cards="$item['cards']" id="carr{{ $k+1 }}" />
         </div>
     </div>
@@ -93,7 +93,7 @@
             </div>
         </div>
         <div class="container-md mobile-conteiner">
-            <x-carousel :cards="$cards2" id="carr3" />
+            <x-carousel :cards="$viewed" id="viewedSlider" />
         </div>
     </div>
     <div class="bg-divisor py-5">

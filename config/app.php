@@ -17,10 +17,16 @@ return [
     'contact_email' => env('CONTAT_EMAIL', 'contacto@terrazon.mx'),
     'contact_tel' => env('CONTAT_TEL', '+52 999 912 3456'),
     'contact_tel_scape' => env('CONTAT_TEL_SCAPE', '+529999123456'),
-    'link_facebook' => env('LINK_FACEBOOK', 'https://www.facebook.com/share/bz85nrGpXmAPYVZQ/?mibextid=qi2Omg'), 
-    'link_instagram' => env('LINK_INSTAGRAM', 'https://www.instagram.com/terrazon.mx?igsh=aW53ZmVwOTB1dWdi'), 
-    'link_youtube' => env('LINK_YOUTUBE', 'https://www.youtube.com/@TerrazonMx'), 
-    'link_tiktok' => env('LINK_TIKTOK', 'https://www.tiktok.com/@terrazonmx'), 
+    'link_facebook' => env('LINK_FACEBOOK', 'https://www.facebook.com/share/bz85nrGpXmAPYVZQ/?mibextid=qi2Omg'),
+    'link_instagram' => env('LINK_INSTAGRAM', 'https://www.instagram.com/terrazon.mx?igsh=aW53ZmVwOTB1dWdi'),
+    'link_youtube' => env('LINK_YOUTUBE', 'https://www.youtube.com/@TerrazonMx'),
+    'link_tiktok' => env('LINK_TIKTOK', 'https://www.tiktok.com/@terrazonmx'),
+    'cache'=>[
+        'list_ubicaciones' => 'cache_list_ubicaciones',
+        'list_tiposPropiedad' => 'cache_list_tiposPropiedad', 
+        'home_properties' => 'cache_home_properties_group',
+        'viewed_properties' => 'cache_viewed_properties',
+    ],
 
     /*
     |--------------------------------------------------------------------------
