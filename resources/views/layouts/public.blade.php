@@ -25,7 +25,7 @@
 <body>
     @include('public.includes.header')
     @yield('content')
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}?v={{ config('app.version')}}"></script>
     <!-- @yield('scripts') -->
     @stack('scripts')
     @include('public.includes.footer')
