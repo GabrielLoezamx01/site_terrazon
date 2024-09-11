@@ -43,6 +43,22 @@ body {
     }
 }
 
+.fw-400{
+    font-weight: 400 !important;
+}
+.banner {
+    position: relative;
+    width: 100%;
+    height: 250px;
+}
+
+.banner-propiedades {
+    background: url('../images/banners/propiedades.png') no-repeat;
+    background-size: cover;
+    background-position: center;
+
+}
+
 .header-icon-filter {
     font-size: 18px !important;
 }
@@ -162,6 +178,15 @@ body {
     min-height: 300px;
 }
 
+.property-img {
+    margin: 2rem auto;
+    width: 100%;
+    border-radius: 10px;
+}
+.property-img-2 {
+    width: 80%;
+    border-radius: 10px;
+}
 
 .card-property {
 
@@ -817,6 +842,14 @@ ul.list-info {
     background-size: 100% !important;
 }
 
+.svg-icon-button {
+    display: inline-block;
+    width: 20px !important;
+    height: 20px !important;
+    background-position: center;
+    background-size: 100% !important;
+}
+
 .svg-icon-ficha {
     display: inline-block;
     width: 20px !important;
@@ -824,6 +857,7 @@ ul.list-info {
     background-position: center;
     background-size: 100% !important;
 }
+
 .svg-icon-chars {
     display: inline-block;
     width: 20px !important;
@@ -831,8 +865,24 @@ ul.list-info {
     background-position: center;
     background-size: 100% !important;
 }
+
+.svg-icon-person {
+    background: url('../svg/person.svg') no-repeat;
+}
+
+.svg-icon-star-check {
+    background: url('../svg/star-check.svg') no-repeat;
+}
 .svg-icon-area {
     background: url('../svg/area.svg') no-repeat;
+}
+
+.svg-icon-beach {
+    background: url('../svg/beach.svg') no-repeat;
+}
+
+.svg-icon-city {
+    background: url('../svg/city.svg') no-repeat;
 }
 
 .svg-icon-properties {
@@ -1068,6 +1118,7 @@ fieldset {
     color: #231D46;
     font-size: 18px;
 }
+
 .ficha-location {
     color: #1E612D;
     font-size: 20px;
@@ -1076,7 +1127,8 @@ fieldset {
     img {
         height: 11px;
     }
-    a{
+
+    a {
         color: #1E612D;
         font-size: 20px;
         font-weight: 500;

@@ -17,18 +17,18 @@
 <body>
     <div class="page">
         @if (Auth::check())
-            @if (!isset($validate))
-                @include('layouts.aside')
-            @endif
-            <div class="page-wrapper" id="vueApp">
-                {{-- <x-page-header title="{{ $title ?? 'Configurar vista' }}" /> --}}
-                @yield('content')
-                <footer class="footer footer-transparent d-print-none">
-                    <div class="container-xl">
-                        <span>Terrazon Admin</span>
-                    </div>
-                </footer>
-            </div>
+        @if (!isset($validate))
+        @include('layouts.aside')
+        @endif
+        <div class="page-wrapper" id="vueApp">
+            {{-- <x-page-header title="{{ $title ?? 'Configurar vista' }}" /> --}}
+            @yield('content')
+            <footer class="footer footer-transparent d-print-none">
+                <div class="container-xl">
+                    <span>Terrazon Admin</span>
+                </div>
+            </footer>
+        </div>
 
     </div>
 
@@ -37,7 +37,7 @@
     <script src="{{ asset('js/search.js') }}"></script>
 
     @stack('scripts2')
-@else
+    @else
     <div class="page-wrapper" id="vueApp">
         {{-- <x-page-header title="{{ $title ?? 'Configurar vista' }}" /> --}}
         @yield('content')

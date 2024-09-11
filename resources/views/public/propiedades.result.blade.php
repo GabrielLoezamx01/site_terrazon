@@ -1,35 +1,17 @@
 @extends('layouts.public')
 @section('title', 'TERRAZÓN - PROPIEDADES')
 @section('content')
-<div class="banner banner-propiedades"></div>
 <div class="bg-white pt-3 ">
     <div class="container">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/">Home</a></li>
-                <li class="breadcrumb-item active"><a href="/propiedades">Propiedades</a></li>
+                <li class="breadcrumb-item"><a href="/propiedades">Propiedades</a></li>
+                <li class="breadcrumb-item active" aria-current="page">En la playa</li>
             </ol>
         </nav>
+
         <div class="row">
-            <div class="row">
-                <div class="col-12 text-center">
-                    <h3>¿Donde quieres comenzar a buscar?</h3>
-                </div>
-                <div class="col-12 text-center">
-                    <div class="inline">
-                        <button class="btn btn-outline-secondary">
-                            <div class="d-flex align-items-center">
-                                <span>En la ciudad</span><i class="ms-1 svg-icon-button svg-icon-city"></i>
-                            </div>
-                        </button>
-                        <button class="btn btn-outline-secondary">
-                            <div class="d-flex align-items-center">
-                                <span>En la playa</span> <i class="ms-1 svg-icon-button svg-icon-beach"></i>
-                            </div>
-                        </button>
-                    </div>
-                </div>
-            </div>
             <!-- <div class="col-3 d-none pt-5" id="filter"> -->
             <div class="col-3 d-none pt-5" id="filter">
                 <div class="row ">
@@ -194,15 +176,21 @@
                         <div class="title">Top Propiedades </div>
                         <div class="description">Descubre tu próximo hogar entre nuestras propiedades destacadas.</div>
                     </div>
-                    <div class="col-12 text-end ">Ordenar por:
+                    <div class="col-6 text-primary">
+                        <div  id="filter-desktop">
+                            <a id="toggleFilters" href="javascript:void(0)" class="text-primary d-none d-md-block">Filtro <i class="bi bi-filter"></i> </a>
+                            <a id="toggleFiltersMobile" href="javascript:void(0)" class="text-primary d-md-none" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Filtro <i class="bi bi-filter"></i> </a>
+                        </div>
+                    </div>
+                    <div class="col-6 text-end ">Ordenar por:
                         <div class="btn-group">
                             <a class="dropdown-toggle dd-order" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 mas relevantes
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/propiedades?order=relevantes">Mas relevantes</a></li>
-                                <li><a class="dropdown-item" href="/propiedades?order=minprice">Menor Precio</a></li>
-                                <li><a class="dropdown-item" href="/propiedades?order=maxprice">Mayor Precio</a></li>
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
                             </ul>
                         </div>
                     </div>
@@ -212,55 +200,28 @@
         </div>
     </div>
 </div>
-<div class="py-5">
+<div class="bg-teal py-5">
     <div class="container py-5">
         <div class="row">
-            <div class="col-12 col-md-6 order-2 order-md-1">
-                <div class="row mb-5" data-masonry='{"percentPosition": true }'>
-                    <div class="col-6 text-center ">
-                        <img src="{{ asset('images/properties/property-1.png') }}" class="property-img" />
-                    </div>
-                    <div class="col-6 text-center pt-5">
-                        <img src="{{ asset('images/properties/property-2.png') }}" class="property-img" />
-                    </div>
-                    <div class="col-6 text-center">
-                        <img src="{{ asset('images/properties/property-3.png') }}" class="property-img-2" />
-                    </div>
-                </div>
+            <div class="col-12 mb-4  offset-md-3 col-md-6 text-center">
+                <h1>¿Por qué debería considerarnos para adquirir una propiedad?</h1>
+                <small>Comprar una propiedad nunca fue tan fácil.</small>
             </div>
-            <div class="col-12 col-md-6 order-1 order-md-2 mt-4 ">
-                <h1 class="text-center">Ofrecemos la mejor propiedad inmobiliaria para todos.</h1>
-                <p>En Terrazon, nos especializamos en ofrecer las mejores propiedades inmobiliarias adaptadas a todos los gustos y necesidades. Nuestro equipo de expertos se dedica a encontrar el hogar perfecto para cada cliente, proporcionando un servicio personalizado y profesional en cada etapa del proceso. Ya sea que busques una casa familiar, un apartamento moderno o una villa de lujo frente al mar, en Terrazon tenemos la opción ideal para ti. Descubre la diferencia de comprar con nosotros y encuentra no solo una propiedad, sino un lugar donde tus sueños pueden hacerse realidad.</p>
-                <p class="d-none d-md-block">
-                    <button class="btn btn-primary btn-lg my-5 px-5">CONTÁCTANOS</button>
-                </p>
+            <div class="col-12 col-md-4 mb-4  px-md-5">
+                <div class="text-center"><span class="svg-icon svg-icon-properties"></span></div>
+                <div class="title text-center fs-5">Amplia gama de propiedades</div>
+                <div class="description text-center">Ofrecemos ayuda legal experta para todos los artículos inmobiliarios relacionados.</div>
             </div>
-            <div class="col-6 col-md-3 offset-md-6 order-3 order-md-3">
-                <div class="row">
-                    <div class="col-3 d-flex align-items-center">
-                        <i class="svg-icon  svg-icon-person "></i>
-                    </div>
-                    <div class="col-9">
-                        <div class="title">1K</div>
-                        <div class="subtitle text-secondary fw-400 fs-6 text-nowrap">clientes Satisfechos</div>
-                    </div>
-                </div>
+            <div class="col-12 col-md-4 mb-4">
+                <div class="text-center"><span class="svg-icon svg-icon-shape"></span></div>
+                <div class="title text-center fs-5">Seguimiento durante todo tu proceso de compra.</div>
+                <div class="description text-center">El mejor precio del mercado.</div>
             </div>
-            <div class="col-6 col-md-3 order-3 order-md-3">
-                <div class="row">
-                    <div class="col-3  d-flex align-items-center">
-                        <i class=" svg-icon  svg-icon-star-check"></i>
-                    </div>
-                    <div class="col-9">
-                        <div class="title">2K</div>
-                        <div class="subtitle text-secondary fw-400 fs-6 text-nowrap">Propiedades verificadas</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 d-block d-md-none order-4">
-                <div class="d-grid gap-2">
-                    <button class="btn btn-primary btn-lg my-5 px-5">CONTÁCTANOS</button>
-                </div>
+            <div class="col-12 col-md-4 mb-4">
+                <div class="text-center"><span class="svg-icon svg-icon-secure"></span></div>
+                <div class="title text-center fs-5">Con la confianza de todos nuestros clientes</div>
+                <div class="description text-center">Transparencia y comunicación clara durante
+                    todo el proceso.</div>
             </div>
         </div>
     </div>
@@ -444,5 +405,4 @@
 @endsection
 @push('scripts')
 <script src="{{ asset('js/properties.js') }}"></script>
-<script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
 @endpush

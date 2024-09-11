@@ -7,6 +7,7 @@ use App\Http\Controllers\Referrals\ReferralsPropertyController as ReferralsSetti
 use App\Http\Controllers\Referrals\ReferralsProperty;
 use App\Http\Controllers\Emails\VerifyController;
 use App\Http\Controllers\Admin\AmenitiesController;
+use App\Http\Controllers\Admin\Cms\CmsController;
 use App\Http\Controllers\Admin\TypesController;
 use App\Http\Controllers\Admin\FeaturesController;
 use App\Http\Controllers\Admin\ConditionController;
@@ -81,6 +82,8 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::apiResource('features', FeaturesController::class);
     Route::apiResource('condition', ConditionController::class);
     Route::apiResource('property', PropertyController::class);
+    Route::apiResource('cms', CmsController::class);
+    
     Route::get('new_property', [PropertyController::class, 'createView']);
 
     Route::post('active_property', [PropertyController::class, 'active_property']);
