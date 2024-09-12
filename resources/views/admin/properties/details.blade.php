@@ -36,9 +36,8 @@
                                                 </li>
                                             </div>
                                             <div class="col-md-2 mt-2">
-                                             <form action="{{ url('admin/property/' . $details['id']) }}" method="post">
+                                             <form action="{{ route('delete_details') }}" method="post">
                                                     @csrf
-                                                    @method('DELETE')
                                                     <input type="hidden" value="{{ $value['id'] }}" name="details_id">
                                                     <button class="btn btn-sm ms-3" title="Eliminar">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"

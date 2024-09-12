@@ -28,29 +28,38 @@
                         </span>
                     </div>
                     <div class="padding-login col-md-12">
-                        <form>
+                        @if (session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                        @endif
+                        <form method="POST" action="{{ route('user.register') }}">
+                            @csrf
                             <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label for="nombre" class="form-label">Nombre<span
                                             class="text-danger">*</span></label>
-                                    <input type="text" class="form-control input" id="nombre" required>
+                                    <input type="text" name="first_name" class="form-control input" id="nombre"
+                                        required>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="apellido" class="form-label">Apellido<span
                                             class="text-danger">*</span></label>
-                                    <input type="text" class="form-control input" id="apellido" required>
+                                    <input type="text" name="last_name" class="form-control input" id="apellido"
+                                        required>
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label for="apellido_paterno" class="form-label">Apellido Paterno<span
                                             class="text-danger">*</span></label>
-                                    <input type="text" class="form-control input" id="apellido_paterno" required>
+                                    <input type="text"name="middle_name" class="form-control input"
+                                        id="apellido_paterno" required>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="celular" class="form-label">Número de celular<span
                                             class="text-danger">*</span></label>
-                                    <input type="tel" class="form-control input" id="celular"
+                                    <input type="tel" name="cell_phone" class="form-control input" id="celular"
                                         placeholder="Ingresa un número de 10 dígitos" pattern="[0-9]{10}" maxlength="10"
                                         required title="El número debe contener 10 dígitos">
                                 </div>
@@ -59,7 +68,7 @@
                             <div class="mb-3">
                                 <label for="email" class="form-label">Correo electrónico<span
                                         class="text-danger">*</span></label>
-                                <input type="email" class="form-control input" id="email" required>
+                                <input type="email" name="email" class="form-control input" id="email" required>
                             </div>
                             <div class="mb-3">
                                 <label for="confirmar_email" class="form-label">Confirmar correo electrónico<span
@@ -109,7 +118,8 @@
                                 </ul>
                             </div>
                             <div class="mb-3 form-check">
-                                <input type="checkbox" class="form-check-input" id="terminos" required>
+                                <input type="checkbox" class="form-check-input" id="terminos" name="terms_accepted"
+                                    required>
                                 <label class="form-check-label" for="terminos">Estoy de acuerdo con los <span
                                         class="fw-bold">Términos de Uso</span>
                                     y acepto que <span class="fw-bold">Terrazon </span> usará mi información personal
