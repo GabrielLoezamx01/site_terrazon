@@ -13,6 +13,7 @@ class CardResource extends JsonResource
         $title       = $this->title ?? '';
         $price       = number_format($this->price ?? 0, 2, '.', ',');
         $area        = $this->m2 ?? '';
+        $types_id       = $this->types[0]->id ?? '';
         $imageUrl    = isset($this->img) ? asset('storage/' . $this->img) : '';
         $description = isset($this->description) ? Str::limit($this->description, 300) : '';
         $detailsPage = '/ficha/' . $this->folio;
@@ -31,6 +32,7 @@ class CardResource extends JsonResource
         return [
             'title'       => $title,
             'price'       => $price,
+            'type_id'     => 1,
             'area'        => $area,
             'imageUrl'    => $imageUrl,
             'description' => $description,

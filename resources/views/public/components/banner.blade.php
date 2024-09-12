@@ -32,7 +32,7 @@
                                     <div class="col-3 item">
                                         <div class="item-content">
                                             <label for="ubicacion">Tipo de propiedad</label>
-                                            <select class="form-select" id="type" name="type">
+                                            <select class="form-select" id="type" name="type[]">
                                                 <option value="0" selected>Selecciona el tipo</option>
                                                 @foreach ($typesProperties as $key => $tp)
                                                 <option value="{{$tp['id']}}"

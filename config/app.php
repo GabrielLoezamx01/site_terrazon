@@ -25,6 +25,8 @@ return [
     'cache'=>[
         'list_ubicaciones' => 'cache_list_ubicaciones',
         'list_tiposPropiedad' => 'cache_list_tiposPropiedad', 
+        'list_conditionProperty' => 'cache_list_conditionProperty', 
+        'list_amenities' => 'cache_list_amenities', 
         'home_properties' => 'cache_home_properties_group',
         'viewed_properties' => 'cache_viewed_properties',
     ],
