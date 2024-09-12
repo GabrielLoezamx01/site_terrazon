@@ -83,7 +83,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::apiResource('condition', ConditionController::class);
     Route::apiResource('property', PropertyController::class);
     Route::apiResource('cms', CmsController::class);
-    
+
     Route::get('new_property', [PropertyController::class, 'createView']);
 
     Route::post('active_property', [PropertyController::class, 'active_property']);
@@ -107,6 +107,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
 
 include __DIR__ . '/referrals.php';
+include __DIR__ . '/user.php';
 
 
 // Route::apiResource('emails/verify', VerifyController::class);

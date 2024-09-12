@@ -1,0 +1,94 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+* {
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+}
+
+.login-img {
+    width: 220px;
+    height: 47.09px;
+}
+
+.color-login {
+    color: #159e12;
+}
+
+.btn-color {
+   background: #37B052;
+   border-radius: 10px;
+   height: 50px;
+   border: none;
+}
+
+.padding-login {
+    margin-top: 100px;
+}
+
+.span-login {
+    font-weight: 400;
+    line-height: 16.94px;
+    text-align: left;
+}
+
+.label-login {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.input {
+    width: 100%;
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 0.5rem;
+    padding: 10px 40px 10px 15px; /* Ajuste en el padding para espacio del ícono/texto */
+    font-size: 16px;
+    color: #333;
+    box-shadow: none;
+    position: relative;
+}
+.input-email {
+    display: block;
+    width: 100%;
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 0.5rem;
+    padding: 10px 40px 10px 15px; /* Ajuste en el padding para espacio del ícono/texto */
+    font-size: 16px;
+    color: #333;
+    box-shadow: none;
+    position: relative;
+}
+.password-toggle {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Espacio entre el ícono y el texto */
+    user-select: none;
+}
+
+.input:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: #37b052;
+}
+
+.password-toggle svg {
+    color: #37b052;
+    width: 24px;
+    height: 24px;
+}
+
+.pass-label{
+    color: red;
+      text-decoration: none;
+}
