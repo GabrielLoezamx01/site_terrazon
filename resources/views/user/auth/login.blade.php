@@ -15,7 +15,7 @@
     <div class="container-fluid vh-100">
         <div class="row h-100">
             <div class="col-md-6">
-                <div class="p-5 m-5">
+                <div class="m-5">
                     <div>
                         <img src="{{ asset('images/logo-terrazon.png') }}" class="login-img mt-5">
                     </div>
