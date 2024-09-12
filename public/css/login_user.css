@@ -1,0 +1,219 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+* {
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+}
+
+.login-img {
+    width: 220px;
+    height: 47.09px;
+}
+
+.color-login {
+    color: #159e12;
+}
+
+.btn-color {
+    background: #37b052;
+    border-radius: 10px;
+    height: 50px;
+    border: none;
+}
+
+.padding-login {
+    margin-top: 100px;
+}
+
+.span-login {
+    font-weight: 400;
+    line-height: 16.94px;
+    text-align: left;
+}
+
+.label-login {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.input {
+    width: 100%;
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 0.5rem;
+    padding: 10px 40px 10px 15px; /* Ajuste en el padding para espacio del ícono/texto */
+    font-size: 16px;
+    color: #333;
+    box-shadow: none;
+    position: relative;
+}
+.input-email {
+    display: block;
+    width: 100%;
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 0.5rem;
+    padding: 10px 40px 10px 15px; /* Ajuste en el padding para espacio del ícono/texto */
+    font-size: 16px;
+    color: #333;
+    box-shadow: none;
+    position: relative;
+}
+.password-toggle {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Espacio entre el ícono y el texto */
+    user-select: none;
+}
+.label-register {
+    color: #094208;
+    font-weight: 600;
+    text-decoration: none;
+}
+.input:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: #37b052;
+}
+.input-email:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: #37b052;
+}
+
+.password-toggle svg {
+    color: #37b052;
+    width: 24px;
+    height: 24px;
+}
+
+.pass-label {
+    color: red;
+    text-decoration: none;
+}
+/* Estilo general para los placeholders */
+input::placeholder {
+    font-size: 1rem; /* Tamaño de fuente por defecto */
+}
+
+/* Cambiar el tamaño del placeholder en dispositivos móviles */
+@media (max-width: 768px) {
+    /* Ajusta el valor según tus necesidades */
+    input::placeholder {
+        font-size: 0.875rem; /* Tamaño más pequeño para móviles */
+    }
+    .password-toggle svg {
+        width: 20px; /* Tamaño más pequeño para móviles */
+        height: 20px;
+    }
+    .password-toggle #toggle-text {
+        font-size: 0.875rem; /* Tamaño más pequeño para móviles */
+    }
+    .mb-3 {
+        font-size: 0.875rem; /* Tamaño de fuente más pequeño para móviles */
+    }
+
+    .check-input {
+        margin-right: 0.25rem; /* Menor espaciado en móviles */
+    }
+
+    .pass-label {
+        font-size: 0.875rem; /* Tamaño de fuente más pequeño para móviles */
+    }
+
+    .d-flex {
+        flex-direction: column; /* Cambiar la dirección del flex a columna en móviles */
+        align-items: flex-start; /* Alinear elementos al inicio en columna */
+    }
+
+    .d-flex > div {
+        margin-bottom: 0.5rem; /* Espaciado entre los elementos en columna */
+    }
+}
+
+/* Asegúrate de que el contenedor se ajuste a la pantalla en dispositivos móviles */
+.container-fluid {
+    /* padding: 0; */
+}
+
+/* Ajusta la imagen del logo para dispositivos móviles */
+.login-img {
+    width: auto; /* Ajusta automáticamente el ancho */
+    max-width: 180px; /* Limita el ancho máximo */
+    height: auto; /* Ajusta automáticamente la altura */
+}
+
+/* Ajusta el margen en dispositivos móviles */
+.padding-login {
+    margin-top: 50px; /* Reduce el margen superior */
+}
+
+/* Ajusta el tamaño del botón para que sea más grande en dispositivos móviles */
+.btn-color {
+    height: 45px;
+    font-size: 16px; /* Asegúrate de que el texto sea legible */
+}
+
+/* Ajusta el tamaño del campo de entrada en dispositivos móviles */
+.input-email {
+    padding: 10px 35px 10px 15px; /* Ajusta el padding */
+    font-size: 14px; /* Tamaño de fuente más pequeño */
+}
+
+/* Ajusta el espacio entre el ícono y el texto en dispositivos móviles */
+.password-toggle {
+    gap: 3px; /* Menor espacio entre ícono y texto */
+}
+
+/* Alineación de elementos en dispositivos móviles */
+.d-flex {
+    flex-direction: column; /* Cambia la dirección del flex a columna */
+    align-items: flex-start; /* Alinea los elementos al inicio */
+}
+
+/* Ajusta el tamaño del placeholder para dispositivos móviles */
+input::placeholder {
+    font-size: 0.875rem; /* Tamaño más pequeño para móviles */
+}
+
+/* Ajusta el tamaño del ícono en dispositivos móviles */
+.password-toggle svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Ajusta los tamaños y márgenes en dispositivos móviles */
+@media (max-width: 768px) {
+    .mb-3 {
+        font-size: 0.875rem;
+        margin-bottom: 1rem; /* Ajusta el espaciado entre los elementos */
+    }
+
+    .check-input {
+        margin-right: 0.25rem;
+    }
+
+    .pass-label {
+        font-size: 0.875rem;
+    }
+}
+
+.list-register {
+    list-style-type: none; /* Quita los puntos */
+    padding: 0;
+}
+
+.list-register li {
+    color: #3830d9;
+    margin-bottom: 5px;
+}
