@@ -43,13 +43,15 @@ class RecentPropertiesService
 
     public function getRecentlyViewed()
     {
-        $cookie= json_decode($this->request->cookie(self::COOKIE_NAME), true) ?? [];
+        $cookie = json_decode($this->request->cookie(self::COOKIE_NAME), true) ?? [];
         $properties = [];
         if ($cookie) {
             $ids = [];
             $data = [];
             foreach ($cookie as $key => $value) {
-                $ids[] = $value["id"];
+                if (isset($value["id"])) {
+                    $ids[] = $value["id"];
+                }
             }
             $sufixCache = implode('-', $ids);
             $key = $this->key_cache_home_properties . $sufixCache;

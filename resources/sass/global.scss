@@ -395,7 +395,7 @@ ul.list-info {
 
 .carousel-container {
     position: relative;
-
+    overflow: hidden;
     .car-nav {
         z-index: 999;
         top: 50%;
@@ -570,7 +570,7 @@ ul.list-info {
     border-radius: 4px;
     background-color: #e0e0e0;
     position: relative;
-    margin-top: 14px;
+    margin-top: 34px;
     overflow: auto;
 }
 

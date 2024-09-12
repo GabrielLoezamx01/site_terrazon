@@ -19,10 +19,13 @@
                 <div class="my-progress" id="progress-{{$id}}"></div>
             </div>
         </div>
-        <div class="col-md-3 text-center ">
-            <div class="d-grid gap-2 d-md-block">
-                <a href="/propiedades?type={{ $cards[0]->types[0]->id }}" class="btn btn-primary btn-catalogo">EXPLORAR CATÁLOGO</a>
+        <div class="col-12 col-md-3 text-center ">
+            <div class="row py-3 px-3">
+                <div class="d-grid gap-2">
+                    <a href="/propiedades?type[]={{ $cards[0]->types[0]->id }}" class="btn btn-primary btn-catalogo">EXPLORAR CATÁLOGO</a>
+                </div>
             </div>
+
         </div>
     </div>
     @endif
