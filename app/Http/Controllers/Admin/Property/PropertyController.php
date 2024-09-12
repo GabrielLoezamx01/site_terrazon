@@ -20,7 +20,7 @@ use App\Models\Relationship\TypesProperty;
 use App\Models\Relationship\DetailsProperty;
 use App\Models\Relationship\ConditionsProperty;
 use App\Models\Relationship\AmenitiesProperty;
-
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Support\Str;
 
@@ -385,7 +385,16 @@ class PropertyController extends Controller
         ];
     }
 
-
+    public function delete_details(Request $request)
+    {
+        $property = DetailProperty::where('id', $request->details_id)->first();
+        if (!$property) {
+            return response()->json(['error' => 'detalle no encontrado.'], 404);
+        }
+        $property->delete();
+        DB::table('details_property_relationship')->where('detail_id', $request->details_id)->delete();
+        return redirect()->back()->withSuccess('eliminado correctamente.');
+    }
 
     /**
      * Generate a slug based on the name and address.

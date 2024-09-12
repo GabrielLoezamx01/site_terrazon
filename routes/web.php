@@ -83,6 +83,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::apiResource('condition', ConditionController::class);
     Route::apiResource('property', PropertyController::class);
     Route::apiResource('cms', CmsController::class);
+    Route::post('delete_details', [PropertyController::class, 'delete_details'])->name('delete_details');
 
     Route::get('new_property', [PropertyController::class, 'createView']);
 
