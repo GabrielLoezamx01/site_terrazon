@@ -37,7 +37,7 @@ class LoginController extends Controller
 
         if (Auth::guard('custom_users')->attempt(['email' => $request->email, 'password' => $request->password])) {
             if (Auth::guard('custom_users')->check()) {
-                return redirect('user/home');
+                return redirect('custom/home');
             } else {
                 return redirect()->back()->withErrors(['error' => 'No hay usuario autenticado'])->withInput();
             }
