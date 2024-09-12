@@ -51,26 +51,30 @@
                                     </span>
                                 </div>
                             </div>
-                            <div class="mb-3 d-flex justify-content-between">
-                                <div>
-                                    <input type="checkbox" id="remember" class="check-input"> <label for="remember"
-                                        class="label-login ms-2">Recordarme</label>
-                                </div>
-                                <div>
-                                    <a href="#" id="old" class="pass-label">Olvidé mi contraseña</a>
+                            <div class="mb-3">
+                                <div class="row align-items-center">
+                                    <div class="col text-start">
+                                        <input type="checkbox" id="remember" class="check-input">
+                                        <label for="remember" class="label-login ms-2">Recordarme</label>
+                                    </div>
+                                    <div class="col-auto text-end">
+                                        <a href="{{ route('user.password') }}" id="forgot-password" class="pass-label">Olvidé mi
+                                            contraseña</a>
+                                    </div>
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <button class="btn-color w-100 text-white ">INGRESAR</button>
                             </div>
-                            <div class="mb-3 d-flex justify-content-between">
-                                <div>
-                                    <label for="remember" class="label-login ms-2">¿Todavía no tienes una cuenta en
-                                        Terrazon?</label>
-                                </div>
-                                <div>
-                                    <a href="#" id="old" class="pass-label"
-                                        style="color: #094208; font-weight: 600;">Regístrate aquí</a>
+                            <div class="mb-3">
+                                <div class="row align-items-center">
+                                    <div class="col text-start">
+                                        <div class="label-login">¿Todavía no tienes una cuenta en Terrazon?</div>
+
+                                    </div>
+                                    <div class="col-auto text-end">
+                                        <a href="{{ route('user.register') }}" id="register" class="label-register">Regístrate aquí</a>
+                                    </div>
                                 </div>
                             </div>
                         </form>
@@ -82,11 +86,11 @@
 
             </div>
 
-            <div class="col-md-6 bg-dark d-none d-md-block">
-                {{-- <div class="ms-5 mt-5 mb-4">
-                    <img src="{{ asset('images/logo-terrazon.png') }}" class="login-img mt-5">
-                </div> --}}
+            <div class="col-md-6 d-none d-md-block"
+                style="background-image: url('{{ asset('images/login-1.webp') }}'); background-size: cover; background-position: center;">
+
             </div>
+
         </div>
     </div>
 
@@ -96,13 +100,10 @@
             const passwordField = document.getElementById("password");
             const toggleText = document.getElementById("toggle-text");
             const eyeIcon = document.getElementById("eye-icon");
-
-            // Alternar el tipo de input entre 'password' y 'text'
             if (passwordField.type === "password") {
                 passwordField.type = "text";
                 toggleText.textContent = "";
 
-                // Cambiar el ícono a "eye-off" (ocultar)
                 eyeIcon.outerHTML = `
             <svg id="eye-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler-eye-off">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -114,8 +115,6 @@
             } else {
                 passwordField.type = "password";
                 toggleText.textContent = "";
-
-                // Cambiar el ícono a "eye" (mostrar)
                 eyeIcon.outerHTML = `
             <svg id="eye-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler-eye">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
