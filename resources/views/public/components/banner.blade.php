@@ -111,7 +111,7 @@
                         <div class="col-12">
                             <div class="mb-3">
                                 <h5 for="ubicacion">Tipo de propiedad</h5>
-                                <select class="form-select" id="type" name="type" style="border: none;">
+                                <select class="form-select" id="type" name="type[]" style="border: none;">
                                     <option value="0" selected>Selecciona el tipo</option>
                                     @foreach ($typesProperties as $key => $tp)
                                     <option value="{{$tp['id']}}"
