@@ -27,5 +27,8 @@ Route::post('/custom/register', [LoginController::class, 'register'])->name('cus
 */
 
 Route::middleware('custom_user')->group(function () {
-    Route::view('/user/home', 'user.admin.home')->name('custom.home');
+});
+
+Route::prefix('custom')->middleware('custom_user')->group(function () {
+    Route::view('/home', 'user.admin.home')->name('custom.home');
 });
