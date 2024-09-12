@@ -24877,6 +24877,7 @@ ul.list-info .detail-text {
 
 .carousel-container {
   position: relative;
+  overflow: hidden;
 }
 .carousel-container .car-nav {
   z-index: 999;
@@ -25036,7 +25037,7 @@ ul.list-info .detail-text {
   border-radius: 4px;
   background-color: #e0e0e0;
   position: relative;
-  margin-top: 14px;
+  margin-top: 34px;
   overflow: auto;
 }
 
