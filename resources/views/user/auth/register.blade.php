@@ -33,7 +33,7 @@
                                 {{ session('error') }}
                             </div>
                         @endif
-                        <form method="POST" action="{{ route('user.register') }}">
+                        <form method="POST" action="{{ route('custom.register') }}">
                             @csrf
                             <div class="row mb-3">
                                 <div class="col-md-6">
@@ -139,7 +139,7 @@
 
                                 </div>
                                 <div class="col-auto text-end">
-                                    <a href="{{ route('user.login') }}" id="register" class="label-register"
+                                    <a href="{{ route('custom.login') }}" id="register" class="label-register"
                                         style=" color: #3830d9;">Inicia sesión aquí</a>
                                 </div>
                             </div>

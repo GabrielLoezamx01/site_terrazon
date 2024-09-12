@@ -4,22 +4,21 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\Auth\LoginController;
 use App\Http\Controllers\User\Auth\HomeController;
 
-
 /*
 * RUTAS PUBLICAS
 */
 
-Route::get('/user/login', [LoginController::class, 'index'])->name('user.login');
-Route::view('/user/register', 'user.auth.register')->name('user.register');
-Route::view('/user/password', 'user.auth.password')->name('user.password');
+Route::get('/custom/login', [LoginController::class, 'index'])->name('custom.login.form');
+Route::view('/custom/register', 'user.auth.register')->name('custom.register.form');
+Route::view('/custom/password', 'user.auth.password')->name('custom.password');
 
 /*
 *
 * CONTROLADORES DE AUTENTICACION
 */
 
-Route::post('/user/login', [LoginController::class, 'login'])->name('user.login');
-Route::post('/user/register', [LoginController::class, 'register'])->name('user.register');
+Route::post('/custom/login', [LoginController::class, 'login'])->name('custom.login');
+Route::post('/custom/register', [LoginController::class, 'register'])->name('custom.register');
 
 
 /*
@@ -28,5 +27,5 @@ Route::post('/user/register', [LoginController::class, 'register'])->name('user.
 */
 
 Route::middleware('custom_user')->group(function () {
-    route::view('/user/home', 'user.admin.home')->name('user.home');
+    Route::view('/user/home', 'user.admin.home')->name('custom.home');
 });

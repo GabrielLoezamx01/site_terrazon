@@ -34,7 +34,7 @@
                             </div>
                         @endif
 
-                        <form action="{{ route('user.login') }}" method="POST">
+                        <form action="{{ route('custom.login') }}" method="POST">
                             @csrf
                             <div class="mb-3">
                                 <label for="email" class="label-login">Correo electrónico</label>
@@ -67,7 +67,7 @@
                                         <label for="remember" class="label-login ms-2">Recordarme</label>
                                     </div>
                                     <div class="col-auto text-end">
-                                        <a href="{{ route('user.password') }}" id="forgot-password"
+                                        <a href="{{ route('custom.password') }}" id="forgot-password"
                                             class="pass-label">Olvidé mi
                                             contraseña</a>
                                     </div>
@@ -83,7 +83,7 @@
 
                                     </div>
                                     <div class="col-auto text-end">
-                                        <a href="{{ route('user.register') }}" id="register"
+                                        <a href="{{ route('custom.register') }}" id="register"
                                             class="label-register">Regístrate aquí</a>
                                     </div>
                                 </div>
