@@ -92,3 +92,41 @@
     color: red;
       text-decoration: none;
 }
+/* Estilo general para los placeholders */
+input::placeholder {
+    font-size: 1rem; /* Tamaño de fuente por defecto */
+}
+
+/* Cambiar el tamaño del placeholder en dispositivos móviles */
+@media (max-width: 768px) { /* Ajusta el valor según tus necesidades */
+    input::placeholder {
+        font-size: 0.875rem; /* Tamaño más pequeño para móviles */
+    }
+     .password-toggle svg {
+        width: 20px; /* Tamaño más pequeño para móviles */
+        height: 20px;
+    }
+      .password-toggle #toggle-text {
+        font-size: 0.875rem; /* Tamaño más pequeño para móviles */
+    }
+    .mb-3 {
+        font-size: 0.875rem; /* Tamaño de fuente más pequeño para móviles */
+    }
+
+    .check-input {
+        margin-right: 0.25rem; /* Menor espaciado en móviles */
+    }
+
+    .pass-label {
+        font-size: 0.875rem; /* Tamaño de fuente más pequeño para móviles */
+    }
+
+    .d-flex {
+        flex-direction: column; /* Cambiar la dirección del flex a columna en móviles */
+        align-items: flex-start; /* Alinear elementos al inicio en columna */
+    }
+
+    .d-flex > div {
+        margin-bottom: 0.5rem; /* Espaciado entre los elementos en columna */
+    }
+}

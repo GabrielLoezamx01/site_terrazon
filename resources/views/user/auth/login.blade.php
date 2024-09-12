@@ -38,7 +38,7 @@
                                     <input type="password" name="password" id="password" class="input-email mt-2"
                                         placeholder="Ingresa tu contraseña">
                                     <span class="password-toggle" onclick="togglePassword()">
-                                        <span id="toggle-text" class="color-login">Mostrar</span>
+                                        <span id="toggle-text" class="color-login"></span>
                                         <svg id="eye-icon" xmlns="http://www.w3.org/2000/svg" width="24"
                                             height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -60,16 +60,17 @@
                                     <a href="#" id="old" class="pass-label">Olvidé mi contraseña</a>
                                 </div>
                             </div>
-                            <div  class="mb-3">
+                            <div class="mb-3">
                                 <button class="btn-color w-100 text-white ">INGRESAR</button>
                             </div>
-                               <div class="mb-3 d-flex justify-content-between">
+                            <div class="mb-3 d-flex justify-content-between">
                                 <div>
-                                   <label for="remember"
-                                        class="label-login ms-2">¿Todavía no tienes una cuenta en Terrazon?</label>
+                                    <label for="remember" class="label-login ms-2">¿Todavía no tienes una cuenta en
+                                        Terrazon?</label>
                                 </div>
                                 <div>
-                                    <a href="#" id="old" class="pass-label" style="color: #094208; font-weight: 600;">Regístrate aquí</a>
+                                    <a href="#" id="old" class="pass-label"
+                                        style="color: #094208; font-weight: 600;">Regístrate aquí</a>
                                 </div>
                             </div>
                         </form>
@@ -99,7 +100,7 @@
             // Alternar el tipo de input entre 'password' y 'text'
             if (passwordField.type === "password") {
                 passwordField.type = "text";
-                toggleText.textContent = "Ocultar";
+                toggleText.textContent = "";
 
                 // Cambiar el ícono a "eye-off" (ocultar)
                 eyeIcon.outerHTML = `
@@ -112,7 +113,7 @@
         `;
             } else {
                 passwordField.type = "password";
-                toggleText.textContent = "Mostrar";
+                toggleText.textContent = "";
 
                 // Cambiar el ícono a "eye" (mostrar)
                 eyeIcon.outerHTML = `
