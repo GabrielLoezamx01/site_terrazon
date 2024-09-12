@@ -85,6 +85,7 @@
             </div>
         </div>
     </div>
+    @if(count($viewed)>0)
     <div class="bg-white py-5">
         <div class="container p-2 px-4">
             <div class="col-12 text-left pb-3">
@@ -96,6 +97,7 @@
             <x-carousel :cards="$viewed" id="viewedSlider" />
         </div>
     </div>
+    @endif
     <div class="bg-divisor py-5">
         <div class="container">
             <div class="row">

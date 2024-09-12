@@ -20,14 +20,13 @@
     <link rel="stylesheet" href="{{ asset('css/owl.theme.default.css') }}">
     @stack('stylesheet')
     @stack('styles')
+    <script src="{{ asset('js/app.js') }}?v={{ config('app.version')}}"></script>
+    @stack('scripts')
 </head>
 
 <body>
     @include('public.includes.header')
     @yield('content')
-    <script src="{{ asset('js/app.js') }}?v={{ config('app.version')}}"></script>
-    <!-- @yield('scripts') -->
-    @stack('scripts')
     @include('public.includes.footer')
 </body>
 

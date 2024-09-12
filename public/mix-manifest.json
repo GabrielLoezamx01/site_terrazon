@@ -19,6 +19,8 @@
     "/webfonts/fa-v4compatibility.woff2": "/webfonts/fa-v4compatibility.woff2",
     "/css/fonts/bootstrap-icons.woff": "/css/fonts/bootstrap-icons.woff",
     "/css/fonts/bootstrap-icons.woff2": "/css/fonts/bootstrap-icons.woff2",
+    "/css/nouislider.min.css": "/css/nouislider.min.css",
+    "/js/popper.js": "/js/popper.js",
     "/css/owl.carousel.css": "/css/owl.carousel.css",
     "/css/owl.theme.default.css": "/css/owl.theme.default.css",
     "/js/owl.carousel.min.js": "/js/owl.carousel.min.js"

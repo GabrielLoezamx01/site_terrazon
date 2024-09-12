@@ -25426,8 +25426,9 @@ fieldset:before {
 .fc-text {
   font-size: 11px;
   color: #3E3E3E;
-  white-space: nowrap;
-  margin: 5px 7px;
+  white-space: normal;
+  margin: 2px 1px;
+  display: inline;
 }
 
 .range-text {
@@ -25631,6 +25632,33 @@ ul.ficha li::before {
 .owl-theme .owl-nav [class*=owl-]:hover {
   background: none !important;
   color: gray !important;
+}
+
+/*
+* Slider 
+*/
+.noUi-target {
+  border-radius: 0px !important;
+}
+
+.noUi-horizontal {
+  height: 10px !important;
+}
+
+.noUi-connect {
+  background: #3830D9 !important;
+}
+
+.noUi-horizontal .noUi-handle {
+  width: 20px !important;
+  height: 20px !important;
+  border: 1px solid white !important;
+  background: #3830D9 !important;
+  border-radius: 50% !important;
+  box-shadow: none !important;
+}
+.noUi-horizontal .noUi-handle::after, .noUi-horizontal .noUi-handle::before {
+  display: none;
 }
 
 header {

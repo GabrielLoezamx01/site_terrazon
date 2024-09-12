@@ -23,21 +23,27 @@ class PropiedadesController extends Controller
     public function index(Request $request)
     {
 
+        $allTypesQP = $request->input('allTypes');
         $locationQP = $request->input('location');
-        $typeQP = $request->input('type');
         $bugetQP = $request->input('budget');
-
+        $parkingQP = $request->input('parking');
+        $bathroomsQP = $request->input('bathrooms');
+        $roomsQP = $request->input('rooms');
+        $typeQP =  $request->input('type') != null ? $request->input('type')  : [];
+        $conditionsQp = $request->input('condition') != null ? $request->input('condition')  : [];
+        $amenitiesQp = $request->input('amenities') != null ? $request->input('amenities')  : [];
+        $filterOpen = ($request->input('filter')) ? $request->input('filter') : null;
         $page = ($request->input('page')) ? $request->input('page') : null;
         $perPage = ($request->input('perPage')) ? $request->input('perPage') : 6;
 
         $searchmode = false;
-        if ($locationQP || $typeQP || $bugetQP) {
-            $searchmode = true;
-        }
+
 
         $range = $this->filtersService->getListBudget();
         $ubicaciones = $this->filtersService->getListUbicaciones();
         $typesProperties = $this->filtersService->getListTiposPropiedad();
+        $conditionsProperty = $this->filtersService->getConditionsProperty();
+        $amenities = $this->filtersService->getAmenities();
 
         $locationObj = $ubicaciones->firstWhere('id', $locationQP);
 
@@ -45,54 +51,85 @@ class PropiedadesController extends Controller
         $data = [];
         $properties = Property::with('types', 'location', 'amenities', 'conditions', 'details', 'features', 'galleries')->where('available', 1);
 
+        if ($locationQP || $typeQP || $bugetQP) {
+            $searchmode = true;
+        }
+
         if ($locationQP != '') {
             $properties->where('location_id', $locationQP);
         }
-        if ($typeQP != '') {
-            $properties->whereHas('types', function ($query) use ($typeQP) {
-                $query->where('types_id', $typeQP);
+        if ($parkingQP != '') {
+            $properties->where('parking', $parkingQP);
+        }
+        if ($bathroomsQP != '') {
+            $properties->where('bathrooms', $bathroomsQP);
+        }
+        if ($roomsQP != '') {
+            $properties->where('rooms', $roomsQP);
+        }
+        if (count($conditionsQp) > 0) {
+            $properties->whereHas('conditions', function ($query) use ($conditionsQp) {
+                $query->whereIn('condition_id', $conditionsQp);
             });
         }
+        if (count($typeQP) > 0) {
+            $properties->whereHas('types', function ($query) use ($typeQP) {
+                $query->whereIn('types_id', $typeQP);
+            });
+        }
+        if (count($amenitiesQp) > 0) {
+            $properties->whereHas('amenities', function ($query) use ($amenitiesQp) {
+                $query->whereIn('amenities_id', $amenitiesQp);
+            });
+        }
+
+        $budg1 = 0;
+        $budg2 = 10000000;
         if ($bugetQP != '') {
-            $bg=explode("-", $bugetQP);
-            $budg1=isset($bg[0])?$bg[0]*1000:0;
-            $budg2=isset($bg[1])?$bg[1]*1000:0;
+            $bg = explode("-", $bugetQP);
+            $budg1 = isset($bg[0]) ? $bg[0] : 0;
+            $budg2 = isset($bg[1]) ? $bg[1] : 0;
             $properties->whereBetween('price', [$budg1, $budg2]);
+        } else {
+            $bugetQP = "0-10000000";
         }
         $result = $properties->paginate($perPage, ['*'], 'page', $page)->appends([
             'location' => $locationQP,
             'type' => $typeQP,
-            'budget' => $bugetQP,
             'perPage' => $perPage,
         ]);
 
-        // $result = $properties->get();
-        // json_dd($result);
         foreach ($result->items() as $kp => $vp) {
             $data[] = new CardResource($vp);
         }
-
-        $paginationInfo = [
-            'current_page' => $result->currentPage(),
-            'last_page' => $result->lastPage(),
-            'total_items' => $result->total(),
-            'per_page' => $result->perPage(),
-        ];
-
-        // json_dd($paginationInfo);
         if (!empty($data)) {
             shuffle($data);
         }
+
+        $viewed = $this->recentPropertiesService->getRecentlyViewed();
         return view('public.propiedades', [
-            "paginationInfo" => $result,
-            'searchmode' => $searchmode,
-            'location' => $locationObj,
-            'locationQP' => $locationQP,
-            'range' => $range,
-            'ubicaciones' => $ubicaciones,
-            'typesProperties' => $typesProperties,
-            'cards1' => $data,
-            'cards2' => $data,
+            'budg1'              => $budg1,
+            'budg2'              => $budg2,
+            'budget'             => $bugetQP,
+            'range'              => $range,
+            "filter"             => $filterOpen,
+            'searchmode'         => $searchmode,
+            "allTypesQP"         => $allTypesQP,
+            "parkingQP"          => $parkingQP,
+            "bathroomsQP"        => $bathroomsQP,
+            "roomsQP"            => $roomsQP,
+            "typeQP"             => $typeQP,
+            "conditionsQp"       => $conditionsQp,
+            'location'           => $locationObj,
+            'locationQP'         => $locationQP,
+            'amenitiesQp'        => $amenitiesQp,
+            'ubicaciones'        => $ubicaciones,
+            'typesProperties'    => $typesProperties,
+            'conditionsProperty' => $conditionsProperty,
+            'amenities'          => $amenities,
+            'results'            => $data,
+            'viewed'             => $viewed,
+            "paginationInfo"     => $result,
         ]);
     }
     public function ficha($sku)
@@ -140,5 +177,33 @@ class PropiedadesController extends Controller
     private function addRecentViewPropertie($property)
     {
         $this->recentPropertiesService->addProperty($property->id, $property->title, $property->slug);
+    }
+    private function getRecentlyViewed()
+    {
+        $listViewed = $this->recentPropertiesService->getRecentlyViewed();
+        $properties = [];
+        if ($listViewed) {
+            $ids = [];
+            $data = [];
+            foreach ($listViewed as $key => $value) {
+                $ids[] = $value["id"];
+            }
+            $sufixCache = implode('-', $ids);
+            $key = $this->key_cache_home_properties . $sufixCache;
+            $properties = Cache::remember($key, 60 * 30 * 30, function () use ($ids) {
+                $item = Property::whereIn('id', $ids)->get();
+                foreach ($item as $value2) {
+                    $card = new CardResource($value2);
+                    $data[] = $card;
+                }
+                usort($data, function ($a, $b) use ($ids) {
+                    $posA = array_search($a->id, $ids);
+                    $posB = array_search($b->id, $ids);
+                    return $posA - $posB;
+                });
+                return $data;
+            });
+        }
+        return $properties;
     }
 }

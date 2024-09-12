@@ -1,6 +1,3 @@
-import $ from 'jquery';
-window.$ = window.jQuery = $;
-import * as bootstrap from 'bootstrap';
 require('owl.carousel');
 $(document).ready(function () {
 
@@ -8,6 +5,33 @@ $(document).ready(function () {
     var owlOptions = {
         center: false,
         loop: true,
+        nav: false,
+        dots: false,
+        rewindNav: true,
+        autoplay: false,
+        responsive: {
+            0: {
+                items: 1.2
+            },
+            768: {
+                items: 1.5
+            },
+            980: {
+                items: 2
+            },
+            1260: {
+                items: 2.5
+            },
+            1340: {
+                items: 3
+            }
+        },
+        onTranslated: updateProgressBar,
+        onInitialized: updateProgressBar
+    }
+    var owlOptionsViewed = {
+        center: false,
+        loop: false,
         nav: false,
         dots: false,
         rewindNav: true,
@@ -43,7 +67,7 @@ $(document).ready(function () {
 
     var owl1 = $('#carr1').owlCarousel(owlOptions);
     var owl2 = $('#carr2').owlCarousel(owlOptions);
-    var owl3 = $('#viewedSlider').owlCarousel(owlOptions);
+    var owl3 = $('#viewedSlider').owlCarousel(owlOptionsViewed);
     $('#carr1_next').click(function () {
         owl1.trigger('next.owl.carousel');
     });
@@ -67,9 +91,6 @@ $(document).ready(function () {
 
     }
     var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
-        console.log({
-            popoverTriggerEl
-        });
         return new bootstrap.Popover(popoverTriggerEl, options);
     });
 });

@@ -3,9 +3,11 @@
 namespace App\Services;
 
 use Illuminate\Http\Request;
-use  App\Models\Location;
-use  App\Models\TypeProperty;
 use Illuminate\Support\Facades\Cache;
+use App\Models\Location;
+use App\Models\TypeProperty;
+use App\Models\ConditionProperty;
+use App\Models\Amenities;
 
 class FiltersService
 {
@@ -15,11 +17,15 @@ class FiltersService
     protected $request;
     protected $key_list_ubicaciones;
     protected $key_list_tiposPropiedad;
+    protected $key_list_conditionProperty;
+    protected $key_list_amenities;
     public function __construct(Request $request)
     {
         $this->request = $request;
         $this->key_list_ubicaciones       = config('app.cache.list_ubicaciones');
         $this->key_list_tiposPropiedad    = config('app.cache.list_tiposPropiedad');
+        $this->key_list_conditionProperty    = config('app.cache.list_conditionProperty');
+        $this->key_list_amenities    = config('app.cache.list_amenities');
     }
     public function resetListUbicaciones()
     {
@@ -29,37 +35,25 @@ class FiltersService
     {
         return  [
             [
-                "value" => "800-1000",
-                "label" => "800 mil a 1 MDP"
+                "value" => "1000000-2000000",
+                "label" => "1 MDP a 2 MDP"
             ],
             [
-                "value" => "1000-1999",
-                "label" => "1 MDP y entre 1.7"
+                "value" => "2000000-3000000",
+                "label" => "2 MDP a 3 MDP"
             ],
             [
-                "value" => "2000-2999",
-                "label" => "2 MDP 2.5"
+                "value" => "3000000-4000000",
+                "label" => "3 MDP a 4 MDP"
             ],
             [
-                "value" => "3000-3999",
-                "label" => "3 MDP 3.5"
+                "value" => "5000000-6000000",
+                "label" => "5 MDP a 6 MDP"
             ],
             [
-                "value" => "4000-4999",
-                "label" => "4 MDP 4.5"
-            ],
-            [
-                "value" => "5000-5999",
-                "label" => "5 MDP"
-            ],
-            [
-                "value" => "6000-6999",
-                "label" => "6 MDP"
-            ],
-            [
-                "value" => "7000-9999",
-                "label" => "A más"
-            ],
+                "value" => "6000000",
+                "label" => "A Mas"
+            ]
         ];
     }
     public function getListUbicaciones()
@@ -78,6 +72,20 @@ class FiltersService
         return Cache::rememberForever($this->key_list_tiposPropiedad, function () {
             $TypeProperty = TypeProperty::get();
             return  $TypeProperty;
+        });
+    }
+    public function getConditionsProperty()
+    {
+        return Cache::rememberForever($this->key_list_conditionProperty, function () {
+            $ConditionProperty = ConditionProperty::get();
+            return  $ConditionProperty;
+        });
+    }
+    public function getAmenities()
+    {
+        return Cache::rememberForever($this->key_list_amenities, function () {
+            $Amenities = Amenities::get();
+            return  $Amenities;
         });
     }
 }

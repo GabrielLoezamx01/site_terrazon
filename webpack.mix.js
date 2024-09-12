@@ -23,6 +23,8 @@ mix.js('resources/js/app.js', 'public/js')
     .copy('resources/css/gallery.css', 'public/css/')
     .copy('node_modules/@fortawesome/fontawesome-free/webfonts', 'public/webfonts')
     .copy('node_modules/bootstrap-icons/font/fonts', 'public/css/fonts')
+    .copy('node_modules/nouislider/dist/nouislider.min.css', 'public/css/nouislider.min.css')
+    .copy('node_modules/@popperjs/core/dist/umd/popper.js', 'public/js/popper.js')
     .autoload({
         jquery: ['$', 'window.jQuery', 'jQuery'],
     })
