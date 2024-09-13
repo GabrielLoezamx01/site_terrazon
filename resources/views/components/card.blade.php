@@ -41,9 +41,9 @@
                 </ul>
             </div>
             <div class="col-12 col-md-6 d-md-flex align-items-end justify-content-center">
-                <a href="{{ $card["detailsPage"] }}" class="btn btn-success btn-detalle text-white text-nowrap">VER MAS DETALLES</a>
-                <!-- <div class="d-grid gap-2">
-                </div> -->
+                <div class="d-grid gap-2">
+                    <a href="{{ $card["detailsPage"] }}" class="btn btn-success btn-detalle text-white text-nowrap">VER MAS DETALLES</a>
+                </div>
             </div>
         </div>
     </div>
