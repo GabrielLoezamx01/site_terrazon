@@ -24597,6 +24597,22 @@ body {
   height: 250px;
 }
 
+.modal-close {
+  background: white;
+  border: none;
+  border-radius: 50%;
+  position: absolute;
+  left: 45%;
+  width: 54px;
+  height: 54px;
+  top: -10px;
+  z-index: 1;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.25);
+}
+.modal-close i {
+  font-size: 1.3rem;
+}
+
 .banner-propiedades {
   background: url("../images/banners/propiedades.png") no-repeat;
   background-size: cover;
@@ -24625,6 +24641,22 @@ body {
     opacity: 1;
   }
 }
+.container-amenities {
+  -moz-column-count: 2;
+       column-count: 2;
+  -moz-column-gap: 20px;
+       column-gap: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.container-amenities .item {
+  padding: 5px 0;
+  line-height: 12px;
+  -moz-column-break-inside: avoid;
+       break-inside: avoid;
+  page-break-inside: avoid;
+}
+
 .carousel-over-content {
   position: absolute;
   display: flex;
@@ -24632,7 +24664,7 @@ body {
   justify-content: center;
   width: 100%;
   height: 100%;
-  z-index: 9999;
+  z-index: 1;
 }
 .carousel-over-content h1, .carousel-over-content .h1 {
   color: white;
@@ -24779,6 +24811,7 @@ body {
   font-size: 11px;
   font-weight: 400;
   margin-bottom: 0;
+  line-height: 14px;
 }
 .card-property .card-body .card-location {
   color: #1E612D;
@@ -24861,6 +24894,7 @@ ul.list-info .detail-text {
 
 .carousel-container {
   position: relative;
+  overflow: hidden;
 }
 .carousel-container .car-nav {
   z-index: 999;
@@ -24884,7 +24918,7 @@ ul.list-info .detail-text {
 }
 @media screen and (min-width: 501px) {
   .carousel-container .car-next {
-    right: -10px;
+    right: -3px;
   }
 }
 @media screen and (max-width: 500px) {
@@ -25020,7 +25054,7 @@ ul.list-info .detail-text {
   border-radius: 4px;
   background-color: #e0e0e0;
   position: relative;
-  margin-top: 14px;
+  margin-top: 34px;
   overflow: auto;
 }
 
@@ -25393,6 +25427,16 @@ fieldset:before {
   top: -1px;
   left: 20px;
 }
+.fielset-ficha .truncate-info {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.fielset-ficha .view-more {
+  color: #37B052;
+  text-decoration: none;
+}
 
 .dd-select .chevron {
   color: #ADA7A7;
@@ -25410,8 +25454,9 @@ fieldset:before {
 .fc-text {
   font-size: 11px;
   color: #3E3E3E;
-  white-space: nowrap;
-  margin: 5px 7px;
+  white-space: normal;
+  margin: 2px 1px;
+  display: inline;
 }
 
 .range-text {
@@ -25530,7 +25575,13 @@ fieldset:before {
 .ficha-title {
   font-weight: 600;
   color: #231D46;
-  font-size: 18px;
+  font-size: 26px;
+}
+
+.ficha-title-section {
+  font-weight: 600;
+  color: #231D46;
+  font-size: 24px;
 }
 
 .ficha-location {
@@ -25615,6 +25666,33 @@ ul.ficha li::before {
 .owl-theme .owl-nav [class*=owl-]:hover {
   background: none !important;
   color: gray !important;
+}
+
+/*
+* Slider 
+*/
+.noUi-target {
+  border-radius: 0px !important;
+}
+
+.noUi-horizontal {
+  height: 10px !important;
+}
+
+.noUi-connect {
+  background: #3830D9 !important;
+}
+
+.noUi-horizontal .noUi-handle {
+  width: 20px !important;
+  height: 20px !important;
+  border: 1px solid white !important;
+  background: #3830D9 !important;
+  border-radius: 50% !important;
+  box-shadow: none !important;
+}
+.noUi-horizontal .noUi-handle::after, .noUi-horizontal .noUi-handle::before {
+  display: none;
 }
 
 header {

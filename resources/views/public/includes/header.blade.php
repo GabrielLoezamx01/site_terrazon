@@ -10,9 +10,9 @@
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
-                        <a href="{{ url('/admin/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Admin</a>
+                        <a href="{{ url('/custom/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Admin</a>
                     @else
-                        <a href="{{ route('login') }}">Iniciar sesión / registrarme</a>
+                        <a href="{{ url('/custom/login') }}">Iniciar sesión / registrarme</a>
                     @endauth
                 </div>
             @endif

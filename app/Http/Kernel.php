@@ -14,8 +14,8 @@ class Kernel extends HttpKernel
      * @var array<int, class-string|string>
      */
     protected $middleware = [
-        // \App\Http\Middleware\TrustHosts::class,
-        // \App\Http\Middleware\ForceHttps::class,
+        \App\Http\Middleware\TrustHosts::class,
+        \App\Http\Middleware\ForceHttps::class,
         \App\Http\Middleware\TrustProxies::class,
         \Fruitcake\Cors\HandleCors::class,
         \App\Http\Middleware\PreventRequestsDuringMaintenance::class,
@@ -69,5 +69,6 @@ class Kernel extends HttpKernel
         'logLastUserActivity' => \App\Http\Middleware\LogLastUserActivity::class,
         'SuperProfile' => \App\Http\Middleware\SuperProfile::class,
         'auth.referral' => \App\Http\Middleware\ReferralAuthenticated::class,
+        'custom_user' => \App\Http\Middleware\CustomUserMiddleware::class,
     ];
 }

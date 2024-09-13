@@ -18,7 +18,7 @@
                 <i class="bi bi-geo-alt"></i> Ubicación
             </a>
         </h5>
-        <p class="card-text">
+        <p class="card-text mb-3">
             {{ $card["description"] }}
         </p>
         <div class="row">
@@ -35,15 +35,14 @@
                             <img src="{{ asset('storage/svg/'.$vf['icon']) }}">
                             @endif
                         </label>
-                        <span class="detail-text">{{ $vf["name"]}}</span>
+                        <span class="detail-text ms-1">{{ $vf["name"]}}</span>
                     </li>
                     @endforeach
                 </ul>
             </div>
             <div class="col-12 col-md-6 d-md-flex align-items-end justify-content-center">
                 <div class="d-grid gap-2">
-                    <!-- <a href="/ficha/sku" class="btn btn-success btn-detalle">VER MAS DETALLES</a> -->
-                    <a href="{{ $card["detailsPage"] }}" class="btn btn-success btn-detalle">VER MAS DETALLES</a>
+                    <a href="{{ $card["detailsPage"] }}" class="btn btn-success btn-detalle text-white text-nowrap">VER MAS DETALLES</a>
                 </div>
             </div>
         </div>

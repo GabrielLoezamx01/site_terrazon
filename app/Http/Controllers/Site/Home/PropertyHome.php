@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Site\Home;
 
+use Illuminate\Support\Facades\Cache;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Property;
@@ -9,6 +10,7 @@ use App\Models\Site\HomeProperty;
 
 class PropertyHome extends Controller
 {
+   
     /**
      * Display a listing of the resource.
      *
@@ -16,14 +18,14 @@ class PropertyHome extends Controller
      */
     public function index()
     {
-        $properties = Property::where('available',1)->with(['municipality.state', 'homes:id'])
-        ->select('id', 'folio', 'title', 'price', 'municipality_id')
-        ->get()
-        ->map(function ($property) {
-            $property->has_homes = $property->homes->isNotEmpty();
-            $property->home_id = $property->homes->isNotEmpty() ? $property->homes->first()->id : null;
-            return $property;
-        });
+        $properties = Property::where('available', 1)->with(['municipality.state', 'homes:id'])
+            ->select('id', 'folio', 'title', 'price', 'municipality_id')
+            ->get()
+            ->map(function ($property) {
+                $property->has_homes = $property->homes->isNotEmpty();
+                $property->home_id = $property->homes->isNotEmpty() ? $property->homes->first()->id : null;
+                return $property;
+            });
         return $properties;
     }
 
@@ -33,9 +35,10 @@ class PropertyHome extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+   
     public function store(Request $request)
     {
-        try{
+        try {
             $this->validate($request, [
                 'home_id' => 'required',
                 'folios' => 'required',
@@ -55,11 +58,11 @@ class PropertyHome extends Controller
                     $request
                 );
             }
+            $this->clearCache();
             return response()->json(['message' => 'Registrado con éxito'], 200);
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             return response()->json(['message' => 'Error al registrar'], 400);
         }
-
     }
 
     /**
@@ -94,5 +97,11 @@ class PropertyHome extends Controller
     public function destroy($id)
     {
         //
+    }
+    private function clearCache()
+    {
+        if (Cache::has(config('cache.home.properties'))) {
+            Cache::forget(config('cache.home.properties'));
+        }
     }
 }

@@ -11,7 +11,7 @@
                 {{ $item['span'] }}
             </div>
         </div>
-        <div class="container-md mobile-conteiner"> 
+        <div class="container-md mobile-conteiner">
             <x-carousel :cards="$item['cards']" id="carr{{ $k+1 }}" />
         </div>
     </div>
@@ -85,6 +85,7 @@
             </div>
         </div>
     </div>
+    @if(count($viewed)>0)
     <div class="bg-white py-5">
         <div class="container p-2 px-4">
             <div class="col-12 text-left pb-3">
@@ -93,9 +94,10 @@
             </div>
         </div>
         <div class="container-md mobile-conteiner">
-            <x-carousel :cards="$cards2" id="carr3" />
+            <x-carousel :cards="$viewed" id="viewedSlider" />
         </div>
     </div>
+    @endif
     <div class="bg-divisor py-5">
         <div class="container">
             <div class="row">
@@ -372,5 +374,5 @@
     </div>
     @endsection
     @push('scripts')
-    <script src="{{ asset('js/home.js') }}"></script>
+    <script src="{{ asset('js/home.js') }}?v={{ config('app.version')}}"></script>
     @endpush

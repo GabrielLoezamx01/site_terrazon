@@ -57,7 +57,8 @@ $(document).ready(function () {
         loop: true,
         nav: true,
         navText: [
-            '<span class="icon-nav fa-stack fa-2x"><i class="fa-solid fa-circle  text-light fa-stack-2x"></i><i class="fa-solid fa-chevron-left text-secondary fa-stack-1x fa-inverse"></i></span>', '<span class="icon-nav fa-stack fa-2x"><i class="fa-solid fa-circle text-light fa-stack-2x"></i><i class="fa-solid fa-chevron-right text-secondary fa-stack-1x fa-inverse"></i></span>'],
+            '<span class="icon-nav fa-stack fa-2x"><i class="fa-solid fa-circle  text-light fa-stack-2x"></i><i class="fa-solid fa-chevron-left text-secondary fa-stack-1x fa-inverse"></i></span>', '<span class="icon-nav fa-stack fa-2x"><i class="fa-solid fa-circle text-light fa-stack-2x"></i><i class="fa-solid fa-chevron-right text-secondary fa-stack-1x fa-inverse"></i></span>'
+        ],
         dots: false,
         rewindNav: true,
         autoplay: false,
@@ -94,6 +95,9 @@ $(document).ready(function () {
     $('#carr1_next').click(function () {
         owl1.trigger('next.owl.carousel');
     });
+    $('#carr1_next').click(function () {
+        owl1.trigger('next.owl.carousel');
+    });
     $('#carr1_back').click(function () {
         owl1.trigger('prev.owl.carousel');
     });
@@ -107,4 +111,20 @@ $(document).ready(function () {
         owl1.trigger('refresh.owl.carousel');
         owl2.trigger('refresh.owl.carousel');
     });
+
+    let expandido = false;
+    let $description = $('#description');
+    let $boton = $('#viewMore');
+    $boton .click(function () {
+        if (expandido) {
+            $description.addClass('truncate-info');
+            $boton.text('LEER MAS');
+            expandido = false;
+        } else { 
+            $description.removeClass('truncate-info');
+            $boton.text('LEER MENOS');
+            expandido = true;
+        }
+    });
+
 });
