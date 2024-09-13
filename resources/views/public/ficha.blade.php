@@ -168,9 +168,9 @@
                                     </div>
                                     <div class="col-12 col-md-5 d-flex align-items-end">
                                         <div>
-                                            <h4>321 Vistas</h4>
-                                            <div><span class="bold">Posteado: </span><span class="text-primary">Febrero 2024</span></div>
-                                            <div><span class="bold">Actualización: </span><span class="text-primary">Abril 2024</span> </div>
+                                            <h4>{{ $property->view_count }} Vistas</h4>
+                                            <div><span class="bold">Posteado: </span><span class="text-primary">{{ $property->fechaCreacion }}</span></div>
+                                            <div><span class="bold">Actualización: </span><span class="text-primary">{{ $property->fechaActualizacion }}</span> </div>
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-7">
