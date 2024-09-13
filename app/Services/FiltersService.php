@@ -35,6 +35,10 @@ class FiltersService
     {
         return  [
             [
+                "value" => "0-1000000",
+                "label" => "Menos de 1 MDP"
+            ],
+            [
                 "value" => "1000000-2000000",
                 "label" => "1 MDP a 2 MDP"
             ],
@@ -51,7 +55,7 @@ class FiltersService
                 "label" => "5 MDP a 6 MDP"
             ],
             [
-                "value" => "6000000",
+                "value" => "6000000-10000000",
                 "label" => "A Mas"
             ]
         ];
