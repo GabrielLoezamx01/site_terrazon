@@ -22,6 +22,6 @@ class CustomUserMiddleware
         }
 
         // Si no está autenticado, redirige a la página de login
-        return redirect()->route('user.login');
+        return redirect()->route('custom.login');
     }
 }

@@ -47,7 +47,7 @@
 
                                 </div>
                                 <div class="col-auto text-end">
-                                    <a href="{{ route('user.register') }}" id="register"
+                                    <a href="{{ route('custom.register') }}" id="register"
                                         class="label-register">Regístrate aquí</a>
 
                                 </div>
