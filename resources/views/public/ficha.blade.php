@@ -15,12 +15,12 @@
         </nav>
 
         <div class="row">
-            <div class="col-12 col-md-9">
+            <div class="col-12 col-lg-8 ">
                 <div class="card box-shadow  bg-white">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12">
-                                <h3>{{ $property->title }}</h3>
+                                <h3 class="ficha-title">{{ $property->title }}</h3>
                             </div>
                             <div class="col-12">
                                 <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
@@ -110,23 +110,23 @@
                                 </div>
                                 <div class="row pt-3">
                                     <div class="col-12 col-md-6 py-3">
-                                        <div class="ficha-title">Características principales</div>
+                                        <div class="ficha-title mb-3">Características principales</div>
                                         <ul class="list-info">
                                             <li>
-                                                <label class="detail-icon">
+                                                <label class="detail-icon me-2">
                                                     <span class="svg-icon-chars svg-icon-area"></span>
                                                 </label>
                                                 <span>{{ $property->m2 }} m2 </span>
                                             </li>
                                             @foreach($property->features as $kf => $vf)
                                             <li>
-                                                <label class="detail-icon">
+                                                <label class="detail-icon me-2">
                                                     @php
                                                     $imagePath = 'storage/svg/'.$vf['icon'];
                                                     $fullPath = public_path($imagePath);
                                                     @endphp
                                                     @if(file_exists($fullPath))
-                                                    <img src="{{ asset('storage/svg/'.$vf['icon']) }}">
+                                                    <span class="svg-icon-chars" style=" background: url('{{ asset('storage/svg/'.$vf['icon']) }}') no-repeat;"></span>
                                                     @endif
                                                 </label>
                                                 <span>{{ $vf["name"]}}</span>
@@ -136,7 +136,7 @@
                                         </ul>
                                     </div>
                                     <div class="col-12 col-md-6 py-3">
-                                        <div class="ficha-title">Detalles para la adquisición</div>
+                                        <div class="ficha-title mb-3">Detalles para la adquisición</div>
                                         <ul class="list-info">
                                             @foreach($property->details as $kd => $vd)
                                             <li class="d-flex align-items-center ">
@@ -160,7 +160,12 @@
                                     <div class="col-12">
                                         <fieldset class="p-3 fielset-ficha">
                                             <legend>Descripcion de la propiedad</legend>
-                                            {{ $property->description }}
+                                            <div id="description" class="truncate-info">
+                                                {{ $property->description }}
+                                            </div>
+                                            <div class="my-2">
+                                                <a href="javascript:void(0)" class="text-secondary view-more" id="viewMore"> LEER MAS</a></button>
+                                            </div>
                                         </fieldset>
                                     </div>
                                     <div class="col-12 py-3 ">
@@ -194,29 +199,29 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-3 mb-3">
+            <div class="col-12 col-lg-4 mb-3">
                 <div class="row">
                     <div class="col-12 mb-3">
                         <div>
-                            <h4>Basado en tu búsqueda</h4>
+                            <h4 class="ficha-title-section">Basado en tu búsqueda</h4>
                         </div>
                         <x-card :card="$busqueda" />
                     </div>
                     <div class="col-12 mb-3">
                         <div>
-                            <h4>Mis Favoritos</h4>
+                            <h4 class="ficha-title-section">Mis Favoritos</h4>
                         </div>
                         <x-card :card="$favoritos" />
                     </div>
                     <div class="col-12 mb-3">
                         <div>
-                            <h4>Otros usuarios vieron</h4>
+                            <h4 class="ficha-title-section">Otros usuarios vieron</h4>
                         </div>
                         <x-card :card="$otros" />
                     </div>
                     <div class="col-12 mb-3">
                         <div>
-                            <h4>Lo más nuevo</h4>
+                            <h4 class="ficha-title-section">Lo más nuevo</h4>
                         </div>
                         <x-card :card="$nuevo" ƒ />
                     </div>
