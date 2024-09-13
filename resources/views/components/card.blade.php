@@ -35,7 +35,7 @@
                             <img src="{{ asset('storage/svg/'.$vf['icon']) }}">
                             @endif
                         </label>
-                        <span class="detail-text">{{ $vf["name"]}}</span>
+                        <span class="detail-text ms-1">{{ $vf["name"]}}</span>
                     </li>
                     @endforeach
                 </ul>
