@@ -19,7 +19,7 @@
                 <div class="card box-shadow  bg-white">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-12">
+                            <div class="col-12 mb-2">
                                 <h3 class="ficha-title">{{ $property->title }}</h3>
                             </div>
                             <div class="col-12">
