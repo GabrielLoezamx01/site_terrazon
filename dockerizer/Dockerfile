@@ -47,6 +47,7 @@ COPY ./dockerizer/vhost.conf /opt/docker/etc/nginx/vhost.conf
 COPY composer.json composer.lock /app/
 COPY package.json package-lock.json /app/
 COPY webpack.mix.js /app/
+COPY . /app
 
 WORKDIR /app
 
@@ -60,7 +61,7 @@ RUN php artisan storage:link --force \
     && php artisan config:clear \
     && php artisan view:clear
 
-COPY . /app
+
 
 # Start Nginx and PHP-FPM, clear Nginx cache
 EXPOSE 80
