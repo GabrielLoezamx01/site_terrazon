@@ -46,7 +46,7 @@ RUN php artisan storage:link --force \
 COPY . /app
 
 # Configure Nginx
-COPY nginx.conf /etc/nginx/sites-available/default
+#COPY nginx.conf /etc/nginx/sites-available/default
 
 EXPOSE 80
 
