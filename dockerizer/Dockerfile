@@ -47,9 +47,6 @@ RUN php artisan storage:link --force \
 
 COPY . /app
 
-# Configure Nginx
-#COPY nginx.conf /etc/nginx/sites-available/default
-
+# Start Nginx and PHP-FPM, clear Nginx cache
 EXPOSE 80
-
-CMD service nginx start && php-fpm
+CMD rm -rf /var/cache/nginx/* && service nginx start && php-fpm
