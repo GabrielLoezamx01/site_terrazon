@@ -65,6 +65,10 @@ RUN php artisan storage:link --force \
 COPY ./dockerizer/supervisord.conf /etc/supervisor/supervisord.conf
 COPY ./dockerizer/php.ini /opt/docker/etc/php/php.ini
 COPY ./dockerizer/vhost.conf /opt/docker/etc/nginx/vhost.conf
+COPY ./dockerizer/laravel-setup.sh /app/dockerizer/laravel-setup.sh
+
+# Asegúrate de hacer ejecutable el script de Laravel
+RUN chmod +x /app/dockerizer/laravel-setup.sh
 
 # Start Nginx and PHP-FPM, clear Nginx cache
 EXPOSE 80
