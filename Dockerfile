@@ -8,9 +8,6 @@ LABEL description="Laravel Dockerfile"
 
 COPY ./package.json ./
 COPY ./package-lock.json ./
-COPY ./vite.config.js ./
-COPY ./postcss.config.js ./
-COPY ./tailwind.config.js ./
 COPY ./resources ./resources
 
 RUN apk add --no-cache zip libzip-dev libpng-dev icu-dev npm # Install libpng-dev
