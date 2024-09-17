@@ -23,4 +23,10 @@ COPY ./dockerizer/vhost.conf /opt/docker/etc/nginx/vhost.conf
 COPY composer.json composer.lock /app/
 WORKDIR /app
 RUN composer install --no-interaction --no-scripts --no-suggest
+
+RUN npm i \
+    && npm run build
+
+RUN php artisan storage:link --force && php artisan optimize && php artisan cache:clear && php artisan config:clear && php artisan view:clear
+
 COPY . /app
