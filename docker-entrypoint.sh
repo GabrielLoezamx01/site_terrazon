@@ -3,10 +3,10 @@
 composer install --optimize-autoloader --no-dev
 cp /app/vendor /var/www/html/vendor -R
 cp /app/bootstrap/cache /var/www/html/bootstrap/cache -R
-if [ ! -f /var/www/html/database/sqlite/laravel.db ]; then
-    touch /var/www/html/database/sqlite/laravel.db
-fi
-chown -R www-data: /var/www/html/database/sqlite
+# if [ ! -f /var/www/html/database/sqlite/laravel.db ]; then
+#     touch /var/www/html/database/sqlite/laravel.db
+# fi
+# chown -R www-data: /var/www/html/database/sqlite
 
 cd /var/www/html
 php artisan key:generate

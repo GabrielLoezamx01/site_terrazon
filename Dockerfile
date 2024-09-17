@@ -36,9 +36,9 @@ RUN mkdir ./database/sqlite \
     && chown -R www-data: /var/www/html \
     && rm -rf ./docker
 
-COPY ./docker/config/laravel-php.ini /usr/local/etc/php/conf.d/laravel-php.ini
-COPY ./docker/config/nginx.conf /etc/nginx/nginx.conf
-COPY ./docker/config/site-nginx.conf /etc/nginx/http.d/default.conf
+COPY ./docker/laravel-php.ini /usr/local/etc/php/conf.d/laravel-php.ini
+COPY ./docker/nginx.conf /etc/nginx/nginx.conf
+COPY ./docker/site-nginx.conf /etc/nginx/http.d/default.conf
 
 RUN chmod +x ./docker-entrypoint.sh
 
