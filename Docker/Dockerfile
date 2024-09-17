@@ -1,6 +1,6 @@
-FROM php:8.3.4-fpm
+FROM php:8.1-fpm
 ARG WORKDIR=/var/www/html
-ENV DOCUMENT_ROOT=${WORKDIR}/public
+ENV DOCUMENT_ROOT=${WORKDIR}
 ENV LARAVEL_PROCS_NUMBER=1
 ENV DOMAIN=_
 ENV CLIENT_MAX_BODY_SIZE=15M
@@ -81,15 +81,14 @@ WORKDIR $WORKDIR
 RUN rm -Rf /var/www/* && \
 mkdir -p /var/www/html
 
-COPY . /app
-ADD Docker/php.ini $PHP_INI_DIR/conf.d/
-ADD Docker/opcache.ini $PHP_INI_DIR/conf.d/
-# ADD src/supervisor/supervisord.conf /etc/supervisor/supervisord.conf
+ADD src/index.php $WORKDIR/index.php
+ADD src/php.ini $PHP_INI_DIR/conf.d/
+ADD src/opcache.ini $PHP_INI_DIR/conf.d/
+ADD src/supervisor/supervisord.conf /etc/supervisor/supervisord.conf
 
-COPY entrypoint.sh /usr/local/bin/
+COPY src/entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/entrypoint.sh
 RUN ln -s /usr/local/bin/entrypoint.sh /
-
 
 RUN rm -rf /etc/nginx/conf.d/default.conf
 RUN rm -rf /etc/nginx/sites-enabled/default
@@ -97,8 +96,8 @@ RUN rm -rf /etc/nginx/sites-available/default
 
 RUN rm -rf /etc/nginx/nginx.conf
 
-COPY Docker/nginx.conf /etc/nginx/nginx.conf
-COPY Docker/default.conf /etc/nginx/conf.d/
+COPY src/nginx.conf /etc/nginx/nginx.conf
+COPY src/default.conf /etc/nginx/conf.d/
 
 RUN usermod -u ${USER_ID} ${USER_NAME}
 RUN groupmod -g ${USER_ID} ${GROUP_NAME}
