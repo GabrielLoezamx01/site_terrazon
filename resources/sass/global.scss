@@ -182,6 +182,18 @@ body {
     }
 }
 
+.lh-0{
+    line-height: 0;
+}
+.lh-1{
+    line-height: 1rem;
+}
+.lh-1-5{
+    line-height: 1.5rem;
+}
+.lh-2{
+    line-height: 2rem;
+}
 .title {
     font-weight: 600;
     color: $title-color;
@@ -413,6 +425,7 @@ ul.list-info {
 
 .carousel-container {
     position: relative;
+
     .car-nav {
         z-index: 999;
         top: 50%;
@@ -434,19 +447,23 @@ ul.list-info {
     }
 
     .car-next {
-        
+
         @media screen and (min-width: 0px) {
             right: 5%;
         }
+
         @media screen and (min-width: 500px) {
             right: 7%;
         }
+
         @media screen and (min-width: 768px) {
             right: -3%;
         }
+
         @media screen and (min-width: 980px) {
             right: -1%;
         }
+
         // @media screen and (min-width: 1260px) {
         //     right: -10px;
         // }
@@ -646,7 +663,8 @@ ul.list-info {
 .bg-teal {
     background-color: #E2F1E5;
 }
-.bg-tertiary{
+
+.bg-tertiary {
     background-color: $tertiary;
 }
 
@@ -891,6 +909,19 @@ ul.list-info {
     height: 60px !important;
     background-position: center;
     background-size: 100% !important;
+}
+
+.svg-icon-2 {
+    display: inline-block;
+    width: 40px !important;
+    height: 40px !important;
+    background-position: center;
+    background-size: 100% !important;
+
+    @media screen and (min-height:760px) {
+        width: 60px !important;
+        height: 60px !important;
+    }
 }
 
 .svg-icon-button {
@@ -1330,5 +1361,13 @@ ul.ficha {
         color: #1E612D;
         text-decoration: none;
 
+    }
+}
+
+.text-clientes {
+    font-size: 18px !important;
+
+    @media screen and (max-width:500px) {
+        font-size: 8.5px !important;
     }
 }

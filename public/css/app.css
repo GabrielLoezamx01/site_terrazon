@@ -24635,6 +24635,22 @@ body {
   background-color: #C3C3C3;
 }
 
+.lh-0 {
+  line-height: 0;
+}
+
+.lh-1 {
+  line-height: 1rem;
+}
+
+.lh-1-5 {
+  line-height: 1.5rem;
+}
+
+.lh-2 {
+  line-height: 2rem;
+}
+
 .title {
   font-weight: 600;
   color: #231D46;
@@ -25243,6 +25259,20 @@ ul.list-info .detail-text {
   background-size: 100% !important;
 }
 
+.svg-icon-2 {
+  display: inline-block;
+  width: 40px !important;
+  height: 40px !important;
+  background-position: center;
+  background-size: 100% !important;
+}
+@media screen and (min-height: 760px) {
+  .svg-icon-2 {
+    width: 60px !important;
+    height: 60px !important;
+  }
+}
+
 .svg-icon-button {
   display: inline-block;
   width: 20px !important;
@@ -25650,6 +25680,15 @@ ul.ficha li::before {
 .card-location a {
   color: #1E612D;
   text-decoration: none;
+}
+
+.text-clientes {
+  font-size: 18px !important;
+}
+@media screen and (max-width: 500px) {
+  .text-clientes {
+    font-size: 8.5px !important;
+  }
 }
 
 header {

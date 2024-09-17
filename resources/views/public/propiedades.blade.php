@@ -262,23 +262,23 @@
             </div>
             <div class="col-6 col-md-3 offset-md-6 order-3 order-md-3">
                 <div class="row">
-                    <div class="col-3 d-flex align-items-center">
-                        <i class="svg-icon  svg-icon-person "></i>
+                    <div class="col-4 d-flex align-items-center">
+                        <div> <i class="svg-icon-2  svg-icon-person "></i></div>
                     </div>
-                    <div class="col-9">
-                        <div class="title">1K</div>
-                        <div class="subtitle text-secondary fw-400 fs-6 text-nowrap">clientes Satisfechos</div>
+                    <div class="col-8">
+                        <div class="title lh-2">1K</div>
+                        <div class="subtitle text-secondary fw-400  text-nowrap text-clientes">clientes Satisfechos</div>
                     </div>
                 </div>
             </div>
             <div class="col-6 col-md-3 order-3 order-md-3">
                 <div class="row">
-                    <div class="col-3  d-flex align-items-center">
-                        <i class=" svg-icon  svg-icon-star-check"></i>
+                    <div class="col-4 d-flex align-items-center">
+                        <div><i class="svg-icon-2  svg-icon-star-check"></i></div>
                     </div>
-                    <div class="col-9">
-                        <div class="title">2K</div>
-                        <div class="subtitle text-secondary fw-400 fs-6 text-nowrap">Propiedades verificadas</div>
+                    <div class="col-8">
+                        <div class="title lh-2">2K</div>
+                        <div class="subtitle text-secondary fw-400  text-nowrap text-clientes">Propiedades verificadas</div>
                     </div>
                 </div>
             </div>
