@@ -25,7 +25,8 @@ RUN apt-get update && apt-get install -y \
     cron \
     supervisor
 
- RUN mkdir -p /var/run/
+# Create required directories
+RUN mkdir -p /var/run/ /var/log/supervisor
 
 # Install PHP extensions
 RUN docker-php-ext-install pdo pdo_mysql
