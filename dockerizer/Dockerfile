@@ -6,7 +6,7 @@ ENV NODE_VERSION=18.19.1
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Install Node.js and npm
-RUN apk add --no-cache nodejs npm
+RUN apk add --no-cache nodejs=~${NODE_VERSION} npm
 
 # Verify Node.js and npm installation
 RUN node --version && npm --version
