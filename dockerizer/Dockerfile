@@ -36,7 +36,7 @@ COPY webpack.mix.js /app/
 
 WORKDIR /app
 
-RUN chmod -R 775 storage
+# RUN chmod -R 775 storage
 RUN composer install --no-interaction --no-scripts --no-suggest
 RUN npm i \
     && npm run production
