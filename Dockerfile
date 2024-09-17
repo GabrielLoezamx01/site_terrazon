@@ -34,10 +34,10 @@ RUN cp .env.example .env
 
 RUN mkdir ./database/sqlite \
     && chown -R www-data: /var/www/html \
-    && rm -rf ./docker
+    && rm -rf ./Docker
 
-COPY ./docker/laravel-php.ini /usr/local/etc/php/conf.d/laravel-php.ini
-COPY ./docker/nginx.conf /etc/nginx/nginx.conf
+COPY ./Docker/laravel-php.ini /usr/local/etc/php/conf.d/laravel-php.ini
+COPY ./Docker/nginx.conf /etc/nginx/nginx.conf
 COPY ./docker/site-nginx.conf /etc/nginx/http.d/default.conf
 
 RUN chmod +x ./docker-entrypoint.sh
