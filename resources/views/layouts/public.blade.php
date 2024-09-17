@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}?v={{ config('app.version')}}">
     <link rel="stylesheet" href="{{ asset('css/owl.carousel.css') }}">
     <link rel="stylesheet" href="{{ asset('css/owl.theme.default.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/animate.min.css') }}" />
     @stack('stylesheet')
     @stack('styles')
     <script src="{{ asset('js/app.js') }}?v={{ config('app.version')}}"></script>

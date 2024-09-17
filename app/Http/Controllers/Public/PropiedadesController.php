@@ -136,9 +136,7 @@ class PropiedadesController extends Controller
     public function ficha($sku)
     {
         Carbon::setLocale('es');
-        $properties = Property::with('types', 'amenities', 'conditions', 'details', 'features', 'galleries')->where('available', 1)->get();
         $property   = Property::with('types', 'amenities', 'conditions', 'details', 'features', 'galleries')->where('folio', $sku)->first();
-        // json_dd($property);
         $galery = [];
         if (isset($property->galleries)) {
             foreach ($property->galleries as $key => $value) {
@@ -151,29 +149,30 @@ class PropiedadesController extends Controller
             }
         }
         $data = [];
-        // for($i=0; $i<12; $i++){
-        foreach ($properties as $kp => $vp) {
-            $data[] = new CardResource($vp);
-        }
-        shuffle($data);
-        // $busqueda=[];
-        // $favoritos=[];
-        // $otros=[];
-        // $nuevo=[];
-        $busqueda = $data[0];
-        $favoritos = $data[0];
-        $otros = $data[0];
-        $nuevo = $data[0];
+
+
+        // shuffle($data);
+        $busqueda = [];
+        $favoritos = [];
+        $otros = [];
+        $nuevo = [];
+        // $busqueda = $data[0];
+        // $favoritos = $data[0];
+        // $otros = $data[0];
+        // $nuevo = $data[0];
 
         $property->fechaCreacion = ucfirst($this->getDateFormat($property->created_at));
         $property->fechaActualizacion = ucfirst($this->getDateFormat($property->updated_at));
         $property->increment('view_count');
         $this->addRecentViewPropertie($property);
+
+        $location_id = $property->location_id;
+        $recomendations = $this->getRecomendations($location_id);
         return view('public.ficha', [
             'sku' => $sku,
             'property' => $property,
             'galery' => $galery,
-            'cards1' => $data,
+            'recomendations' => $recomendations,
             'busqueda' => $busqueda,
             'favoritos' => $favoritos,
             'otros' => $otros,
@@ -188,5 +187,20 @@ class PropiedadesController extends Controller
     private function addRecentViewPropertie($property)
     {
         $this->recentPropertiesService->addProperty($property->id, $property->title, $property->slug);
+    }
+    private function getRecomendations($location_id)
+    {
+        $data = [
+            "title" => "",
+            "description" => "",
+            "data" => []
+        ];
+        $properties = Property::with('types', 'amenities', 'conditions', 'details', 'features', 'galleries','location')->where('available', 1)->where('featured', 1)->where('location_id', $location_id)->get();
+        foreach ($properties as $kp => $vp) {
+            $data["title"] = $vp->location->featured_title;
+            $data["description"] = $vp->location->featured_msg;
+            $data["data"][] = new CardResource($vp);
+        } 
+        return $data;
     }
 }

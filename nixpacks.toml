@@ -1,0 +1,19 @@
+[phases.setup]
+# Instalamos nginx
+commands = [
+  "apt-get update",
+  "apt-get install -y nginx"
+]
+
+[phases.build]
+# Otros pasos de compilación si son necesarios
+
+[phases.start]
+# Configuramos NGINX para que arranque con la configuración adecuada
+commands = [
+  "nginx -g 'daemon off;'"
+]
+
+[static]
+# Definir rutas y configuraciones de NGINX para servir contenido estático
+root = "/var/www/html"

@@ -89,6 +89,8 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
     Route::post('active_property', [PropertyController::class, 'active_property']);
     Route::post('deactivate_property', [PropertyController::class, 'deactivate_property']);
+    Route::post('destacado/{id}', [PropertyController::class, 'destacado']);
+
 
     Route::post('details_validate/{property}', [PropertyController::class, 'insert_detail'])->name('details_validate');
     Route::post('edit_property', [PropertyController::class, 'edit_property']);

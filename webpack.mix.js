@@ -1,5 +1,6 @@
 const mix = require('laravel-mix');
 
+
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -12,15 +13,27 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
+    .js('resources/js/vue.properties.js', 'public/js')
+    .js('resources/js/admin/amenities.js', 'public/js/admin')
+    .js('resources/js/admin/condition.js', 'public/js/admin')
+    .js('resources/js/admin/edit_property.js', 'public/js/admin')
+    .js('resources/js/admin/features.js', 'public/js/admin')
+    .js('resources/js/admin/list_property.js', 'public/js/admin')
+    .js('resources/js/admin/types.js', 'public/js/admin')
     .js('resources/js/home.js', 'public/js')
     .js('resources/js/properties.js', 'public/js')
     .js('resources/js/results.js', 'public/js')
     .js('resources/js/ficha.js', 'public/js')
     .js('resources/js/gallery.js', 'public/js')
+    .vue({
+        version: 2
+    })
     .sass('resources/sass/app.scss', 'public/css')
+    .sass('resources/sass/admin.scss', 'public/css')
     .sass('resources/sass/acercade.scss', 'public/css/')
     .sass('resources/sass/agentes.scss', 'public/css/')
     .copy('resources/css/gallery.css', 'public/css/')
+    .copy('node_modules/animate.css/animate.min.css', 'public/css')
     .copy('node_modules/@fortawesome/fontawesome-free/webfonts', 'public/webfonts')
     .copy('node_modules/bootstrap-icons/font/fonts', 'public/css/fonts')
     .copy('node_modules/nouislider/dist/nouislider.min.css', 'public/css/nouislider.min.css')

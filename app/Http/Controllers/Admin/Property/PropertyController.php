@@ -34,6 +34,7 @@ class PropertyController extends Controller
     public function index()
     {
         $property = Property::with(['municipality.state', 'types', 'amenities', 'conditions', 'details', 'features'])->paginate(10);
+        // json_dd($property);
         return view('admin.properties.list', compact('property'));
     }
 
@@ -48,7 +49,7 @@ class PropertyController extends Controller
         $municipality = Municipality::with('state')->get();
         $location = Location::where('status', 1)->get();
 
-        return view('admin.properties.create')->with(compact('municipality','location'));
+        return view('admin.properties.create')->with(compact('municipality', 'location'));
     }
 
     /**
@@ -170,9 +171,9 @@ class PropertyController extends Controller
         $this->validate_insert('details_property', $data);
     }
 
-    public function insert_detail(Request $request , $id)
+    public function insert_detail(Request $request, $id)
     {
-        try{
+        try {
             $this->validate($request, [
                 'name' => 'required',
             ]);
@@ -194,9 +195,8 @@ class PropertyController extends Controller
             DetailsProperty::updateOrCreate($data, $data);
 
             return redirect()->back()->with('success', '¡Operación realizada con éxito!');
-
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => 'Hubo un problema al procesar la solicitud. Inténtalo de nuevo. ::: ' .$e->getMessage()]);
+            return redirect()->back()->withErrors(['error' => 'Hubo un problema al procesar la solicitud. Inténtalo de nuevo. ::: ' . $e->getMessage()]);
         }
     }
 
@@ -212,7 +212,7 @@ class PropertyController extends Controller
                     'name' => $detail
                 ]
             );
-            $detailsProperty [] = $model->id;
+            $detailsProperty[] = $model->id;
         }
         return $detailsProperty;
     }
@@ -251,7 +251,6 @@ class PropertyController extends Controller
             self::conditions_property($request->conditions, $property_id);
 
             return response()->json(['success' => 'Propiedad creada con éxito. Continúa con el proceso de creación.'], 200);
-
         } catch (\Exception $e) {
             return response()->json(['error' => 'Error al crear : ' . $e->getMessage()], 500);
         }
@@ -335,7 +334,6 @@ class PropertyController extends Controller
         self::conditions_property($request->conditions, $property_id);
 
         return redirect()->back()->withSuccess('¡Operación realizada con éxito!');
-
     }
 
     public function details($property)
@@ -347,7 +345,8 @@ class PropertyController extends Controller
 
 
 
-    private function  delete_relationship ($id){
+    private function  delete_relationship($id)
+    {
         AmenitiesProperty::where('property_id', $id)->delete();
         FeatureProperty::where('property_id', $id)->delete();
         TypesProperty::where('property_id', $id)->delete();
@@ -413,7 +412,7 @@ class PropertyController extends Controller
     {
         $propertyId = $request->property;
         $validate = Property::where('id', $propertyId)->whereIn('available', [0, 3])->exists();
-        if($validate > 0){
+        if ($validate > 0) {
             return response()->json(['error' => 'La propiedad ya se encuentra desactivada o vendida.'], 402);
         }
         Property::where('id', $propertyId)->update(['available' => 0]);
@@ -475,5 +474,16 @@ class PropertyController extends Controller
 
         return response()->json(['message' => 'Propiedad activada con éxito.'], 200);
     }
+    public function destacado(Request $request, $id)
+    {
+        $item = Property::findOrFail($id);
+        $item->featured = $request->featured;
+        $item->save();
 
+        $message = 'La propiedad se ha removido de destacado';
+        if ($request->featured == 1) {
+            $message = 'La propiedad se ha marcada como destacada';
+        }
+        return response()->json(['message' => $message]);
+    }
 }

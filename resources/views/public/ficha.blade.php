@@ -1,8 +1,8 @@
 @extends('layouts.public')
 @section('title', 'TERRAZÓN - PROPIEDADES')
 @section('content')
-<div class="bg-white pt-3 ">
-    <div class="container">
+<div class="bg-white pt-3  ">
+    <div class="container pb-5">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/">Home</a></li>
@@ -201,30 +201,38 @@
             </div>
             <div class="col-12 col-lg-4 mb-3">
                 <div class="row">
+                    @if(!empty($busqueda))
                     <div class="col-12 mb-3">
                         <div>
                             <h4 class="ficha-title-section">Basado en tu búsqueda</h4>
                         </div>
                         <x-card :card="$busqueda" />
                     </div>
+                    @endif
+                    @if(!empty($favoritos))
                     <div class="col-12 mb-3">
                         <div>
                             <h4 class="ficha-title-section">Mis Favoritos</h4>
                         </div>
                         <x-card :card="$favoritos" />
                     </div>
+                    @endif
+                    @if(!empty($otros))
                     <div class="col-12 mb-3">
                         <div>
                             <h4 class="ficha-title-section">Otros usuarios vieron</h4>
                         </div>
                         <x-card :card="$otros" />
                     </div>
+                    @endif
+                    @if(!empty($nuevo))
                     <div class="col-12 mb-3">
                         <div>
                             <h4 class="ficha-title-section">Lo más nuevo</h4>
                         </div>
-                        <x-card :card="$nuevo" ƒ />
+                        <x-card :card="$nuevo" />
                     </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -258,14 +266,14 @@
         </div>
     </div>
 </div>
-<div class="bg-white pt-3 pb-4 min-container">
+<div class="bg-white pt-3 pb-4 min-container animate__animated animate__fadeIn">
     <div class="container">
         <div>
             <div class="col-12 text-left pb-3">
-                <div class="title">Propiedades destacadas en la ciudad</div>
-                <div class="description">Descubre tu próximo hogar entre nuestras propiedades destacadas.</div>
+                <div class="title">{{ $recomendations["title"] }}</div>
+                <div class="description">{{ $recomendations["description"] }}</div>
             </div>
-            <x-carousel :cards="$cards1" id="carr2" />
+            <x-carousel :cards="$recomendations['data']" id="carr2" />
         </div>
     </div>
 </div>

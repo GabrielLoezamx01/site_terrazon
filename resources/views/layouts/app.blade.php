@@ -10,6 +10,8 @@
     <link href="{{ asset('css/tabler-flags.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/tabler-vendors.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/demoapp.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/animate.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/admin.css') }}" rel="stylesheet" />
     @stack('styles')
     @stack('scripts')
 </head>
@@ -32,8 +34,8 @@
 
     </div>
 
-    <script src="{{ asset('js/axios.min.js') }}"></script>
-    <script src="{{ asset('js/vue.js') }}"></script>
+    <!-- <script src="{{ asset('js/axios.min.js') }}"></script>
+    <script src="{{ asset('js/vue.js') }}"></script> -->
     <script src="{{ asset('js/search.js') }}"></script>
 
     @stack('scripts2')

@@ -107,10 +107,10 @@ body {
     max-width: 800px;
     margin: 0 auto;
 
-    .item { 
+    .item {
         // outline: 1px solid #ccc;
         padding: 5px 0;
-        line-height: 12px; 
+        line-height: 12px;
         break-inside: avoid;
         page-break-inside: avoid;
     }
@@ -1295,5 +1295,25 @@ ul.ficha {
         &::before {
             display: none;
         }
+    }
+}
+
+
+.truncate-info-card {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.card-location {
+    color: #1E612D;
+    font-size: 1rem;
+    font-weight: 500;
+
+    a {
+        color: #1E612D;
+        text-decoration: none;
+
     }
 }

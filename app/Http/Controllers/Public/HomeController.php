@@ -31,12 +31,19 @@ class HomeController extends Controller
             $homeProperties = HomeProperty::with([
                 'property' => function ($query) {
                     $query->where('available', 1)
-                    ->with('types');
+                        ->with('types');
                 },
                 'home'
             ])->get();
             return  $homeProperties->groupBy('home.name');
         });
+    }
+    private function getRecomendations()
+    {
+        // return Cache::rememberForever($this->key_cache_viewed_properties, function () {
+        $properties = Property::with(["location", "galleries", "features","types"])->where('available', 1)->where('featured', 1)->get();
+        return $properties;
+        // });
     }
     public function index()
     {
@@ -65,10 +72,29 @@ class HomeController extends Controller
 
             $homeItem['cards'] = $data;
             $home[] = $homeItem;
-        } 
+        }
         $viewed = $this->recentPropertiesService->getRecentlyViewed();
+        $recomendationsArray = $this->getRecomendations();
+        $recomendations = null;
+        if (count($recomendationsArray) > 0) {
+            $recomendations = $recomendationsArray->random();
+            $recomendations = $recomendations->toArray();
+            $recomendations["detailsPage"] = '/ficha/' . $recomendations["folio"];
+            if (count($recomendations["features"]) > 0) {
+                $recomendations["features"] = array_slice($recomendations["features"], 0, 3);
+            }
+            if (count($recomendations["galleries"]) > 0) {
+                $gallery=[];
+                foreach( $recomendations["galleries"] as $key => $value){
+                    $image=isset($value["original_image"]) ? asset('storage/' . $value["original_image"]) : '';
+                    $recomendations["galleries"][$key]["imageUrl"]=urldecode($image);
+                }   
+            }
+        }
+        // json_dd($recomendations);
         return view('public.home', [
             'range' => $range,
+            'recomendations' => $recomendations,
             'ubicaciones' => $ubicaciones,
             'typesProperties' => $typesProperties,
             'viewed' => $viewed,

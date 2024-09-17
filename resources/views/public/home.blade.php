@@ -115,6 +115,7 @@
             </div>
         </div>
     </div>
+    @if($recomendations!=null)
     <div class="bg-teal py-5">
         <div class="container py-5">
             <div class="row">
@@ -123,71 +124,68 @@
                 <div class="col-12 col-lg-5" style="padding:0px 35px 0 35px;">
                     <div class="row py-3  bg-white" style="z-index:1; position:relative">
                         <div class="col-12">
-                            <h2>Recomendaciones en la playa</h2>
-                            <div class="description">Descubre tu oasis perfecto en la playa y empieza a disfrutar de la vida
-                                junto al mar</div>
+                            <h2>{{ $recomendations["location"]["featured_title"]}}</h2>
+                            <div class="description">{{ $recomendations["location"]["featured_msg"]}}</div>
                         </div>
                         <div class="col-12 py-4">
-                            <span class="price">$ 1,234,567.00</span>
+                            <span class="price">$ {{ number_format($recomendations["price"],2) }}</span>
                         </div>
                         <div class="col-12">
-                            <div class="hightlight">Nombre de la propiedad</div>
-                            <div class="location py-2"><img src="{{ asset('images/icons/location.svg') }}"> Ubicación</div>
-                            <p class="description">Breve descripción de la propiedad con un máximo de caracteres
-                                establecidos por el cliente para una rápida introducción.</p>
+                            <div class="hightlight">{{ $recomendations["title"] }}</div>
+                            <h5 class="card-location">
+                                <a href="https://www.google.com/maps/search/?api=1&query={{ $recomendations['latitude'] }},{{ $recomendations['longitude'] }}" target="_blank">
+                                    <i class="bi bi-geo-alt"></i> Ubicación
+                                </a>
+                            </h5>
+                            <p class="description truncate-info-card">{{ $recomendations["description"] }}</p>
                         </div>
 
                         <div class="col-12">
                             <ul class="list-info">
-                                <li><label class="detail-icon"><img src="{{ asset('images/icons/bed.svg') }}"></label><span class="detail-text">2
-                                        Habitaciones<span></li>
-                                <li><label class="detail-icon"><img src="{{ asset('images/icons/bath.svg') }}"></label><span class="detail-text">2
-                                        Baños</span></li>
-                                <li><label class="detail-icon"><img src="{{ asset('images/icons/cart.svg') }}"></label><span class="detail-text">1
-                                        Estacionamiento</span></li>
+                                @foreach($recomendations["features"] as $kf => $vf)
+                                <li>
+                                    <label class="detail-icon">
+                                        @php
+                                        $imagePath = 'storage/svg/'.$vf['icon'];
+                                        $fullPath = public_path($imagePath);
+                                        @endphp
+                                        @if(file_exists($fullPath))
+                                        <img src="{{ asset('storage/svg/'.$vf['icon']) }}">
+                                        @endif
+                                    </label>
+                                    <span class="detail-text ms-1">{{ $vf["name"]}}</span>
+                                </li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
                     <div class="row d-none d-lg-flex mt-4" style="z-index:1; position:relative">
                         <div class="col-12 col-md-6 d-grid gap-2 d-md-block text-center py-2">
-                            <button type="button" class="btn btn-success btn-detalle">VER MAS DETALLES</button>
+                            <a href="{{ $recomendations["detailsPage"] }}" class="btn btn-success btn-detalle text-white text-nowrap">VER MAS DETALLES</a>
+
                         </div>
                         <div class="col-12 col-md-6 d-grid gap-2 d-md-block text-center py-2">
-                            <button type="button" class="btn btn-primary btn-catalogo">EXPLORAR CATÁLOGO</button>
+                            <a href="/propiedades?location={{ $recomendations['location']['id'] }}" class="btn btn-primary btn-catalogo">EXPLORAR CATÁLOGO</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-12 col-lg-7 px-4 px-lg-0">
-                    <div id="carousel2" class="carousel slide" data-bs-ride="carousel">
+                    <div id="carouselRecomendations" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-indicators">
-                            <button type="button" data-bs-target="#carousel2" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                            <button type="button" data-bs-target="#carousel2" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                            <button type="button" data-bs-target="#carousel2" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                            <button type="button" data-bs-target="#carousel2" data-bs-slide-to="3" aria-label="Slide 4"></button>
-                            <button type="button" data-bs-target="#carousel2" data-bs-slide-to="4" aria-label="Slide 5"></button>
-                            <button type="button" data-bs-target="#carousel2" data-bs-slide-to="5" aria-label="Slide 6"></button>
+                            @foreach($recomendations["galleries"] as $key => $item)
+                            <button type="button" data-bs-target="#carouselRecomendations" data-bs-slide-to="{{ $key }}" class="{{ $loop->first ? 'active' : '' }}" aria-current="{{ $loop->first ? 'true' : 'false' }}" aria-label="{{ $recomendations['slug'] }}"></button>
+                            @endforeach
                         </div>
                         <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="{{ asset('images/carousel-2.png') }}" class="d-block w-100" alt="...">
+                            @foreach($recomendations["galleries"] as $item)
+                            <div class="carousel-item {{ $loop->first ? 'active' : '' }}" class="d-block w-100">
+                                <a href="{{$item['imageUrl']}}">
+                                    <div class="ficha-carouser-img" style="background: url('{{  $item['imageUrl'] }}');"></div>
+                                </a>
                             </div>
-                            <div class="carousel-item">
-                                <img src="{{ asset('images/carousel-2.png') }}" class="d-block w-100" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="{{ asset('images/carousel-2.png') }}" class="d-block w-100" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="{{ asset('images/carousel-2.png') }}" class="d-block w-100" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="{{ asset('images/carousel-2.png') }}" class="d-block w-100" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="{{ asset('images/carousel-2.png') }}" class="d-block w-100" alt="...">
-                            </div>
+                            @endforeach
                         </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carousel2" data-bs-slide="prev">
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselRecomendations" data-bs-slide="prev">
                             <span class="visually-hidden">Preview</span>
                             <div class="slider-nav slider-nav-prev">
                                 <span class="icon-nav fa-stack fa-2x">
@@ -196,7 +194,7 @@
                                 </span>
                             </div>
                         </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carousel2" data-bs-slide="next">
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselRecomendations" data-bs-slide="next">
                             <span class="visually-hidden">Next</span>
                             <div class="slider-nav slider-nav-next">
                                 <span class="icon-nav fa-stack fa-2x">
@@ -209,15 +207,16 @@
                 </div>
             </div>
             <div class="row d-flex d-lg-none mt-4" style="z-index:1; position:relative">
-                <div class="col-12 col-lg-6 d-grid gap-2 d-lg-block text-center py-2">
-                    <button type="button" class="btn btn-success btn-detalle">VER MAS DETALLES</button>
+                <div class="col-12 col-md-6 d-grid gap-2 d-md-block text-center py-2">
+                    <a href="{{ $recomendations["detailsPage"] }}" class="btn btn-success btn-detalle text-white text-nowrap">VER MAS DETALLES</a>
                 </div>
-                <div class="col-12 col-lg-6 d-grid gap-2 d-lg-block text-center py-2">
-                    <button type="button" class="btn btn-primary btn-catalogo">EXPLORAR CATÁLOGO</button>
+                <div class="col-12 col-md-6 d-grid gap-2 d-md-block text-center py-2">
+                    <a href="/propiedades?location={{ $recomendations['location']['id'] }}" class="btn btn-primary btn-catalogo">EXPLORAR CATÁLOGO</a>
                 </div>
             </div>
         </div>
     </div>
+    @endif
     <div class="bg-white py-5">
         <div class="container">
             <div class="row">
@@ -361,7 +360,7 @@
                                 esencia única.</p>
                             <p class="hightlight mb-1 text-center text-md-start">Descubre un mundo de oportunidades</p>
                             <div class="py-1 text-center text-md-start d-grid gap-2 d-md-block">
-                                <button type="button" class="btn btn-primary btn-catalogo">EXPLORAR CATÁLOGO</button>
+                                <a href="/propiedades" class="btn btn-primary btn-catalogo">EXPLORAR CATÁLOGO</a>
                             </div>
                         </div>
                         <div class="image-container img5">
