@@ -29,6 +29,7 @@ return [
         'list_amenities' => 'cache_list_amenities', 
         'home_properties' => 'cache_home_properties_group',
         'viewed_properties' => 'cache_viewed_properties',
+        'new_properties' => 'cache_new_properties',
     ],
 
     /*

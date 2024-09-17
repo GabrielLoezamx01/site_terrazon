@@ -24732,6 +24732,7 @@ body {
   font-size: 20px;
   font-weight: 600;
   color: #231D46;
+  white-space: nowrap;
 }
 .card-property .card-body .card-text {
   font-size: 11px;
@@ -24793,7 +24794,7 @@ ul.list-info .detail-text {
 }
 
 .owl-item {
-  padding-right: 16px;
+  padding-right: 18px;
 }
 
 @media screen and (max-width: 500px) {
@@ -24820,7 +24821,6 @@ ul.list-info .detail-text {
 
 .carousel-container {
   position: relative;
-  overflow: hidden;
 }
 .carousel-container .car-nav {
   z-index: 999;
@@ -24842,14 +24842,24 @@ ul.list-info .detail-text {
 .carousel-container .car-back {
   left: 0;
 }
-@media screen and (min-width: 501px) {
+@media screen and (min-width: 0px) {
   .carousel-container .car-next {
-    right: -3px;
+    right: 5%;
   }
 }
-@media screen and (max-width: 500px) {
+@media screen and (min-width: 500px) {
   .carousel-container .car-next {
-    right: 40px;
+    right: 7%;
+  }
+}
+@media screen and (min-width: 768px) {
+  .carousel-container .car-next {
+    right: -3%;
+  }
+}
+@media screen and (min-width: 980px) {
+  .carousel-container .car-next {
+    right: -1%;
   }
 }
 
@@ -25027,6 +25037,10 @@ ul.list-info .detail-text {
   background-color: #E2F1E5;
 }
 
+.bg-tertiary {
+  background-color: #094208;
+}
+
 .img-item {
   background-position: center !important;
   background-size: cover !important;
@@ -25094,7 +25108,7 @@ ul.list-info .detail-text {
 }
 
 .text-tertiary {
-  color: #1E612D !important;
+  color: #094208 !important;
 }
 
 @media screen and (max-width: 768px) {
@@ -25205,11 +25219,11 @@ ul.list-info .detail-text {
   text-decoration: none;
 }
 .breadcrumb .active {
-  color: #1E612D;
+  color: #094208;
 }
 
 .dd-order {
-  color: #1E612D;
+  color: #094208;
   text-decoration: none;
 }
 
@@ -25479,7 +25493,7 @@ fieldset:before {
 }
 
 .ficha-nav {
-  background: #1E612D;
+  background: #094208;
   color: white;
   border-radius: 6px;
 }
@@ -25574,12 +25588,12 @@ ul.ficha li::before {
 }
 
 .quote-icon i {
-  color: #1E612D;
+  color: #094208;
   font-size: 50px;
 }
 
 .testimonial-author {
-  color: #1E612D;
+  color: #094208;
   font-weight: bold;
   margin-bottom: 10px;
 }
@@ -25643,7 +25657,7 @@ header {
   font-size: 8.454rpx;
   height: 61px;
   color: #ffffff;
-  background-color: #1E612D;
+  background-color: #094208;
 }
 header a {
   color: #ffffff;
@@ -25666,7 +25680,7 @@ header a:hover {
 
 .menu-container {
   height: 61px;
-  background: #1E612D;
+  background: #094208;
 }
 @media screen and (min-width: 768px) {
   .menu-container {

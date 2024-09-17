@@ -289,6 +289,7 @@ body {
             font-size: 20px;
             font-weight: 600;
             color: $title-color;
+            white-space: nowrap;
         }
 
         .card-text {
@@ -377,7 +378,8 @@ ul.list-info {
 }
 
 .owl-item {
-    padding-right: 16px;
+    // padding-left: 8px;
+    padding-right: 18px;
 }
 
 @media screen and (max-width: 500px) {
@@ -411,8 +413,6 @@ ul.list-info {
 
 .carousel-container {
     position: relative;
-    overflow: hidden;
-
     .car-nav {
         z-index: 999;
         top: 50%;
@@ -434,13 +434,25 @@ ul.list-info {
     }
 
     .car-next {
-        @media screen and (min-width: 501px) {
-            right: -3px;
+        
+        @media screen and (min-width: 0px) {
+            right: 5%;
         }
-
-        @media screen and (max-width: 500px) {
-            right: 40px;
+        @media screen and (min-width: 500px) {
+            right: 7%;
         }
+        @media screen and (min-width: 768px) {
+            right: -3%;
+        }
+        @media screen and (min-width: 980px) {
+            right: -1%;
+        }
+        // @media screen and (min-width: 1260px) {
+        //     right: -10px;
+        // }
+        // @media screen and (min-width: 1340px) {
+        //     right: -10px;
+        // }
     }
 }
 
@@ -633,6 +645,9 @@ ul.list-info {
 
 .bg-teal {
     background-color: #E2F1E5;
+}
+.bg-tertiary{
+    background-color: $tertiary;
 }
 
 .img-item {

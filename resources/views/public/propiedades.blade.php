@@ -15,212 +15,211 @@
                 @endif
             </ol>
         </nav>
+        @if (!$searchmode)
         <div class="row">
-            @if (!$searchmode)
-            <div class="row">
-                <div class="col-12 text-center">
-                    <h3>¿Donde quieres comenzar a buscar?</h3>
-                </div>
-                <div class="col-12 text-center">
-                    <div class="inline">
-                        @foreach ($ubicaciones as $key => $u)
-                        <a class="btn btn-outline-secondary" href="/propiedades?location={{$u['id']}}">
-                            <div class="d-flex align-items-center">
-                                <span>{{$u["name"]}}</span>
-                                <i class="ms-1 svg-icon-button {{$u['icon']}}"></i>
-                            </div>
-                        </a>
-                        @endforeach
-                    </div>
+            <div class="col-12 text-center">
+                <h3>¿Donde quieres comenzar a buscar?</h3>
+            </div>
+            <div class="col-12 text-center">
+                <div class="inline">
+                    @foreach ($ubicaciones as $key => $u)
+                    <a class="btn btn-outline-secondary" href="/propiedades?location={{$u['id']}}">
+                        <div class="d-flex align-items-center">
+                            <span>{{$u["name"]}}</span>
+                            <i class="ms-1 svg-icon-button {{$u['icon']}}"></i>
+                        </div>
+                    </a>
+                    @endforeach
                 </div>
             </div>
+        </div>
+        @endif
+        <div class="row">
+            @if (!$searchmode)
+            <div class="col-12 text-left pb-3">
+                <div class="title">Top Propiedades </div>
+                <div class="description">Descubre tu próximo hogar entre nuestras propiedades destacadas.</div>
+            </div>
+            @else
+            <div class="col-12 text-left pb-3">
+                <div class="title">Resultados de búsqueda </div>
+            </div>
             @endif
-            <div class="row">
-                @if (!$searchmode)
-                <div class="col-12 text-left pb-3">
-                    <div class="title">Top Propiedades </div>
-                    <div class="description">Descubre tu próximo hogar entre nuestras propiedades destacadas.</div>
-                </div>
-                @else
-                <div class="col-12 text-left pb-3">
-                    <div class="title">Resultados de búsqueda </div>
-                </div>
-                @endif
-                @if ($searchmode)
-                <div class="col-3 d-none d-md-block pt-5" id="filter">
-                    <div class="row ">
-                        <div class="col-4 text-start py-4 d-flex align-items-center">
-                            <a id="toggleFilters2" href="javascript:void(0)" class="text-primary d-none d-md-block">Filtro <i class="bi bi-filter"></i> </a>
-                        </div>
-                        <div class="col-8 text-end py-4">
-                            <!-- <button class="btn btn-sm btn-primary">LIMPIAR SELECCIÓN</button> -->
-                        </div>
-                        <fieldset class="col-12 my-2 p-3">
-                            <legend>{{ $paginationInfo->total() }} Resultados</legend>
-                            <form action="/propiedades" id="filterForm">
-                                <input type="hidden" id="location" name="location" value="{{ $locationQP }}" id="locationInput">
-                                <div class="row">
-                                    <div class="col-12 text-primary mb-3">
-                                        <label class="mb-1">Locación</label>
-                                        <div class="dropdown">
-                                            <button class="form-control dd-select text-start" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <i class="bi bi-geo-alt text-primary"></i> @if (isset($location["id"])) {{ $location["name"] }} @else Seleccione @endif
-                                                <i class="bi bi-chevron-down float-end chevron"></i>
-                                            </button>
-                                            <ul class="dropdown-menu full">
-                                                @foreach ($ubicaciones as $key => $u)
-                                                <li><a class="dropdown-item" href="javascript:void(0)" onclick="submitLocation('{{ $u["id"] }}')"><i class="bi bi-geo-alt text-primary"></i> {{ $u["name"]}}</a></li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 mb-3">
-                                        <div class="row">
-                                            <div class="col-12 text-primary">Tipo de propiedad</div>
-                                            <div class="col-6">
-                                                <input type="checkbox" name="allTypes" id="chk_1" value="all"
-                                                    {{ ($allTypesQP=='all') ? 'checked' : '' }}><label class="fc-text" for="chk_1">Todos</label>
-                                            </div>
-                                            @foreach ($typesProperties as $key => $tp)
-                                            <div class="col-6">
-                                                <input id="chktp_{{$tp['id']}}" class="chk_action chk_types" type="checkbox" name="type[]" value="{{$tp['id']}}"
-                                                    {{ (is_array($typeQP) && in_array($tp['id'],$typeQP)) ? 'checked' : '' }}>
-                                                <label class="fc-text" for="chktp_{{$tp['id']}}">{{ $tp["name"]}}</label>
-                                            </div>
+            @if ($searchmode)
+            <div class="col-3 d-none d-md-block pt-5" id="filter">
+                <div class="row ">
+                    <div class="col-4 text-start py-4 d-flex align-items-center">
+                        <a id="toggleFilters2" href="javascript:void(0)" class="text-primary d-none d-md-block">Filtro <i class="bi bi-filter"></i> </a>
+                    </div>
+                    <div class="col-8 text-end py-4">
+                        <!-- <button class="btn btn-sm btn-primary">LIMPIAR SELECCIÓN</button> -->
+                    </div>
+                    <fieldset class="col-12 my-2 p-3">
+                        <legend>{{ $paginationInfo->total() }} Resultados</legend>
+                        <form action="/propiedades" id="filterForm">
+                            <input type="hidden" id="location" name="location" value="{{ $locationQP }}" id="locationInput">
+                            <div class="row">
+                                <div class="col-12 text-primary mb-3">
+                                    <label class="mb-1">Locación</label>
+                                    <div class="dropdown">
+                                        <button class="form-control dd-select text-start" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="bi bi-geo-alt text-primary"></i> @if (isset($location["id"])) {{ $location["name"] }} @else Seleccione @endif
+                                            <i class="bi bi-chevron-down float-end chevron"></i>
+                                        </button>
+                                        <ul class="dropdown-menu full">
+                                            @foreach ($ubicaciones as $key => $u)
+                                            <li><a class="dropdown-item" href="javascript:void(0)" onclick="submitLocation('{{ $u["id"] }}')"><i class="bi bi-geo-alt text-primary"></i> {{ $u["name"]}}</a></li>
                                             @endforeach
-                                        </div>
+                                        </ul>
                                     </div>
-                                    <div class="col-12 mb-3">
-                                        <div class="row">
-                                            <div class="col-12 text-primary"> Rango de precio MXN</div>
-                                            <div class="col-6">
-                                                <label>Desde</label>
-                                                <label class="form-control" id="budg1" name="budg1" data-type="currency">{{ $budg1 }}</label>
-                                            </div>
-                                            <div class="col-6">
-                                                <label>Hasta</label>
-                                                <label class="form-control" id="budg2" name="budg2" data-type="currency">{{ $budg2 }}</label>
-                                            </div>
-                                            <div class="col-12 mt-4 pe-4">
-                                                <input type="hidden" class="form-range" id="budget" name="budget" value="{{ $budget }}">
-                                                <div id="slider"></div>
-                                            </div>
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <div class="row">
+                                        <div class="col-12 text-primary">Tipo de propiedad</div>
+                                        <div class="col-6">
+                                            <input type="checkbox" name="allTypes" id="chk_1" value="all"
+                                                {{ ($allTypesQP=='all') ? 'checked' : '' }}><label class="fc-text" for="chk_1">Todos</label>
+                                        </div>
+                                        @foreach ($typesProperties as $key => $tp)
+                                        <div class="col-6">
+                                            <input id="chktp_{{$tp['id']}}" class="chk_action chk_types" type="checkbox" name="type[]" value="{{$tp['id']}}"
+                                                {{ (is_array($typeQP) && in_array($tp['id'],$typeQP)) ? 'checked' : '' }}>
+                                            <label class="fc-text" for="chktp_{{$tp['id']}}">{{ $tp["name"]}}</label>
+                                        </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <div class="row">
+                                        <div class="col-12 text-primary"> Rango de precio MXN</div>
+                                        <div class="col-6">
+                                            <label>Desde</label>
+                                            <label class="form-control" id="budg1" name="budg1" data-type="currency">{{ $budg1 }}</label>
+                                        </div>
+                                        <div class="col-6">
+                                            <label>Hasta</label>
+                                            <label class="form-control" id="budg2" name="budg2" data-type="currency">{{ $budg2 }}</label>
+                                        </div>
+                                        <div class="col-12 mt-4 pe-4">
+                                            <input type="hidden" class="form-range" id="budget" name="budget" value="{{ $budget }}">
+                                            <div id="slider"></div>
+                                        </div>
 
+                                    </div>
+                                </div>
+                                <div class="col-6 text-primary mb-3">
+                                    <label>Habitaciones</label>
+                                    <select class="form-control select_actions" name="rooms">
+                                        <option value="" {{ ($roomsQP=='') ? 'selected' : '' }}>Seleccione</option>
+                                        <option value="1" {{ ($roomsQP=='1') ? 'selected' : '' }}>1</option>
+                                        <option value="2" {{ ($roomsQP=='2') ? 'selected' : '' }}>2</option>
+                                        <option value="3" {{ ($roomsQP=='3') ? 'selected' : '' }}>3</option>
+                                        <option value="4" {{ ($roomsQP=='4') ? 'selected' : '' }}>4</option>
+                                        <option value="5" {{ ($roomsQP=='5') ? 'selected' : '' }}>5</option>
+                                        <option value="6" {{ ($roomsQP=='6') ? 'selected' : '' }}>6</option>
+                                        <option value="7" {{ ($roomsQP=='7') ? 'selected' : '' }}>7</option>
+                                        <option value="8" {{ ($roomsQP=='8') ? 'selected' : '' }}>8</option>
+                                        <option value="9" {{ ($roomsQP=='9') ? 'selected' : '' }}>9</option>
+                                        <option value="10" {{ ($roomsQP=='10') ? 'selected' : '' }}>10</option>
+                                    </select>
+                                </div>
+                                <div class="col-6 text-primary mb-3">
+                                    <label>Baños completos</label>
+                                    <select class="form-control select_actions" name="bathrooms">
+                                        <option value="" {{ ($bathroomsQP=='') ? 'selected' : '' }}>Seleccione</option>
+                                        <option value="1" {{ ($bathroomsQP=='1') ? 'selected' : '' }}>1</option>
+                                        <option value="2" {{ ($bathroomsQP=='2') ? 'selected' : '' }}>2</option>
+                                        <option value="3" {{ ($bathroomsQP=='3') ? 'selected' : '' }}>3</option>
+                                        <option value="4" {{ ($bathroomsQP=='4') ? 'selected' : '' }}>4</option>
+                                        <option value="5" {{ ($bathroomsQP=='5') ? 'selected' : '' }}>5</option>
+                                    </select>
+                                </div>
+                                <div class="col-12 text-primary mb-3">
+                                    <label>Estacionamiento para</label>
+                                    <select class="form-control select_actions" name="parking">
+                                        <option value="" {{ ($parkingQP=='') ? 'selected' : '' }}>Seleccione</option>
+                                        <option value="1" {{ ($parkingQP=='1') ? 'selected' : '' }}>1 auto</option>
+                                        <option value="2" {{ ($parkingQP=='2') ? 'selected' : '' }}>2 autos</option>
+                                        <option value="3" {{ ($parkingQP=='3') ? 'selected' : '' }}>3 autos</option>
+                                        <option value="4" {{ ($parkingQP=='4') ? 'selected' : '' }}>4 autos</option>
+                                        <option value="5" {{ ($parkingQP=='5') ? 'selected' : '' }}>5 autos</option>
+                                    </select>
+                                </div>
+                                <div class="col-12 text-primary mb-3">
+                                    <div class="row">
+                                        <div class="col-12 text-primary">Condición</div>
+                                        @foreach ($conditionsProperty as $key => $cp)
+                                        <div class="col-6">
+                                            <input class="chk_action" type="checkbox" name="condition[]" value="{{$cp['id']}}" id="chkcp_{{$cp['id']}}"
+                                                {{ (is_array($conditionsQp) && in_array($cp['id'],$conditionsQp)) ? 'checked' : '' }}>
+                                            <label class="fc-text" for="chkcp_{{$cp['id']}}">{{ $cp["name"]}}</label>
                                         </div>
+                                        @endforeach
                                     </div>
-                                    <div class="col-6 text-primary mb-3">
-                                        <label>Habitaciones</label>
-                                        <select class="form-control select_actions" name="rooms">
-                                            <option value="" {{ ($roomsQP=='') ? 'selected' : '' }}>Seleccione</option>
-                                            <option value="1" {{ ($roomsQP=='1') ? 'selected' : '' }}>1</option>
-                                            <option value="2" {{ ($roomsQP=='2') ? 'selected' : '' }}>2</option>
-                                            <option value="3" {{ ($roomsQP=='3') ? 'selected' : '' }}>3</option>
-                                            <option value="4" {{ ($roomsQP=='4') ? 'selected' : '' }}>4</option>
-                                            <option value="5" {{ ($roomsQP=='5') ? 'selected' : '' }}>5</option>
-                                            <option value="6" {{ ($roomsQP=='6') ? 'selected' : '' }}>6</option>
-                                            <option value="7" {{ ($roomsQP=='7') ? 'selected' : '' }}>7</option>
-                                            <option value="8" {{ ($roomsQP=='8') ? 'selected' : '' }}>8</option>
-                                            <option value="9" {{ ($roomsQP=='9') ? 'selected' : '' }}>9</option>
-                                            <option value="10" {{ ($roomsQP=='10') ? 'selected' : '' }}>10</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-6 text-primary mb-3">
-                                        <label>Baños completos</label>
-                                        <select class="form-control select_actions" name="bathrooms">
-                                            <option value="" {{ ($bathroomsQP=='') ? 'selected' : '' }}>Seleccione</option>
-                                            <option value="1" {{ ($bathroomsQP=='1') ? 'selected' : '' }}>1</option>
-                                            <option value="2" {{ ($bathroomsQP=='2') ? 'selected' : '' }}>2</option>
-                                            <option value="3" {{ ($bathroomsQP=='3') ? 'selected' : '' }}>3</option>
-                                            <option value="4" {{ ($bathroomsQP=='4') ? 'selected' : '' }}>4</option>
-                                            <option value="5" {{ ($bathroomsQP=='5') ? 'selected' : '' }}>5</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-12 text-primary mb-3">
-                                        <label>Estacionamiento para</label>
-                                        <select class="form-control select_actions" name="parking">
-                                            <option value="" {{ ($parkingQP=='') ? 'selected' : '' }}>Seleccione</option>
-                                            <option value="1" {{ ($parkingQP=='1') ? 'selected' : '' }}>1 auto</option>
-                                            <option value="2" {{ ($parkingQP=='2') ? 'selected' : '' }}>2 autos</option>
-                                            <option value="3" {{ ($parkingQP=='3') ? 'selected' : '' }}>3 autos</option>
-                                            <option value="4" {{ ($parkingQP=='4') ? 'selected' : '' }}>4 autos</option>
-                                            <option value="5" {{ ($parkingQP=='5') ? 'selected' : '' }}>5 autos</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-12 text-primary mb-3">
-                                        <div class="row">
-                                            <div class="col-12 text-primary">Condición</div>
-                                            @foreach ($conditionsProperty as $key => $cp)
-                                            <div class="col-6">
-                                                <input class="chk_action" type="checkbox" name="condition[]" value="{{$cp['id']}}" id="chkcp_{{$cp['id']}}"
-                                                    {{ (is_array($conditionsQp) && in_array($cp['id'],$conditionsQp)) ? 'checked' : '' }}>
-                                                <label class="fc-text" for="chkcp_{{$cp['id']}}">{{ $cp["name"]}}</label>
-                                            </div>
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                    <div class="col-12 text-primary mb-3">
-                                        <div class="col-12 text-primary">Amenidades</div>
-                                        <div class="container-amenities">
-                                            @foreach ($amenities as $key => $a)
-                                            <div class="item">
-                                                <div class="d-flex">
-                                                    <div class="me-2">
-                                                        <input class="chk_action" type="checkbox" name="amenities[]" value="{{$a['id']}}" id="chka_{{$a['id']}}"
-                                                            {{ (is_array($amenitiesQp) && in_array($a['id'],$amenitiesQp)) ? 'checked' : '' }}>
-                                                    </div>
-                                                    <div>
-                                                        <label class="fc-text" for="chka_{{$a['id']}}">{{ $a["name"]}}</label>
-                                                    </div>
+                                </div>
+                                <div class="col-12 text-primary mb-3">
+                                    <div class="col-12 text-primary">Amenidades</div>
+                                    <div class="container-amenities">
+                                        @foreach ($amenities as $key => $a)
+                                        <div class="item">
+                                            <div class="d-flex">
+                                                <div class="me-2">
+                                                    <input class="chk_action" type="checkbox" name="amenities[]" value="{{$a['id']}}" id="chka_{{$a['id']}}"
+                                                        {{ (is_array($amenitiesQp) && in_array($a['id'],$amenitiesQp)) ? 'checked' : '' }}>
+                                                </div>
+                                                <div>
+                                                    <label class="fc-text" for="chka_{{$a['id']}}">{{ $a["name"]}}</label>
                                                 </div>
                                             </div>
-                                            @endforeach
                                         </div>
+                                        @endforeach
                                     </div>
                                 </div>
-                    </div>
-                    </form>
-                    </fieldset>
+                            </div>
                 </div>
-                @endif
-                <div id="contentWrapper" class="col-12 @if ($searchmode) col-md-9 @else col-md-12 @endif ">
+                </form>
+                </fieldset>
+            </div>
+            @endif
+            <div id="contentWrapper" class="col-12 @if ($searchmode) col-md-9 @else col-md-12 @endif ">
+                <div class="row">
+                    @if ($searchmode)
+                    <div class="col-6 text-primary ">
+                        <div id="filter-desktop">
+                            <a id="toggleFilters" href="javascript:void(0)" class="text-primary d-none d-md-block">Filtro <i class="bi bi-filter"></i> </a>
+                            <a id="toggleFiltersMobile" href="javascript:void(0)" class="text-primary d-md-none" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Filtro <i class="bi bi-filter"></i> </a>
+                        </div>
+                    </div>
+                    @endif
+                    @if (!$searchmode)
+                    <div class="col-12 text-end ">Ordenar por:
+                        @else
+                        <div class="col-6 text-end ">Ordenar por:
+                            @endif
+                            <div class="btn-group">
+                                <a class="dropdown-toggle dd-order" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    mas relevantes
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="/propiedades?order=relevantes">Mas relevantes</a></li>
+                                    <li><a class="dropdown-item" href="/propiedades?order=minprice">Menor Precio</a></li>
+                                    <li><a class="dropdown-item" href="/propiedades?order=maxprice">Mayor Precio</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row">
-                        @if ($searchmode)
-                        <div class="col-6 text-primary ">
-                            <div id="filter-desktop">
-                                <a id="toggleFilters" href="javascript:void(0)" class="text-primary d-none d-md-block">Filtro <i class="bi bi-filter"></i> </a>
-                                <a id="toggleFiltersMobile" href="javascript:void(0)" class="text-primary d-md-none" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Filtro <i class="bi bi-filter"></i> </a>
-                            </div>
+                        @foreach ($results as $index => $card)
+                        <div class="results-items col-12 @if ($searchmode) col-md-6 @else col-md-4 @endif d-flex justify-content-center mb-4">
+                            <x-card :card="$card" />
                         </div>
-                        @endif
-                        @if (!$searchmode)
-                        <div class="col-12 text-end ">Ordenar por:
-                            @else
-                            <div class="col-6 text-end ">Ordenar por:
-                                @endif
-                                <div class="btn-group">
-                                    <a class="dropdown-toggle dd-order" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        mas relevantes
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="/propiedades?order=relevantes">Mas relevantes</a></li>
-                                        <li><a class="dropdown-item" href="/propiedades?order=minprice">Menor Precio</a></li>
-                                        <li><a class="dropdown-item" href="/propiedades?order=maxprice">Mayor Precio</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            @foreach ($results as $index => $card)
-                            <div class="results-items col-12 @if ($searchmode) col-md-6 @else col-md-4 @endif d-flex justify-content-center mb-4">
-                                <x-card :card="$card" />
-                            </div>
-                            @endforeach
-                        </div>
-                        <div class="row pt-3 px-3">
-                            <nav aria-label="Page navigation example">
-                                <ul class="pagination  justify-content-center">
-                                    {!! $paginationInfo->links('pagination::bootstrap-4') !!}
-                                    <!-- <li class="page-item disabled">
+                        @endforeach
+                    </div>
+                    <div class="row pt-3 px-3">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination  justify-content-center">
+                                {!! $paginationInfo->links('pagination::bootstrap-4') !!}
+                                <!-- <li class="page-item disabled">
                                     <a class="page-link" href="#" tabindex="-1" aria-disabled="true"><i class="bi bi-arrow-left"></i></a>
                                 </li>
                                 <li class="page-item active"><a class="page-link" href="#">1</a></li>
@@ -229,13 +228,11 @@
                                 <li class="page-item">
                                     <a class="page-link" href="#"><i class="bi bi-arrow-right"></i></a>
                                 </li> -->
-                                </ul>
-                            </nav>
-                        </div>
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Public;
 
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Cache;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CardResource;
 use App\Models\Property;
@@ -14,10 +15,12 @@ class PropiedadesController extends Controller
 {
     protected $recentPropertiesService;
     protected $filtersService;
+    private $key_cache_new_properties;
     public function __construct(
         RecentPropertiesService $recentPropertiesService,
         FiltersService $filtersService
     ) {
+        $this->key_cache_new_properties = config('app.cache.new_properties');
         $this->recentPropertiesService = $recentPropertiesService;
         $this->filtersService = $filtersService;
     }
@@ -156,10 +159,6 @@ class PropiedadesController extends Controller
         $favoritos = [];
         $otros = [];
         $nuevo = [];
-        // $busqueda = $data[0];
-        // $favoritos = $data[0];
-        // $otros = $data[0];
-        // $nuevo = $data[0];
 
         $property->fechaCreacion = ucfirst($this->getDateFormat($property->created_at));
         $property->fechaActualizacion = ucfirst($this->getDateFormat($property->updated_at));
@@ -168,6 +167,7 @@ class PropiedadesController extends Controller
 
         $location_id = $property->location_id;
         $recomendations = $this->getRecomendations($location_id);
+        $nuevo = $this->getNeuevo();
         return view('public.ficha', [
             'sku' => $sku,
             'property' => $property,
@@ -195,12 +195,23 @@ class PropiedadesController extends Controller
             "description" => "",
             "data" => []
         ];
-        $properties = Property::with('types', 'amenities', 'conditions', 'details', 'features', 'galleries','location')->where('available', 1)->where('featured', 1)->where('location_id', $location_id)->get();
+        $properties = Property::with('types', 'amenities', 'conditions', 'details', 'features', 'galleries', 'location')->where('available', 1)->where('featured', 1)->where('location_id', $location_id)->get();
         foreach ($properties as $kp => $vp) {
             $data["title"] = $vp->location->featured_title;
             $data["description"] = $vp->location->featured_msg;
             $data["data"][] = new CardResource($vp);
-        } 
+        }
         return $data;
+    }
+    private function getNeuevo()
+    {
+
+        return Cache::rememberForever($this->key_cache_new_properties, function () {
+            $prop = Property::with('types', 'amenities', 'conditions', 'details', 'features', 'galleries', 'location')
+                ->where('available', 1)
+                ->orderBy('created_at', 'desc')
+                ->first();
+            return new CardResource($prop);
+        });
     }
 }

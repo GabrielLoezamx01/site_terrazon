@@ -11,9 +11,9 @@
                 {{ $item['span'] }}
             </div>
         </div>
-        <div class="container-md mobile-conteiner">
-            <x-carousel :cards="$item['cards']" id="carr{{ $k+1 }}" />
-        </div>
+    </div>
+    <div class="container-fluid container-md mobile-conteiner">
+        <x-carousel :cards="$item['cards']" id="carr{{ $k+1 }}" />
     </div>
     @endforeach
     <div class="container py-5 min-content">
@@ -117,7 +117,7 @@
     </div>
     @if($recomendations!=null)
     <div class="bg-teal py-5">
-        <div class="container py-5">
+        <div class="container-fluid container-md py-5">
             <div class="row">
                 <div class="d-none d-lg-block" style="background-color: white;position: absolute;height: 74%;width: 50%;margin: -36px auto;z-index:0;">
                 </div>

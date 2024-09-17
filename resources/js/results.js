@@ -12,7 +12,7 @@ $(document).ready(function () {
         autoplay: false,
         responsive: {
             0: {
-                items: 1.2
+                items: 1.1
             },
             768: {
                 items: 1.5

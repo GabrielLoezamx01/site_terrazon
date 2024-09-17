@@ -18,7 +18,7 @@
                 <i class="bi bi-geo-alt"></i> Ubicación
             </a>
         </h5>
-        <p class="card-text mb-3">
+        <p class="card-text mb-3 truncate-info-card ">
             {{ $card["description"] }}
         </p>
         <div class="row">

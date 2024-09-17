@@ -7,7 +7,7 @@
         </span>
     </div>
     @endif
-    <div class="owl-carousel owl-theme pb-2" id="{{ $id }}">
+    <div class="owl-carousel owl-theme" id="{{ $id }}">
         @foreach ($cards as $index => $card)
         <x-card :card="$card" />
         @endforeach

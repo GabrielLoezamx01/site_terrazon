@@ -6,8 +6,8 @@
 # done
 
 # Ejecutar comandos de Laravel
-php /app/artisan storage:link --force
-php /app/artisan optimize
-php /app/artisan cache:clear
-php /app/artisan config:clear
-php /app/artisan view:clear
+php artisan storage:link --force
+php artisan optimize
+php artisan cache:clear
+php artisan config:clear
+php artisan view:clear
