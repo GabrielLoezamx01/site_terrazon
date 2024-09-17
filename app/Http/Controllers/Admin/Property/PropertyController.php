@@ -13,6 +13,7 @@ use App\Models\FeaturesProperty;
 use App\Models\Amenities;
 use App\Models\ConditionProperty;
 use App\Models\Gallery;
+use Illuminate\Support\Facades\Cache;
 // use App\Models\Distribution;
 
 use App\Models\Relationship\FeatureProperty;
@@ -26,6 +27,11 @@ use Illuminate\Support\Str;
 
 class PropertyController extends Controller
 {
+    protected $key_cache_new_properties;
+    public function __construct()
+    {
+        $this->key_cache_new_properties = config('app.cache.new_properties');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -250,6 +256,8 @@ class PropertyController extends Controller
 
             self::conditions_property($request->conditions, $property_id);
 
+            $this->cleanNewProperties();
+
             return response()->json(['success' => 'Propiedad creada con éxito. Continúa con el proceso de creación.'], 200);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Error al crear : ' . $e->getMessage()], 500);
@@ -333,6 +341,8 @@ class PropertyController extends Controller
 
         self::conditions_property($request->conditions, $property_id);
 
+        $this->cleanNewProperties();
+
         return redirect()->back()->withSuccess('¡Operación realizada con éxito!');
     }
 
@@ -377,6 +387,7 @@ class PropertyController extends Controller
         }
 
         $property->delete();
+        $this->cleanNewProperties();
 
         return [
             'message' => 'Propiedad eliminada correctamente',
@@ -391,6 +402,7 @@ class PropertyController extends Controller
             return response()->json(['error' => 'detalle no encontrado.'], 404);
         }
         $property->delete();
+        $this->cleanNewProperties();
         DB::table('details_property_relationship')->where('detail_id', $request->details_id)->delete();
         return redirect()->back()->withSuccess('eliminado correctamente.');
     }
@@ -416,6 +428,7 @@ class PropertyController extends Controller
             return response()->json(['error' => 'La propiedad ya se encuentra desactivada o vendida.'], 402);
         }
         Property::where('id', $propertyId)->update(['available' => 0]);
+        $this->cleanNewProperties();
         return response()->json(['message' => 'Propiedad desactivada con éxito.'], 200);
     }
     public function active_property(Request $request)
@@ -470,7 +483,7 @@ class PropertyController extends Controller
         }
 
         Property::where('id', $propertyId)->update(['available' => 1]);
-
+        $this->cleanNewProperties();
 
         return response()->json(['message' => 'Propiedad activada con éxito.'], 200);
     }
@@ -485,5 +498,9 @@ class PropertyController extends Controller
             $message = 'La propiedad se ha marcada como destacada';
         }
         return response()->json(['message' => $message]);
+    }
+    public function cleanNewProperties()
+    {
+        Cache::forget($this->key_cache_new_properties);
     }
 }
