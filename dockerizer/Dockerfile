@@ -35,6 +35,7 @@ COPY package.json package-lock.json /app/
 
 WORKDIR /app
 
+RUN chmod 775 /app/storage
 RUN composer install --no-interaction --no-scripts --no-suggest
 RUN npm i \
     && npm run production
