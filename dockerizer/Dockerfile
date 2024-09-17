@@ -1,12 +1,18 @@
-FROM webdevops/php-nginx:8.2-alpine
+FROM webdevops/php-nginx:8.2
 # ENVIROMENTS
 ENV NODE_VERSION=18.19.1 
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Install Node.js and npm
-RUN apk add --no-cache nodejs=~${NODE_VERSION} npm
+# Install Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Install specific version of Node.js
+RUN curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+ENV NVM_DIR=/root/.nvm
+RUN . "$NVM_DIR/nvm.sh" && nvm install ${NODE_VERSION}
+ENV PATH="/root/.nvm/versions/node/v${NODE_VERSION}/bin/:${PATH}"
 
 # Verify Node.js and npm installation
 RUN node --version && npm --version
