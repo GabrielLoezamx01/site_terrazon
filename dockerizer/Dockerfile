@@ -37,7 +37,7 @@ WORKDIR /app
 
 RUN composer install --no-interaction --no-scripts --no-suggest
 RUN npm i \
-    && npm run build
+    && npm run production
 
 RUN php artisan storage:link --force \
     && php artisan optimize \
