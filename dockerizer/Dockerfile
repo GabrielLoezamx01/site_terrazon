@@ -42,29 +42,29 @@ RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | b
     && nvm use default
 
 # Verify Node.js and npm installation
-RUN node --version && npm --version
-  
-
-COPY ./dockerizer/supervisord.conf /etc/supervisor/supervisord.conf
-COPY ./dockerizer/php.ini /opt/docker/etc/php/php.ini
-COPY ./dockerizer/vhost.conf /opt/docker/etc/nginx/vhost.conf
-
-COPY . /app
-
+# RUN node --version && npm --version
+# Copy the package.json and package-lock.json first
+COPY package*.json /app/
+# Set the working directory
 WORKDIR /app
-
+# Install Node.js dependencies
+RUN npm install
+# Copy the rest of the application code
+COPY . /app
+# Install PHP dependencies
 RUN composer install --no-interaction --no-scripts --no-suggest
-
-# RUN npm i
-
-RUN npm run production \
-    php artisan storage:link --force \
+# Build assets (assuming `npm run production` is needed)
+RUN npm run production
+# Clear Laravel caches and optimize
+RUN php artisan storage:link --force \
     && php artisan optimize \
     && php artisan cache:clear \
     && php artisan config:clear \
     && php artisan view:clear
 
-
+COPY ./dockerizer/supervisord.conf /etc/supervisor/supervisord.conf
+COPY ./dockerizer/php.ini /opt/docker/etc/php/php.ini
+COPY ./dockerizer/vhost.conf /opt/docker/etc/nginx/vhost.conf
 
 # Start Nginx and PHP-FPM, clear Nginx cache
 EXPOSE 80
