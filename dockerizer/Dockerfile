@@ -32,6 +32,7 @@ COPY ./dockerizer/php.ini /opt/docker/etc/php/php.ini
 COPY ./dockerizer/vhost.conf /opt/docker/etc/nginx/vhost.conf
 COPY composer.json composer.lock /app/
 COPY package.json package-lock.json /app/
+COPY webpack.mix.js /app/
 
 WORKDIR /app
 
