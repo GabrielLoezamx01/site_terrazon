@@ -56,11 +56,6 @@ RUN composer install --no-interaction --no-scripts --no-suggest
 # Build assets (assuming `npm run production` is needed)
 RUN npm run production
 # Clear Laravel caches and optimize
-RUN php artisan storage:link --force \
-    && php artisan optimize \
-    && php artisan cache:clear \
-    && php artisan config:clear \
-    && php artisan view:clear
 
 COPY ./dockerizer/supervisord.conf /etc/supervisor/supervisord.conf
 COPY ./dockerizer/php.ini /opt/docker/etc/php/php.ini
