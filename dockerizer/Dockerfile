@@ -22,7 +22,10 @@ RUN apt-get update && apt-get install -y \
     libpq-dev \
     openssh-server \
     nano \
-    cron
+    cron \
+    supervisor
+
+ RUN mkdir -p /var/run/
 
 # Install PHP extensions
 RUN docker-php-ext-install pdo pdo_mysql
@@ -41,6 +44,7 @@ RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | b
 RUN node --version && npm --version
   
 
+COPY ./dockerizer/supervisord.conf /etc/supervisor/supervisord.conf
 COPY ./dockerizer/php.ini /opt/docker/etc/php/php.ini
 COPY ./dockerizer/vhost.conf /opt/docker/etc/nginx/vhost.conf
 COPY . /app
@@ -61,4 +65,5 @@ RUN php artisan storage:link --force \
 
 # Start Nginx and PHP-FPM, clear Nginx cache
 EXPOSE 80
-CMD rm -rf /var/cache/nginx/* && service nginx start && php-fpm
+# CMD rm -rf /var/cache/nginx/* && service nginx start && php-fpm
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
