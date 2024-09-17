@@ -28,7 +28,8 @@ return [
         'list_conditionProperty' => 'cache_list_conditionProperty', 
         'list_amenities' => 'cache_list_amenities', 
         'home_properties' => 'cache_home_properties_group',
-        'viewed_properties' => 'cache_viewed_properties',
+        'viewed_properties' => 'cache_viewed_properties_',
+        'recomended_properties' => 'cache_recomended_properties',
         'new_properties' => 'cache_new_properties',
     ],
 

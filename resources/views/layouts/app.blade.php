@@ -33,10 +33,8 @@
         </div>
 
     </div>
-
-    <!-- <script src="{{ asset('js/axios.min.js') }}"></script>
-    <script src="{{ asset('js/vue.js') }}"></script> -->
-    <script src="{{ asset('js/search.js') }}"></script>
+ 
+    <!-- <script src="{{ asset('js/search.js') }}"></script> -->
 
     @stack('scripts2')
     @else

@@ -8,8 +8,13 @@ use Illuminate\Http\Request;
 use App\Models\Property;
 use App\Models\Site\HomeProperty;
 
+
 class PropertyHome extends Controller
 {
+    protected $key_cache_home_properties;
+    function __construct( ) { 
+        $this->key_cache_home_properties = config('app.cache.home_properties'); 
+    }
    
     /**
      * Display a listing of the resource.
@@ -100,8 +105,8 @@ class PropertyHome extends Controller
     }
     private function clearCache()
     {
-        if (Cache::has(config('cache.home.properties'))) {
-            Cache::forget(config('cache.home.properties'));
+        if (Cache::has($this->key_cache_home_properties)) {
+            Cache::forget($this->key_cache_home_properties);
         }
     }
 }

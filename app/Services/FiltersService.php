@@ -92,4 +92,20 @@ class FiltersService
             return  $Amenities;
         });
     }
+    public function cleanUbicaciones(){
+        $this->forget($this->key_list_ubicaciones);
+    }
+    public function cleanTiposPropiedad(){
+        $this->forget($this->key_list_tiposPropiedad);
+    }
+    public function cleanConditionsProperty(){
+        $this->forget($this->key_list_conditionProperty);
+    }
+    public function cleanAmenities(){
+        $this->forget($this->key_list_amenities);
+    }
+    public function forget($key)
+    {
+        Cache::forget($key);
+    }
 }

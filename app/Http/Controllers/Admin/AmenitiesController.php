@@ -6,10 +6,17 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Amenities;
 use App\Models\Relationship\AmenitiesProperty;
-use Illuminate\Support\Facades\Storage;
+use App\Services\FiltersService;
+
 
 class AmenitiesController extends Controller
 {
+    protected $filtersService;
+    public function __construct( 
+        FiltersService $filtersService
+    ) { 
+        $this->filtersService = $filtersService;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -50,7 +57,7 @@ class AmenitiesController extends Controller
             // ];
 
             // Amenities::insert($insert);
-
+            $this->filtersService->cleanAmenities();
             return redirect()->back()->withSuccess('¡Operación realizada con éxito!');
 
         } catch (\Exception $e) {
@@ -97,6 +104,7 @@ class AmenitiesController extends Controller
             //     }
             // }
             Amenities::where('id', $id)->update($update);
+            $this->filtersService->cleanAmenities();
             return redirect()->back()->withSuccess('¡Operación realizada con éxito!');
         } catch (\Exception $e) {
             return response()->json(['error' => 'Error al actualizar: ' . $e->getMessage()], 500);
@@ -121,6 +129,7 @@ class AmenitiesController extends Controller
                     \Storage::delete('public/svg/' . $amenity->icon);
                 }
                 $amenity->delete();
+                $this->filtersService->cleanAmenities();
                 session()->put('success', 'Operación exitosa');
             }
         } catch (\Exception $e) {

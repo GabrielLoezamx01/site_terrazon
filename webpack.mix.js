@@ -14,6 +14,7 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/vue.properties.js', 'public/js')
+    .js('resources/js/admin/home.js', 'public/js/admin')
     .js('resources/js/admin/amenities.js', 'public/js/admin')
     .js('resources/js/admin/condition.js', 'public/js/admin')
     .js('resources/js/admin/edit_property.js', 'public/js/admin')

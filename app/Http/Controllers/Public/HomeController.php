@@ -14,6 +14,7 @@ class HomeController extends Controller
 {
     protected $key_cache_home_properties;
     protected $key_cache_viewed_properties;
+    protected $key_cache_recomended_properties;
     protected $recentPropertiesService;
     protected $filtersService;
     function __construct(
@@ -24,10 +25,11 @@ class HomeController extends Controller
         $this->filtersService = $filtersService;
         $this->key_cache_home_properties = config('app.cache.home_properties');
         $this->key_cache_viewed_properties = config('app.cache.viewed_properties');
+        $this->key_cache_recomended_properties = config('app.cache.recomended_properties');
     }
     private function getPropertiesList()
     {
-        return Cache::rememberForever($this->key_cache_viewed_properties, function () {
+        return Cache::rememberForever($this->key_cache_home_properties, function () {
             $homeProperties = HomeProperty::with([
                 'property' => function ($query) {
                     $query->where('available', 1)
@@ -40,16 +42,15 @@ class HomeController extends Controller
     }
     private function getRecomendations()
     {
-        // return Cache::rememberForever($this->key_cache_viewed_properties, function () {
-        $properties = Property::with(["location", "galleries", "features","types"])->where('available', 1)->where('featured', 1)->get();
-        return $properties;
-        // });
+        return Cache::rememberForever($this->key_cache_recomended_properties, function () {
+            $properties = Property::with(["location", "galleries", "features", "types"])->where('available', 1)->where('featured', 1)->get();
+            return $properties;
+        });
     }
     public function index()
     {
 
         $groupedProperties = $this->getPropertiesList();
-
         $ubicaciones = $this->filtersService->getListUbicaciones();
         $typesProperties = $this->filtersService->getListTiposPropiedad();
         $range = $this->filtersService->getListBudget();
@@ -73,7 +74,8 @@ class HomeController extends Controller
             $homeItem['cards'] = $data;
             $home[] = $homeItem;
         }
-        $viewed = $this->recentPropertiesService->getRecentlyViewed();
+        $viewed = $this->recentPropertiesService->getViewedData();
+        // json_dd($viewed);
         $recomendationsArray = $this->getRecomendations();
         $recomendations = null;
         if (count($recomendationsArray) > 0) {
@@ -84,11 +86,11 @@ class HomeController extends Controller
                 $recomendations["features"] = array_slice($recomendations["features"], 0, 3);
             }
             if (count($recomendations["galleries"]) > 0) {
-                $gallery=[];
-                foreach( $recomendations["galleries"] as $key => $value){
-                    $image=isset($value["original_image"]) ? asset('storage/' . $value["original_image"]) : '';
-                    $recomendations["galleries"][$key]["imageUrl"]=urldecode($image);
-                }   
+                $gallery = [];
+                foreach ($recomendations["galleries"] as $key => $value) {
+                    $image = isset($value["original_image"]) ? asset('storage/' . $value["original_image"]) : '';
+                    $recomendations["galleries"][$key]["imageUrl"] = urldecode($image);
+                }
             }
         }
         // json_dd($recomendations);

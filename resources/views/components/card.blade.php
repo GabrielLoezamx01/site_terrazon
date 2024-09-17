@@ -3,7 +3,7 @@
         <i class="fa-solid fa-circle fa-stack-2x"></i>
         <i class="fa-regular fa-heart fa-stack-1x"></i>
     </span>
-    <div class="card-img-top" style="background: url({{ $card["imageUrl"] }});" alt="{{ $card["imageUrl"] }}" title="{{ $card["imageUrl"] }}"></div>
+    <div class="card-img-top" style="background: url('{{ $card["imageUrl"] }}');" alt="{{ $card["imageUrl"] }}" title="{{ $card["imageUrl"] }}"></div>
 
     <div class="card-body">
 

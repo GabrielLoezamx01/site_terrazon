@@ -42,7 +42,6 @@ class PropiedadesController extends Controller
 
         $searchmode = false;
 
-
         $range = $this->filtersService->getListBudget();
         $ubicaciones = $this->filtersService->getListUbicaciones();
         $typesProperties = $this->filtersService->getListTiposPropiedad();
@@ -110,7 +109,7 @@ class PropiedadesController extends Controller
             shuffle($data);
         }
 
-        $viewed = $this->recentPropertiesService->getRecentlyViewed();
+        $viewed = $this->recentPropertiesService->getViewedData();
         return view('public.propiedades', [
             'budg1'              => $budg1,
             'budg2'              => $budg2,
@@ -154,20 +153,24 @@ class PropiedadesController extends Controller
         $data = [];
 
 
-        // shuffle($data);
-        $busqueda = [];
-        $favoritos = [];
-        $otros = [];
-        $nuevo = [];
+
+
 
         $property->fechaCreacion = ucfirst($this->getDateFormat($property->created_at));
         $property->fechaActualizacion = ucfirst($this->getDateFormat($property->updated_at));
         $property->increment('view_count');
         $this->addRecentViewPropertie($property);
 
+        $id = $property->id;
         $location_id = $property->location_id;
+        $priceDiference = 500000;
+        $minPrice = $property->price - $priceDiference;
+        $maxPrice = $property->price + $priceDiference;
         $recomendations = $this->getRecomendations($location_id);
+        $busqueda = $this->getBusqueda($id, $location_id, $minPrice, $maxPrice);
         $nuevo = $this->getNeuevo();
+        $otros = $this->getOtros();
+        $favoritos = [];
         return view('public.ficha', [
             'sku' => $sku,
             'property' => $property,
@@ -203,9 +206,31 @@ class PropiedadesController extends Controller
         }
         return $data;
     }
+    private function getBusqueda($id, $location_id, $minPrice, $maxPrice)
+    {
+        $prop = Property::with('types', 'amenities', 'conditions', 'details', 'features', 'galleries', 'location')
+            ->where('available', 1)
+            ->where('location_id', $location_id)
+            ->where('id', '!=', $id)
+            ->whereBetween('price', [$minPrice, $maxPrice])
+            ->get(); 
+        if (count($prop)>0) {
+            $data = $prop->random();
+            return new CardResource($data);
+        } else {
+            return [];
+        }
+    }
+    private function getOtros()
+    {
+        $prop = Property::with('types', 'amenities', 'conditions', 'details', 'features', 'galleries', 'location')
+            ->where('available', 1)
+            ->orderBy('view_count', 'desc')
+            ->first();
+        return new CardResource($prop);
+    }
     private function getNeuevo()
     {
-
         return Cache::rememberForever($this->key_cache_new_properties, function () {
             $prop = Property::with('types', 'amenities', 'conditions', 'details', 'features', 'galleries', 'location')
                 ->where('available', 1)

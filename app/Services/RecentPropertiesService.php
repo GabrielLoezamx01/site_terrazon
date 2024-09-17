@@ -10,52 +10,53 @@ use App\Models\Property;
 class RecentPropertiesService
 {
     const MAX_VIEWED = 6;
-    const COOKIE_NAME = 'viewed_properties';
+    const COOKIE_NAME = 'viewed_properties_1';
 
     protected $request;
-    protected $key_cache_home_properties;
     protected $key_cache_viewed_properties;
 
     public function __construct(Request $request)
     {
         $this->request = $request;
-        $this->key_cache_home_properties = config('app.cache.home_properties');
         $this->key_cache_viewed_properties = config('app.cache.viewed_properties');
     }
 
     public function addProperty($id, $title, $slug)
     {
-        $recentlyViewed = $this->getRecentlyViewed();
-
+        $recentlyViewed = $this->getRecentlyViewedCookie();
         // Añadir la propiedad actual al inicio del array
-        $recentlyViewed = array_filter($recentlyViewed, function ($item) use ($id) {
-            return $item['id'] != $id;
+        $recentlyViewedCookie = array_filter($recentlyViewed, function ($item) use ($id) {
+            return $item["id"] != $id;
         });
-        array_unshift($recentlyViewed, ['id' => $id, 'title' => $title, 'slug' => $slug]);
-
+        array_unshift($recentlyViewedCookie, ['id' => $id, 'title' => $title, 'slug' => $slug]);
         // Limitar a las 6 más recientes
-        $recentlyViewed = array_slice($recentlyViewed, 0, self::MAX_VIEWED);
-
-        $this->setRecentlyViewed($recentlyViewed);
-
-        return $recentlyViewed;
+        $recentlyViewedCookie = array_slice($recentlyViewedCookie, 0, self::MAX_VIEWED);
+        $this->setRecentlyViewed($recentlyViewedCookie);
+        return $recentlyViewedCookie;
     }
-
-    public function getRecentlyViewed()
+    public function getRecentlyViewedCookie()
     {
         $cookie = json_decode($this->request->cookie(self::COOKIE_NAME), true) ?? [];
-        $properties = [];
         if ($cookie) {
-            $ids = [];
-            $data = [];
+            return $cookie;
+        } else {
+            return [];
+        }
+    }
+    public function getViewedData()
+    {
+        // $sufixCache = implode('-', $ids);
+        $ids = [];
+        $cookie = $this->getRecentlyViewedCookie();
+        if ($cookie) {
             foreach ($cookie as $key => $value) {
                 if (isset($value["id"])) {
                     $ids[] = $value["id"];
                 }
             }
-            $sufixCache = implode('-', $ids);
-            $key = $this->key_cache_home_properties . $sufixCache;
-            $properties = Cache::remember($key, 60 * 30 * 30, function () use ($ids) {
+        }
+        if (count($ids) > 0) {
+            return Cache::rememberForever($this->key_cache_viewed_properties, function () use ($ids) {
                 $item = Property::whereIn('id', $ids)->get();
                 foreach ($item as $value2) {
                     $card = new CardResource($value2);
@@ -68,12 +69,17 @@ class RecentPropertiesService
                 });
                 return $data;
             });
+        }else{
+            return [];
         }
-        return $properties;
     }
-
     protected function setRecentlyViewed($recentlyViewed)
     {
-        cookie()->queue(self::COOKIE_NAME, json_encode($recentlyViewed), 60 * 24 * 30); //POR 30 DÍAS
+        $this->cleanCache();
+        cookie()->queue(self::COOKIE_NAME, json_encode($recentlyViewed), 0);
+    }
+    private function cleanCache()
+    {
+        Cache::forget($this->key_cache_viewed_properties);
     }
 }
