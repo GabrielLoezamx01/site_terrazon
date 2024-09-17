@@ -9,7 +9,20 @@ RUN apt-get update && apt-get install -y \
     nginx \
     curl \
     git \
-    unzip
+    zip \
+    unzip \
+    libfreetype6-dev \
+    libjpeg62-turbo-dev \
+    libmemcached-dev \
+    libzip-dev \
+    libpng-dev \
+    libonig-dev \
+    libxml2-dev \
+    librdkafka-dev \
+    libpq-dev \
+    openssh-server \
+    supervisor \
+    nano \
 
 # Install PHP extensions
 RUN docker-php-ext-install pdo pdo_mysql
@@ -36,7 +49,6 @@ COPY webpack.mix.js /app/
 
 WORKDIR /app
 
-# RUN chmod -R 775 storage
 RUN composer install --no-interaction --no-scripts --no-suggest
 RUN npm i \
     && npm run production
