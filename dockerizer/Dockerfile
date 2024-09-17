@@ -48,6 +48,7 @@ RUN node --version && npm --version
 COPY ./dockerizer/supervisord.conf /etc/supervisor/supervisord.conf
 COPY ./dockerizer/php.ini /opt/docker/etc/php/php.ini
 COPY ./dockerizer/vhost.conf /opt/docker/etc/nginx/vhost.conf
+
 COPY . /app
 
 WORKDIR /app
