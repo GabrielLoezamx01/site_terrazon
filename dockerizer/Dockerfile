@@ -21,7 +21,6 @@ RUN apt-get update && apt-get install -y \
     librdkafka-dev \
     libpq-dev \
     openssh-server \
-    supervisor \
     nano \
     cron
 
