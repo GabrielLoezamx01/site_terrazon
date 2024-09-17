@@ -54,10 +54,11 @@ COPY . /app
 WORKDIR /app
 
 RUN composer install --no-interaction --no-scripts --no-suggest
-RUN npm i \
-    && npm run production
 
-RUN php artisan storage:link --force \
+# RUN npm i
+
+RUN npm run production \
+    php artisan storage:link --force \
     && php artisan optimize \
     && php artisan cache:clear \
     && php artisan config:clear \
