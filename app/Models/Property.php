@@ -68,4 +68,13 @@ class Property extends Model
     {
         return $this->belongsToMany(Referrals::class, 'property_referral');
     }
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class);
+    }
+
+    public function isFavoritedBy($user)
+    {
+        return $this->favorites()->where('custom_user_id', $user->id)->exists();
+    }
 }

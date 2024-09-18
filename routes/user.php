@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\Auth\LoginController;
 use App\Http\Controllers\User\Auth\HomeController;
 use App\Http\Controllers\User\Admin\ProfileController;
+use App\Http\Controllers\Admin\Property\FavoriteController;
 
 
 /*
@@ -29,6 +30,7 @@ Route::post('/custom/register', [LoginController::class, 'register'])->name('cus
 */
 
 Route::middleware('custom_user')->group(function () {
+    Route::post('/user/favorite/{property}', [FavoriteController::class, 'toggleFavorite']);
 });
 
 Route::prefix('custom')->middleware('custom_user')->group(function () {
