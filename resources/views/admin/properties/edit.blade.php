@@ -68,6 +68,10 @@
                             <label class="form-label required">Link de video</label>
                             <input type="text" name="video" value="{{ $property['video'] }}" class="form-control">
                         </div>
+                          <div class="mb-3">
+                            <label class="form-label required">Link de tour</label>
+                            <input type="text" name="tour" value="{{ $property['tour'] }}" class="form-control">
+                        </div>
                         <div class="mb-3">
                             <label for="">M2</label>
                             <input type="text" autocomplete="off" value="{{ old('m2') ?? $property['m2'] }}"

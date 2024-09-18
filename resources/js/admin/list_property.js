@@ -71,6 +71,12 @@ const app = new Vue({
             },
             {
                 type: "text",
+                request: "tour",
+                label: "Link de Tour Virtual",
+                value: "",
+            },
+            {
+                type: "text",
                 request: "m2",
                 label: "M2",
                 value: "",
@@ -368,10 +374,16 @@ const app = new Vue({
                 longitud: this.longitud,
                 conditions: this.selectedConditions,
             };
+            console.log('REQUEST BODY');
+
+            console.log(request);
             // if (this.errorsdata) {
             axios
                 .post(api, request)
                 .then((response) => {
+            console.log("RESPONSE");
+
+                    console.log(response);
                     if (response.status == 200) {
                         this.message = response.data.success;
                         alert(this.message);
