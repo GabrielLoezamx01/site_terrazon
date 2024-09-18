@@ -65,12 +65,17 @@
                             <textarea name="description" id="" cols="30" rows="10" class="form-control" required>{{ $property['description'] }}</textarea>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label required">Link de video</label>
-                            <input type="text" name="video" value="{{ $property['video'] }}" class="form-control">
+                            <label class="form-label required">Codigó de YouTube</label>
+                               <textarea name="video" id="" cols="30" rows="5" class="form-control">
+                                {{ $property['video'] }}
+                                  </textarea>
+                            {{-- <input type="text" name="video" value="{{ $property['video'] }}" class="form-control"> --}}
                         </div>
                           <div class="mb-3">
-                            <label class="form-label required">Link de tour</label>
-                            <input type="text" name="tour" value="{{ $property['tour'] }}" class="form-control">
+                            <label class="form-label required">Codigó de tour virtual</label>
+                            <textarea name="tour" id="" cols="30" rows="5" class="form-control">
+                                {{ $property['tour'] }}
+                            </textarea>
                         </div>
                         <div class="mb-3">
                             <label for="">M2</label>
