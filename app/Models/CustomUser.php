@@ -25,4 +25,9 @@ class CustomUser extends Authenticatable
     protected $hidden = [
         'password',
     ];
+
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class);
+    }
 }

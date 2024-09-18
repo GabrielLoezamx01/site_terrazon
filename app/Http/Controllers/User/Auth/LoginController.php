@@ -74,7 +74,7 @@ class LoginController extends Controller
             Auth::guard('custom_users')->login($customUser);
 
             if (Auth::guard('custom_users')->check()) {
-                return redirect()->route('user.home')->with('success', 'User registered and logged in successfully');
+                return redirect()->route('custom.home')->with('success', 'User registered and logged in successfully');
             } else {
                 return redirect()->back()->withErrors(['error' => 'Failed to authenticate user'])->withInput();
             }
@@ -88,5 +88,11 @@ class LoginController extends Controller
             return redirect()->back()->with('error', 'An error occurred: ' . $e->getMessage())->withInput();
 
         }
+    }
+
+    public function logout()
+    {
+        Auth::guard('custom_users')->logout();
+        return redirect()->route('custom.login.form');
     }
 }

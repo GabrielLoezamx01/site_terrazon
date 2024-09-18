@@ -64,9 +64,15 @@ const app = new Vue({
                 value: "",
             },
             {
-                type: "text",
+                type: "textarea",
                 request: "video",
-                label: "Link de video",
+                label: "Codigó de YouTube",
+                value: "",
+            },
+            {
+                type: "textarea",
+                request: "tour",
+                label: "Codigó de tour virtual",
                 value: "",
             },
             {
@@ -368,10 +374,16 @@ const app = new Vue({
                 longitud: this.longitud,
                 conditions: this.selectedConditions,
             };
+            console.log("REQUEST BODY");
+
+            console.log(request);
             // if (this.errorsdata) {
             axios
                 .post(api, request)
                 .then((response) => {
+                    console.log("RESPONSE");
+
+                    console.log(response);
                     if (response.status == 200) {
                         this.message = response.data.success;
                         alert(this.message);
