@@ -1,0 +1,127 @@
+.sidebar {
+    border-right: 1px solid #dee2e6;
+    height: 100%;
+    background: white;
+}
+
+.list-group-item {
+    padding: 20px;
+    border: none;
+    background: white;
+    /* padding: 10px 15px; */
+}
+.list-group-item a {
+    color: #8f8f8f;
+    text-decoration: none;
+    font-weight: 500;
+}
+.list-group-item a:hover {
+    color: #094208;
+    font-weight: 700;
+    font-style: bold;
+}
+.list-group-item li:hover {
+    color: #094208;
+    font-weight: 700;
+    font-style: bold;
+}
+.list-group-item:hover {
+    color: #2c6d3f;
+    text-decoration: underline;
+    background: #7ae582;
+    text-decoration: none;
+    color: #094208;
+}
+
+.sidebar {
+    height: 100%;
+    flex-direction: column;
+}
+
+.label {
+    color: #094208;
+    font-weight: 700;
+    font-size: 20px;
+}
+.sub-title {
+    font-family: Inter;
+    font-weight: 700;
+    color: #37b052;
+}
+.input:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: #37b052;
+}
+.input-email:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: #37b052;
+}
+input::placeholder {
+    font-size: 1rem; /* Tamaño de fuente por defecto */
+}
+.input-email {
+    padding: 10px 35px 10px 15px; /* Ajusta el padding */
+    font-size: 14px; /* Tamaño de fuente más pequeño */
+}
+.input {
+    width: 100%;
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 0.5rem;
+    padding: 10px 40px 10px 15px; /* Ajuste en el padding para espacio del ícono/texto */
+    font-size: 16px;
+    color: #333;
+    box-shadow: none;
+    position: relative;
+}
+.label-form {
+    font-weight: 500;
+    color: #231d46;
+}
+
+.color-label {
+    color: #231d46;
+}
+.privacy-link {
+    margin-right: auto;
+    font-size: 14px;
+}
+.privacy-link a {
+    color: green;
+    text-decoration: none;
+}
+.btn {
+    padding: 10px 20px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+.cancel-btn {
+    color: gray;
+    background-color: white;
+    border: 1px solid #ccc;
+}
+.save-btn {
+    color: white;
+    /* background-color: green; */
+    border: none;
+    color: #37B052;
+    border-radius: 6px;
+    border: 1px solid #37B052;
+}
+#sidebar {
+  transition: all 0.5s ease;
+}
+
+.dropdown-menu li {
+    border-bottom: 1px solid #fff; /* Color blanco */
+    margin-top: 10px;
+}
+
+.dropdown-menu li:last-child {
+    border-bottom: none; /* Elimina el borde del último elemento */
+}

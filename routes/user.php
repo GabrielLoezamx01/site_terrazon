@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\Auth\LoginController;
 use App\Http\Controllers\User\Auth\HomeController;
+use App\Http\Controllers\User\Admin\ProfileController;
+
 
 /*
 * RUTAS PUBLICAS
@@ -31,4 +33,9 @@ Route::middleware('custom_user')->group(function () {
 
 Route::prefix('custom')->middleware('custom_user')->group(function () {
     Route::view('/home', 'user.admin.home')->name('custom.home');
+    Route::view('/home', 'user.admin.home')->name('custom.home');
+    Route::post('/update_profile', [ProfileController::class, 'update'])->name('update_profile');
+    Route::view('/update_profile', 'user.admin.home')->name('custom.home');
+    Route::get('/logout', [LoginController::class, 'logout'])->name('custom.logout');
+
 });
