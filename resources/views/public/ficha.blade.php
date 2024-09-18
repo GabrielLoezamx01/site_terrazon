@@ -21,6 +21,7 @@
                         <div class="row">
                             <div class="col-12 mb-2">
                                 <h3 class="ficha-title">{{ $property->title }}</h3>
+                                <h3 class="ficha-title">{{ $property["distributionLink"] }}</h3>
                             </div>
                             <div class="col-12">
                                 <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
@@ -77,13 +78,13 @@
                                     <div class="list-item">
                                         <span class="svg-icon-ficha svg-icon-location"></span> Ver mapa
                                     </div>
-                                    <div class="list-item">
+                                    <div class="list-item cursor" data-bs-toggle="modal" data-bs-target="#distributionModal">
                                         <span class="svg-icon-ficha svg-icon-distribution"></span> Ver distribución
                                     </div>
                                     <div class="list-item">
                                         <span class="svg-icon-ficha svg-icon-360-degrees"></span> Tour Virtual
                                     </div>
-                                    <div class="list-item">
+                                    <div class="list-item cursor" data-bs-toggle="modal" data-bs-target="#videoModal">
                                         <span class="svg-icon-ficha svg-icon-video"></span> Video
                                     </div>
                                 </div>
@@ -512,6 +513,32 @@
             </div>
         </div>
     </div>
+</div>
+<div class="modal fade" id="distributionModal" tabindex="-1" aria-labelledby="distributionModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-secondary text-white">
+        <h1 class="modal-title fs-5" id="distributionModalLabel">TERRAZON</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <img src="{{$property->distributionLink}}" class="full" >
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-secondary text-white">
+        <h1 class="modal-title fs-5" id="videoModalLabel">TERRAZON</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <iframe width="100%" height="400px" src="https://www.youtube.com/embed/6R09e_H58fI?si=95QEPl_t76KOUMoG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
 </div>
 <!--  FIN DE MODAL -->
 @endsection

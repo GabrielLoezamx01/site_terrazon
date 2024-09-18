@@ -24507,6 +24507,10 @@ body {
     font-weight: 450;
   }
 }
+.cursor {
+  cursor: pointer;
+}
+
 @media screen and (max-width: 500px) {
   .title-banner {
     font-size: 18px !important;
@@ -24823,7 +24827,7 @@ ul.list-info .detail-text {
 }
 .carousel-indicators {
   margin-bottom: 2rem !important;
-  z-index: 9999 !important;
+  z-index: 1 !important;
 }
 .carousel-indicators button {
   width: 16px !important;

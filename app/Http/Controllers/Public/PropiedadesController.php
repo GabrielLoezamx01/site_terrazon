@@ -138,7 +138,8 @@ class PropiedadesController extends Controller
     public function ficha($sku)
     {
         Carbon::setLocale('es');
-        $property   = Property::with('types', 'amenities', 'conditions', 'details', 'features', 'galleries')->where('folio', $sku)->first();
+        $property   = Property::with('types', 'amenities', 'conditions', 'details', 'features', 'galleries', 'distributions')->where('folio', $sku)->first();
+        // json_dd($property);
         $galery = [];
         if (isset($property->galleries)) {
             foreach ($property->galleries as $key => $value) {
@@ -150,14 +151,10 @@ class PropiedadesController extends Controller
                 $galery[] = $item;
             }
         }
-        $data = [];
-
-
-
-
-
         $property->fechaCreacion = ucfirst($this->getDateFormat($property->created_at));
         $property->fechaActualizacion = ucfirst($this->getDateFormat($property->updated_at));
+        $property->distributionLink=isset($property->distributions[0]) ? asset('storage/' . $property->distributions[0]->url) : '';
+       
         $property->increment('view_count');
         $this->addRecentViewPropertie($property);
 
@@ -171,6 +168,7 @@ class PropiedadesController extends Controller
         $nuevo = $this->getNeuevo();
         $otros = $this->getOtros();
         $favoritos = [];
+        // json_dd($property);
         return view('public.ficha', [
             'sku' => $sku,
             'property' => $property,
@@ -213,8 +211,8 @@ class PropiedadesController extends Controller
             ->where('location_id', $location_id)
             ->where('id', '!=', $id)
             ->whereBetween('price', [$minPrice, $maxPrice])
-            ->get(); 
-        if (count($prop)>0) {
+            ->get();
+        if (count($prop) > 0) {
             $data = $prop->random();
             return new CardResource($data);
         } else {

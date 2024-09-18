@@ -37,6 +37,9 @@ body {
     }
 }
 
+.cursor{
+    cursor: pointer;
+}
 .title-banner {
     @media screen and (max-width: 500px) {
         font-size: 18px !important;
@@ -409,7 +412,7 @@ ul.list-info {
 
 .carousel-indicators {
     margin-bottom: 2rem !important;
-    z-index: 9999 !important;
+    z-index: 1 !important;
 
     button {
         width: 16px !important;
