@@ -44,9 +44,10 @@
     <div class="container">
         <div class="row">
             <div class="col-6 col-md-3 d-flex align-items-center justify-content-start">
+                <a href="/">
                 <img src="{{ asset('images/logo-terrazon.png') }}" alt="Logo" class="header-logo d-none d-md-block">
                 <img src="{{ asset('images/logo-terrazon-o.png') }}" alt="Logo"
-                    class="header-logo d-block d-md-none">
+                    class="header-logo d-block d-md-none"></a>ƒ
             </div>
             <div class="col-6 col-md-9 d-flex d-md-block align-items-center justify-content-end">
                 <div class="menu d-flex justify-content-center d-none d-md-flex">

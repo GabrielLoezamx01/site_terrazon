@@ -33,7 +33,7 @@ class PropiedadesController extends Controller
         $parkingQP = $request->input('parking');
         $bathroomsQP = $request->input('bathrooms');
         $roomsQP = $request->input('rooms');
-        $typeQP =  $request->input('type') != null ? $request->input('type')  : [];
+        $typeQP =  $request->input('type') ?? null;
         $conditionsQp = $request->input('condition') != null ? $request->input('condition')  : [];
         $amenitiesQp = $request->input('amenities') != null ? $request->input('amenities')  : [];
         $filterOpen = ($request->input('filter')) ? $request->input('filter') : null;
@@ -75,10 +75,13 @@ class PropiedadesController extends Controller
                 $query->whereIn('condition_id', $conditionsQp);
             });
         }
-        if (count($typeQP) > 0) {
-            $properties->whereHas('types', function ($query) use ($typeQP) {
-                $query->whereIn('types_id', $typeQP);
-            });
+      
+        if ($typeQP!=null) { 
+            if($typeQP[0]!=null){
+                $properties->whereHas('types', function ($query) use ($typeQP) {
+                    $query->whereIn('types_id', $typeQP);
+                });
+            } 
         }
         if (count($amenitiesQp) > 0) {
             $properties->whereHas('amenities', function ($query) use ($amenitiesQp) {

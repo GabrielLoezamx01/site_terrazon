@@ -19,12 +19,9 @@
                                         <div class="item-content">
                                             <label for="ubicacion">Ubicación</label>
                                             <select class="form-select" id="location" name="location">
-                                                <option value="0" selected>Selecciona la ubicación</option>
+                                                <option value="" selected>Cualquiera</option>
                                                 @foreach ($ubicaciones as $key => $u)
-                                                <option value="{{$u['id']}}"
-                                                    @if ($key==0)
-                                                    selected
-                                                    @endif>{{ $u["name"]}}</option>
+                                                <option value="{{$u['id']}}">{{ $u["name"]}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -33,12 +30,9 @@
                                         <div class="item-content">
                                             <label for="ubicacion">Tipo de propiedad</label>
                                             <select class="form-select" id="type" name="type[]">
-                                                <option value="0" selected>Selecciona el tipo</option>
+                                                <option value="" selected>Cualquiera</option>
                                                 @foreach ($typesProperties as $key => $tp)
-                                                <option value="{{$tp['id']}}"
-                                                    @if ($key==0)
-                                                    selected
-                                                    @endif>{{ $tp["name"]}}</option>
+                                                <option value="{{$tp['id']}}">{{ $tp["name"]}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -47,7 +41,6 @@
                                         <div class="item-content">
                                             <label for="ubicacion">Presupuesto</label>
                                             <select class="form-select" if="budget" name="budget">
-                                                <option value="0" selected>Selecciona un rango</option>
                                                 @foreach ($range as $key => $r)
                                                 <option value="{{$r['value']}}"
                                                     @if ($key==0)
@@ -98,12 +91,9 @@
                             <div class="mb-3">
                                 <h5 for="ubicacion">Ubicación</h5>
                                 <select class="form-select" id="location" name="location" style="border: none;">
-                                    <option value="0" selected>Selecciona la ubicación</option>
+                                    <option value="" selected>Cualquiera</option>
                                     @foreach ($ubicaciones as $key => $u)
-                                    <option value="{{$u['id']}}"
-                                        @if ($key==0)
-                                        selected
-                                        @endif>{{ $u["name"]}}</option>
+                                    <option value="{{$u['id']}}">{{ $u["name"]}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -112,12 +102,9 @@
                             <div class="mb-3">
                                 <h5 for="ubicacion">Tipo de propiedad</h5>
                                 <select class="form-select" id="type" name="type[]" style="border: none;">
-                                    <option value="0" selected>Selecciona el tipo</option>
+                                    <option value="" selected>Cualquiera</option>
                                     @foreach ($typesProperties as $key => $tp)
-                                    <option value="{{$tp['id']}}"
-                                        @if ($key==0)
-                                        selected
-                                        @endif>{{ $tp["name"]}}</option>
+                                    <option value="{{$tp['id']}}">{{ $tp["name"]}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -126,12 +113,8 @@
                             <div class="mb-3">
                                 <label for="ubicacion">Presupuesto</label>
                                 <select class="form-select" if="budget" name="budget" style="border: none;">
-                                    <option value="0" selected>Selecciona un rango</option>
                                     @foreach ($range as $key => $r)
-                                    <option value="{{$r['value']}}"
-                                        @if ($key==0)
-                                        selected
-                                        @endif>{{ $r["label"]}}</option>
+                                    <option value="{{$r['value']}}">{{ $r["label"]}}</option>
                                     @endforeach
                                 </select>
                             </div>

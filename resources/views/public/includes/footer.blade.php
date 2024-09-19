@@ -26,10 +26,10 @@
                 <span class="footer-title">Mapa del sitio</span>
                 <ul class="list-menu t mt-3">
                     <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#">Propiedades</a></li>
-                    <li><a href="#">Acerca de nosotros</a></li>
-                    <li><a href="#">Vendedores</a></li>
-                    <li><a href="#">Contacto</a></li>
+                    <li><a href="/propiedades">Propiedades</a></li>
+                    <li><a href="/acercade">Acerca de nosotros</a></li>
+                    <li><a href="/agentes">Vendedores</a></li>
+                    <li><a href="/contacto">Contacto</a></li>
                 </ul>
             </div>
             <div class="col-12 col-md-3 mt-4">
