@@ -53,6 +53,10 @@ class FiltersService
                 "label" => "3 MDP a 4 MDP"
             ],
             [
+                "value" => "4000000-5000000",
+                "label" => "4 MDP a 5 MDP"
+            ],
+            [
                 "value" => "5000000-6000000",
                 "label" => "5 MDP a 6 MDP"
             ],

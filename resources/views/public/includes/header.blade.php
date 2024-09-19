@@ -21,7 +21,7 @@
                         aria-labelledby="dropdownMenuButton" style="background-color: #094208;">
                         <li class="border-bottom">
                             <a class="text-white p-3" href="{{ url('/custom/home') }}">
-                                Mi Cuenta
+                                Mi cuenta
                             </a>
                         </li>
                         <li class="border-bottom">
@@ -47,9 +47,10 @@
     <div class="container">
         <div class="row">
             <div class="col-6 col-md-3 d-flex align-items-center justify-content-start">
-                <img src="{{ asset('images/logo-terrazon.png') }}" alt="Logo" class="header-logo d-none d-md-block">
-                <img src="{{ asset('images/logo-terrazon-o.png') }}" alt="Logo"
-                    class="header-logo d-block d-md-none">
+                <a href="/">
+                    <img src="{{ asset('images/logo-terrazon.png') }}" alt="Logo" class="header-logo d-none d-md-block">
+                    <img src="{{ asset('images/logo-terrazon-o.png') }}" alt="Logo"
+                        class="header-logo d-block d-md-none"></a>
             </div>
             <div class="col-6 col-md-9 d-flex d-md-block align-items-center justify-content-end">
                 <div class="menu d-flex justify-content-center d-none d-md-flex">
@@ -73,6 +74,11 @@
 </div>
 <div class="collapse menu-content-mobile" id="menuContent">
     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item active mb-2">
+        Hola, <b>{{ Auth::guard('custom_users')->user()->first_name }}</b>
+
+        </li>
+
         <li class="nav-item">
             <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" aria-current="page"
                 href="{{ route('inicio') }}">Home</a>
@@ -95,33 +101,13 @@
         </li>
         <li>
             @if (Auth::guard('custom_users')->check())
-            <div class="dropdown">
-                <a class="dropdown-toggle text-sm text-gray-700 dark:text-gray-500 underline"
-                    id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" role="button">
-                    {{ Auth::guard('custom_users')->user()->first_name }}
-                </a>
-                <ul class="dropdown-menu dropdown-menu-end p-0 border-0 shadow-sm"
-                    aria-labelledby="dropdownMenuButton" style="background-color: #094208;">
-                    <li class="border-bottom">
-                        <a class="text-white p-3" href="{{ url('/custom/home') }}">
-                            Mi Cuenta
-                        </a>
-                    </li>
-                    <li class="border-bottom">
-                        <a class=" text-white p-3" href="{{ route('custom.logout') }}">
-                            Salir
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-
+            <a class="nav-link" aria-current="page" href="{{ url('/custom/home') }}">Mi Cuenta</a>
+            <a class="nav-link" aria-current="page" href="{{ route('custom.logout') }}">Salir</a>
             {{-- <a href="{{ url('/custom/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">
             {{ Auth::guard('custom_users')->user()->first_name }}
             </a> --}}
             @else
-            <a class="nav-link" aria-current="page"
-            href="{{ url('/custom/login') }}">Iniciar sesión / registrarme</a>
+            <a class="nav-link" aria-current="page" href="{{ url('/custom/login') }}">Iniciar sesión / registrarme</a>
             @endif
         </li>
     </ul>

@@ -26,18 +26,18 @@
                 <span class="footer-title">Mapa del sitio</span>
                 <ul class="list-menu t mt-3">
                     <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#">Propiedades</a></li>
-                    <li><a href="#">Acerca de nosotros</a></li>
-                    <li><a href="#">Vendedores</a></li>
-                    <li><a href="#">Contacto</a></li>
+                    <li><a href="/propiedades">Propiedades</a></li>
+                    <li><a href="/acercade">Acerca de nosotros</a></li>
+                    <li><a href="/agentes">Vendedores</a></li>
+                    <li><a href="/contacto">Contacto</a></li>
                 </ul>
             </div>
             <div class="col-12 col-md-3 mt-4">
                 <span class="footer-title">Contactanos</span>
                 <ul class="list-contact mt-3">
                     <li class="d-flex align-items-center"><i class="bi bi-geo-alt"></i> Mérida Yuc. Mx</li>
-                    <li class="d-flex align-items-center"><i class="bi bi-telephone-outbound"></i> +52 999 1 23 45 67</li>
-                    <li class="d-flex align-items-center"><i class="fa-regular fa-envelope"></i> hola@terrazon.mx</li>
+                    <li class="d-flex align-items-center"><a href="tel:{{ config('app.contact_tel') }}"><i class="bi bi-telephone-outbound"></i>{{ config('app.contact_tel') }}</a></li>
+                    <li class="d-flex align-items-center"><a href="mailto:{{ config('app.contact_email') }}"><i class="fa-regular fa-envelope"></i> hola@terrazon.mx</a></li>
                 </ul>
             </div>
             <div class="col-12 col-md-3 mt-4">

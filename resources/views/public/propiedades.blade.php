@@ -46,7 +46,7 @@
             </div>
             @endif
             @if ($searchmode)
-            <div class="col-3 d-none d-md-block pt-5" id="filter">
+            <div class="col-3 d-none d-md-block " id="filter">
                 <div class="row ">
                     <div class="col-4 text-start py-4 d-flex align-items-center">
                         <a id="toggleFilters2" href="javascript:void(0)" class="text-primary d-none d-md-block">Filtro <i class="bi bi-filter"></i> </a>
