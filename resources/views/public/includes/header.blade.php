@@ -71,11 +71,11 @@
 </div>
 <div class="collapse menu-content-mobile" id="menuContent">
     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        @if (Auth::guard('custom_users')->check())
         <li class="nav-item active mb-2">
-        Hola, <b>{{ Auth::guard('custom_users')->user()->first_name }}</b>
-
+            Hola, <b>{{ Auth::guard('custom_users')->user()->first_name }}</b>
         </li>
-
+        @endif
         <li class="nav-item">
             <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" aria-current="page"
                 href="{{ route('inicio') }}">Home</a>
