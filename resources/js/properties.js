@@ -38,8 +38,7 @@ $(document).ready(function () {
         owl1.trigger('refresh.owl.carousel');
     });
 
-    var toggleFilters = document.getElementById('toggleFilters');
-    var toggleFilters2 = document.getElementById('toggleFilters2');
+    var toggleFilters = document.getElementById('toggleFilters'); 
 
     var slider = document.getElementById('slider');
     var sliderMobile = document.getElementById('sliderMobile');
@@ -61,12 +60,7 @@ $(document).ready(function () {
         toggleFilters.addEventListener('click', function () {
             toogleFilter();
         });
-    }
-    if (toggleFilters2) {
-        toggleFilters2.addEventListener('click', function () {
-            toogleFilter();
-        });
-    }
+    } 
 
     $("#filterForm").on("change", "input.chk_action:checkbox", function () {
         $("#filterForm").submit();
@@ -147,15 +141,12 @@ $(document).ready(function () {
         $('#progress-' + event.target.id).css('width', progress + '%'); // Actualizar el ancho de la barra de progreso
     }
 
-    function toogleFilter() {
-        var desktoFilter = document.getElementById('filter-desktop');
+    function toogleFilter() { 
         var filter = document.getElementById('filter');
         if (filter.classList.contains('d-md-none')) {
             filter.classList.remove('d-md-none');
-            desktoFilter.classList.add('d-md-none');
         } else {
             filter.classList.add('d-md-none');
-            desktoFilter.classList.remove('d-md-none');
         }
         var wrapper = document.getElementById('contentWrapper');
         if (wrapper.classList.contains('col-md-12')) {

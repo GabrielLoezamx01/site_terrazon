@@ -34,7 +34,7 @@ class PropiedadesController extends Controller
         $bathroomsQP = $request->input('bathrooms');
         $roomsQP = $request->input('rooms');
         $typeQP =  $request->input('type') ?? null;
-        $orderQP =  $request->input('order') ?? '';
+        $orderQP =  $request->input('order') ?? 'relevantes';
         $conditionsQp = $request->input('condition') != null ? $request->input('condition')  : [];
         $amenitiesQp = $request->input('amenities') != null ? $request->input('amenities')  : [];
         $filterOpen = ($request->input('filter')) ? $request->input('filter') : null;

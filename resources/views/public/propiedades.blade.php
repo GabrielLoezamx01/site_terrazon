@@ -48,12 +48,37 @@
                 <div class="title">Resultados de búsqueda</div>
             </div>
             @endif
+            <div class="row mb-3">
+                <div class="col-6">
+                    @if ($searchmode)
+                    <a id="toggleFilters" href="javascript:void(0)" class="text-primary">Filtro <i class="bi bi-filter"></i> </a>
+                    @endif
+                </div>
+                <div class="col-6 text-end">
+                    Ordenar por:
+                    <div class="btn-group">
+                        <a class="dropdown-toggle dd-order" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            @if($orderQP=='relevantes')
+                            Más relevantes
+                            @endif
+                            @if($orderQP=='minprice')
+                            Menor Precio
+                            @endif
+                            @if($orderQP=='maxprice')
+                            Mayor Precio
+                            @endif
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="javascript:void(0)" id="orderBy1">Mas relevantes</a></li>
+                            <li><a class="dropdown-item" href="javascript:void(0)" id="orderBy2">Menor Precio</a></li>
+                            <li><a class="dropdown-item" href="javascript:void(0)" id="orderBy3">Mayor Precio</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
             @if ($searchmode)
             <div class="col-3 d-none d-md-block " id="filter">
                 <div class="row ">
-                    <div class="col-4 text-start py-4 d-flex align-items-center">
-                        <a id="toggleFilters2" href="javascript:void(0)" class="text-primary d-none d-md-block">Filtro <i class="bi bi-filter"></i> </a>
-                    </div>
                     <fieldset class="col-12 my-2 p-3">
                         <legend>{{ $paginationInfo->total() }} Resultados</legend>
                         <form action="/propiedades" id="filterForm">
@@ -177,69 +202,25 @@
                                     </div>
                                 </div>
                             </div>
+                        </form>
+                    </fieldset>
                 </div>
-                </form>
-                </fieldset>
             </div>
             @endif
             <div id="contentWrapper" class="col-12 @if ($searchmode) col-md-9 @else col-md-12 @endif ">
                 <div class="row">
-                    @if ($searchmode)
-                    <div class="col-6 text-primary ">
-                        <div id="filter-desktop">
-                            <a id="toggleFilters" href="javascript:void(0)" class="text-primary d-none d-md-block">Filtro <i class="bi bi-filter"></i> </a>
-                            <a id="toggleFiltersMobile" href="javascript:void(0)" class="text-primary d-md-none" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Filtro <i class="bi bi-filter"></i> </a>
-                        </div>
+                    @foreach ($results as $index => $card)
+                    <div class="results-items col-12 @if ($searchmode) col-md-6 @else col-md-4 @endif d-flex justify-content-center mb-4">
+                        <x-card :card="$card" />
                     </div>
-                    @endif
-                    @if (!$searchmode)
-                    <div class="col-12 text-end ">Ordenar por:
-                        @else
-                        <div class="col-6 text-end ">Ordenar por:
-                            @endif
-                            <div class="btn-group">
-                                <a class="dropdown-toggle dd-order" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    @if($orderQP=='relevantes')
-                                    Más relevantes
-                                    @endif
-                                    @if($orderQP=='minprice')
-                                    Menor Precio
-                                    @endif
-                                    @if($orderQP=='maxprice')
-                                    Mayor Precio
-                                    @endif
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="javascript:void(0)" id="orderBy1">Mas relevantes</a></li>
-                                    <li><a class="dropdown-item" href="javascript:void(0)" id="orderBy2">Menor Precio</a></li>
-                                    <li><a class="dropdown-item" href="javascript:void(0)" id="orderBy3">Mayor Precio</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        @foreach ($results as $index => $card)
-                        <div class="results-items col-12 @if ($searchmode) col-md-6 @else col-md-4 @endif d-flex justify-content-center mb-4">
-                            <x-card :card="$card" />
-                        </div>
-                        @endforeach
-                    </div>
-                    <div class="row pt-3 px-3">
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination  justify-content-center">
-                                {!! $paginationInfo->links('pagination::bootstrap-4') !!}
-                                <!-- <li class="page-item disabled">
-                                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true"><i class="bi bi-arrow-left"></i></a>
-                                </li>
-                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#"><i class="bi bi-arrow-right"></i></a>
-                                </li> -->
-                            </ul>
-                        </nav>
-                    </div>
+                    @endforeach
+                </div>
+                <div class="row pt-3 px-3">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination  justify-content-center">
+                            {!! $paginationInfo->links('pagination::bootstrap-4') !!}
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>
@@ -349,10 +330,10 @@
             </div>
             <div class="modal-body">
                 <div class="row ">
-                    <div class="col-4 text-start py-4 d-flex align-items-center">
-                        <a id="toggleFilters2" href="javascript:void(0)" class="text-primary d-none d-md-block">Filtro <i class="bi bi-filter"></i> </a>
+                    <div class="col-4 text-start mb-2 d-flex align-items-center">
+                        <a id="toggleFilters2" href="javascript:void(0)" class="text-primary">Filtro <i class="bi bi-filter"></i> </a>
                     </div>
-                    <fieldset class="col-12 my-2 p-3">
+                    <fieldset class="col-12 mb-2 p-3">
                         <legend>{{ $paginationInfo->total() }} Resultados</legend>
                         <form action="/propiedades" id="filterForm">
                             <input type="hidden" id="location" name="location" value="{{ $locationQP }}" id="locationInput">
