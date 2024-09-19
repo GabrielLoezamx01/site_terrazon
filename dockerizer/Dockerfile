@@ -16,8 +16,8 @@ COPY ./dockerizer/vhost.conf /opt/docker/etc/nginx/vhost.conf
 COPY ./dockerizer/laravel-setup.sh /app/laravel-setup.sh
 COPY ./dockerizer/start.sh /start.sh
 
-COPY package*.json /app/
-COPY composer.json composer.lock /app/
+COPY ./package*.json /app/
+COPY ./composer.json ./composer.lock /app/
 
 WORKDIR /app 
 RUN composer install --no-interaction --no-scripts
