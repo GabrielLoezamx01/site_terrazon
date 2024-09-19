@@ -9,36 +9,33 @@
         <div class="ms-auto p-2 bd-highlight">
             <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                 @if (Auth::guard('custom_users')->check())
-                    <div class="dropdown">
-                        <a class="dropdown-toggle text-sm text-gray-700 dark:text-gray-500 underline"
-                            id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" role="button">
-                            {{ Auth::guard('custom_users')->user()->first_name }}
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end p-0 border-0 shadow-sm"
-                            aria-labelledby="dropdownMenuButton" style="background-color: #094208;">
-                            <li class="border-bottom">
-                                <a class="text-white p-3" href="{{ url('/custom/home') }}">
-                                    Mi Cuenta
-                                </a>
-                            </li>
-                            <li class="border-bottom">
-                                <a class=" text-white p-3" href="{{ route('custom.logout') }}">
-                                    Salir
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-
-
-                    {{-- <a href="{{ url('/custom/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">
+                <div class="dropdown">
+                    <a class="dropdown-toggle text-sm text-gray-700 dark:text-gray-500 underline"
+                        id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" role="button">
                         {{ Auth::guard('custom_users')->user()->first_name }}
-                    </a> --}}
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end p-0 border-0 shadow-sm"
+                        aria-labelledby="dropdownMenuButton" style="background-color: #094208;">
+                        <li class="border-bottom">
+                            <a class="text-white p-3" href="{{ url('/custom/home') }}">
+                                Mi Cuenta
+                            </a>
+                        </li>
+                        <li class="border-bottom">
+                            <a class=" text-white p-3" href="{{ route('custom.logout') }}">
+                                Salir
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+
+                {{-- <a href="{{ url('/custom/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">
+                {{ Auth::guard('custom_users')->user()->first_name }}
+                </a> --}}
                 @else
-                    <a href="{{ url('/custom/login') }}">Iniciar sesión / registrarme</a>
+                <a href="{{ url('/custom/login') }}">Iniciar sesión / registrarme</a>
                 @endif
-
-
-
             </div>
         </div>
     </div>
@@ -92,6 +89,37 @@
         <li class="nav-item">
             <a class="nav-link {{ Request::is('contacto') ? 'active' : '' }}" aria-current="page"
                 href="{{ route('contacto') }}">Contacto</a>
+        </li>
+        <li>
+            @if (Auth::guard('custom_users')->check())
+            <div class="dropdown">
+                <a class="dropdown-toggle text-sm text-gray-700 dark:text-gray-500 underline"
+                    id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" role="button">
+                    {{ Auth::guard('custom_users')->user()->first_name }}
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end p-0 border-0 shadow-sm"
+                    aria-labelledby="dropdownMenuButton" style="background-color: #094208;">
+                    <li class="border-bottom">
+                        <a class="text-white p-3" href="{{ url('/custom/home') }}">
+                            Mi Cuenta
+                        </a>
+                    </li>
+                    <li class="border-bottom">
+                        <a class=" text-white p-3" href="{{ route('custom.logout') }}">
+                            Salir
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+
+            {{-- <a href="{{ url('/custom/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">
+            {{ Auth::guard('custom_users')->user()->first_name }}
+            </a> --}}
+            @else
+            <a class="nav-link" aria-current="page"
+            href="{{ url('/custom/login') }}">Iniciar sesión / registrarme</a>
+            @endif
         </li>
     </ul>
 </div>
