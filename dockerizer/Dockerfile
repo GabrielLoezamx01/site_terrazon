@@ -21,6 +21,7 @@ COPY composer.json composer.lock /app/
 
 RUN composer install --no-interaction --no-scripts
 
+WORKDIR /app 
 COPY . /app
 
 RUN chmod +x /start.sh
