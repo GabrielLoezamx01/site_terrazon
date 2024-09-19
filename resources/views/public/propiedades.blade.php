@@ -50,8 +50,9 @@
             @endif
             <div class="row mb-3">
                 <div class="col-6">
-                    @if ($searchmode)
-                    <a id="toggleFilters" href="javascript:void(0)" class="text-primary">Filtro <i class="bi bi-filter"></i> </a>
+                    @if ($searchmode) 
+                    <a id="toggleFilters" href="javascript:void(0)" class="text-primary d-none d-md-block">Filtro <i class="bi bi-filter"></i> </a>
+                    <a id="toggleFiltersMobile" href="javascript:void(0)" class="text-primary d-md-none" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Filtro <i class="bi bi-filter"></i> </a>
                     @endif
                 </div>
                 <div class="col-6 text-end">
@@ -330,9 +331,6 @@
             </div>
             <div class="modal-body">
                 <div class="row ">
-                    <div class="col-4 text-start mb-2 d-flex align-items-center">
-                        <a id="toggleFilters2" href="javascript:void(0)" class="text-primary">Filtro <i class="bi bi-filter"></i> </a>
-                    </div>
                     <fieldset class="col-12 mb-2 p-3">
                         <legend>{{ $paginationInfo->total() }} Resultados</legend>
                         <form action="/propiedades" id="filterForm">
