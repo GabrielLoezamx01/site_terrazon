@@ -19,10 +19,11 @@ COPY ./dockerizer/start.sh /start.sh
 COPY package*.json /app/
 COPY composer.json composer.lock /app/
 
+WORKDIR /app 
 RUN composer install --no-interaction --no-scripts
 
-WORKDIR /app 
 COPY . /app
+
 
 RUN chmod +x /start.sh
 RUN chmod +x ./laravel-setup.sh
