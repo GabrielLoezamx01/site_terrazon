@@ -21,7 +21,6 @@ COPY ./composer.json ./composer.lock /app/
 
 WORKDIR /app 
 RUN composer install --no-interaction --no-scripts
-
 COPY . /app
 
 RUN chmod -R 755 /app/bootstrap/
@@ -31,7 +30,8 @@ RUN chmod -R 755 /app/storage/
 RUN chmod +x /start.sh
 RUN chmod +x ./laravel-setup.sh
 
-CMD ./laravel-setup.sh 
+
+# CMD ./laravel-setup.sh 
 # Set the working directory
 # WORKDIR /app 
 #RUN npm install
