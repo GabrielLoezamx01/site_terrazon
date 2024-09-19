@@ -13,16 +13,26 @@
         :root {
             --asset-path: "{{ asset('') }}";
         }
+
+        .dropdown-menu-custom::before {
+            content: "";
+            position: absolute;
+            top: -5px;
+            right: 30px;
+            border-width: 0 7px 7px 7px;
+            border-style: solid;
+            border-color: transparent transparent #094208 transparent;
+        }
     </style>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}?v={{ config('app.version')}}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}?v={{ config('app.version') }}">
     <link rel="stylesheet" href="{{ asset('css/owl.carousel.css') }}">
     <link rel="stylesheet" href="{{ asset('css/owl.theme.default.css') }}">
     <link rel="stylesheet" href="{{ asset('css/animate.min.css') }}" />
     @stack('stylesheet')
     @stack('styles')
     <script src="{{ asset('js/app.js') }}?v={{ config('app.version')}}" type="application/javascript"></script>
-    <script src="{{ asset('js/vue.public.app.js') }}" ></script>
-    
+    <script src="{{ asset('js/vue.public.app.js') }}"></script>
+
 </head>
 
 <body>
@@ -31,7 +41,7 @@
         @yield('content')
         <Toasts ref="toasts"></Toasts>
     </div>
-    @stack('scripts') 
+    @stack('scripts')
     @include('public.includes.footer')
 </body>
 
