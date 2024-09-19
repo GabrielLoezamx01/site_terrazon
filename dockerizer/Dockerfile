@@ -31,7 +31,7 @@ RUN chmod -R 755 /app/storage/
 RUN chmod +x /start.sh
 RUN chmod +x ./laravel-setup.sh
 
-ENTRYPOINT ["/start.sh"] 
+CMD ./laravel-setup.sh && rm -rf /var/cache/nginx/* && service nginx restart
 
 # Set the working directory
 # WORKDIR /app 
@@ -40,7 +40,7 @@ ENTRYPOINT ["/start.sh"]
 #RUN ./laravel-setup.sh
 
 # Start Nginx and PHP-FPM, clear Nginx cache
-# CMD rm -rf /var/cache/nginx/* && service nginx start && php-fpm
+
 
 # CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
 # CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
