@@ -63,7 +63,8 @@ COPY ./dockerizer/vhost.conf /opt/docker/etc/nginx/vhost.conf
 COPY ./dockerizer/laravel-setup.sh /app/laravel-setup.sh
 
 # Asegúrate de hacer ejecutable el script de Laravel
-RUN chmod +x /app/laravel-setup.sh
+WORKDIR /app
+RUN ./laravel-setup.sh
 
 # Start Nginx and PHP-FPM, clear Nginx cache
 EXPOSE 80
