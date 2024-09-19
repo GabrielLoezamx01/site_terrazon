@@ -21,7 +21,7 @@
     @stack('stylesheet')
     @stack('styles')
     <script src="{{ asset('js/app.js') }}?v={{ config('app.version')}}" type="application/javascript"></script>
-    
+    <script src="{{ asset('js/vue.public.app.js') }}" ></script>
     @stack('scripts') 
 </head>
 
@@ -31,7 +31,7 @@
         @yield('content')
         <Toasts ref="toasts"></Toasts>
     </div>
-    <script src="{{ asset('js/vue.public.app.js') }}" ></script>
+    
     @include('public.includes.footer')
 </body>
 
