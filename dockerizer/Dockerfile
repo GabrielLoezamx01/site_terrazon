@@ -22,7 +22,8 @@ RUN apt-get update && apt-get install -y \
     libpq-dev \
     openssh-server \
     nano \
-    cron
+    cron \
+    supervisor
 
 # Install PHP extensions
 RUN docker-php-ext-install pdo pdo_mysql
@@ -39,6 +40,7 @@ RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | b
 
     # Create required directories
 RUN mkdir -p /var/log/supervisor
+RUN mkdir -p /var/run && touch /var/run/supervisor.sock
 
 COPY ./dockerizer/supervisord.conf /etc/supervisor/supervisord.conf
 # COPY ./dockerizer/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
