@@ -45,9 +45,9 @@
         <div class="row">
             <div class="col-6 col-md-3 d-flex align-items-center justify-content-start">
                 <a href="/">
-                <img src="{{ asset('images/logo-terrazon.png') }}" alt="Logo" class="header-logo d-none d-md-block">
-                <img src="{{ asset('images/logo-terrazon-o.png') }}" alt="Logo"
-                    class="header-logo d-block d-md-none"></a>
+                    <img src="{{ asset('images/logo-terrazon.png') }}" alt="Logo" class="header-logo d-none d-md-block">
+                    <img src="{{ asset('images/logo-terrazon-o.png') }}" alt="Logo"
+                        class="header-logo d-block d-md-none"></a>
             </div>
             <div class="col-6 col-md-9 d-flex d-md-block align-items-center justify-content-end">
                 <div class="menu d-flex justify-content-center d-none d-md-flex">
@@ -71,6 +71,11 @@
 </div>
 <div class="collapse menu-content-mobile" id="menuContent">
     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item active mb-2">
+        Hola, <b>{{ Auth::guard('custom_users')->user()->first_name }}</b>
+
+        </li>
+
         <li class="nav-item">
             <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" aria-current="page"
                 href="{{ route('inicio') }}">Home</a>
