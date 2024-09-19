@@ -63,7 +63,7 @@ COPY . /app
 # Install PHP dependencies
 RUN composer install --no-interaction --no-scripts --no-suggest
 # Build assets (assuming `npm run production` is needed)
-RUN npm run production
+#RUN npm run production
 # Clear Laravel caches and optimize
 
 # Asegúrate de hacer ejecutable el script de Laravel
