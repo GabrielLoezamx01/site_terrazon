@@ -25,9 +25,6 @@ RUN apt-get update && apt-get install -y \
     cron \
     supervisor
 
-# Create required directories
-RUN mkdir -p /var/run/ /var/log/supervisor
-
 # Install PHP extensions
 RUN docker-php-ext-install pdo pdo_mysql
 
@@ -41,6 +38,13 @@ RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | b
     && nvm alias default ${NODE_VERSION} \
     && nvm use default
 
+    # Create required directories
+RUN mkdir -p /var/log/supervisor
+
+COPY ./dockerizer/supervisord.conf /etc/supervisor/supervisord.conf
+COPY ./dockerizer/php.ini /opt/docker/etc/php/php.ini
+COPY ./dockerizer/vhost.conf /opt/docker/etc/nginx/vhost.conf
+COPY ./dockerizer/laravel-setup.sh /app/laravel-setup.sh
 # Verify Node.js and npm installation
 # RUN node --version && npm --version
 # Copy the package.json and package-lock.json first
@@ -57,10 +61,7 @@ RUN composer install --no-interaction --no-scripts --no-suggest
 RUN npm run production
 # Clear Laravel caches and optimize
 
-COPY ./dockerizer/supervisord.conf /etc/supervisor/supervisord.conf
-COPY ./dockerizer/php.ini /opt/docker/etc/php/php.ini
-COPY ./dockerizer/vhost.conf /opt/docker/etc/nginx/vhost.conf
-COPY ./dockerizer/laravel-setup.sh /app/laravel-setup.sh
+
 
 # Asegúrate de hacer ejecutable el script de Laravel
 WORKDIR /app
