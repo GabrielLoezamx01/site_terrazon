@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iniciar sesión - Terrazon</title> 
+    <title>Iniciar sesión - Terrazon</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/login_user.css') }}">
 </head>
@@ -16,7 +16,9 @@
             <div class="col-md-6">
                 <div class="m-5">
                     <div>
-                        <img src="{{ asset('images/logo-terrazon.png') }}" class="login-img mt-5">
+                        <a href="{{ url('/') }}">
+                            <img src="{{ asset('images/logo-terrazon.png') }}" class="login-img mt-5">
+                        </a>
                     </div>
                     <div class="padding-login">
                         <h1 class="color-login">

@@ -16,7 +16,9 @@
             <div class="col-md-6">
                 <div class="m-5">
                     <div>
+                        <a href="{{ url('/') }}">
                         <img src="{{ asset('images/logo-terrazon.png') }}" class="login-img mt-5">
+                        </a>
                     </div>
                     <div class="padding-login">
                         <h1 class="color-login">
