@@ -24939,6 +24939,14 @@ ul.list-info .detail-text {
   right: -20px;
 }
 
+.slider-nav-prev-2 {
+  left: 20px;
+}
+
+.slider-nav-next-2 {
+  right: 20px;
+}
+
 .info-stack {
   font-size: 24px;
 }

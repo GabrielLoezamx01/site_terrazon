@@ -507,6 +507,7 @@ ul.list-info {
     opacity: 1 !important;
 }
 
+
 .slider-nav {
     z-index: 999;
     top: 50%;
@@ -531,6 +532,13 @@ ul.list-info {
     right: -20px;
 }
 
+.slider-nav-prev-2 {
+    left: 20px;
+}
+
+.slider-nav-next-2 {
+    right: 20px;
+}
 .info-stack {
     font-size: 24px;
 

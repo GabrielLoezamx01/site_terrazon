@@ -46,9 +46,7 @@ include __DIR__ . '/home.php';
 Route::get('/', [App\Http\Controllers\Public\HomeController::class, 'index'])->name('inicio');
 Route::get('/propiedades', [App\Http\Controllers\Public\PropiedadesController::class, 'index'])->name('propiedades');
 Route::get('/ficha/{sku}', [App\Http\Controllers\Public\PropiedadesController::class, 'ficha']);
-Route::get('/agentes', function () {
-    return view('public.agentes');
-})->name('agentes');
+Route::get('/agentes', [App\Http\Controllers\Public\AgentesController::class, 'index'])->name('public.agentes');
 Route::get('/acercade', function () {
     return view('public.acercade');
 })->name('acercade');

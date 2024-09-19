@@ -115,16 +115,28 @@ $(document).ready(function () {
     let expandido = false;
     let $description = $('#description');
     let $boton = $('#viewMore');
-    $boton .click(function () {
+
+    $boton.click(function () {
         if (expandido) {
             $description.addClass('truncate-info');
             $boton.text('LEER MAS');
             expandido = false;
-        } else { 
+        } else {
             $description.removeClass('truncate-info');
             $boton.text('LEER MENOS');
             expandido = true;
         }
+    });
+    const videoModal = document.getElementById('videoModal');
+    const youtubeIframe = videoModal.querySelector('iframe');
+    let videoSrc = youtubeIframe.src;
+
+    videoModal.addEventListener('hidden.bs.modal', function () {
+        youtubeIframe.src = '';
+    });
+
+    videoModal.addEventListener('show.bs.modal', function () {
+        youtubeIframe.src = videoSrc;
     });
 
 });

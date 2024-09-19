@@ -61,7 +61,7 @@
                         href="{{ route('propiedades') }}">Propiedades</a>
                     <a class="{{ Request::is('acercade') ? 'active' : '' }}" href="{{ route('acercade') }}">Acerca de
                         nosotros</a>
-                    <a class="{{ Request::is('agentes') ? 'active' : '' }}" href="{{ route('agentes') }}">Agentes</a>
+                    <a class="{{ Request::is('public.agentes') ? 'active' : '' }}" href="{{ route('public.agentes') }}">Agentes</a>
                     <a class="{{ Request::is('contacto') ? 'active' : '' }}"
                         href="{{ route('contacto') }}">Contacto</a>
                 </div>
@@ -98,8 +98,8 @@
                 href="{{ route('acercade') }}">Acerca de nosotros</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link {{ Request::is('agentes') ? 'active' : '' }}" aria-current="page"
-                href="{{ route('agentes') }}">Agentes</a>
+            <a class="nav-link {{ Request::is('public.agentes') ? 'active' : '' }}" aria-current="page"
+                href="{{ route('public.agentes') }}">Agentes</a>
         </li>
         <li class="nav-item">
             <a class="nav-link {{ Request::is('contacto') ? 'active' : '' }}" aria-current="page"

@@ -10,17 +10,21 @@ use App\Models\Property;
 use App\Services\RecentPropertiesService;
 use Illuminate\Http\Request;
 use App\Services\FiltersService;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Favorite;
 
 class PropiedadesController extends Controller
 {
     protected $recentPropertiesService;
     protected $filtersService;
     private $key_cache_new_properties;
+    private $key_cache_favorites_all;
     public function __construct(
         RecentPropertiesService $recentPropertiesService,
         FiltersService $filtersService
     ) {
         $this->key_cache_new_properties = config('app.cache.new_properties');
+        $this->key_cache_favorites_all = config('app.cache.favorites_all');
         $this->recentPropertiesService = $recentPropertiesService;
         $this->filtersService = $filtersService;
     }
@@ -83,7 +87,7 @@ class PropiedadesController extends Controller
                 case 'relevantes':
                     $properties->orderBy('view_count', 'desc');
                     break;
-            } 
+            }
         }
         if ($conditionsQp != null) {
             if ($conditionsQp[0] != null) {
@@ -160,7 +164,6 @@ class PropiedadesController extends Controller
     {
         Carbon::setLocale('es');
         $property   = Property::with('types', 'amenities', 'conditions', 'details', 'features', 'galleries', 'distributions')->where('folio', $sku)->first();
-        // json_dd($property);
         $galery = [];
         if (isset($property->galleries)) {
             foreach ($property->galleries as $key => $value) {
@@ -188,8 +191,7 @@ class PropiedadesController extends Controller
         $busqueda = $this->getBusqueda($id, $location_id, $minPrice, $maxPrice);
         $nuevo = $this->getNeuevo();
         $otros = $this->getOtros();
-        $favoritos = [];
-        // json_dd($property);
+        $favoritos = $this->getFavoritos();
         return view('public.ficha', [
             'sku' => $sku,
             'property' => $property,
@@ -257,5 +259,29 @@ class PropiedadesController extends Controller
                 ->first();
             return new CardResource($prop);
         });
+    }
+    private function getFavoritos()
+    {
+        $user = Auth::guard('custom_users')->user();
+        if (isset($user->id)) {
+            $userid = $user->id;
+            $data = Cache::rememberForever($this->key_cache_favorites_all . $userid, function () use($userid){
+                $favorites = Favorite::where('custom_user_id', $userid)->with('property')->get();
+                $properties = Property::whereIn('id', $favorites->pluck('property_id'))->with('types', 'location', 'amenities', 'conditions', 'details', 'features', 'galleries')->where('available', 1)->get();
+                $data = [];
+                foreach ($properties as $kp => $vp) {
+                    $data[] = new CardResource($vp);
+                }
+                return $data;
+            });
+            if (!empty($data)) {
+                shuffle($data);
+                return $data[0];
+            } else {
+                return [];
+            }
+        } else {
+            return [];
+        }
     }
 }

@@ -15,12 +15,12 @@
         </nav>
 
         <div class="row">
-            <div class="col-12 col-lg-8 ">
+            <div class="col-12 col-lg-8 mb-4">
                 <div class="card box-shadow  bg-white">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12 mb-2">
-                                <h3 class="ficha-title">{{ $property->title }}</h3> 
+                                <h3 class="ficha-title">{{ $property->title }}</h3>
                             </div>
                             <div class="col-12">
                                 <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
@@ -80,7 +80,7 @@
                                     <div class="list-item cursor" data-bs-toggle="modal" data-bs-target="#distributionModal">
                                         <span class="svg-icon-ficha svg-icon-distribution"></span> Ver distribución
                                     </div>
-                                    <div class="list-item cursor"  data-bs-toggle="modal" data-bs-target="#tourModal">
+                                    <div class="list-item cursor" data-bs-toggle="modal" data-bs-target="#tourModal">
                                         <span class="svg-icon-ficha svg-icon-360-degrees"></span> Tour Virtual
                                     </div>
                                     <div class="list-item cursor" data-bs-toggle="modal" data-bs-target="#videoModal">
@@ -178,8 +178,8 @@
                                             <div><span class="bold">Actualización: </span><span class="text-primary">{{ $property->fechaActualizacion }}</span> </div>
                                         </div>
                                     </div>
-                                    <div class="col-12 col-md-7">
-                                        <p class="py-4 text-secondary">Si deseas agenda una visita o apartar esta propiedad es necesario que respondas un breve cuestionario.</p>
+                                    <div class="col-12 col-md-7 d-md-flex align-items-center justify-content-end">
+                                        <!-- <p class="py-4 text-secondary">Si deseas agenda una visita o apartar esta propiedad es necesario que respondas un breve cuestionario.</p>
                                         <div class="row">
                                             <div class="col-12 col-md-6 mb-3">
                                                 <div class="d-grid gap-2 ">
@@ -191,6 +191,9 @@
                                                     <button class="btn btn-success text-white">DESCARGAR FICHA</button>
                                                 </div>
                                             </div>
+                                        </div> -->
+                                        <div class="d-grid d-md-block gap-2 py-2">
+                                            <button class="btn btn-success text-white">DESCARGAR FICHA</button>
                                         </div>
                                     </div>
                                 </div>
@@ -515,56 +518,56 @@
     </div>
 </div>
 <div class="modal fade" id="distributionModal" tabindex="-1" aria-labelledby="distributionModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header bg-secondary text-white">
-        <h1 class="modal-title fs-5" id="distributionModalLabel">TERRAZON</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <img src="{{$property->distributionLink}}" class="full" >
-      </div>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-secondary text-white">
+                <h1 class="modal-title fs-5" id="distributionModalLabel">TERRAZON</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="{{$property->distributionLink}}" class="full">
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 <div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header bg-secondary text-white">
-        <h1 class="modal-title fs-5" id="videoModalLabel">TERRAZON</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-      {!! $property->video !!}
-      </div>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-secondary text-white">
+                <h1 class="modal-title fs-5" id="videoModalLabel">TERRAZON</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="videoFrame">
+                {!! $property->video !!}
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 <div class="modal fade" id="tourModal" tabindex="-1" aria-labelledby="tourModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header bg-secondary text-white">
-        <h1 class="modal-title fs-5" id="tourModalLabel">TERRAZON</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-      {!! $property->tour !!}
-      </div>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-secondary text-white">
+                <h1 class="modal-title fs-5" id="tourModalLabel">TERRAZON</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                {!! $property->tour !!}
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 <div class="modal fade" id="locationModal" tabindex="-1" aria-labelledby="locationModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header bg-secondary text-white">
-        <h1 class="modal-title fs-5" id="tourModalLabel">TERRAZON</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body"> 
-        Locación
-      </div>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-secondary text-white">
+                <h1 class="modal-title fs-5" id="tourModalLabel">TERRAZON</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Locación
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 <!--  FIN DE MODAL -->
 @endsection
