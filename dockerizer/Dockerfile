@@ -61,11 +61,10 @@ RUN composer install --no-interaction --no-scripts --no-suggest
 RUN npm run production
 # Clear Laravel caches and optimize
 
-
-
 # Asegúrate de hacer ejecutable el script de Laravel
 WORKDIR /app
 RUN chmod +x ./laravel-setup.sh
+RUN ./laravel-setup.sh
 
 # Start Nginx and PHP-FPM, clear Nginx cache
 EXPOSE 80
