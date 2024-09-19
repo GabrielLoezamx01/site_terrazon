@@ -31,6 +31,7 @@ RUN chmod -R 755 /app/storage/
 RUN chmod +x /start.sh
 RUN chmod +x ./laravel-setup.sh
 
+RUN ./laravel-setup.sh
 
 # Set the working directory
 # WORKDIR /app 
