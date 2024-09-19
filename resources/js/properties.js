@@ -1,33 +1,6 @@
 require('owl.carousel');
-$(document).ready(function () {
-
-    var owlOptions = {
-        center: false,
-        loop: true,
-        nav: false,
-        dots: false,
-        rewindNav: true,
-        autoplay: false,
-        responsive: {
-            0: {
-                items: 1.1
-            },
-            768: {
-                items: 1.5
-            },
-            980: {
-                items: 2
-            },
-            1260: {
-                items: 2.5
-            },
-            1340: {
-                items: 3
-            }
-        },
-        onTranslated: updateProgressBar,
-        onInitialized: updateProgressBar
-    }
+$(document).ready(function () { 
+    
     var owlOptionsViewed = {
         center: false,
         loop: false,
@@ -56,25 +29,13 @@ $(document).ready(function () {
         onInitialized: updateProgressBar
     }
 
-
-
-    var owl1 = $('#carr1').owlCarousel(owlOptions);
-    var owl2 = $('#carr2').owlCarousel(owlOptions);
-    var owl3 = $('#viewedSlider').owlCarousel(owlOptionsViewed);
-    $('#carr1_next').click(function () {
-        owl1.trigger('next.owl.carousel');
-    });
-    $('#carr2_next').click(function () {
-        owl2.trigger('next.owl.carousel');
-    });
+    var owl1 = $('#viewedSlider').owlCarousel(owlOptionsViewed);
     $('#viewedSlider_next').click(function () {
-        owl3.trigger('next.owl.carousel');
+        owl1.trigger('next.owl.carousel');
     });
 
     $(window).resize(function () {
         owl1.trigger('refresh.owl.carousel');
-        owl2.trigger('refresh.owl.carousel');
-        owl3.trigger('refresh.owl.carousel');
     });
 
     var toggleFilters = document.getElementById('toggleFilters');

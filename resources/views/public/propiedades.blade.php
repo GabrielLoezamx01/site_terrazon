@@ -37,7 +37,7 @@
         <div class="row">
             @if (!$searchmode)
             <form action="/propiedades" id="filterForm">
-                <input type="hidden" name="order" value="{{ $orderQP }}" id="orderBy"> 
+                <input type="hidden" name="order" value="{{ $orderQP }}" id="orderBy">
             </form>
             <div class="col-12 text-left pb-3">
                 <div class="title">Top Propiedades</div>
@@ -58,7 +58,7 @@
                         <legend>{{ $paginationInfo->total() }} Resultados</legend>
                         <form action="/propiedades" id="filterForm">
                             <input type="hidden" id="location" name="location" value="{{ $locationQP }}" id="locationInput">
-                            <input type="hidden" name="order" value="{{ $orderQP }}" id="orderBy"> 
+                            <input type="hidden" name="order" value="{{ $orderQP }}" id="orderBy">
                             <div class="row">
                                 <div class="col-12 text-primary mb-3">
                                     <label class="mb-1">Locación</label>
@@ -200,13 +200,13 @@
                             <div class="btn-group">
                                 <a class="dropdown-toggle dd-order" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     @if($orderQP=='relevantes')
-                                        Más relevantes
+                                    Más relevantes
                                     @endif
                                     @if($orderQP=='minprice')
-                                        Menor Precio
+                                    Menor Precio
                                     @endif
                                     @if($orderQP=='maxprice')
-                                        Mayor Precio
+                                    Mayor Precio
                                     @endif
                                 </a>
                                 <ul class="dropdown-menu">
@@ -351,7 +351,7 @@
                 <div class="row ">
                     <div class="col-4 text-start py-4 d-flex align-items-center">
                         <a id="toggleFilters2" href="javascript:void(0)" class="text-primary d-none d-md-block">Filtro <i class="bi bi-filter"></i> </a>
-                    </div> 
+                    </div>
                     <fieldset class="col-12 my-2 p-3">
                         <legend>{{ $paginationInfo->total() }} Resultados</legend>
                         <form action="/propiedades" id="filterForm">

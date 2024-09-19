@@ -322,6 +322,9 @@ body {
             font-weight: 600;
             color: $title-color;
             white-space: nowrap;
+            @media screen and (max-width:480px) {
+                font-size: 18px !important;
+            }
         }
 
         .card-text {

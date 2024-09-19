@@ -83,14 +83,4 @@ $(document).ready(function () {
         owl2.trigger('refresh.owl.carousel');
         owl3.trigger('refresh.owl.carousel');
     });
-
-    var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
-
-    var options = {
-        html: true
-
-    }
-    var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
-        return new bootstrap.Popover(popoverTriggerEl, options);
-    });
 });
