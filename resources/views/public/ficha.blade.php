@@ -193,7 +193,13 @@
                                             </div>
                                         </div> -->
                                         <div class="d-grid d-md-block gap-2 py-2">
-                                            <button class="btn btn-success text-white">DESCARGAR FICHA</button>
+                                            @php
+                                            $imagePath = 'storage/uploads/'.$property->pdf;
+                                            $fullPath = public_path($imagePath);
+                                            @endphp
+                                            @if(file_exists($fullPath))
+                                            <a  href="{{ asset('storage/uploads/'.$property->pdf) }}" target="_blank" class="btn btn-success text-white">DESCARGAR FICHA</a>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
