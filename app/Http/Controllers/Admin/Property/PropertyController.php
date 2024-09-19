@@ -399,13 +399,16 @@ class PropertyController extends Controller
 
     public function delete_details(Request $request)
     {
-        $property = DetailProperty::where('id', $request->details_id)->first();
-        if (!$property) {
+        $detalle =  DB::table('details_property_relationship')->where('detail_id', $request->details_id)->delete();
+        if (!$detalle) {
             return response()->json(['error' => 'detalle no encontrado.'], 404);
         }
-        $property->delete();
+        // $property = DetailProperty::where('id', $request->details_id)->first();
+        // if (!$property) {
+        //     return response()->json(['error' => 'detalle no encontrado.'], 404);
+        // }
+        // $property->delete();
         $this->cleanNewProperties();
-        DB::table('details_property_relationship')->where('detail_id', $request->details_id)->delete();
         return redirect()->back()->withSuccess('eliminado correctamente.');
     }
 
