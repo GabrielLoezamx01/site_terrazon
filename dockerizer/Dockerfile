@@ -71,4 +71,5 @@ RUN ./laravel-setup.sh
 EXPOSE 80
 # CMD rm -rf /var/cache/nginx/* && service nginx start && php-fpm
 # CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
-CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+# CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+CMD rm -rf /var/cache/nginx/*  && service nginx start && php-fpm
