@@ -20,13 +20,18 @@
     <link rel="stylesheet" href="{{ asset('css/animate.min.css') }}" />
     @stack('stylesheet')
     @stack('styles')
-    <script src="{{ asset('js/app.js') }}?v={{ config('app.version')}}"></script>
-    @stack('scripts')
+    <script src="{{ asset('js/app.js') }}?v={{ config('app.version')}}" type="application/javascript"></script>
+    
+    @stack('scripts') 
 </head>
 
 <body>
     @include('public.includes.header')
-    @yield('content')
+    <div id="content">
+        @yield('content')
+        <Toasts ref="toasts"></Toasts>
+    </div>
+    <script src="{{ asset('js/vue.public.app.js') }}" ></script>
     @include('public.includes.footer')
 </body>
 

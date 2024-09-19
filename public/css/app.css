@@ -24713,6 +24713,21 @@ body {
 .card-property .icon-fav .fa-circle {
   color: #ffffff;
 }
+.card-property .icon-fav .fa-solid.fa-heart {
+  display: none;
+}
+.card-property .icon-fav .fa-regular.fa-heart {
+  display: inline;
+}
+.card-property .icon-fav.active .fa-solid.fa-heart {
+  display: inline;
+}
+.card-property .icon-fav.active .fa-regular.fa-heart {
+  display: none;
+}
+.card-property .icon-fav.active .fa-heart {
+  color: red;
+}
 .card-property .btn-detalle {
   font-size: 12px;
   padding: 10px 24px;

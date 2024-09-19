@@ -31,6 +31,7 @@ return [
         'viewed_properties' => 'cache_viewed_properties_',
         'recomended_properties' => 'cache_recomended_properties',
         'new_properties' => 'cache_new_properties',
+        'favorites' => 'cache_favorites',
     ],
 
     /*

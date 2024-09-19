@@ -15,13 +15,15 @@ class CustomUserMiddleware
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     public function handle(Request $request, Closure $next)
-    {
-        if (Auth::guard('custom_users')->check()) {
-            // Si está autenticado, continúa con la solicitud
-            return $next($request);
+    { 
+        if (!Auth::guard('custom_users')->check()) {
+            // Verifica si la solicitud espera una respuesta JSON
+            if ($request->expectsJson()) {
+                return response()->json(['message' => 'Unauthorized'], 401);
+            }
+            // Si no, realiza la redirección normal
+            return redirect()->guest(route('custom.login'));
         }
-
-        // Si no está autenticado, redirige a la página de login
-        return redirect()->route('custom.login');
+        return $next($request);
     }
 }

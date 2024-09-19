@@ -10,6 +10,7 @@ use App\Models\Property;
 use App\Services\RecentPropertiesService;
 use App\Services\FiltersService;
 
+
 class HomeController extends Controller
 {
     protected $key_cache_home_properties;
@@ -49,7 +50,7 @@ class HomeController extends Controller
     }
     public function index()
     {
-
+       
         $groupedProperties = $this->getPropertiesList();
         $ubicaciones = $this->filtersService->getListUbicaciones();
         $typesProperties = $this->filtersService->getListTiposPropiedad();
@@ -57,7 +58,6 @@ class HomeController extends Controller
         $home = [];
 
         foreach ($groupedProperties as $key => $item) {
-
             $data = [];
             $homeItem = ['name' => $key];
 

@@ -163,7 +163,7 @@ class PropiedadesController extends Controller
         $priceDiference = 500000;
         $minPrice = $property->price - $priceDiference;
         $maxPrice = $property->price + $priceDiference;
-        $recomendations = $this->getRecomendations($location_id);
+        $recomendations =$this->getRecomendations($location_id);
         $busqueda = $this->getBusqueda($id, $location_id, $minPrice, $maxPrice);
         $nuevo = $this->getNeuevo();
         $otros = $this->getOtros();

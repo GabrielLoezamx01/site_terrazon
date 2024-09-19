@@ -1,8 +1,5 @@
 <div class="card card-property ">
-    <span class="icon-fav fa-stack fa-2x">
-        <i class="fa-solid fa-circle fa-stack-2x"></i>
-        <i class="fa-regular fa-heart fa-stack-1x"></i>
-    </span>
+    <property-favorite  :initial-featured="{{ $isFavorite }}"  :property-id="{{ $card["id"] }}"></property-favorite>
     <div class="card-img-top" style="background: url('{{ $card["imageUrl"] }}');" alt="{{ $card["imageUrl"] }}" title="{{ $card["imageUrl"] }}"></div>
 
     <div class="card-body">

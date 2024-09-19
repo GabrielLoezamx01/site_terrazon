@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\CustomUser;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -37,6 +38,7 @@ class LoginController extends Controller
 
         if (Auth::guard('custom_users')->attempt(['email' => $request->email, 'password' => $request->password])) {
             if (Auth::guard('custom_users')->check()) {
+                Session::regenerateToken();
                 return redirect('custom/home');
             } else {
                 return redirect()->back()->withErrors(['error' => 'No hay usuario autenticado'])->withInput();

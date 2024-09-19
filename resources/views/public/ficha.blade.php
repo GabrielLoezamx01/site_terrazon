@@ -75,13 +75,13 @@
                             </div>
                             <div class="col-12">
                                 <div class="ficha-nav d-flex ">
-                                    <div class="list-item">
+                                    <div class="list-item cursor" data-bs-toggle="modal" data-bs-target="#locationModal">
                                         <span class="svg-icon-ficha svg-icon-location"></span> Ver mapa
                                     </div>
                                     <div class="list-item cursor" data-bs-toggle="modal" data-bs-target="#distributionModal">
                                         <span class="svg-icon-ficha svg-icon-distribution"></span> Ver distribución
                                     </div>
-                                    <div class="list-item">
+                                    <div class="list-item cursor"  data-bs-toggle="modal" data-bs-target="#tourModal">
                                         <span class="svg-icon-ficha svg-icon-360-degrees"></span> Tour Virtual
                                     </div>
                                     <div class="list-item cursor" data-bs-toggle="modal" data-bs-target="#videoModal">
@@ -267,6 +267,7 @@
         </div>
     </div>
 </div>
+@if(count($recomendations['data'])>0))
 <div class="bg-white pt-3 pb-4 min-container animate__animated animate__fadeIn">
     <div class="container">
         <div>
@@ -278,7 +279,7 @@
         </div>
     </div>
 </div>
-
+@endif
 <div class="bg-white pt-3 pb-4 min-container">
     <div class="container">
         <div>
@@ -535,7 +536,33 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-      <iframe width="100%" height="400px" src="https://www.youtube.com/embed/6R09e_H58fI?si=95QEPl_t76KOUMoG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      {!! $property->video !!}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="tourModal" tabindex="-1" aria-labelledby="tourModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-secondary text-white">
+        <h1 class="modal-title fs-5" id="tourModalLabel">TERRAZON</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      {!! $property->tour !!}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="locationModal" tabindex="-1" aria-labelledby="locationModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-secondary text-white">
+        <h1 class="modal-title fs-5" id="tourModalLabel">TERRAZON</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body"> 
+        Locación
       </div>
     </div>
   </div>

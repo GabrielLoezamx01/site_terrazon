@@ -373,5 +373,5 @@
     </div>
     @endsection
     @push('scripts')
-    <script src="{{ asset('js/home.js') }}?v={{ config('app.version')}}"></script>
+    <script src="{{ asset('js/home.js') }}?v={{ config('app.version')}}"  type="application/javascript"></script>
     @endpush

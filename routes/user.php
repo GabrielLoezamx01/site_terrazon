@@ -29,15 +29,17 @@ Route::post('/custom/register', [LoginController::class, 'register'])->name('cus
 *
 */
 
+
+
 Route::middleware('custom_user')->group(function () {
-    Route::post('/user/favorite/{property}', [FavoriteController::class, 'toggleFavorite']);
+    Route::post('/user/favorite/{property}', [FavoriteController::class, 'toggleFavorite'])->name('custom.favorite');
 });
 
 Route::prefix('custom')->middleware('custom_user')->group(function () {
     Route::view('/home', 'user.admin.home')->name('custom.home');
     Route::view('/home', 'user.admin.home')->name('custom.home');
     Route::post('/update_profile', [ProfileController::class, 'update'])->name('update_profile');
-    Route::view('/update_profile', 'user.admin.home')->name('custom.home');
+    // Route::view('/update_profile', 'user.admin.home')->name('custom.home');
     Route::get('/logout', [LoginController::class, 'logout'])->name('custom.logout');
 
 });

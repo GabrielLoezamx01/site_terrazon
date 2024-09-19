@@ -258,6 +258,23 @@ body {
         .fa-circle {
             color: #ffffff;
         }
+        .fa-solid.fa-heart{
+            display: none;
+        }
+        .fa-regular.fa-heart{
+            display: inline;
+        }
+        &.active{
+            .fa-solid.fa-heart{
+                display: inline;
+            }
+            .fa-regular.fa-heart{
+                display: none;
+            }
+            .fa-heart {
+                color: red;
+            }
+        }
     }
 
     .btn-detalle {

@@ -87,7 +87,7 @@ class PropertyController extends Controller
         $property->municipality_id = $request->municipality;
         $property->m2 = $request->informacion['m2'];
         $property->video = $request->informacion['video'] ?? '';
-        $property->tour = htmlspecialchars($request->informacion['tour'] ?? '', ENT_QUOTES, 'UTF-8');
+        $property->tour =  $request->informacion['tour'] ?? '';
         $property->location_id = $request->tipo_location;
         $property->save();
         return $property->id;
@@ -327,7 +327,7 @@ class PropertyController extends Controller
         $property->bathrooms = $request->bathrooms;
         $property->parking = $request->parking;
         $property->video = $request->video;
-        $property->tour = htmlspecialchars($request->tour ?? '', ENT_QUOTES, 'UTF-8');
+        $property->tour = $request->tour;
         $property->municipality_id = $request->municipality;
         $property->location_id = $request->tipo_location;
         $property->m2 = $request->m2;

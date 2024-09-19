@@ -1,6 +1,7 @@
 {
     "/js/app.js": "/js/app.js",
     "/js/vue.properties.js": "/js/vue.properties.js",
+    "/js/vue.public.app.js": "/js/vue.public.app.js",
     "/js/admin/home.js": "/js/admin/home.js",
     "/js/admin/amenities.js": "/js/admin/amenities.js",
     "/js/admin/condition.js": "/js/admin/condition.js",

@@ -8,6 +8,7 @@ use App\Models\Location;
 use App\Models\TypeProperty;
 use App\Models\ConditionProperty;
 use App\Models\Amenities;
+use App\Models\Favorite;
 
 class FiltersService
 {
@@ -19,13 +20,14 @@ class FiltersService
     protected $key_list_tiposPropiedad;
     protected $key_list_conditionProperty;
     protected $key_list_amenities;
-    public function __construct(Request $request)
+    protected $key_favorites;
+    public function __construct($user_id = null)
     {
-        $this->request = $request;
         $this->key_list_ubicaciones       = config('app.cache.list_ubicaciones');
         $this->key_list_tiposPropiedad    = config('app.cache.list_tiposPropiedad');
         $this->key_list_conditionProperty    = config('app.cache.list_conditionProperty');
         $this->key_list_amenities    = config('app.cache.list_amenities');
+        $this->key_favorites    = config('app.cache.favorites');
     }
     public function resetListUbicaciones()
     {
@@ -92,16 +94,36 @@ class FiltersService
             return  $Amenities;
         });
     }
-    public function cleanUbicaciones(){
+    public function getFavorites($user_id)
+    { 
+        if (!$user_id && $user_id == null) {
+            return [];
+        }
+        return Cache::rememberForever($this->key_list_amenities . $user_id, function () use ($user_id) {
+            $favorites = Favorite::select("property_id")->where('custom_user_id', $user_id)
+                ->pluck('property_id')
+                ->toArray();
+            return  $favorites;
+        });
+    }
+    public function cleanFavorites($user_id)
+    {
+        $this->forget($this->key_list_amenities .  $user_id);
+    }
+    public function cleanUbicaciones()
+    {
         $this->forget($this->key_list_ubicaciones);
     }
-    public function cleanTiposPropiedad(){
+    public function cleanTiposPropiedad()
+    {
         $this->forget($this->key_list_tiposPropiedad);
     }
-    public function cleanConditionsProperty(){
+    public function cleanConditionsProperty()
+    {
         $this->forget($this->key_list_conditionProperty);
     }
-    public function cleanAmenities(){
+    public function cleanAmenities()
+    {
         $this->forget($this->key_list_amenities);
     }
     public function forget($key)
