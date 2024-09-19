@@ -8,7 +8,7 @@
                 <li class="breadcrumb-item"><a href="/">Home</a></li>
                 <li class="breadcrumb-item"><a href="/propiedades">Propiedades</a></li>
                 @isset($property->types[0])
-                <li class="breadcrumb-item"><a href="/propiedades">{{ $property->types[0]->name}}</a></li>
+                <li class="breadcrumb-item"><a href="/propiedades?type[]={{ $property->types[0]->id}}">{{ $property->types[0]->name}}</a></li>
                 @endisset
                 <li class="breadcrumb-item active" aria-current="page">{{ $sku }}</li>
             </ol>
@@ -20,8 +20,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12 mb-2">
-                                <h3 class="ficha-title">{{ $property->title }}</h3>
-                                <h3 class="ficha-title">{{ $property["distributionLink"] }}</h3>
+                                <h3 class="ficha-title">{{ $property->title }}</h3> 
                             </div>
                             <div class="col-12">
                                 <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
