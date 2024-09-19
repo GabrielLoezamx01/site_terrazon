@@ -229,7 +229,7 @@
                                     Teléfono
                                 </div>
                                 <div class="col-8 fs-7">
-                                    +52 999 1 23 45 67
+                                    <a class="text-decoration-none text-white" href="tel:{{ config('app.contact_tel') }}">{{ config('app.contact_tel') }}</a>
                                 </div>
                             </div>
                             <div class="row py-3">
@@ -237,17 +237,14 @@
                                     Email
                                 </div>
                                 <div class="col-8 fs-7">
-                                    hola@terraazon.mx
+                                    <a class="text-decoration-none text-white" href="mailto:{{ config('app.contact_email') }}">{{ config('app.contact_email') }}</a>
                                 </div>
                             </div>
                             <div class="row py-3">
                                 <div class="col-4 fs-7">
                                     Direccion
                                 </div>
-                                <div class="col-8 fs-7">
-                                    C. 12A 310, Santa Gertrudis Copo,
-                                    97113 Mérida, Yuc.
-                                </div>
+                                <div class="col-8 fs-7">{{ config('app.contact_address') }}</div>
                             </div>
                         </div>
                         <div class="row">
@@ -373,5 +370,5 @@
     </div>
     @endsection
     @push('scripts')
-    <script src="{{ asset('js/home.js') }}?v={{ config('app.version')}}"  type="application/javascript"></script>
+    <script src="{{ asset('js/home.js') }}?v={{ config('app.version')}}" type="application/javascript"></script>
     @endpush

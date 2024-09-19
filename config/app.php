@@ -14,7 +14,8 @@ return [
     */
 
     'version' => '0.8',
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Terrazón'),
+    'contact_address' => env('CONTACT_ADDRESS', 'C. 12A 310, Santa Gertrudis Copo, 97113 Mérida, Yuc.'),
     'contact_email' => env('CONTAT_EMAIL', 'contacto@terrazon.mx'),
     'contact_tel' => env('CONTAT_TEL', '+52 999 912 3456'),
     'contact_tel_scape' => env('CONTAT_TEL_SCAPE', '+529999123456'),
