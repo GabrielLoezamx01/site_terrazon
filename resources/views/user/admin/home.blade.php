@@ -14,58 +14,15 @@
         </nav>
         <div class="row g-0">
             <div class="col-md-3  d-none d-md-block">
-                <div class="sidebar">
-                    <div class="col-md-12">
-                        <div class="p-2"></div>
-                        <h1 class="label ms-3 mt-5 color-label">
-                            Hola,
-                            {{ Auth::guard('custom_users')->user()->first_name }}
-                        </h1>
-                    </div>
-                    <ul class="list-group mt-5">
-                        <li class="list-group-item">
-                            <a href="#">Perfil de Usuario</a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#">Seguridad</a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#">Preferencias de Búsqueda</a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="{{ url('custom/favorite') }}">Mis favoritos</a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#">Comunicación</a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#">Aviso de privacidad y legal</a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#">Soporte y ayuda</a>
-                        </li>
-                    </ul>
-                </div>
+                @include('user.admin.sidebar')
             </div>
-
             <!-- Main content -->
             <div class="col-md-9 bg-white">
                 <div class="m-3">
                     <h2 class="sub-title mt-4">
                         Perfil de usuario
                     </h2>
-                    @if (session('success'))
-                        <div class="alert alert-success">
-                            {{ session('success') }}
-                        </div>
-                    @endif
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            @foreach ($errors->all() as $error)
-                                <p>{{ $error }}</p>
-                            @endforeach
-                        </div>
-                    @endif
+                    @include('user.admin.alerts')
                     <form method="POST" action="{{ route('update_profile') }}">
                         @csrf
                         <div class="row">
@@ -109,11 +66,16 @@
                                         Consulta nuestro <a href="#">Aviso de Privacidad</a>
                                     </span>
                                 </div> --}}
-                                <div class="text-end m-5">
-                                    <button type="button" onclick="location.href=''"
-                                        class="btn cancel-btn">CANCELAR</button>
-                                    <button type="submit" class="btn save-btn">GUARDAR</button>
+                                <div class="d-flex flex-column flex-md-row justify-content-md-end gap-3 m-5">
+                                    <button type="button" onclick="location.href=''" class="btn  cancel-btn">
+                                        CANCELAR
+                                    </button>
+                                    <button type="submit" class="btn save-btn">
+                                        GUARDAR
+                                    </button>
                                 </div>
+
+
                             </div>
                         </div>
                     </form>
