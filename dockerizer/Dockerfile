@@ -5,31 +5,30 @@ ENV NVM_DIR=/root/.nvm
 ENV PATH="/root/.nvm/versions/node/v${NODE_VERSION}/bin/:${PATH}"
 
 # Install dependencies
-RUN apt-get update && apt-get install -y \
-    nginx \
-    curl \
-    git \
-    zip \
-    unzip \
-    libfreetype6-dev \
-    libjpeg62-turbo-dev \
-    libmemcached-dev \
-    libzip-dev \
-    libpng-dev \
-    libonig-dev \
-    libxml2-dev \
-    librdkafka-dev \
-    libpq-dev \
-    openssh-server \
-    nano \
-    cron \
-    supervisor \
-    python3 \
-    python3-pip  # Install Python 3 and pip
+# RUN apt-get update && apt-get install -y \
+#     curl \
+#     git \
+#     zip \
+#     unzip \
+#     libfreetype6-dev \
+#     libjpeg62-turbo-dev \
+#     libmemcached-dev \
+#     libzip-dev \
+#     libpng-dev \
+#     libonig-dev \
+#     libxml2-dev \
+#     librdkafka-dev \
+#     libpq-dev \
+#     openssh-server \
+#     nano \
+#     cron \
+#     supervisor \
+#     python3 \
+#     python3-pip  # Install Python 3 and pip
 
-RUN mkdir -p /var/log/supervisor
-RUN mkdir -p /var/run && touch /var/run/supervisor.sock
-RUN chmod 0700 /var/run/supervisor.sock
+# RUN mkdir -p /var/log/supervisor
+# RUN mkdir -p /var/run && touch /var/run/supervisor.sock
+# RUN chmod 0700 /var/run/supervisor.sock
 
 # Install PHP extensions
 RUN docker-php-ext-install pdo pdo_mysql
@@ -47,7 +46,7 @@ RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | b
 
 
 # COPY ./dockerizer/supervisord.conf /etc/supervisor/supervisord.conf
-COPY ./dockerizer/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+# COPY ./dockerizer/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY ./dockerizer/php.ini /opt/docker/etc/php/php.ini
 COPY ./dockerizer/vhost.conf /opt/docker/etc/nginx/vhost.conf
 COPY ./dockerizer/laravel-setup.sh /app/laravel-setup.sh
@@ -82,4 +81,4 @@ EXPOSE 80
 # CMD rm -rf /var/cache/nginx/* && service nginx start && php-fpm
 ENTRYPOINT ["/start.sh"]
 # CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
-CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+# CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
