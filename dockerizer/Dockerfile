@@ -22,8 +22,7 @@ RUN apt-get update && apt-get install -y \
     libpq-dev \
     openssh-server \
     nano \
-    cron \
-    supervisor
+    cron
 
 # Install PHP extensions
 RUN docker-php-ext-install pdo pdo_mysql
