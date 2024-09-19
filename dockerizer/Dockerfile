@@ -23,7 +23,9 @@ RUN apt-get update && apt-get install -y \
     openssh-server \
     nano \
     cron \
-    supervisor
+    supervisor \
+    python3 \
+    python3-pip  # Install Python 3 and pip
 
 RUN mkdir -p /var/log/supervisor
 RUN mkdir -p /var/run && touch /var/run/supervisor.sock
