@@ -25,6 +25,7 @@ RUN composer install --no-interaction --no-scripts
 COPY . /app
 
 RUN chmod -R 755 /app/bootstrap/
+RUN chown -R application:application /app/bootstrap/
 RUN chmod -R 755 /app/storage/
 
 RUN chmod +x /start.sh
