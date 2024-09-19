@@ -213,8 +213,8 @@ class PropiedadesController extends Controller
             ->where('location_id', $location_id)
             ->where('id', '!=', $id)
             ->whereBetween('price', [$minPrice, $maxPrice])
-            ->get(); 
-        if (count($prop)>0) {
+            ->get();
+        if (count($prop) > 0) {
             $data = $prop->random();
             return new CardResource($data);
         } else {
