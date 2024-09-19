@@ -44,8 +44,8 @@ RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | b
 
 
 
-COPY ./dockerizer/supervisord.conf /etc/supervisor/supervisord.conf
-# COPY ./dockerizer/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+# COPY ./dockerizer/supervisord.conf /etc/supervisor/supervisord.conf
+COPY ./dockerizer/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY ./dockerizer/php.ini /opt/docker/etc/php/php.ini
 COPY ./dockerizer/vhost.conf /opt/docker/etc/nginx/vhost.conf
 COPY ./dockerizer/laravel-setup.sh /app/laravel-setup.sh
@@ -79,5 +79,5 @@ RUN ./laravel-setup.sh
 EXPOSE 80
 # CMD rm -rf /var/cache/nginx/* && service nginx start && php-fpm
 ENTRYPOINT ["/start.sh"]
-# CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
 # CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
