@@ -64,7 +64,7 @@ COPY ./dockerizer/laravel-setup.sh /app/laravel-setup.sh
 
 # Asegúrate de hacer ejecutable el script de Laravel
 WORKDIR /app
-RUN ./laravel-setup.sh
+RUN chmod +x ./laravel-setup.sh
 
 # Start Nginx and PHP-FPM, clear Nginx cache
 EXPOSE 80
