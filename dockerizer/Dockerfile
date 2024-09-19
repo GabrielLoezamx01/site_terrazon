@@ -30,7 +30,7 @@ RUN chmod -R 755 /app/storage/
 RUN chmod +x /start.sh
 RUN chmod +x ./laravel-setup.sh
 RUN ./laravel-setup.sh
-RUN -rf /var/cache/nginx/*  
+RUN rm -rf /var/cache/nginx/*  
 
 
 # CMD ./laravel-setup.sh 
@@ -40,8 +40,3 @@ RUN -rf /var/cache/nginx/*
 #RUN npm run production
 #RUN ./laravel-setup.sh
 
-# Start Nginx and PHP-FPM, clear Nginx cache
-
-
-# CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
-# CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
