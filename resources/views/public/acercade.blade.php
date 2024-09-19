@@ -56,7 +56,7 @@
                 </div>
             </div>
             <div class="col-12 col-md-6 pb-4">
-                <div class="row py-4"">
+                <div class="row py-4">
                     <div class=" col-12 col-md-2 text-center">
                     <i class="svg-service-icon svg-service-contract mb-4"></i>
                 </div>
@@ -69,7 +69,7 @@
             </div>
         </div>
         <div class="col-12 col-md-6 pb-4">
-            <div class="row py-4"">
+            <div class="row py-4">
                     <div class=" col-12 col-md-2 text-center">
                 <i class="svg-service-icon svg-service-online mb-4"></i>
             </div>
@@ -82,7 +82,7 @@
         </div>
     </div>
     <div class="col-12 col-md-6 pb-4">
-        <div class="row py-4"">
+        <div class="row py-4">
                     <div class=" col-12 col-md-2 text-center">
             <i class="svg-service-icon svg-service-finance mb-4"></i>
         </div>

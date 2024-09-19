@@ -23,7 +23,7 @@
             <div class="col-12 text-center">
                 <div class="inline">
                     @foreach ($ubicaciones as $key => $u)
-                    <a class="btn btn-outline-secondary" href="/propiedades?location={{$u['id']}}">
+                    <a class="btn btn-outline-secondary" href="/propiedades?order=minprice&location={{$u['id']}}">
                         <div class="d-flex align-items-center">
                             <span>{{$u["name"]}}</span>
                             <i class="ms-1 svg-icon-button {{$u['icon']}}"></i>
@@ -36,13 +36,16 @@
         @endif
         <div class="row">
             @if (!$searchmode)
+            <form action="/propiedades" id="filterForm">
+                <input type="hidden" name="order" value="{{ $orderQP }}" id="orderBy"> 
+            </form>
             <div class="col-12 text-left pb-3">
-                <div class="title">Top Propiedades </div>
+                <div class="title">Top Propiedades</div>
                 <div class="description">Descubre tu próximo hogar entre nuestras propiedades destacadas.</div>
             </div>
             @else
             <div class="col-12 text-left pb-3">
-                <div class="title">Resultados de búsqueda </div>
+                <div class="title">Resultados de búsqueda</div>
             </div>
             @endif
             @if ($searchmode)
@@ -51,13 +54,11 @@
                     <div class="col-4 text-start py-4 d-flex align-items-center">
                         <a id="toggleFilters2" href="javascript:void(0)" class="text-primary d-none d-md-block">Filtro <i class="bi bi-filter"></i> </a>
                     </div>
-                    <div class="col-8 text-end py-4">
-                        <!-- <button class="btn btn-sm btn-primary">LIMPIAR SELECCIÓN</button> -->
-                    </div>
                     <fieldset class="col-12 my-2 p-3">
                         <legend>{{ $paginationInfo->total() }} Resultados</legend>
                         <form action="/propiedades" id="filterForm">
                             <input type="hidden" id="location" name="location" value="{{ $locationQP }}" id="locationInput">
+                            <input type="hidden" name="order" value="{{ $orderQP }}" id="orderBy"> 
                             <div class="row">
                                 <div class="col-12 text-primary mb-3">
                                     <label class="mb-1">Locación</label>
@@ -198,12 +199,20 @@
                             @endif
                             <div class="btn-group">
                                 <a class="dropdown-toggle dd-order" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    mas relevantes
+                                    @if($orderQP=='relevantes')
+                                        Más relevantes
+                                    @endif
+                                    @if($orderQP=='minprice')
+                                        Menor Precio
+                                    @endif
+                                    @if($orderQP=='maxprice')
+                                        Mayor Precio
+                                    @endif
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="/propiedades?order=relevantes">Mas relevantes</a></li>
-                                    <li><a class="dropdown-item" href="/propiedades?order=minprice">Menor Precio</a></li>
-                                    <li><a class="dropdown-item" href="/propiedades?order=maxprice">Mayor Precio</a></li>
+                                    <li><a class="dropdown-item" href="javascript:void(0)" id="orderBy1">Mas relevantes</a></li>
+                                    <li><a class="dropdown-item" href="javascript:void(0)" id="orderBy2">Menor Precio</a></li>
+                                    <li><a class="dropdown-item" href="javascript:void(0)" id="orderBy3">Mayor Precio</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -342,10 +351,7 @@
                 <div class="row ">
                     <div class="col-4 text-start py-4 d-flex align-items-center">
                         <a id="toggleFilters2" href="javascript:void(0)" class="text-primary d-none d-md-block">Filtro <i class="bi bi-filter"></i> </a>
-                    </div>
-                    <div class="col-8 text-end py-4">
-                        <!-- <button class="btn btn-sm btn-primary">LIMPIAR SELECCIÓN</button> -->
-                    </div>
+                    </div> 
                     <fieldset class="col-12 my-2 p-3">
                         <legend>{{ $paginationInfo->total() }} Resultados</legend>
                         <form action="/propiedades" id="filterForm">

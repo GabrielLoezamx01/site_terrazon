@@ -34,11 +34,14 @@ class PropiedadesController extends Controller
         $bathroomsQP = $request->input('bathrooms');
         $roomsQP = $request->input('rooms');
         $typeQP =  $request->input('type') ?? null;
+        $orderQP =  $request->input('order') ?? '';
         $conditionsQp = $request->input('condition') != null ? $request->input('condition')  : [];
         $amenitiesQp = $request->input('amenities') != null ? $request->input('amenities')  : [];
         $filterOpen = ($request->input('filter')) ? $request->input('filter') : null;
         $page = ($request->input('page')) ? $request->input('page') : null;
         $perPage = ($request->input('perPage')) ? $request->input('perPage') : 6;
+
+        $queryString = $request->getQueryString();
 
         $searchmode = false;
 
@@ -54,10 +57,9 @@ class PropiedadesController extends Controller
         $data = [];
         $properties = Property::with('types', 'location', 'amenities', 'conditions', 'details', 'features', 'galleries')->where('available', 1);
 
-        if ($locationQP || $typeQP || $bugetQP) {
+        if ($locationQP || $typeQP || $bugetQP || $bathroomsQP || $conditionsQp  || $amenitiesQp) {
             $searchmode = true;
         }
-
         if ($locationQP != '') {
             $properties->where('location_id', $locationQP);
         }
@@ -70,23 +72,40 @@ class PropiedadesController extends Controller
         if ($roomsQP != '') {
             $properties->where('rooms', $roomsQP);
         }
-        if (count($conditionsQp) > 0) {
-            $properties->whereHas('conditions', function ($query) use ($conditionsQp) {
-                $query->whereIn('condition_id', $conditionsQp);
-            });
+        if ($orderQP != '') {
+            switch ($orderQP) {
+                case 'minprice':
+                    $properties->orderBy('price', 'asc');
+                    break;
+                case 'maxprice':
+                    $properties->orderBy('price', 'desc');
+                    break;
+                case 'relevantes':
+                    $properties->orderBy('view_count', 'desc');
+                    break;
+            } 
         }
-      
-        if ($typeQP!=null) { 
-            if($typeQP[0]!=null){
+        if ($conditionsQp != null) {
+            if ($conditionsQp[0] != null) {
+                $properties->whereHas('conditions', function ($query) use ($conditionsQp) {
+                    $query->whereIn('condition_id', $conditionsQp);
+                });
+            }
+        }
+
+        if ($typeQP != null) {
+            if ($typeQP[0] != null) {
                 $properties->whereHas('types', function ($query) use ($typeQP) {
                     $query->whereIn('types_id', $typeQP);
                 });
-            } 
+            }
         }
-        if (count($amenitiesQp) > 0) {
-            $properties->whereHas('amenities', function ($query) use ($amenitiesQp) {
-                $query->whereIn('amenities_id', $amenitiesQp);
-            });
+        if ($amenitiesQp != null) {
+            if ($amenitiesQp[0] != null) {
+                $properties->whereHas('amenities', function ($query) use ($amenitiesQp) {
+                    $query->whereIn('amenities_id', $amenitiesQp);
+                });
+            }
         }
 
         $budg1 = 0;
@@ -102,16 +121,13 @@ class PropiedadesController extends Controller
         $result = $properties->paginate($perPage, ['*'], 'page', $page)->appends([
             'location' => $locationQP,
             'type' => $typeQP,
+            'order' => $orderQP,
             'perPage' => $perPage,
         ]);
 
         foreach ($result->items() as $kp => $vp) {
             $data[] = new CardResource($vp);
         }
-        if (!empty($data)) {
-            shuffle($data);
-        }
-
         $viewed = $this->recentPropertiesService->getViewedData();
         return view('public.propiedades', [
             'budg1'              => $budg1,
@@ -136,6 +152,8 @@ class PropiedadesController extends Controller
             'results'            => $data,
             'viewed'             => $viewed,
             "paginationInfo"     => $result,
+            "orderQP"             => $orderQP,
+            "queryString"        => $queryString,
         ]);
     }
     public function ficha($sku)
@@ -156,8 +174,8 @@ class PropiedadesController extends Controller
         }
         $property->fechaCreacion = ucfirst($this->getDateFormat($property->created_at));
         $property->fechaActualizacion = ucfirst($this->getDateFormat($property->updated_at));
-        $property->distributionLink=isset($property->distributions[0]) ? asset('storage/' . $property->distributions[0]->url) : '';
-       
+        $property->distributionLink = isset($property->distributions[0]) ? asset('storage/' . $property->distributions[0]->url) : '';
+
         $property->increment('view_count');
         $this->addRecentViewPropertie($property);
 
@@ -166,7 +184,7 @@ class PropiedadesController extends Controller
         $priceDiference = 500000;
         $minPrice = $property->price - $priceDiference;
         $maxPrice = $property->price + $priceDiference;
-        $recomendations =$this->getRecomendations($location_id);
+        $recomendations = $this->getRecomendations($location_id);
         $busqueda = $this->getBusqueda($id, $location_id, $minPrice, $maxPrice);
         $nuevo = $this->getNeuevo();
         $otros = $this->getOtros();

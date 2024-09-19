@@ -82,11 +82,14 @@ $(document).ready(function () {
 
     var slider = document.getElementById('slider');
     var sliderMobile = document.getElementById('sliderMobile');
-    var budgetInput = document.getElementById('budget').value;
-    var budgetArray = budgetInput.split('-');
+    var budgetInput = document.getElementById('budget');
+    if(budgetInput){
+        var budgetArray = budgetInput.value.split('-');
+    }
+   
 
-    var startRange = (typeof budgetArray[0] != 'undefined') ? parseFloat(budgetArray[0]) : 0;
-    var endRange = (typeof budgetArray[1] != 'undefined') ? parseFloat(budgetArray[1]) : 0;
+    var startRange = (typeof budgetArray != 'undefined') ? parseFloat(budgetArray[0]) : 0;
+    var endRange = (typeof budgetArray != 'undefined') ? parseFloat(budgetArray[1]) : 10000000;
 
     var budg1 = document.getElementById('budg1');
     var budg2 = document.getElementById('budg2');
@@ -110,9 +113,21 @@ $(document).ready(function () {
     $("#filterForm").on("change", ".select_actions", function () {
         $("#filterForm").submit();
     });
-    
+    $("#orderBy1").on("click", function () {
+        $("#orderBy").val("relevantes");
+        $("#filterForm").submit();
+    });
+    $("#orderBy2").on("click", function () {
+        $("#orderBy").val("minprice");
+        $("#filterForm").submit();
+    });
+    $("#orderBy3").on("click", function () {
+        $("#orderBy").val("maxprice");
+        $("#filterForm").submit();
+    });
 
-    if (slider) {
+ 
+    if (slider && budgetInput) {
         noUiSlider.create(slider, {
             start: [startRange, endRange],
             connect: true,
@@ -132,7 +147,7 @@ $(document).ready(function () {
             $("#filterForm").submit();
         });
     }
-    if (sliderMobile) {
+    if (sliderMobile && budgetInput) {
         noUiSlider.create(sliderMobile, {
             start: [startRange, endRange],
             connect: true,
@@ -154,11 +169,11 @@ $(document).ready(function () {
     }
     $("#chk_1").on('change', function () {
         var isChecked = $(this).is(':checked');
-        $('input[name="type[]"]').prop('checked', isChecked); 
+        $('input[name="type[]"]').prop('checked', isChecked);
         $("#filterForm").submit();
     });
     var submitLocation = function (data) {
-        $("#location").val(data);
+        $("#location").val(data); 
         $("#filterForm").submit();
     }
 
@@ -219,6 +234,7 @@ $(document).ready(function () {
         input_val = formatNumber(input_val);
         input.val(input_val);
     }
+
 
     window.submitLocation = submitLocation;
 });
