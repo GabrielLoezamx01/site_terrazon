@@ -12,9 +12,12 @@
                 <div class="dropdown">
                     <a class="dropdown-toggle text-sm text-gray-700 dark:text-gray-500 underline"
                         id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" role="button">
-                        {{ Auth::guard('custom_users')->user()->first_name }}
+                        Hola,
+                        <span class="fw-bold">
+                        {{ Auth::guard('custom_users')->user()->first_name }}   {{ Auth::guard('custom_users')->user()->last_name }}
+                        </span>
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-end p-0 border-0 shadow-sm"
+                    <ul class="dropdown-menu dropdown-menu-end p-0 border-0 shadow-sm mt-4"
                         aria-labelledby="dropdownMenuButton" style="background-color: #094208;">
                         <li class="border-bottom">
                             <a class="text-white p-3" href="{{ url('/custom/home') }}">

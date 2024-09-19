@@ -15,9 +15,9 @@
         <div class="row h-100">
             <div class="col-md-6">
                 <div class="m-5">
-                    <div>
-                        <img src="{{ asset('images/logo-terrazon.png') }}" class="login-img mt-5">
-                    </div>
+                   <a href="{{ url('/') }}">
+                            <img src="{{ asset('images/logo-terrazon.png') }}" class="login-img mt-5">
+                        </a>
                     <div class="padding-login">
                         <h1 class="color-login">
                             ¿Olvidaste tu contraseña?
