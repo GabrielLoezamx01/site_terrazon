@@ -31,8 +31,7 @@ RUN chmod -R 755 /app/storage/
 RUN chmod +x /start.sh
 RUN chmod +x ./laravel-setup.sh
 
-CMD ./laravel-setup.sh && rm -rf /var/cache/nginx/*
-
+CMD ./laravel-setup.sh 
 # Set the working directory
 # WORKDIR /app 
 #RUN npm install
