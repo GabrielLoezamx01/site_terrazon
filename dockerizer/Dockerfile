@@ -50,6 +50,7 @@ COPY ./dockerizer/laravel-setup.sh /app/laravel-setup.sh
 # RUN node --version && npm --version
 # Copy the package.json and package-lock.json first
 COPY package*.json /app/
+COPY composer*.lock /app/
 
 COPY ./dockerizer/start.sh /start.sh
 RUN chmod +x /start.sh
