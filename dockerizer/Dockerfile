@@ -58,11 +58,11 @@ RUN chmod +x /start.sh
 # Set the working directory
 WORKDIR /app
 # Install Node.js dependencies
-RUN npm install
+#RUN npm install
 # Copy the rest of the application code
 COPY . /app
 # Install PHP dependencies
-RUN composer install --no-interaction --no-scripts --no-suggest
+RUN composer install --no-interaction --no-scripts
 # Build assets (assuming `npm run production` is needed)
 #RUN npm run production
 # Clear Laravel caches and optimize
