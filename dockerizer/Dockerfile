@@ -22,7 +22,7 @@ COPY ./package*.json /app/
 COPY ./composer.json ./composer.lock /app/
 
 WORKDIR /app 
-RUN chmod +x /usr/local/bin/entrypoint.sh
+# RUN chmod +x /usr/local/bin/entrypoint.sh
 RUN composer install --no-interaction --no-scripts
 COPY . /app
 
