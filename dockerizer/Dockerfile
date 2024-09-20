@@ -34,4 +34,5 @@ RUN chmod -R 755 /app/storage/
 # Ejecutar el script al iniciar el contenedor
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 # Mantener el contenedor ejecutándose
+CMD ["service", "nginx", "start"]
 # CMD ["tail", "-f", "/dev/null"]
