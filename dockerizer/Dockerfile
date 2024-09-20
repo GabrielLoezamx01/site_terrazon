@@ -14,6 +14,7 @@ RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | b
 RUN mkdir -p /tmp/nginx_cache && chown -R www-data:www-data /tmp/nginx_cache
 
 COPY ./dockerizer/php.ini /opt/docker/etc/php/php.ini
+COPY ./dockerizer/nginx.conf /etc/nginx/nginx.conf
 COPY ./dockerizer/vhost.conf /opt/docker/etc/nginx/vhost.conf
 COPY ./dockerizer/laravel-setup.sh /app/laravel-setup.sh
 COPY ./dockerizer/start.sh /start.sh
