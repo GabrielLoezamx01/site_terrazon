@@ -31,7 +31,7 @@ RUN chown -R application:application /app/bootstrap/
 RUN chmod -R 755 /app/storage/
 
 RUN chmod +x /app/start.sh
-RUN chmod +x ./app/laravel-setup.sh
+RUN chmod +x ./laravel-setup.sh
 # RUN ./laravel-setup.sh
 # RUN npm install
 # RUN npm run production
