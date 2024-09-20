@@ -38,7 +38,8 @@
                 {{ Auth::guard('custom_users')->user()->first_name }}
                 </a> --}}
                 @else
-                    <a href="{{ url('/custom/login') }}">Iniciar sesión / registrarme</a>
+                    <a href="{{ url('/custom/login') }}">Iniciar sesión / </a>
+                    <a href="{{ url('/custom/register') }}">registrarme</a>
                 @endif
             </div>
         </div>

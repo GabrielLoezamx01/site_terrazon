@@ -13,7 +13,13 @@ class LoginController extends Controller
 {
     public function index()
     {
-        return view('user.auth.login');
+
+        if (Auth::guard('custom_users')->check()) {
+            Session::regenerateToken();
+            return redirect('custom/home');
+        } else {
+            return view('user.auth.login');
+        }
     }
 
     public function login(Request $request)

@@ -2,22 +2,24 @@
 @section('title', 'TERRAZÓN - INICIO')
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/user_custom.css') }}">
-    {{-- <link rel="stylesheet" href="{{ asset('css/login_user.css') }}"> --}}
 @endpush
 @section('content')
     <div class="container">
-        <nav aria-label="breadcrumb">
+        <nav aria-label="breadcrumb" class="d-none d-md-block">
             <ol class="breadcrumb mt-3">
                 <li class="breadcrumb-item"><a href="/">Home</a></li>
                 <li class="breadcrumb-item"><a href="{{ url('custom/home') }}">Mi cuenta</a></li>
             </ol>
         </nav>
         <div class="row g-0">
-            <div class="col-md-3  d-none d-md-block">
+            {{-- <div class="col-md-12 d-md-none order-1 bg-white"> --}}
+            @include('user.admin.sidebar_mobile')
+            {{-- </div> --}}
+            <div class="col-md-3 d-none d-md-block order-md-1">
                 @include('user.admin.sidebar')
             </div>
             <!-- Main content -->
-            <div class="col-md-9 bg-white">
+            <div class="col-md-9 bg-white order-2">
                 <div class="m-3">
                     <h2 class="sub-title mt-4">
                         Perfil de usuario
@@ -81,6 +83,7 @@
                     </form>
                 </div>
             </div>
+
         </div>
         <div class="p-5">
         </div>

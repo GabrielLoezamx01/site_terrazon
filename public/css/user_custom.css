@@ -109,12 +109,12 @@ input::placeholder {
     color: white;
     /* background-color: green; */
     border: none;
-    color: #37B052;
+    color: #37b052;
     border-radius: 6px;
-    border: 1px solid #37B052;
+    border: 1px solid #37b052;
 }
 #sidebar {
-  transition: all 0.5s ease;
+    transition: all 0.5s ease;
 }
 
 .dropdown-menu li {
@@ -124,4 +124,9 @@ input::placeholder {
 
 .dropdown-menu li:last-child {
     border-bottom: none; /* Elimina el borde del último elemento */
+}
+
+
+.d-flex::-webkit-scrollbar {
+    display: none;
 }
