@@ -16,23 +16,17 @@ RUN mkdir -p /var/cache/nginx_cache && chown -R www-data:www-data /var/cache/ngi
 COPY ./dockerizer/php.ini /opt/docker/etc/php/php.ini
 COPY ./dockerizer/nginx.conf /etc/nginx/nginx.conf
 COPY ./dockerizer/vhost.conf /opt/docker/etc/nginx/vhost.conf
-# COPY ./dockerizer/entrypoint.sh /usr/local/bin/entrypoint.sh
+COPY ./dockerizer/laravel.sh /app/laravel.sh 
 
 COPY ./package*.json /app/
 COPY ./composer.json ./composer.lock /app/
 
-WORKDIR /app 
-# RUN chmod +x /usr/local/bin/entrypoint.sh
+WORKDIR /app  
 RUN composer install --no-interaction --no-scripts
 COPY . /app
 
 RUN chmod -R 755 /app/bootstrap/
 RUN chown -R application:application /app/bootstrap/
 RUN chmod -R 755 /app/storage/
-
- 
-# Ejecutar el script al iniciar el contenedor
-# ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
-# Mantener el contenedor ejecutándose
-# CMD ["service", "nginx", "start"]
-# CMD ["tail", "-f", "/dev/null"]
+RUN chmod +x /app/laravel.sh 
+RUN /app/laravel.sh
