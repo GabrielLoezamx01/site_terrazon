@@ -125,3 +125,14 @@ input::placeholder {
 .dropdown-menu li:last-child {
     border-bottom: none; /* Elimina el borde del último elemento */
 }
+   .d-flex {
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            white-space: nowrap;
+            scrollbar-width: none;
+        }
+
+        .d-flex::-webkit-scrollbar {
+            display: none;
+        }

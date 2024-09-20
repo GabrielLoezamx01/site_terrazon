@@ -217,3 +217,56 @@ input::placeholder {
     color: #3830d9;
     margin-bottom: 5px;
 }
+
+.custom-checkbox {
+    display: flex;
+    align-items: flex-start;
+    font-family: 'Inter', sans-serif; /* Usa la fuente que prefieras */
+    font-size: 14px;
+    color: #333; /* Color del texto */
+}
+
+.custom-checkbox input[type="checkbox"] {
+    display: none; /* Esconde el checkbox original */
+}
+
+.custom-checkbox span {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border: 2px solid #333; /* Color del borde */
+    border-radius: 5px; /* Bordes redondeados */
+    margin-right: 10px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.custom-checkbox input[type="checkbox"]:checked + span {
+    background-color: #37B052; /* Color cuando está seleccionado */
+    border-color: #37B052;
+}
+
+.custom-checkbox span::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50px;
+    height: 50px;
+    background-color: #fff;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.2s ease;
+    border-radius: 2px;
+}
+
+.custom-checkbox input[type="checkbox"]:checked + span::after {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.custom-checkbox p {
+    margin: 0;
+    line-height: 1.5;
+    font-size: 14px;
+
+}

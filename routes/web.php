@@ -59,6 +59,9 @@ Auth::routes();
 Route::get('/register', function () {
     return redirect('/');
 });
+Route::get('/login', function () {
+    return redirect('/');
+});
 // Auth::routes(['register' => false]);
 
 

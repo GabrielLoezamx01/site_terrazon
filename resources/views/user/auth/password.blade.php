@@ -15,9 +15,9 @@
         <div class="row h-100">
             <div class="col-md-6">
                 <div class="m-5">
-                   <a href="{{ url('/') }}">
-                            <img src="{{ asset('images/logo-terrazon.png') }}" class="login-img mt-5">
-                        </a>
+                    <a href="{{ url('/') }}">
+                        <img src="{{ asset('images/logo-terrazon.png') }}" class="login-img mt-5">
+                    </a>
                     <div class="padding-login">
                         <h1 class="color-login">
                             ¿Olvidaste tu contraseña?
@@ -52,21 +52,16 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
-
             </div>
-
             <div class="col-md-6 d-none d-md-block"
                 style="background-image: url('{{ asset('images/ForgotPassword.webp') }}'); background-size: cover; background-position: center;">
-
             </div>
-
         </div>
     </div>
 
-    <script src="{{ asset('js/app.js') }}?v={{ config('app.version')}}"></script>
+    <script src="{{ asset('js/app.js') }}?v={{ config('app.version') }}"></script>
     <script>
         function togglePassword() {
             const passwordField = document.getElementById("password");
