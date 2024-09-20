@@ -24521,6 +24521,17 @@ h5, .h5 {
   }
 }
 
+.banner-item {
+  height: 700px;
+  background-size: cover;
+  background-position: center;
+}
+@media screen and (max-width: 500px) {
+  .banner-item {
+    height: 250px;
+  }
+}
+
 .fw-400 {
   font-weight: 400 !important;
 }

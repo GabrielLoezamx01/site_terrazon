@@ -3,8 +3,8 @@
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 4"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 5"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
     </div>
     <div class="carousel-inner">
         <div class="carousel-over-content">
@@ -13,7 +13,7 @@
                     <div class="col-12 text-center">
                         <h1 class="title-banner">Haz realidad tus sueños y <br> encuentra tu lugar en Terrazon</h1>
                     </div>
-                    <div class="col-12 offset-2 col-md-8 d-none d-md-inline">
+                    <div class="col-12 offset-2 col-md-8 d-none d-lg-inline">
                         <form method="GET" action="/propiedades">
                             <div class="card card-filter">
                                 <div class="row">
@@ -65,7 +65,7 @@
                             </div>
                         </form>
                     </div>
-                    <div class="col-12 text-center d-inline d-md-none">
+                    <div class="col-12 text-center d-inline d-lg-none">
                         <span class="header-icon-filter fa-stack fa-2x" data-bs-toggle="modal" data-bs-target="#searchModal">
                             <i class="fa-solid fa-circle fa-stack-2x fa-inverse"></i>
                             <i class="fa-solid fa-chevron-down fa-stack-1x text-tertiary "></i>
@@ -75,13 +75,19 @@
             </div>
         </div>
         <div class="carousel-item active">
-            <img src="{{ asset('images/bg-01.png') }}" class="d-block w-100" alt="...">
+            <div class=" banner-item" style="background-image: url('{{ asset('images/banners/banner-01.jpg') }}');"></div>
         </div>
         <div class="carousel-item">
-            <img src="{{ asset('images/bg-01.png') }}" class="d-block w-100" alt="...">
+            <div class=" banner-item" style="background-image: url('{{ asset('images/banners/banner-02.jpg') }}');"></div>
         </div>
         <div class="carousel-item">
-            <img src="{{ asset('images/bg-01.png') }}" class="d-block w-100" alt="...">
+            <div class=" banner-item" style="background-image: url('{{ asset('images/banners/banner-03.jpg') }}');"></div>
+        </div>
+        <div class="carousel-item">
+            <div class=" banner-item" style="background-image: url('{{ asset('images/banners/banner-04.jpg') }}');"></div>
+        </div>
+        <div class="carousel-item">
+            <div class=" banner-item" style="background-image: url('{{ asset('images/banners/banner-05.jpg') }}');"></div>
         </div>
     </div>
 </div>
