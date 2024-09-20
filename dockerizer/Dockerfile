@@ -17,7 +17,7 @@ COPY ./dockerizer/php.ini /opt/docker/etc/php/php.ini
 COPY ./dockerizer/nginx.conf /etc/nginx/nginx.conf
 COPY ./dockerizer/vhost.conf /opt/docker/etc/nginx/vhost.conf
 COPY ./dockerizer/laravel-setup.sh /app/laravel-setup.sh
-COPY ./dockerizer/start.sh /start.sh
+COPY ./dockerizer/start.sh /app/start.sh
 
 COPY ./package*.json /app/
 COPY ./composer.json ./composer.lock /app/
@@ -36,4 +36,7 @@ RUN ./laravel-setup.sh
 #RUN npm install
 #RUN npm run production
 #RUN ./laravel-setup.sh
+
+
+ENTRYPOINT [ "start.sh" ]
 

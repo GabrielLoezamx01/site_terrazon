@@ -11,5 +11,7 @@ rm -rf /tmp/nginx_cache/*
 mkdir -p /tmp/nginx_cache
 chown -R www-data:www-data /tmp/nginx_cache
 
+service nginx restart
+
 # Ejecutar el comando pasado al contenedor (en este caso, será supervisord)
 exec "$@"
