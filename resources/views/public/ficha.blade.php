@@ -30,7 +30,7 @@
                             </div>
                             <div class="col-12">
                                 <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-                                    <div class="carousel-indicators">
+                                    <div class="carousel-indicators d-none d-lg-flex">
                                         @foreach($galery as $item)
                                         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{ $item['id'] }}" class="{{ $loop->first ? 'active' : '' }}" aria-current="{{ $loop->first ? 'true' : 'false' }}" aria-label="{{ $item['label'] }}"></button>
                                         @endforeach
