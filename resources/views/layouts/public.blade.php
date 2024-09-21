@@ -32,7 +32,6 @@
     @stack('stylesheet')
     @stack('styles')
     <script src="{{ mix('js/app.js') }}" type="application/javascript"></script>
-    <script src="{{ mix('js/favorite.js') }}" type="application/javascript"></script>
     <link rel="shortcat icon" href="{{asset('img/favicon.ico') }}">
 </head>
 
