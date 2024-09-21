@@ -1324,8 +1324,9 @@ fieldset {
 
 .ficha-location {
     color: #1E612D;
-    font-size: 20px;
+    font-size: 12px;
     font-weight: 500;
+   
 
     img {
         height: 11px;
@@ -1333,9 +1334,12 @@ fieldset {
 
     a {
         color: #1E612D;
-        font-size: 20px;
-        font-weight: 500;
+        font-size: 18px;
+        font-weight: 400;
         text-decoration: none;
+        @media screen and (max-width:500px) {
+            font-size: 12px !important;
+        }
     }
 }
 

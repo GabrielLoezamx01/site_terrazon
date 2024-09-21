@@ -75,34 +75,45 @@
                             <div class="col-12">
                                 <div class="ficha-nav d-flex ">
                                     <div class="list-item cursor" data-bs-toggle="modal" data-bs-target="#locationModal">
-                                        <span class="svg-icon-ficha svg-icon-location"></span> Ver mapa
+                                        <span class="svg-icon-ficha svg-icon-location d-none d-lg-block"></span><span class="d-none d-lg-block">Ver en </span>Mapa
                                     </div>
                                     <div class="list-item cursor" data-bs-toggle="modal" data-bs-target="#distributionModal">
-                                        <span class="svg-icon-ficha svg-icon-distribution"></span> Ver distribución
+                                        <span class="svg-icon-ficha svg-icon-distribution d-none d-lg-block"></span><span class="d-none d-lg-block">Ver </span>Distribución
                                     </div>
                                     <div class="list-item cursor" data-bs-toggle="modal" data-bs-target="#tourModal">
-                                        <span class="svg-icon-ficha svg-icon-360-degrees"></span> Tour Virtual
+                                        <span class="svg-icon-ficha svg-icon-360-degrees d-none d-lg-block"></span> Tour Virtual
                                     </div>
                                     <div class="list-item cursor" data-bs-toggle="modal" data-bs-target="#videoModal">
-                                        <span class="svg-icon-ficha svg-icon-video"></span> Video
+                                        <span class="svg-icon-ficha svg-icon-video d-none d-lg-block"></span> Video
                                     </div>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="row pt-3">
-                                    <div class="col-9">
-                                        <h2>$ {{ number_format($property->price,2,'.',',') }}</h2>
-                                        <div class="text-tertiary">
-                                            <h5 class="ficha-location">
-                                                <a href="https://www.google.com/maps/search/?api=1&query={{ $property->latitude }},{{ $property->longitude }}" target="_blank">
-                                                    <i class="bi bi-geo-alt"></i> Ubicación
-                                                </a>
-                                            </h5>
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <div class="col-6">
+                                            <h2>$ {{ number_format($property->price,2,'.',',') }}</h2>
+                                            </div>
+                                            <div class="col-6 text-end">
+                                            <div class="text-tertiary share-text d-flex align-items-center justify-content-end cursor" data-bs-toggle="modal" data-bs-target="#shareModal"><i class="bi bi-share-fill mx-1 fs-4"></i> Compartir</div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-3 text-end ">
-                                        <div class="text-tertiary share-text d-flex align-items-center justify-content-end cursor" data-bs-toggle="modal" data-bs-target="#shareModal"><i class="bi bi-share-fill mx-1 fs-4"></i> Compartir</div>
-                                        <small>SKU {{ $sku }}</small>
+                                    <div class="col-12">
+                                       
+                                        <div class="row">
+                                            <div class="col-12 col-lg-6">
+                                                <h5 class="ficha-location text-tertiary">
+                                                    <a href="https://www.google.com/maps/search/?api=1&query={{ $property->latitude }},{{ $property->longitude }}" target="_blank">
+                                                        <i class="bi bi-geo-alt"></i> Ubicación del desarrollo o propiedad
+                                                    </a>
+                                                </h5>
+                                            </div>
+                                            <div class="col-12 col-lg-6  text-lg-end">
+                                                SKU {{ $sku }}
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="col-12">
                                         <hr class="m-0">
@@ -598,7 +609,7 @@
                     <div class="d-flex align-items-center mb-3 copy-button" style="max-width: 600px;">
                         <input type="text" class="form-control" id="linkInput" value="{{$shareLink}}" readonly>
                         <button class="btn btn-outline-primary" type="button" id="copyButton">Copiar</button>
-                    </div> 
+                    </div>
                 </div>
             </div>
         </div>
