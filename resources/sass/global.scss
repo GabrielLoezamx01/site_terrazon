@@ -22,7 +22,9 @@ body {
     font-optical-sizing: auto;
     font-style: normal;
     font-variation-settings: "slnt"0;
-    background: var(--Lightest, #F5F3F1) !important;
+    background: var(--Lightest, #F2F2F2CC) !important;
+
+
 }
 
 * {
@@ -30,10 +32,8 @@ body {
     font-weight: 400;
 }
 
-h5 {
-    color: $title-color;
-}
-
+h3,
+h5,
 h6 {
     color: $title-color;
 }
@@ -41,6 +41,25 @@ h6 {
 .modal-share {
     @media screen and (min-width:760px) {
         max-width: 375px;
+    }
+}
+
+.card-contact {
+    padding: 1rem;
+
+    @media screen and (min-width:580px) {
+        padding: 5rem;
+    }
+
+    .form-control {
+        border-color: 1px solid #828282;
+
+        &:empty {
+            background-color: #F9F9F9;
+        }
+        &:not(:placeholder-shown) {
+            background-color: white;
+        }
     }
 }
 
@@ -1301,12 +1320,15 @@ fieldset {
     background: $tertiary;
     color: white;
     border-radius: 6px;
-    .ficha-price{
+
+    .ficha-price {
         font-size: 36px;
+
         @media screen and (max-width: 568px) {
             font-size: 24px;
         }
     }
+
     .list-item {
         width: 25%;
         padding: 10px;

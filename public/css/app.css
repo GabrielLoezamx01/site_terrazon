@@ -24493,7 +24493,7 @@ body {
   font-optical-sizing: auto;
   font-style: normal;
   font-variation-settings: "slnt" 0;
-  background: var(--Lightest, #F5F3F1) !important;
+  background: var(--Lightest, rgba(242, 242, 242, 0.8)) !important;
 }
 
 * {
@@ -24501,11 +24501,11 @@ body {
   font-weight: 400;
 }
 
-h5, .h5 {
-  color: #231D46;
-}
-
-h6, .h6 {
+h3, .h3,
+h5,
+.h5,
+h6,
+.h6 {
   color: #231D46;
 }
 
@@ -24513,6 +24513,27 @@ h6, .h6 {
   .modal-share {
     max-width: 375px;
   }
+}
+
+.card-contact {
+  padding: 1rem;
+}
+@media screen and (min-width: 580px) {
+  .card-contact {
+    padding: 5rem;
+  }
+}
+.card-contact .form-control {
+  border-color: 1px solid #828282;
+}
+.card-contact .form-control:empty {
+  background-color: #F9F9F9;
+}
+.card-contact .form-control:not(:-moz-placeholder-shown) {
+  background-color: white;
+}
+.card-contact .form-control:not(:placeholder-shown) {
+  background-color: white;
 }
 
 .copy-button {
