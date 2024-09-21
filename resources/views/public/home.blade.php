@@ -242,20 +242,28 @@
                             </div>
                             <div class="row py-3">
                                 <div class="col-4 fs-7">
-                                    Direccion
+                                    Dirección
                                 </div>
                                 <div class="col-8 fs-7">{{ config('app.contact_address') }}</div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-4 col-sm-2 text-center fs-7">
-                                <a href="https://www.facebook.com/share/bz85nrGpXmAPYVZQ/?mibextid=qi2Omg" target="_blank"><span class="svg-social-icon svg-social-facebook"></span></a>
-                            </div>
-                            <div class="col-4 col-sm-2 text-center fs-7">
-                                <a href="https://www.instagram.com/terrazon.mx?igsh=aW53ZmVwOTB1dWdi" target="_blank"><span class="svg-social-icon svg-social-youtube"></span></a>
-                            </div>
-                            <div class="col-4 col-sm-2 text-center fs-7">
-                                <a href="https://www.facebook.com/share/bz85nrGpXmAPYVZQ/?mibextid=qi2Omg" target="_blank"> <span class="svg-social-icon svg-social-whatsapp"></span></a>
+                            <div class="social-icons">
+                                @if(config('app.link_facebook')!='')
+                                <a class="px-1 social-link" target="_blank" href="{{ config('app.link_facebook') }}"><i class="svg-social-icon-footer svg-social-facebook display-inline"></i></a>
+                                @endif
+                                @if(config('app.link_instagram')!='')
+                                <a class="px-1 social-link" target="_blank" href="{{ config('app.link_instagram') }}"><i class="svg-social-icon-footer svg-social-instagram display-inline"></i></a>
+                                @endif
+                                @if(config('app.link_youtube')!='')
+                                <a class="px-1 social-link" target="_blank" href="{{ config('app.link_youtube') }}"><i class="svg-social-icon-footer svg-social-youtube text-white"></i></a>
+                                @endif
+                                @if(config('app.link_tiktok')!='')
+                                <a class="px-1 social-link" target="_blank" href="{{ config('app.link_tiktok') }}"><i class="svg-social-icon-footer svg-social-tiktok text-white"></i></a>
+                                @endif
+                                @if(config('app.contact_tel_scape')!='')
+                                <a class="px-1 social-link" target="_blank" href="https://wa.me/{{ config('app.contact_tel_scape') }}"><i class="svg-social-icon-footer svg-social-whatsapp text-white"></i></a>
+                                @endif
                             </div>
                         </div>
                     </div>
