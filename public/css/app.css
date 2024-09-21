@@ -25161,6 +25161,11 @@ ul.list-info .detail-text {
   font-weight: 300;
   font-size: 16px;
 }
+@media screen and (max-width: 768px) {
+  .description {
+    font-size: 12px;
+  }
+}
 
 .btn-detalle {
   color: white;

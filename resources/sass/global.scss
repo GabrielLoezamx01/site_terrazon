@@ -774,6 +774,9 @@ ul.list-info {
 .description {
     font-weight: 300;
     font-size: 16px;
+    @media screen and (max-width:768px) {
+        font-size: 12px;
+    }
 }
 
 .btn-detalle {

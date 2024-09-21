@@ -1,7 +1,7 @@
 @extends('layouts.public')
 @section('title', 'TERRAZÓN - PROPIEDADES')
 @section('content')
-<div class="bg-white pb-1">
+<div class="bg-white pb-1 pt-3">
     <div class="container">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
