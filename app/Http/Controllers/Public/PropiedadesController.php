@@ -120,7 +120,7 @@ class PropiedadesController extends Controller
             $budg2 = isset($bg[1]) ? $bg[1] : 0;
             $properties->whereBetween('price', [$budg1, $budg2]);
         } else {
-            $bugetQP = "0-10000000";
+            $bugetQP = "0-100000000";
         }
         $result = $properties->paginate($perPage, ['*'], 'page', $page)->appends([
             'location' => $locationQP,
