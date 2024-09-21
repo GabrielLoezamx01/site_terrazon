@@ -17,5 +17,22 @@
     "/css/admin.css": "/css/admin.css",
     "/css/app.css": "/css/app.css",
     "/css/agentes.css": "/css/agentes.css",
-    "/css/acercade.css": "/css/acercade.css"
+    "/css/acercade.css": "/css/acercade.css",
+    "/css/gallery.css": "/css/gallery.css",
+    "/css/animate.min.css": "/css/animate.min.css",
+    "/webfonts/fa-brands-400.ttf": "/webfonts/fa-brands-400.ttf",
+    "/webfonts/fa-brands-400.woff2": "/webfonts/fa-brands-400.woff2",
+    "/webfonts/fa-regular-400.ttf": "/webfonts/fa-regular-400.ttf",
+    "/webfonts/fa-regular-400.woff2": "/webfonts/fa-regular-400.woff2",
+    "/webfonts/fa-solid-900.ttf": "/webfonts/fa-solid-900.ttf",
+    "/webfonts/fa-solid-900.woff2": "/webfonts/fa-solid-900.woff2",
+    "/webfonts/fa-v4compatibility.ttf": "/webfonts/fa-v4compatibility.ttf",
+    "/webfonts/fa-v4compatibility.woff2": "/webfonts/fa-v4compatibility.woff2",
+    "/css/fonts/bootstrap-icons.woff": "/css/fonts/bootstrap-icons.woff",
+    "/css/fonts/bootstrap-icons.woff2": "/css/fonts/bootstrap-icons.woff2",
+    "/css/nouislider.min.css": "/css/nouislider.min.css",
+    "/js/popper.js": "/js/popper.js",
+    "/css/owl.carousel.css": "/css/owl.carousel.css",
+    "/css/owl.theme.default.css": "/css/owl.theme.default.css",
+    "/js/owl.carousel.min.js": "/js/owl.carousel.min.js"
 }
