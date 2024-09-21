@@ -102,7 +102,7 @@ class ProfileController extends Controller
             $email = $auth->email;
             $token = Str::random(6);
             $payload = [
-                'from' => 'TERRAZON - Contraseña <Terrazon@echamelamano.online>',
+                'from' => 'TERRAZON - Contraseña <'.config('app.resend_from').'>' ,
                 'to' => [$email],
                 'subject' => 'Verificación de usuario',
                 'html' => $htmlContent,

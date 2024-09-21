@@ -32,7 +32,7 @@ class ContactController extends Controller
         }
         $validator->validated();
         $payload = [
-            'from' => config('app.name') . ' <terrazon@echamelamano.online>',
+            'from' => config('app.name') . ' <'.config('app.resend_from').'>',
             'to' =>  config('app.contact_to'),
             'subject' => 'Contácto desde terrazon.mx',
             'html' => $this->buildEmailContent($request),
@@ -61,7 +61,7 @@ class ContactController extends Controller
         }
         $validator->validated();
         $payload = [
-            'from' => config('app.name') . ' <terrazon@echamelamano.online>',
+            'from' => config('app.name') . ' <'.config('app.resend_from').'>',
             'to' =>  config('app.contact_to'),
             'subject' => 'Nuevo suscriptor terrazon.mx',
             'html' => $this->buildSuscribeContent($request),

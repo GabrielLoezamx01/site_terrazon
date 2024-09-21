@@ -35,7 +35,7 @@ class SendVerificationEmail
         $htmlContent = View::make('emails.token')->with('token', $token)->render();
 
         $payload = [
-            'from' => 'TERRAZON  <Terrazon@echamelamano.online>',
+            'from' => 'TERRAZON '.'<'.config('app.resend_from').'>',
             'to' => [$email],
             'subject' => 'Recuperación de contraseña',
             'html' => $htmlContent,

@@ -14,6 +14,7 @@ return [
     */
 
     'version' => '0.8',
+    'resend_from' => env('RESEND_FROM', ''),
     'RESENDAPI' => env('RESENDAPI', ''),
     'KEYRESEND' => env('KEYRESEND', ''),
     'name' => env('APP_NAME', 'Terrazón'),

@@ -20,7 +20,7 @@ class RetryPasswordController extends Controller
         ]);
 
         $validations = CustomUser::where('email', $request->email)->first();
-        if(!$validations){
+        if (!$validations) {
             return back()->withErrors(['email' => 'El correo no se encuentra registrado']);
         }
         $token = Str::random(6);
@@ -31,9 +31,9 @@ class RetryPasswordController extends Controller
         ]);
 
         $data = [
-                'email' => $request->email,
-                'token' => $token
-            ];
+            'email' => $request->email,
+            'token' => $token
+        ];
 
         event(new UserSendEmail($data['email'], $data['token']));
 
@@ -59,11 +59,11 @@ class RetryPasswordController extends Controller
             return back()->withErrors(['email' => 'El correo no se encuentra registrado']);
         }
 
-        if($validations->token_expirado < now()){
+        if ($validations->token_expirado < now()) {
             return back()->withErrors(['token' => 'El token ha expirado']);
         }
 
-        if($validations->token != $request->token){
+        if ($validations->token != $request->token) {
             return back()->withErrors(['token' => 'El token es incorrecto']);
         }
 
@@ -71,7 +71,7 @@ class RetryPasswordController extends Controller
 
         if (Auth::guard('custom_users')->check()) {
             $payload = [
-                'from' => 'TERRAZON  <Terrazon@echamelamano.online>',
+                'from' => 'TERRAZON ' . ' <' . config('app.resend_from') . '>',
                 'to' => [$emailDecrypted],
                 'subject' => 'Cuenta Restablecida',
                 'html' => 'Tu cuenta ha sido restablecida',

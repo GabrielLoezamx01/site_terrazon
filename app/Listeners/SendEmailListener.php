@@ -33,7 +33,7 @@ class SendEmailListener
         $htmlContent = View::make('emails.new_user')->render();
 
         $payload = [
-            'from' => 'TERRAZON  <Terrazon@echamelamano.online>',
+            'from' => 'TERRAZON '.'<'.config('app.resend_from').'>',
             'to' => [$email],
             'subject' => 'Bienvenido a Terrazon',
             'html' => $htmlContent,
