@@ -105,6 +105,8 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('details_property/{property}', [PropertyController::class, 'details'])->name('details_property');
     Route::apiResource('property_gallery', GalleryController::class);
     Route::apiResource('distribution_gallery', DistributionController::class);
+    Route::post('maps_gallery', [PropertyController::class, 'maps_gallery'])->name('maps_gallery');
+
     Route::post('/property_image/{id}', [GalleryController::class, 'store'])->name('property_image.store');
     Route::post('/property_gallery/{id}', [GalleryController::class, 'gallery_property'])->name('property_gallery.all');
     Route::apiResource('items_property', ItemsController::class);

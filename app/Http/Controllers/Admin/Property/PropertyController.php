@@ -508,4 +508,37 @@ class PropertyController extends Controller
     {
         Cache::forget($this->key_cache_new_properties);
     }
+
+    public function maps_gallery(Request $request){
+        $this->validate($request, [
+            'img' => 'required',
+            'id' => 'required'
+        ]);
+
+        if (empty($request->id)) {
+            throw new \Exception('Error al crear: ID no proporcionado.');
+        }
+
+        $folio = $request->id;
+        $propertyId = Property::where('folio', $folio)->value('id');
+
+        if (!$propertyId) {
+            throw new \Exception('No se encontró ninguna propiedad con el folio proporcionado.');
+        }
+
+        $fileName = $request->img->getClientOriginalName();
+        $fileName  = 'map/' . $folio . '/' . $fileName;
+
+        try {
+            $request->img->storeAs('public', $fileName);
+            DB::table('properties')->where('id',$propertyId)->update([
+                'map' => $fileName
+            ]);
+            return redirect()->back()->withSuccess('¡Operación realizada con éxito!');
+
+        } catch (\Exception $e) {
+            throw new \Exception('Error al almacenar la imagen: ' . $e->getMessage());
+        }
+
+    }
 }

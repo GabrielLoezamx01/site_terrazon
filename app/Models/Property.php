@@ -25,7 +25,8 @@ class Property extends Model
         'parking',
         'img',
         'available',
-        'municipality_id'
+        'municipality_id',
+        'map'
     ];
     public function municipality()
     {
