@@ -42,7 +42,7 @@ use App\Http\Controllers\Auth\ProfileController;
 include __DIR__ . '/home.php';
 
 
-Route::view('/email', 'emails.message');
+// Route::view('/email', 'emails.message');
 
 
 Route::get('/', [App\Http\Controllers\Public\HomeController::class, 'index'])->name('inicio');
