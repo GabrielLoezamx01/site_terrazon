@@ -24505,6 +24505,33 @@ h5, .h5 {
   color: #231D46;
 }
 
+h6, .h6 {
+  color: #231D46;
+}
+
+@media screen and (min-width: 760px) {
+  .modal-share {
+    max-width: 375px;
+  }
+}
+
+.copy-button {
+  padding: 5px 10px;
+  color: #3830D9;
+  border: 1px solid #3830D9;
+  border-radius: 8px;
+  font-weight: bold;
+}
+.copy-button input {
+  font-size: 12px;
+  color: #8F8F8F;
+  border: none;
+  background: none;
+}
+.copy-button button {
+  border: none;
+}
+
 @supports (font-variation-settings: "wght" 450) {
   * {
     font-family: "Inter";

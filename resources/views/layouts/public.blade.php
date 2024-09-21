@@ -12,6 +12,7 @@
     <style>
         :root {
             --asset-path: "{{ asset('') }}";
+           
         }
 
         .dropdown-menu-custom::before {
