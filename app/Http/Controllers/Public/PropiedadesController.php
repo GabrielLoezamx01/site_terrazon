@@ -113,7 +113,7 @@ class PropiedadesController extends Controller
         }
 
         $budg1 = 0;
-        $budg2 = 10000000;
+        $budg2 = 100000000;
         if ($bugetQP != '') {
             $bg = explode("-", $bugetQP);
             $budg1 = isset($bg[0]) ? $bg[0] : 0;

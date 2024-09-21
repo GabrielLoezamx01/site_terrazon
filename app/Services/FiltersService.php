@@ -63,7 +63,7 @@ class FiltersService
                 "label" => "5 MDP a 6 MDP"
             ],
             [
-                "value" => "6000000-10000000",
+                "value" => "6000000-100000000",
                 "label" => "A más de 6 MDP"
             ]
         ];
