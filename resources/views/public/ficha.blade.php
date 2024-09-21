@@ -1,8 +1,8 @@
 @extends('layouts.public')
 @section('title', 'TERRAZÓN - PROPIEDADES')
 @section('content')
-<div class="bg-white pt-3  ">
-    <div class="container pb-5">
+<div class="bg-white pb-1">
+    <div class="container">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/">Home</a></li>
@@ -13,7 +13,13 @@
                 <li class="breadcrumb-item active" aria-current="page">{{ $sku }}</li>
             </ol>
         </nav>
-
+    </div>
+</div>
+<div class="mt-1">
+    <div class="container pb-5">
+        <div class="mb-1">
+            <a href="{{ url()->previous() }}" class="text-decoration-none text-primary"><i class="bi bi-arrow-left"></i> Volver </a>
+        </div>
         <div class="row">
             <div class="col-12 col-lg-8 mb-4">
                 <div class="card box-shadow  bg-white">
@@ -93,15 +99,15 @@
                                     <div class="col-12">
                                         <div class="row">
                                             <div class="col-6">
-                                            <h2>$ {{ number_format($property->price,2,'.',',') }}</h2>
+                                                <h2>$ {{ number_format($property->price,2,'.',',') }}</h2>
                                             </div>
                                             <div class="col-6 text-end">
-                                            <div class="text-tertiary share-text d-flex align-items-center justify-content-end cursor" data-bs-toggle="modal" data-bs-target="#shareModal"><i class="bi bi-share-fill mx-1 fs-4"></i> Compartir</div>
+                                                <div class="text-tertiary share-text d-flex align-items-center justify-content-end cursor" data-bs-toggle="modal" data-bs-target="#shareModal"><i class="bi bi-share-fill mx-1 fs-4"></i> Compartir</div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-12">
-                                       
+
                                         <div class="row">
                                             <div class="col-12 col-lg-6">
                                                 <h5 class="ficha-location text-tertiary">
@@ -256,7 +262,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 </div>
