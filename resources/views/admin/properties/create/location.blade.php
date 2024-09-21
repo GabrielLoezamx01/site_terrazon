@@ -12,6 +12,15 @@
             @endforeach
         </select>
     </div>
+       <div class="mb-3">
+        <label class="form-label">Tipo</label>
+        <select name="" id="" class="form-control" v-model="tipo_location">
+            @foreach ($location as $value)
+                <option value="{{ $value->id }}">{{ $value->name }}
+                </option>
+            @endforeach
+        </select>
+    </div>
     <div class="mb-3">
         <label class="form-label">Latitud</label>
         <input type="number" class="form-control" v-model="latitude" placeholder="">

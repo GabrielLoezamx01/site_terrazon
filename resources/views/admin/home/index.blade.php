@@ -26,8 +26,7 @@
             </div>
         </div>
     </div>
-    <div class="modal modal-blur fade" id="modal-full-width" data-bs-backdrop="static" data-bs-keyboard="false"
-        tabindex="-1" style="display: none;" aria-hidden="true">
+    <div class="modal modal-blur fade" id="modal-full-width" data-bs-backdrop="static" data-bs-keyboard="false"  aria-hidden="true">
         <div class="modal-dialog modal-full-width modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -196,5 +195,5 @@
     </div>
 @endsection
 @push('scripts2')
-    <script src="{{ asset('js/home/index.js') }}"></script>
+    <script src="{{ asset('js/admin/home.js') }}"></script>
 @endpush

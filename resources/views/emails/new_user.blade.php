@@ -87,25 +87,22 @@
 <body>
     <div class="container email-container">
         <div class="email-header">
-            <img src="https://example.com/logo.png" alt="Terrazon Logo">
+            <img src="https://terrazon.mx/images/logo-terrazon.png" alt="Terrazon Logo">
             <h1 class="fw-bold">¡Bienvenido a Terrazon!</h1>
         </div>
 
         <div class="email-body">
             <h2>¡Registro Exitoso!</h2>
-            <p>Gracias por unirte a nuestra comunidad. Tu token de verificación está listo:</p>
-            <p>Por favor, sigue el enlace a continuación para continuar:</p>
-            <a href="{{ env('URL_REFERRALS') . $token }}" class="button">Click Aquí Para Continuar</a>
+            <p>Gracias por unirte a nuestra comunidad.</p>
             <p>Si tienes alguna pregunta o necesitas ayuda, no dudes en contactarnos.</p>
             <p>¡Estamos aquí para ti!</p>
         </div>
 
         <div class="email-footer">
             <p>&copy; {{ date('Y') }} Terrazon. Todos los derechos reservados.</p>
-            <p><a href="https://terrazon.com/terms">Términos y Condiciones</a> | <a
-                    href="https://terrazon.com/privacy">Política de Privacidad</a></p>
+            <p><a href="https://terrazon.mx/">Términos y Condiciones</a> | <a
+                    href="https://terrazon.mx/">Política de Privacidad</a></p>
         </div>
     </div>
 </body>
-
 </html>

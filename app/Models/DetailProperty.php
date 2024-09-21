@@ -9,7 +9,7 @@ class DetailProperty extends Model
 {
     use HasFactory;
     protected $table = 'details_property';
-    protected $fillable = ['name'];
+    protected $fillable = ['name','id'];
     public $timestamps = true;
     public function properties()
     {

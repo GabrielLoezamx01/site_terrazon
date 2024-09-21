@@ -6,10 +6,17 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ConditionProperty;
 use App\Models\Relationship\ConditionsProperty;
+use App\Services\FiltersService;
 
 
 class ConditionController extends Controller
 {
+    protected $filtersService;
+    public function __construct(
+        FiltersService $filtersService
+    ) {
+        $this->filtersService = $filtersService;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -38,6 +45,7 @@ class ConditionController extends Controller
                 'created_at' => now(),
             ];
             ConditionProperty::insert($insert);
+            $this->filtersService->cleanConditionsProperty();
             return redirect()->back()->withSuccess('¡Operación realizada con éxito!');
         } catch (\Exception $e) {
             return response()->json(['error' => 'Error al crear : ' . $e->getMessage()], 500);
@@ -70,6 +78,7 @@ class ConditionController extends Controller
                 'updated_at' => now(),
             ];
             ConditionProperty::where('id', $id)->update($update);
+            $this->filtersService->cleanConditionsProperty();
             return redirect()->back()->withSuccess('¡Operación realizada con éxito!');
         } catch (\Exception $e) {
             return response()->json(['error' => 'Error al actualizar: ' . $e->getMessage()], 500);
@@ -88,9 +97,10 @@ class ConditionController extends Controller
             $validacion = ConditionsProperty::where('condition_id', $id)->exists();
             if ($validacion) {
                 session()->flash('errors', 'Hay propiedades asignadas a esta condicion');
-            }else{
+            } else {
                 $types = ConditionProperty::findOrFail($id);
                 $types->delete();
+                $this->filtersService->cleanConditionsProperty();
                 session()->flash('success', 'Operación exitosa');
             }
         } catch (\Exception $e) {

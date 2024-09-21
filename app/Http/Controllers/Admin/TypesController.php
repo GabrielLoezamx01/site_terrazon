@@ -6,10 +6,16 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\TypesProperty;
 use App\Models\Relationship\TypesProperty as TypesPropertyRelationship;
-
+use App\Services\FiltersService;
 
 class TypesController extends Controller
 {
+    protected $filtersService;
+    public function __construct(
+        FiltersService $filtersService
+    ) {
+        $this->filtersService = $filtersService;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -38,6 +44,7 @@ class TypesController extends Controller
                 'created_at' => now(),
             ];
             TypesProperty::insert($insert);
+            $this->filtersService->cleanTiposPropiedad();
             return redirect()->back()->withSuccess('¡Operación realizada con éxito!');
         } catch (\Exception $e) {
             return response()->json(['error' => 'Error al crear : ' . $e->getMessage()], 500);
@@ -70,6 +77,7 @@ class TypesController extends Controller
                 'updated_at' => now(),
             ];
             TypesProperty::where('id', $id)->update($update);
+            $this->filtersService->cleanTiposPropiedad();
             return redirect()->back()->withSuccess('¡Operación realizada con éxito!');
         } catch (\Exception $e) {
             return response()->json(['error' => 'Error al actualizar: ' . $e->getMessage()], 500);
@@ -92,6 +100,7 @@ class TypesController extends Controller
             } else {
                 $types = TypesProperty::findOrFail($id);
                 $types->delete();
+                $this->filtersService->cleanTiposPropiedad();
                 session()->flash('success', 'Operación exitosa');
             }
         } catch (\Exception $e) {

@@ -7,11 +7,13 @@ use Illuminate\Http\Request;
 use App\Models\Property;
 use App\Models\TypeProperty;
 use App\Models\Municipality;
+use App\Models\Location;
 use App\Models\DetailProperty;
 use App\Models\FeaturesProperty;
 use App\Models\Amenities;
 use App\Models\ConditionProperty;
 use App\Models\Gallery;
+use Illuminate\Support\Facades\Cache;
 // use App\Models\Distribution;
 
 use App\Models\Relationship\FeatureProperty;
@@ -19,12 +21,17 @@ use App\Models\Relationship\TypesProperty;
 use App\Models\Relationship\DetailsProperty;
 use App\Models\Relationship\ConditionsProperty;
 use App\Models\Relationship\AmenitiesProperty;
-
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Support\Str;
 
 class PropertyController extends Controller
 {
+    protected $key_cache_new_properties;
+    public function __construct()
+    {
+        $this->key_cache_new_properties = config('app.cache.new_properties');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -33,6 +40,7 @@ class PropertyController extends Controller
     public function index()
     {
         $property = Property::with(['municipality.state', 'types', 'amenities', 'conditions', 'details', 'features'])->paginate(10);
+        // json_dd($property);
         return view('admin.properties.list', compact('property'));
     }
 
@@ -45,7 +53,9 @@ class PropertyController extends Controller
     public function createView()
     {
         $municipality = Municipality::with('state')->get();
-        return view('admin.properties.create')->with(compact('municipality'));
+        $location = Location::where('status', 1)->get();
+
+        return view('admin.properties.create')->with(compact('municipality', 'location'));
     }
 
     /**
@@ -77,7 +87,8 @@ class PropertyController extends Controller
         $property->municipality_id = $request->municipality;
         $property->m2 = $request->informacion['m2'];
         $property->video = $request->informacion['video'] ?? '';
-
+        $property->tour =  $request->informacion['tour'] ?? '';
+        $property->location_id = $request->tipo_location;
         $property->save();
         return $property->id;
     }
@@ -167,9 +178,9 @@ class PropertyController extends Controller
         $this->validate_insert('details_property', $data);
     }
 
-    public function insert_detail(Request $request , $id)
+    public function insert_detail(Request $request, $id)
     {
-        try{
+        try {
             $this->validate($request, [
                 'name' => 'required',
             ]);
@@ -191,9 +202,8 @@ class PropertyController extends Controller
             DetailsProperty::updateOrCreate($data, $data);
 
             return redirect()->back()->with('success', '¡Operación realizada con éxito!');
-
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => 'Hubo un problema al procesar la solicitud. Inténtalo de nuevo. ::: ' .$e->getMessage()]);
+            return redirect()->back()->withErrors(['error' => 'Hubo un problema al procesar la solicitud. Inténtalo de nuevo. ::: ' . $e->getMessage()]);
         }
     }
 
@@ -209,7 +219,7 @@ class PropertyController extends Controller
                     'name' => $detail
                 ]
             );
-            $detailsProperty [] = $model->id;
+            $detailsProperty[] = $model->id;
         }
         return $detailsProperty;
     }
@@ -247,8 +257,9 @@ class PropertyController extends Controller
 
             self::conditions_property($request->conditions, $property_id);
 
-            return response()->json(['success' => 'Propiedad creada con éxito. Continúa con el proceso de creación.'], 200);
+            $this->cleanNewProperties();
 
+            return response()->json(['success' => 'Propiedad creada con éxito. Continúa con el proceso de creación.'], 200);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Error al crear : ' . $e->getMessage()], 500);
         }
@@ -264,13 +275,14 @@ class PropertyController extends Controller
     {
         $property = Property::with(['municipality.state', 'types', 'amenities', 'conditions', 'details', 'features'])->where('folio', $id)->first();
         $municipality = Municipality::with('state')->get();
+        $location = Location::where('status', 1)->get();
         $items = [
             'amenities' => Amenities::all(),
             'conditions' => ConditionProperty::all(),
             'types' => TypeProperty::all(),
             'feature' => FeaturesProperty::all(),
         ];
-        return view('admin.properties.edit', compact('property', 'municipality', 'items'));
+        return view('admin.properties.edit', compact('property', 'municipality', 'location', 'items'));
     }
 
     /**
@@ -315,7 +327,9 @@ class PropertyController extends Controller
         $property->bathrooms = $request->bathrooms;
         $property->parking = $request->parking;
         $property->video = $request->video;
+        $property->tour = $request->tour;
         $property->municipality_id = $request->municipality;
+        $property->location_id = $request->tipo_location;
         $property->m2 = $request->m2;
         $property->save();
 
@@ -329,8 +343,9 @@ class PropertyController extends Controller
 
         self::conditions_property($request->conditions, $property_id);
 
-        return redirect()->back()->withSuccess('¡Operación realizada con éxito!');
+        $this->cleanNewProperties();
 
+        return redirect()->back()->withSuccess('¡Operación realizada con éxito!');
     }
 
     public function details($property)
@@ -342,7 +357,8 @@ class PropertyController extends Controller
 
 
 
-    private function  delete_relationship ($id){
+    private function  delete_relationship($id)
+    {
         AmenitiesProperty::where('property_id', $id)->delete();
         FeatureProperty::where('property_id', $id)->delete();
         TypesProperty::where('property_id', $id)->delete();
@@ -356,14 +372,45 @@ class PropertyController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        DetailsProperty::where('property_id', $id)
-            ->where('detail_id', $request->details_id)
-            ->delete();
-        return redirect()->back()->with('success', '¡Operación realizada con éxito!');
+        $property = Property::where('folio', $id)->first();
 
+        if (!$property) {
+            return [
+                'message' => 'Propiedad no encontrada',
+                'status' => 404
+            ];
+        }
+
+        if ($property->available == 1 || $property->available == 3) {
+            return [
+                'message' => 'Propiedad no se puede eliminar',
+                'status' => 404
+            ];
+        }
+
+        $property->delete();
+        $this->cleanNewProperties();
+
+        return [
+            'message' => 'Propiedad eliminada correctamente',
+            'status' => 200
+        ];
     }
 
-
+    public function delete_details(Request $request)
+    {
+        $detalle =  DB::table('details_property_relationship')->where('detail_id', $request->details_id)->delete();
+        if (!$detalle) {
+            return response()->json(['error' => 'detalle no encontrado.'], 404);
+        }
+        // $property = DetailProperty::where('id', $request->details_id)->first();
+        // if (!$property) {
+        //     return response()->json(['error' => 'detalle no encontrado.'], 404);
+        // }
+        // $property->delete();
+        $this->cleanNewProperties();
+        return redirect()->back()->withSuccess('eliminado correctamente.');
+    }
 
     /**
      * Generate a slug based on the name and address.
@@ -382,18 +429,27 @@ class PropertyController extends Controller
     {
         $propertyId = $request->property;
         $validate = Property::where('id', $propertyId)->whereIn('available', [0, 3])->exists();
-        if($validate > 0){
+        if ($validate > 0) {
             return response()->json(['error' => 'La propiedad ya se encuentra desactivada o vendida.'], 402);
         }
         Property::where('id', $propertyId)->update(['available' => 0]);
+        $this->cleanNewProperties();
         return response()->json(['message' => 'Propiedad desactivada con éxito.'], 200);
     }
     public function active_property(Request $request)
     {
         $propertyId = $request->property;
-        $validate = Property::where('id', $propertyId)->where(['available' => 1])->count();
-        if($validate > 0){
-            return response()->json(['error' => 'La propiedad ya se encuentra activa.'], 500);
+        $validate = Property::where('id', $propertyId)->first();
+
+        if ($validate) {
+            $status = match (true) {
+                $validate->available == 1 => 'La propiedad ya se encuentra activa.',
+                $validate->location_id == null => 'No está asignado un tipo de locación.',
+                default => null,
+            };
+            if ($status) {
+                return response()->json(['error' => $status], 500);
+            }
         }
 
         $amenitiesExist = AmenitiesProperty::where('property_id', $propertyId)->exists();
@@ -432,9 +488,57 @@ class PropertyController extends Controller
         }
 
         Property::where('id', $propertyId)->update(['available' => 1]);
-
+        $this->cleanNewProperties();
 
         return response()->json(['message' => 'Propiedad activada con éxito.'], 200);
     }
+    public function destacado(Request $request, $id)
+    {
+        $item = Property::findOrFail($id);
+        $item->featured = $request->featured;
+        $item->save();
 
+        $message = 'La propiedad se ha removido de destacado';
+        if ($request->featured == 1) {
+            $message = 'La propiedad se ha marcada como destacada';
+        }
+        return response()->json(['message' => $message]);
+    }
+    public function cleanNewProperties()
+    {
+        Cache::forget($this->key_cache_new_properties);
+    }
+
+    public function maps_gallery(Request $request){
+        $this->validate($request, [
+            'img' => 'required',
+            'id' => 'required'
+        ]);
+
+        if (empty($request->id)) {
+            throw new \Exception('Error al crear: ID no proporcionado.');
+        }
+
+        $folio = $request->id;
+        $propertyId = Property::where('folio', $folio)->value('id');
+
+        if (!$propertyId) {
+            throw new \Exception('No se encontró ninguna propiedad con el folio proporcionado.');
+        }
+
+        $fileName = $request->img->getClientOriginalName();
+        $fileName  = 'map/' . $folio . '/' . $fileName;
+
+        try {
+            $request->img->storeAs('public', $fileName);
+            DB::table('properties')->where('id',$propertyId)->update([
+                'map' => $fileName
+            ]);
+            return redirect()->back()->withSuccess('¡Operación realizada con éxito!');
+
+        } catch (\Exception $e) {
+            throw new \Exception('Error al almacenar la imagen: ' . $e->getMessage());
+        }
+
+    }
 }

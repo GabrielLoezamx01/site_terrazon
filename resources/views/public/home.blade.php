@@ -11,9 +11,9 @@
                 {{ $item['span'] }}
             </div>
         </div>
-        <div class="container-md mobile-conteiner"> 
-            <x-carousel :cards="$item['cards']" id="carr{{ $k+1 }}" />
-        </div>
+    </div>
+    <div class="container-fluid container-md mobile-conteiner">
+        <x-carousel :cards="$item['cards']" id="carr{{ $k+1 }}" />
     </div>
     @endforeach
     <div class="container py-5 min-content">
@@ -28,55 +28,38 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-2 text-center pt-1">
-                        <span class="info-stack fa-stack fa-2x">
-                            <i class="fa-solid fa-circle fa-stack-2x"></i>
-                            <i class="fa-solid fa-image fa-stack-1x fa-inverse"></i>
+                    <div class="col-2 text-center pt-1 d-flex align-items-center justify-content-center">
+                        <span class="icon-plus">
+                            <img src="{{ asset('images/icons/icon-plus-01.png') }}">
                         </span>
                     </div>
 
                     <div class="col-10">
-                        <div class="info-title">Inversión inteligente:</div>
+                        <div class="info-title">Inversión inteligente</div>
                         <p class="info-description">Nuestras propiedades no sólo ofrecen un espacio habitable de ensueño
                             sino que también prometen una buena inversión para su futuro.</p>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-2 text-center pt-1">
-                        <span class="info-stack fa-stack fa-2x">
-                            <i class="fa-solid fa-circle fa-stack-2x"></i>
-                            <i class="fa-solid fa-image fa-stack-1x fa-inverse"></i>
+                    <div class="col-2 text-center pt-1 d-flex align-items-center justify-content-center">
+                        <span class="icon-plus">
+                            <img src="{{ asset('images/icons/icon-plus-02.png') }}">
                         </span>
                     </div>
                     <div class="col-10">
-                        <div class="info-title">Propiedad sin esfuerzo::</div>
+                        <div class="info-title">Propiedad sin esfuerzo</div>
                         <p class="info-description">Disfrute de una experiencia de compra sin complicaciones con nuestro
                             equipo dedicado que lo guiará en cada paso.</p>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-2 text-center pt-1">
-                        <span class="info-stack fa-stack fa-2x">
-                            <i class="fa-solid fa-circle fa-stack-2x"></i>
-                            <i class="fa-solid fa-image fa-stack-1x fa-inverse"></i>
+                    <div class="col-2 text-center pt-1 d-flex align-items-center justify-content-center">
+                        <span class="icon-plus">
+                            <img src="{{ asset('images/icons/icon-plus-03.png') }}">
                         </span>
                     </div>
                     <div class="col-10">
-                        <div class="info-title">Una red de afiliados:</div>
-                        <p class="info-description">Nuestra red de afiliados ofrece acceso exclusivo a una amplia gama de
-                            propiedades, respaldada por un equipo experto que te brindará asesoramiento personalizado en
-                            cada etapa.</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-2 text-center pt-1">
-                        <span class="info-stack fa-stack fa-2x">
-                            <i class="fa-solid fa-circle fa-stack-2x"></i>
-                            <i class="fa-solid fa-image fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </div>
-                    <div class="col-10">
-                        <div class="info-title">Una red de afiliados:</div>
+                        <div class="info-title">Una red de afiliados</div>
                         <p class="info-description">Nuestra red de afiliados ofrece acceso exclusivo a una amplia gama de
                             propiedades, respaldada por un equipo experto que te brindará asesoramiento personalizado en
                             cada etapa.</p>
@@ -85,6 +68,7 @@
             </div>
         </div>
     </div>
+    @if(count($viewed)>0)
     <div class="bg-white py-5">
         <div class="container p-2 px-4">
             <div class="col-12 text-left pb-3">
@@ -93,100 +77,100 @@
             </div>
         </div>
         <div class="container-md mobile-conteiner">
-            <x-carousel :cards="$cards2" id="carr3" />
+            <x-carousel :cards="$viewed" id="viewedSlider" />
         </div>
     </div>
+    @endif
     <div class="bg-divisor py-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 col-md-4 offset-md-2 text-light">
-                    <h5>Suscríbete a nuestro boletín mensual para estar actualizado de las mejores propiedades</h5>
-                </div>
-                <div class="col-12 col-md-4 d-flex align-items-center text-center">
-                    <div class="input-group">
-                        <input type="email" class="form-control input-boletin" placeholder="Escribe tu email para recibir nuestro boletín">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary" type="button">Suscribirme</button>
+        <form id="suscribeForm">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md-4 offset-md-2 text-light">
+                        <h5>Suscríbete a nuestro boletín mensual para estar actualizado de las mejores propiedades</h5>
+                    </div>
+                    <div class="col-12 col-md-4 d-flex align-items-center text-center">
+                        <div class="input-group">
+                            <input type="email" name="email" class="form-control input-boletin" placeholder="Escribe tu email para recibir nuestro boletín" required>
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="submit">Suscribirme</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
+    @if($recomendations!=null)
     <div class="bg-teal py-5">
-        <div class="container py-5">
+        <div class="container-fluid container-md py-5">
             <div class="row">
                 <div class="d-none d-lg-block" style="background-color: white;position: absolute;height: 74%;width: 50%;margin: -36px auto;z-index:0;">
                 </div>
                 <div class="col-12 col-lg-5" style="padding:0px 35px 0 35px;">
                     <div class="row py-3  bg-white" style="z-index:1; position:relative">
                         <div class="col-12">
-                            <h2>Recomendaciones en la playa</h2>
-                            <div class="description">Descubre tu oasis perfecto en la playa y empieza a disfrutar de la vida
-                                junto al mar</div>
+                            <h2>{{ $recomendations["location"]["featured_title"]}}</h2>
+                            <div class="description">{{ $recomendations["location"]["featured_msg"]}}</div>
                         </div>
                         <div class="col-12 py-4">
-                            <span class="price">$ 1,234,567.00</span>
+                            <span class="price">$ {{ number_format($recomendations["price"],0) }}</span>
                         </div>
                         <div class="col-12">
-                            <div class="hightlight">Nombre de la propiedad</div>
-                            <div class="location py-2"><img src="{{ asset('images/icons/location.svg') }}"> Ubicación del
-                                desarrollo</div>
-                            <p class="description">Breve descripción de la propiedad con un máximo de caracteres
-                                establecidos por el cliente para una rápida introducción.</p>
+                            <div class="hightlight">{{ $recomendations["title"] }}</div>
+                            <h5 class="card-location">
+                                <a href="https://www.google.com/maps/search/?api=1&query={{ $recomendations['latitude'] }},{{ $recomendations['longitude'] }}" target="_blank">
+                                    <i class="bi bi-geo-alt"></i> Ubicación
+                                </a>
+                            </h5>
+                            <p class="description truncate-info-card">{{ $recomendations["description"] }}</p>
                         </div>
 
                         <div class="col-12">
                             <ul class="list-info">
-                                <li><label class="detail-icon"><img src="{{ asset('images/icons/bed.svg') }}"></label><span class="detail-text">2
-                                        Habitaciones<span></li>
-                                <li><label class="detail-icon"><img src="{{ asset('images/icons/bath.svg') }}"></label><span class="detail-text">2
-                                        Baños</span></li>
-                                <li><label class="detail-icon"><img src="{{ asset('images/icons/cart.svg') }}"></label><span class="detail-text">1
-                                        Estacionamiento</span></li>
+                                @foreach($recomendations["features"] as $kf => $vf)
+                                <li>
+                                    <label class="detail-icon">
+                                        @php
+                                        $imagePath = 'storage/svg/'.$vf['icon'];
+                                        $fullPath = public_path($imagePath);
+                                        @endphp
+                                        @if(file_exists($fullPath))
+                                        <img src="{{ asset('storage/svg/'.$vf['icon']) }}">
+                                        @endif
+                                    </label>
+                                    <span class="detail-text ms-1">{{ $vf["name"]}}</span>
+                                </li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
                     <div class="row d-none d-lg-flex mt-4" style="z-index:1; position:relative">
                         <div class="col-12 col-md-6 d-grid gap-2 d-md-block text-center py-2">
-                            <button type="button" class="btn btn-success btn-detalle">VER MAS DETALLES</button>
+                            <a href="{{ $recomendations["detailsPage"] }}" class="btn btn-success btn-detalle text-white text-nowrap">VER MAS DETALLES</a>
+
                         </div>
                         <div class="col-12 col-md-6 d-grid gap-2 d-md-block text-center py-2">
-                            <button type="button" class="btn btn-primary btn-catalogo">EXPLORAR CATÁLOGO</button>
+                            <a href="/propiedades?location={{ $recomendations['location']['id'] }}" class="btn btn-primary btn-catalogo">EXPLORAR CATÁLOGO</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-12 col-lg-7 px-4 px-lg-0">
-                    <div id="carousel2" class="carousel slide" data-bs-ride="carousel">
+                    <div id="carouselRecomendations" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-indicators">
-                            <button type="button" data-bs-target="#carousel2" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                            <button type="button" data-bs-target="#carousel2" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                            <button type="button" data-bs-target="#carousel2" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                            <button type="button" data-bs-target="#carousel2" data-bs-slide-to="3" aria-label="Slide 4"></button>
-                            <button type="button" data-bs-target="#carousel2" data-bs-slide-to="4" aria-label="Slide 5"></button>
-                            <button type="button" data-bs-target="#carousel2" data-bs-slide-to="5" aria-label="Slide 6"></button>
+                            @foreach($recomendations["galleries"] as $key => $item)
+                            <button type="button" data-bs-target="#carouselRecomendations" data-bs-slide-to="{{ $key }}" class="{{ $loop->first ? 'active' : '' }}" aria-current="{{ $loop->first ? 'true' : 'false' }}" aria-label="{{ $recomendations['slug'] }}"></button>
+                            @endforeach
                         </div>
                         <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="{{ asset('images/carousel-2.png') }}" class="d-block w-100" alt="...">
+                            @foreach($recomendations["galleries"] as $item)
+                            <div class="carousel-item {{ $loop->first ? 'active' : '' }}" class="d-block w-100">
+                                <a href="{{$item['imageUrl']}}">
+                                    <div class="ficha-carouser-img" style="background: url('{{  $item['imageUrl'] }}');"></div>
+                                </a>
                             </div>
-                            <div class="carousel-item">
-                                <img src="{{ asset('images/carousel-2.png') }}" class="d-block w-100" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="{{ asset('images/carousel-2.png') }}" class="d-block w-100" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="{{ asset('images/carousel-2.png') }}" class="d-block w-100" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="{{ asset('images/carousel-2.png') }}" class="d-block w-100" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="{{ asset('images/carousel-2.png') }}" class="d-block w-100" alt="...">
-                            </div>
+                            @endforeach
                         </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carousel2" data-bs-slide="prev">
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselRecomendations" data-bs-slide="prev">
                             <span class="visually-hidden">Preview</span>
                             <div class="slider-nav slider-nav-prev">
                                 <span class="icon-nav fa-stack fa-2x">
@@ -195,7 +179,7 @@
                                 </span>
                             </div>
                         </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carousel2" data-bs-slide="next">
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselRecomendations" data-bs-slide="next">
                             <span class="visually-hidden">Next</span>
                             <div class="slider-nav slider-nav-next">
                                 <span class="icon-nav fa-stack fa-2x">
@@ -208,15 +192,16 @@
                 </div>
             </div>
             <div class="row d-flex d-lg-none mt-4" style="z-index:1; position:relative">
-                <div class="col-12 col-lg-6 d-grid gap-2 d-lg-block text-center py-2">
-                    <button type="button" class="btn btn-success btn-detalle">VER MAS DETALLES</button>
+                <div class="col-12 col-md-6 d-grid gap-2 d-md-block text-center py-2">
+                    <a href="{{ $recomendations["detailsPage"] }}" class="btn btn-success btn-detalle text-white text-nowrap">VER MAS DETALLES</a>
                 </div>
-                <div class="col-12 col-lg-6 d-grid gap-2 d-lg-block text-center py-2">
-                    <button type="button" class="btn btn-primary btn-catalogo">EXPLORAR CATÁLOGO</button>
+                <div class="col-12 col-md-6 d-grid gap-2 d-md-block text-center py-2">
+                    <a href="/propiedades?location={{ $recomendations['location']['id'] }}" class="btn btn-primary btn-catalogo">EXPLORAR CATÁLOGO</a>
                 </div>
             </div>
         </div>
     </div>
+    @endif
     <div class="bg-white py-5">
         <div class="container">
             <div class="row">
@@ -229,7 +214,7 @@
                                     Teléfono
                                 </div>
                                 <div class="col-8 fs-7">
-                                    +52 999 1 23 45 67
+                                    <a class="text-decoration-none text-white" href="tel:{{ config('app.contact_tel') }}">{{ config('app.contact_tel') }}</a>
                                 </div>
                             </div>
                             <div class="row py-3">
@@ -237,28 +222,33 @@
                                     Email
                                 </div>
                                 <div class="col-8 fs-7">
-                                    hola@terraazon.mx
+                                    <a class="text-decoration-none text-white" href="mailto:{{ config('app.contact_email') }}">{{ config('app.contact_email') }}</a>
                                 </div>
                             </div>
                             <div class="row py-3">
                                 <div class="col-4 fs-7">
-                                    Direccion
+                                    Dirección
                                 </div>
-                                <div class="col-8 fs-7">
-                                    C. 12A 310, Santa Gertrudis Copo,
-                                    97113 Mérida, Yuc.
-                                </div>
+                                <div class="col-8 fs-7">{{ config('app.contact_address') }}</div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-4 col-sm-2 text-center fs-7">
-                                <a href="https://www.facebook.com/share/bz85nrGpXmAPYVZQ/?mibextid=qi2Omg" target="_blank"><span class="svg-social-icon svg-social-facebook"></span></a>
-                            </div>
-                            <div class="col-4 col-sm-2 text-center fs-7">
-                                <a href="https://www.instagram.com/terrazon.mx?igsh=aW53ZmVwOTB1dWdi" target="_blank"><span class="svg-social-icon svg-social-youtube"></span></a>
-                            </div>
-                            <div class="col-4 col-sm-2 text-center fs-7">
-                                <a href="https://www.facebook.com/share/bz85nrGpXmAPYVZQ/?mibextid=qi2Omg" target="_blank"> <span class="svg-social-icon svg-social-whatsapp"></span></a>
+                            <div class="social-icons">
+                                @if(config('app.link_facebook')!='')
+                                <a class="px-1 social-link" target="_blank" href="{{ config('app.link_facebook') }}"><i class="svg-social-icon-footer svg-social-facebook display-inline"></i></a>
+                                @endif
+                                @if(config('app.link_instagram')!='')
+                                <a class="px-1 social-link" target="_blank" href="{{ config('app.link_instagram') }}"><i class="svg-social-icon-footer svg-social-instagram display-inline"></i></a>
+                                @endif
+                                @if(config('app.link_youtube')!='')
+                                <a class="px-1 social-link" target="_blank" href="{{ config('app.link_youtube') }}"><i class="svg-social-icon-footer svg-social-youtube text-white"></i></a>
+                                @endif
+                                @if(config('app.link_tiktok')!='')
+                                <a class="px-1 social-link" target="_blank" href="{{ config('app.link_tiktok') }}"><i class="svg-social-icon-footer svg-social-tiktok text-white"></i></a>
+                                @endif
+                                @if(config('app.contact_tel_scape')!='')
+                                <a class="px-1 social-link" target="_blank" href="https://wa.me/{{ config('app.contact_tel_scape') }}"><i class="svg-social-icon-footer svg-social-whatsapp text-white"></i></a>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -315,7 +305,7 @@
                                             <label for="coments">Deja tu comentario</label>
                                         </div>
                                     </div>
-                                    <div class="col-12 py-2">
+                                    <div class="col-12 py-2  d-flex aling-items-center">
                                         <input type="checkbox" required id="check" name="check"><label for="check" class="mx-2">Acepto
                                             los términos y condiciones</label>
                                     </div>
@@ -325,8 +315,8 @@
                                                 MENSAJE</button>
                                         </div>
                                     </div>
-                                    <div class="col-12 col-md-8 container-contact">
-                                        <div class="image-contact" style="background: url({{ asset('images/image-bg-white.png') }});"></div>
+                                    <div class="container-contact">
+                                        <div class="image-contact" style="background: url({{ asset('images/image-bg-white.png?a=1') }});"></div>
                                     </div>
                                 </div>
                             </form>
@@ -341,13 +331,13 @@
                 <div class="col-12">
                     <div class="image-grid">
                         <div class="image-container img1">
-                            <div class="img-item" style="background:url({{ asset('images/cenote.png') }})"></div>
+                            <div class="img-item" style="background:url({{ asset('images/yucatan-01.jpg') }})"></div>
                         </div>
                         <div class="image-container img2">
-                            <div class="img-item" style="background:url({{ asset('images/piramide.png') }})"></div>
+                            <div class="img-item" style="background:url({{ asset('images/yucatan-02.jpg') }})"></div>
                         </div>
                         <div class="image-container img3">
-                            <div class="img-item" style="background:url({{ asset('images/catedral.png') }})"></div>
+                            <div class="img-item" style="background:url({{ asset('images/yucatan-03.jpg') }})"></div>
                         </div>
                         <div class="img4">
                             <h4 class="title-big py-3">CONOCE YUCATÁN</h4>
@@ -360,11 +350,11 @@
                                 esencia única.</p>
                             <p class="hightlight mb-1 text-center text-md-start">Descubre un mundo de oportunidades</p>
                             <div class="py-1 text-center text-md-start d-grid gap-2 d-md-block">
-                                <button type="button" class="btn btn-primary btn-catalogo">EXPLORAR CATÁLOGO</button>
+                                <a href="/propiedades" class="btn btn-primary btn-catalogo">EXPLORAR CATÁLOGO</a>
                             </div>
                         </div>
                         <div class="image-container img5">
-                            <div class="img-item" style="background:url({{ asset('images/flamencos.png') }})"></div>
+                            <div class="img-item" style="background:url({{ asset('images/yucatan-04.jpg') }})"></div>
                         </div>
                     </div>
                 </div>
@@ -373,5 +363,5 @@
     </div>
     @endsection
     @push('scripts')
-    <script src="{{ asset('js/home.js') }}"></script>
+    <script src="{{ asset('js/home.js') }}?v={{ config('app.version')}}" type="application/javascript"></script>
     @endpush

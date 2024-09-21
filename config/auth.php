@@ -44,6 +44,10 @@ return [
             'driver' => 'session',
             'provider' => 'referrals',
         ],
+        'custom_users' => [
+            'driver' => 'session',
+            'provider' => 'custom_users',
+        ]
     ],
 
     /*
@@ -72,6 +76,11 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\Referrals::class,
         ],
+
+        'custom_users' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\CustomUser::class,
+        ]
 
         // 'users' => [
         //     'driver' => 'database',
