@@ -93,9 +93,9 @@
         <div class="email-body">
             <h2>Tu código de recuperación es:</h2>
             <span class="token">{{ $token }}</span>
-            <p>Si no solicitaste este código, puedes ignorar este mensaje.</p>
+            <p>Si no solicitaste este código, hacer caso omiso a este mensaje.</p>
             <p>Gracias por confiar en Terrazon.</p>
             <a href="{{ route('custom.password') }}" class="button">Recuperar Cuenta</a>
         </div>
-
-        <
+</body>
+</html>
