@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin\Property;
+
 use App\Http\Controllers\Controller;
 
 use App\Models\Favorite;
@@ -32,14 +33,14 @@ class FavoriteController extends Controller
         if ($favorite) {
             $favorite->delete();
             $this->reloadFavorites($userId);
-            return response()->json(['message' => 'Property removed from favorites']);
+            return response()->json(['message' => 'Property removed from favorites', 'status' => 0]);
         } else {
             Favorite::create([
                 'property_id' => $propertyId,
                 'custom_user_id' => $user->id,
             ]);
             $this->reloadFavorites($userId);
-            return response()->json(['message' => 'Property added to favorites']);
+            return response()->json(['message' => 'Property added to favorites', 'status' => 1]);
         }
     }
 

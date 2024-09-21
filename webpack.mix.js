@@ -13,6 +13,7 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
+    .js('resources/js/favorite.js', 'public/js')
     .js('resources/js/vue.properties.js', 'public/js')
     .js('resources/js/vue.public.app.js', 'public/js')
     .js('resources/js/admin/home.js', 'public/js/admin')

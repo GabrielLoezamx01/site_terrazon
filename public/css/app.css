@@ -24505,6 +24505,33 @@ h5, .h5 {
   color: #231D46;
 }
 
+h6, .h6 {
+  color: #231D46;
+}
+
+@media screen and (min-width: 760px) {
+  .modal-share {
+    max-width: 375px;
+  }
+}
+
+.copy-button {
+  padding: 5px 10px;
+  color: #3830D9;
+  border: 1px solid #3830D9;
+  border-radius: 8px;
+  font-weight: bold;
+}
+.copy-button input {
+  font-size: 12px;
+  color: #8F8F8F;
+  border: none;
+  background: none;
+}
+.copy-button button {
+  border: none;
+}
+
 @supports (font-variation-settings: "wght" 450) {
   * {
     font-family: "Inter";
@@ -24799,6 +24826,7 @@ h5, .h5 {
   font-weight: 400;
   margin-bottom: 0;
   line-height: 14px;
+  min-height: 58px;
 }
 .card-property .card-body .card-location {
   color: #1E612D;
@@ -25596,6 +25624,14 @@ fieldset:before {
   color: white;
   border-radius: 6px;
 }
+.ficha-nav .ficha-price {
+  font-size: 36px;
+}
+@media screen and (max-width: 568px) {
+  .ficha-nav .ficha-price {
+    font-size: 24px;
+  }
+}
 .ficha-nav .list-item {
   width: 25%;
   padding: 10px;
@@ -25603,6 +25639,11 @@ fieldset:before {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+@media screen and (max-width: 568px) {
+  .ficha-nav .list-item {
+    font-size: 10px !important;
+  }
 }
 .ficha-nav .list-item .svg-icon-ficha {
   margin-right: 5px;
@@ -25625,7 +25666,7 @@ fieldset:before {
 
 .ficha-location {
   color: #1E612D;
-  font-size: 20px;
+  font-size: 12px;
   font-weight: 500;
 }
 .ficha-location img {
@@ -25633,9 +25674,14 @@ fieldset:before {
 }
 .ficha-location a {
   color: #1E612D;
-  font-size: 20px;
-  font-weight: 500;
+  font-size: 18px;
+  font-weight: 400;
   text-decoration: none;
+}
+@media screen and (max-width: 500px) {
+  .ficha-location a {
+    font-size: 12px !important;
+  }
 }
 
 ul.ficha {

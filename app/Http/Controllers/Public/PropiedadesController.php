@@ -192,7 +192,9 @@ class PropiedadesController extends Controller
         $nuevo = $this->getNeuevo();
         $otros = $this->getOtros();
         $favoritos = $this->getFavoritos();
+        $shareLink = url()->current();
         return view('public.ficha', [
+            'shareLink' => $shareLink,
             'sku' => $sku,
             'property' => $property,
             'galery' => $galery,

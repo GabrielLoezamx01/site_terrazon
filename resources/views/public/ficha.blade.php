@@ -1,8 +1,8 @@
 @extends('layouts.public')
 @section('title', 'TERRAZÓN - PROPIEDADES')
 @section('content')
-<div class="bg-white pt-3  ">
-    <div class="container pb-5">
+<div class="bg-white pb-1">
+    <div class="container">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/">Home</a></li>
@@ -13,7 +13,13 @@
                 <li class="breadcrumb-item active" aria-current="page">{{ $sku }}</li>
             </ol>
         </nav>
-
+    </div>
+</div>
+<div class="mt-1">
+    <div class="container pb-5">
+        <div class="mb-1">
+            <a href="{{ url()->previous() }}" class="text-decoration-none text-primary"><i class="bi bi-arrow-left"></i> Volver </a>
+        </div>
         <div class="row">
             <div class="col-12 col-lg-8 mb-4">
                 <div class="card box-shadow  bg-white">
@@ -24,7 +30,7 @@
                             </div>
                             <div class="col-12">
                                 <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-                                    <div class="carousel-indicators">
+                                    <div class="carousel-indicators d-none d-lg-flex">
                                         @foreach($galery as $item)
                                         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{ $item['id'] }}" class="{{ $loop->first ? 'active' : '' }}" aria-current="{{ $loop->first ? 'true' : 'false' }}" aria-label="{{ $item['label'] }}"></button>
                                         @endforeach
@@ -48,7 +54,7 @@
                                     </button>
                                 </div>
                                 <!-- Thumbnails -->
-                                <div class="carousel-thumbnails mt-4 ">
+                                <div class="carousel-thumbnails mt-4  d-none d-lg-flex">
                                     <div class="car-nav car-back" id="carr1_back">
                                         <span class="icon-nav fa-stack fa-2x">
                                             <i class="fa-solid fa-circle fa-stack-2x"></i>
@@ -75,34 +81,45 @@
                             <div class="col-12">
                                 <div class="ficha-nav d-flex ">
                                     <div class="list-item cursor" data-bs-toggle="modal" data-bs-target="#locationModal">
-                                        <span class="svg-icon-ficha svg-icon-location"></span> Ver mapa
+                                        <span class="svg-icon-ficha svg-icon-location d-none d-lg-block"></span><span class="d-none d-lg-block">Ver en </span>Mapa
                                     </div>
                                     <div class="list-item cursor" data-bs-toggle="modal" data-bs-target="#distributionModal">
-                                        <span class="svg-icon-ficha svg-icon-distribution"></span> Ver distribución
+                                        <span class="svg-icon-ficha svg-icon-distribution d-none d-lg-block"></span><span class="d-none d-lg-block">Ver </span>Distribución
                                     </div>
                                     <div class="list-item cursor" data-bs-toggle="modal" data-bs-target="#tourModal">
-                                        <span class="svg-icon-ficha svg-icon-360-degrees"></span> Tour Virtual
+                                        <span class="svg-icon-ficha svg-icon-360-degrees d-none d-lg-block"></span> Tour Virtual
                                     </div>
                                     <div class="list-item cursor" data-bs-toggle="modal" data-bs-target="#videoModal">
-                                        <span class="svg-icon-ficha svg-icon-video"></span> Video
+                                        <span class="svg-icon-ficha svg-icon-video d-none d-lg-block"></span> Video
                                     </div>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="row pt-3">
-                                    <div class="col-9">
-                                        <h2>$ {{ number_format($property->price,2,'.',',') }}</h2>
-                                        <div class="text-tertiary">
-                                            <h5 class="ficha-location">
-                                                <a href="https://www.google.com/maps/search/?api=1&query={{ $property->latitude }},{{ $property->longitude }}" target="_blank">
-                                                    <i class="bi bi-geo-alt"></i> Ubicación
-                                                </a>
-                                            </h5>
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <h2 class="ficha-price text-nowrap">$ {{ number_format($property->price,2,'.',',') }}</h2>
+                                            </div>
+                                            <div class="col-6 text-end">
+                                                <div class="text-tertiary share-text d-flex align-items-center justify-content-end cursor" data-bs-toggle="modal" data-bs-target="#shareModal"><i class="bi bi-share-fill mx-1 fs-4"></i> Compartir</div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-3 text-end ">
-                                        <div class="text-tertiary share-text d-flex align-items-center justify-content-end"><i class="bi bi-share-fill mx-1 fs-4"></i> Compartir</div>
-                                        <small>SKU {{ $sku }}</small>
+                                    <div class="col-12">
+
+                                        <div class="row">
+                                            <div class="col-12 col-lg-6">
+                                                <h5 class="ficha-location text-tertiary">
+                                                    <a href="https://www.google.com/maps/search/?api=1&query={{ $property->latitude }},{{ $property->longitude }}" target="_blank">
+                                                        <i class="bi bi-geo-alt"></i> Ubicación
+                                                    </a>
+                                                </h5>
+                                            </div>
+                                            <div class="col-12 col-lg-6  text-lg-end">
+                                                SKU {{ $sku }}
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="col-12">
                                         <hr class="m-0">
@@ -198,7 +215,7 @@
                                             $fullPath = public_path($imagePath);
                                             @endphp
                                             @if(file_exists($fullPath))
-                                            <a  href="{{ asset('storage/uploads/'.$property->pdf) }}" target="_blank" class="btn btn-success text-white">DESCARGAR FICHA</a>
+                                            <a href="{{ asset('storage/uploads/'.$property->pdf) }}" target="_blank" class="btn btn-success text-white">DESCARGAR FICHA</a>
                                             @endif
                                         </div>
                                     </div>
@@ -245,7 +262,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 </div>
@@ -364,7 +380,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <label class="text-primary">Filtro <i class="bi bi-filter"></i></label>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -528,7 +544,7 @@
         <div class="modal-content">
             <div class="modal-header bg-secondary text-white">
                 <h1 class="modal-title fs-5" id="distributionModalLabel">TERRAZON</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <img src="{{$property->distributionLink}}" class="full">
@@ -541,7 +557,7 @@
         <div class="modal-content">
             <div class="modal-header bg-secondary text-white">
                 <h1 class="modal-title fs-5" id="videoModalLabel">TERRAZON</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body" id="videoFrame">
                 {!! $property->video !!}
@@ -554,7 +570,7 @@
         <div class="modal-content">
             <div class="modal-header bg-secondary text-white">
                 <h1 class="modal-title fs-5" id="tourModalLabel">TERRAZON</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 {!! $property->tour !!}
@@ -567,7 +583,7 @@
         <div class="modal-content">
             <div class="modal-header bg-secondary text-white">
                 <h1 class="modal-title fs-5" id="tourModalLabel">TERRAZON</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 Locación
@@ -575,11 +591,61 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="shareModal" tabindex="-1" aria-labelledby="shareModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md modal-share">
+        <div class="modal-content modal-share">
+            <div class="modal-header bg-secondary text-white">
+                <h1 class="modal-title fs-5" id="tourModalLabel">COMPARTIR</h1>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="text-center py-3">
+                    <h6>Comparte esta información con tu comunidad</h6>
+                </div>
+                <div class="col-12  d-flex p-1 pb-2 text-center">
+                    <a class="text-decoration-none flex-fill text-center" href="https://www.facebook.com/sharer/sharer.php?u={{$shareLink}}" target="_blank"><img class="ms-1" src="{{ asset('svg/svg-share-f.svg') }}"> </a>
+                    <a class="text-decoration-none flex-fill text-center" href="https://twitter.com/intent/tweet?url={{$shareLink}}" target="_blank"><img class="ms-1" src="{{ asset('svg/svg-share-x.svg') }}"> </a>
+                    <a class="text-decoration-none flex-fill text-center" href="https://www.instagram.com/?url={{$shareLink}}" target="_blank"><img class="ms-1" src="{{ asset('svg/svg-share-i.svg') }}"> </a>
+                    <a class="text-decoration-none flex-fill text-center" href="{{ config('app.link_tiktok') }}" target="_blank"><img class="ms-1" src="{{ asset('svg/svg-share-t.svg') }}"> </a>
+                    <a class="text-decoration-none flex-fill text-center" href="{{ config('app.link_youtube') }}" target="_blank"><img class="ms-1" src="{{ asset('svg/svg-share-y.svg') }}"> </a>
+                    <a class="text-decoration-none flex-fill text-center" href="https://api.whatsapp.com/send?text={{$shareLink}}" target="_blank"><img class="ms-1" src="{{ asset('svg/svg-share-w.svg') }}"> </a>
+                </div>
+                <div class="col-12">
+                    <div class="d-flex align-items-center mb-3 copy-button" style="max-width: 600px;">
+                        <input type="text" class="form-control" id="linkInput" value="{{$shareLink}}" readonly>
+                        <button class="btn btn-outline-primary" type="button" id="copyButton">Copiar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <!--  FIN DE MODAL -->
 @endsection
 @push('scripts')
-<script src="{{ asset('js/ficha.js') }}"></script>
+<script src=" {{ asset('js/ficha.js') }}">
+</script>
 <script src="{{ asset('js/gallery.js') }}"></script>
+<script>
+    document.getElementById('copyButton').addEventListener('click', function() {
+        // Obtener el input
+        var copyText = document.getElementById("linkInput");
+
+        // Seleccionar el texto del input
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); // Para móviles
+
+        // Copiar el texto al portapapeles
+        document.execCommand("copy");
+
+        // Cambiar temporalmente el texto del botón como retroalimentación
+        var copyButton = document.getElementById("copyButton");
+        copyButton.innerText = "¡Copiado!";
+        setTimeout(function() {
+            copyButton.innerText = "Copiar";
+        }, 2000);
+    });
+</script>
 @endpush
 @push('stylesheet')
 <link rel="stylesheet" href="{{ asset('css/gallery.css') }}" />
