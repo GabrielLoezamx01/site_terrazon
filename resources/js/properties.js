@@ -49,7 +49,7 @@ $(document).ready(function () {
    
 
     var startRange = (typeof budgetArray != 'undefined') ? parseFloat(budgetArray[0]) : 0;
-    var endRange = (typeof budgetArray != 'undefined') ? parseFloat(budgetArray[1]) : 10000000;
+    var endRange = (typeof budgetArray != 'undefined') ? parseFloat(budgetArray[1]) : 100000000;
 
     var budg1 = document.getElementById('budg1');
     var budg2 = document.getElementById('budg2');
@@ -89,7 +89,7 @@ $(document).ready(function () {
             step: 500000,
             range: {
                 'min': 0,
-                'max': 10000000
+                'max': 100000000
             }
         });
         slider.noUiSlider.on('update', function (values, handle) {
@@ -109,7 +109,7 @@ $(document).ready(function () {
             step: 500000,
             range: {
                 'min': 0,
-                'max': 10000000
+                'max': 100000000
             }
         });
         sliderMobile.noUiSlider.on('update', function (values, handle) {

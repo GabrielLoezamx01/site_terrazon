@@ -289,15 +289,15 @@
                 <h1>¿Por qué debería considerarnos para adquirir una propiedad?</h1>
                 <small>Comprar una propiedad nunca fue tan fácil.</small>
             </div>
-            <div class="col-12 col-md-4 mb-4  px-md-5">
-                <div class="text-center"><span class="svg-icon svg-icon-properties"></span></div>
-                <div class="title text-center fs-5">Amplia gama de propiedades</div>
-                <div class="description text-center">Ofrecemos ayuda legal experta para todos los artículos inmobiliarios relacionados.</div>
-            </div>
             <div class="col-12 col-md-4 mb-4">
                 <div class="text-center"><span class="svg-icon svg-icon-shape"></span></div>
                 <div class="title text-center fs-5">Seguimiento durante todo tu proceso de compra.</div>
                 <div class="description text-center">El mejor precio del mercado.</div>
+            </div>
+            <div class="col-12 col-md-4 mb-4  px-md-5">
+                <div class="text-center"><span class="svg-icon svg-icon-properties"></span></div>
+                <div class="title text-center fs-5">Amplia gama de propiedades</div>
+                <div class="description text-center">Ofrecemos ayuda legal experta para todos los artículos inmobiliarios relacionados.</div>
             </div>
             <div class="col-12 col-md-4 mb-4">
                 <div class="text-center"><span class="svg-icon svg-icon-secure"></span></div>
