@@ -9,7 +9,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/">Home</a></li>
-                <li class="breadcrumb-item"><a href="/propiedades">Propiedades</a></li>
+                <li class="breadcrumb-item {{ Request::is('propiedades') ? 'active' : '' }}"><a href="/propiedades" class="{{ Request::is('propiedades') ? 'active' : '' }}">Propiedades</a></li>
                 @if (isset($location["id"]))
                 <li class="breadcrumb-item active" aria-current="page"><a href='/propiedades?location={{$location["id"]}}' class="active">{{ $location["name"] }}</a></li>
                 @endif

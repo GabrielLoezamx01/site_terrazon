@@ -130,7 +130,7 @@
                             <div class="description">{{ $recomendations["location"]["featured_msg"]}}</div>
                         </div>
                         <div class="col-12 py-4">
-                            <span class="price">$ {{ number_format($recomendations["price"],2) }}</span>
+                            <span class="price">$ {{ number_format($recomendations["price"],0) }}</span>
                         </div>
                         <div class="col-12">
                             <div class="hightlight">{{ $recomendations["title"] }}</div>
@@ -322,7 +322,7 @@
                                             <label for="coments">Deja tu comentario</label>
                                         </div>
                                     </div>
-                                    <div class="col-12 py-2">
+                                    <div class="col-12 py-2  d-flex aling-items-center">
                                         <input type="checkbox" required id="check" name="check"><label for="check" class="mx-2">Acepto
                                             los términos y condiciones</label>
                                     </div>
@@ -332,7 +332,7 @@
                                                 MENSAJE</button>
                                         </div>
                                     </div>
-                                    <div class="col-12 col-md-8 container-contact">
+                                    <div class="container-contact">
                                         <div class="image-contact" style="background: url({{ asset('images/image-bg-white.png') }});"></div>
                                     </div>
                                 </div>

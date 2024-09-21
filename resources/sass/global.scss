@@ -268,7 +268,10 @@ h6 {
 .title {
     font-weight: 600;
     color: $title-color;
-    font-size: 32px;
+    font-size: 18px;
+    @media screen and (min-width:768px) {
+        font-size: 32px !important;
+    }
 }
 
 .subtitle {
@@ -534,8 +537,8 @@ ul.list-info {
     }
 
     button {
-        width: 16px !important;
-        height: 16px !important;
+        width: 12px !important;
+        height: 12px !important;
         border-radius: 50%;
         opacity: 1 !important;
 
@@ -585,13 +588,6 @@ ul.list-info {
         @media screen and (min-width: 980px) {
             right: -1%;
         }
-
-        // @media screen and (min-width: 1260px) {
-        //     right: -10px;
-        // }
-        // @media screen and (min-width: 1340px) {
-        //     right: -10px;
-        // }
     }
 }
 
@@ -778,6 +774,9 @@ ul.list-info {
 .description {
     font-weight: 300;
     font-size: 16px;
+    @media screen and (max-width:768px) {
+        font-size: 12px;
+    }
 }
 
 .btn-detalle {
@@ -919,18 +918,22 @@ ul.list-info {
     position: absolute;
     background-repeat: no-repeat !important;
     background-position: center !important;
-    background-size: 100% !important;
     height: 100%;
     width: 100%;
-    bottom: -44%;
+    bottom: 10%;
     right: 0;
 
     @media screen and (min-width: 768px) {
+        background-size: 100% !important;
         background-size: 50% !important;
         bottom: -42%;
         right: -25%;
     }
-
+    @media screen and (max-width: 767px) {
+        background-size: contain !important;
+        height: 300px;
+        bottom: -17%;
+    }
 }
 
 .svg-social-icon {
@@ -1005,7 +1008,6 @@ ul.list-info {
 .breadcrumb {
     .breadcrumb-item {
         font-size: 12px;
-
         a {
             color: #8F8F8F;
             text-decoration: none;
@@ -1014,7 +1016,7 @@ ul.list-info {
     }
 
     .active {
-        color: $tertiary;
+        color: $tertiary !important ;
     }
 }
 
