@@ -1552,3 +1552,13 @@ ul.ficha {
         width: 30px;
     }
 }
+
+.acercade{
+    p{
+        font-size: 16px;
+        @media screen and (min-width:668px){
+            font-size: 20px;
+            
+        }
+    }
+}
