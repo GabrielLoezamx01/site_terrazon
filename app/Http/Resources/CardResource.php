@@ -10,9 +10,14 @@ class CardResource extends JsonResource
     public static $wrap = null; 
     public function toArray($request)
     {
+        $userId = auth()->id() ?? 'NOUSER';
+ 
+        $id          = $this->id; 
         $title       = $this->title ?? '';
-        $price       = number_format($this->price ?? 0, 2, '.', ',');
+        $price       = number_format($this->price ?? 0, 0, '.', ',');
         $area        = $this->m2 ?? '';
+        $isFavorite  = $this->isFavorite ?? 0;
+        $types_id    = $this->types[0]->id ?? '';
         $imageUrl    = isset($this->img) ? asset('storage/' . $this->img) : '';
         $description = isset($this->description) ? Str::limit($this->description, 300) : '';
         $detailsPage = '/ficha/' . $this->folio;
@@ -29,8 +34,12 @@ class CardResource extends JsonResource
             $features = array_slice($features, 0, 3);
         }
         return [
+            'id'          => $id,
+            'user_id '    => $userId,
+            'isFavorite'  => $isFavorite,
             'title'       => $title,
             'price'       => $price,
+            'type_id'     => 1,
             'area'        => $area,
             'imageUrl'    => $imageUrl,
             'description' => $description,

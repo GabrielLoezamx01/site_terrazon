@@ -32,16 +32,12 @@ class SendVerificationEmail
         $email = $event->email;
         $token = $event->token;
 
-        $encryptedEmail = base64_encode(Crypt::encryptString($email));
-        $encryptedToken = base64_encode(Crypt::encryptString($token));
-        $encryptedParam = $encryptedEmail . '.' . $encryptedToken;
-
-        $htmlContent = View::make('emails.new_user')->with('token', $encryptedParam)->render();
+        $htmlContent = View::make('emails.token')->with('token', $token)->render();
 
         $payload = [
-            'from' => 'TERRAZON  <Terrazon@echamelamano.online>',
+            'from' => 'TERRAZON '.'<'.config('app.resend_from').'>',
             'to' => [$email],
-            'subject' => 'Verificación de usuario',
+            'subject' => 'Recuperación de contraseña',
             'html' => $htmlContent,
             'headers' => [
                 'X-Entity-Ref-ID' => Str::random(6)

@@ -30,7 +30,7 @@
         </div>
         <div v-if="field.type === 'textarea'">
             <label class="form-label required">@{{ field.label }}</label>
-            <textarea id="" cols="30" rows="10" v-model="field.value"
+            <textarea id="" cols="30" rows="5" v-model="field.value"
                 :class="{ 'form-control': true, 'is-invalid': isFieldEmpty(field.value) && submitted }"></textarea>
         </div>
     </div>

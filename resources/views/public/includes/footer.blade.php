@@ -25,26 +25,26 @@
             <div class="col-12 col-md-3 mt-4">
                 <span class="footer-title">Mapa del sitio</span>
                 <ul class="list-menu t mt-3">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#">Propiedades</a></li>
-                    <li><a href="#">Acerca de nosotros</a></li>
-                    <li><a href="#">Vendedores</a></li>
-                    <li><a href="#">Contacto</a></li>
+                    <li class="{{ Request::is('/') ? 'active' : '' }}"><a href="{{ route('inicio') }}">Home</a></li>
+                    <li class="{{ Request::is('propiedades') ? 'active' : '' }}"><a href="{{ route('propiedades') }}">Propiedades</a></li>
+                    <li class="{{ Request::is('acercade') ? 'active' : '' }}"><a href="{{ route('acercade') }}">Acerca de nosotros</a></li>
+                    <li class="{{ Request::is('agentes') ? 'active' : '' }}"><a href="{{ route('public.agentes') }}">Agentes</a></li>
+                    <li class="{{ Request::is('contacto') ? 'active' : '' }}"><a href="{{ route('contacto') }}">Contacto</a></li>
                 </ul>
             </div>
             <div class="col-12 col-md-3 mt-4">
-                <span class="footer-title">Contactanos</span>
+                <span class="footer-title">Contáctanos</span>
                 <ul class="list-contact mt-3">
-                    <li class="d-flex align-items-center"><i class="bi bi-geo-alt"></i> Mérida Yuc. Mx</li>
-                    <li class="d-flex align-items-center"><i class="bi bi-telephone-outbound"></i> +52 999 1 23 45 67</li>
-                    <li class="d-flex align-items-center"><i class="fa-regular fa-envelope"></i> hola@terrazon.mx</li>
+                    <li class="d-flex align-items-center"><i class="bi bi-geo-alt"></i>{{ config('app.contact_address') }}</li>
+                    <li class="d-flex align-items-center"><a href="tel:{{ config('app.contact_tel') }}"><i class="bi bi-telephone-outbound"></i>{{ config('app.contact_tel') }}</a></li>
+                    <li class="d-flex align-items-center"><a href="mailto:{{ config('app.contact_email') }}"><i class="fa-regular fa-envelope"></i>{{ config('app.contact_email') }}</a></li>
                 </ul>
             </div>
             <div class="col-12 col-md-3 mt-4">
                 <span class="footer-title">Boletín</span>
-                <form class="mt-3">
+                <form class="mt-3" id="suscribeFooter">
                     <div class="mb-3">
-                        <input type="email" class="form-control" placeholder="Escribe tu email para recibir nuestro boletin">
+                        <input type="email" name="email" class="form-control" placeholder="Escribe tu email para recibir nuestro boletin" required>
                     </div>
                     <button type="submit" class="btn btn-primary">SUSCRIBIRME</button>
                 </form>
@@ -56,7 +56,8 @@
                 <p class="mb-0">&copy; 2024 Terrazon</p>
             </div>
             <div class="col text-end fs-7">
-                <a href="#">Aviso de privacidad</a> | <a href="#">Términos y condiciones</a> | <a href="#">Permisos</a>
+                <a href="{{ route('public.avisoprivacidad') }}">Aviso de privacidad</a> 
+                <!--  <a href="#">Términos y condiciones</a> | <a href="#">Permisos</a> -->
             </div>
         </div>
     </div>

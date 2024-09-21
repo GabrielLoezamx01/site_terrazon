@@ -1,3 +1,6 @@
+import Vue from 'vue';
+import axios from "axios";
+
 var api = "/admin/home";
 var propertyApi = "home_propery";
 const app = new Vue({

@@ -7,7 +7,9 @@ use App\Http\Controllers\Referrals\ReferralsPropertyController as ReferralsSetti
 use App\Http\Controllers\Referrals\ReferralsProperty;
 use App\Http\Controllers\Emails\VerifyController;
 use App\Http\Controllers\Admin\AmenitiesController;
+use App\Http\Controllers\Admin\Cms\CmsController;
 use App\Http\Controllers\Admin\TypesController;
+use App\Http\Controllers\Admin\Property\PDFcontroller;
 use App\Http\Controllers\Admin\FeaturesController;
 use App\Http\Controllers\Admin\ConditionController;
 use App\Http\Controllers\Admin\Property\PropertyController;
@@ -40,6 +42,8 @@ use App\Http\Controllers\Auth\ProfileController;
 include __DIR__ . '/home.php';
 
 
+// Route::view('/email', 'emails.message');
+
 
 // Route::get('/', [App\Http\Controllers\Public\HomeController::class, 'index'])->name('inicio');
 // Route::get('/', [App\Http\Controllers\Public\HomeController::class, 'index'])->name('inicio');
@@ -48,12 +52,14 @@ Route::get('/', function () {
 })->name('inicio');
 Route::get('/propiedades', [App\Http\Controllers\Public\PropiedadesController::class, 'index'])->name('propiedades');
 Route::get('/ficha/{sku}', [App\Http\Controllers\Public\PropiedadesController::class, 'ficha']);
-Route::get('/agentes', function () {
-    return view('public.agentes');
-})->name('agentes');
+Route::get('/agentes', [App\Http\Controllers\Public\AgentesController::class, 'index'])->name('public.agentes');
 Route::get('/acercade', function () {
     return view('public.acercade');
 })->name('acercade');
+Route::get('/avisoprivacidad', function () {
+    return view('public.privacy');
+})->name('public.avisoprivacidad');
+
 Route::get('/contacto', function () {
     return view('public.contacto');
 })->name('contacto');
@@ -63,6 +69,9 @@ Auth::routes();
 Route::get('/register', function () {
     return redirect('/');
 });
+// Route::get('/login', function () {
+//     return redirect('/');
+// });
 // Auth::routes(['register' => false]);
 
 
@@ -85,16 +94,25 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::apiResource('features', FeaturesController::class);
     Route::apiResource('condition', ConditionController::class);
     Route::apiResource('property', PropertyController::class);
+    Route::apiResource('loading_pdf', PDFcontroller::class);
+    Route::post('/upload-pdf', [PDFController::class, 'store'])->name('pdf.upload');
+    Route::apiResource('cms', CmsController::class);
+    Route::post('delete_details', [PropertyController::class, 'delete_details'])->name('delete_details');
+
     Route::get('new_property', [PropertyController::class, 'createView']);
 
     Route::post('active_property', [PropertyController::class, 'active_property']);
     Route::post('deactivate_property', [PropertyController::class, 'deactivate_property']);
+    Route::post('destacado/{id}', [PropertyController::class, 'destacado']);
+
 
     Route::post('details_validate/{property}', [PropertyController::class, 'insert_detail'])->name('details_validate');
     Route::post('edit_property', [PropertyController::class, 'edit_property']);
     Route::get('details_property/{property}', [PropertyController::class, 'details'])->name('details_property');
     Route::apiResource('property_gallery', GalleryController::class);
     Route::apiResource('distribution_gallery', DistributionController::class);
+    Route::post('maps_gallery', [PropertyController::class, 'maps_gallery'])->name('maps_gallery');
+
     Route::post('/property_image/{id}', [GalleryController::class, 'store'])->name('property_image.store');
     Route::post('/property_gallery/{id}', [GalleryController::class, 'gallery_property'])->name('property_gallery.all');
     Route::apiResource('items_property', ItemsController::class);
@@ -108,6 +126,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
 
 include __DIR__ . '/referrals.php';
+include __DIR__ . '/user.php';
 
 
 // Route::apiResource('emails/verify', VerifyController::class);

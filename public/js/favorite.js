@@ -7,8 +7,31 @@
  * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
  */
 /******/ (() => { // webpackBootstrap
+<<<<<<< HEAD
 /******/ 	"use strict";
 /******/ 	
+=======
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./resources/js/favorite.js":
+/*!**********************************!*\
+  !*** ./resources/js/favorite.js ***!
+  \**********************************/
+/***/ (() => {
+
+eval("//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6W10sInNvdXJjZXMiOlsid2VicGFjazovLy8uL3Jlc291cmNlcy9qcy9mYXZvcml0ZS5qcz80ODBhIl0sInNvdXJjZXNDb250ZW50IjpbIlxuIl0sIm1hcHBpbmdzIjoiIiwiaWdub3JlTGlzdCI6W10sImZpbGUiOiIuL3Jlc291cmNlcy9qcy9mYXZvcml0ZS5qcyIsInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./resources/js/favorite.js\n");
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module can't be inlined because the eval-source-map devtool is used.
+/******/ 	var __webpack_exports__ = {};
+/******/ 	__webpack_modules__["./resources/js/favorite.js"]();
+>>>>>>> ff48421f66644cda9eb3ee9e80ca0599e97a6a09
 /******/ 	
 /******/ })()
 ;
