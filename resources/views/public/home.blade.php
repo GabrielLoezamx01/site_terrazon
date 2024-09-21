@@ -338,13 +338,13 @@
                 <div class="col-12">
                     <div class="image-grid">
                         <div class="image-container img1">
-                            <div class="img-item" style="background:url({{ asset('images/cenote.png') }})"></div>
+                            <div class="img-item" style="background:url({{ asset('images/yucatan-01.jpg') }})"></div>
                         </div>
                         <div class="image-container img2">
-                            <div class="img-item" style="background:url({{ asset('images/piramide.png') }})"></div>
+                            <div class="img-item" style="background:url({{ asset('images/yucatan-02.jpg') }})"></div>
                         </div>
                         <div class="image-container img3">
-                            <div class="img-item" style="background:url({{ asset('images/catedral.png') }})"></div>
+                            <div class="img-item" style="background:url({{ asset('images/yucatan-03.jpg') }})"></div>
                         </div>
                         <div class="img4">
                             <h4 class="title-big py-3">CONOCE YUCATÁN</h4>
@@ -361,7 +361,7 @@
                             </div>
                         </div>
                         <div class="image-container img5">
-                            <div class="img-item" style="background:url({{ asset('images/flamencos.png') }})"></div>
+                            <div class="img-item" style="background:url({{ asset('images/yucatan-04.jpg') }})"></div>
                         </div>
                     </div>
                 </div>

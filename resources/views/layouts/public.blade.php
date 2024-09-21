@@ -24,15 +24,15 @@
             border-color: transparent transparent #094208 transparent;
         }
     </style>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}?v={{ config('app.version') }}">
-    <link rel="stylesheet" href="{{ asset('css/owl.carousel.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/owl.theme.default.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/animate.min.css') }}" />
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    <link rel="stylesheet" href="{{ mix('css/owl.carousel.css') }}">
+    <link rel="stylesheet" href="{{ mix('css/owl.theme.default.css') }}">
+    <link rel="stylesheet" href="{{ mix('css/animate.min.css') }}" />
     @stack('stylesheet')
     @stack('styles')
-    <script src="{{ asset('js/app.js') }}?v={{ config('app.version')}}" type="application/javascript"></script>
-    <script src="{{ asset('js/vue.public.app.js') }}"></script>
-
+    <script src="{{ mix('js/app.js') }}" type="application/javascript"></script>
+    <script src="{{ mix('js/vue.public.app.js') }}"></script>
+    <link rel="shortcat icon" href="{{asset('img/favicon.ico') }}">
 </head>
 
 <body>

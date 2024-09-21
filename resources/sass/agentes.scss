@@ -40,6 +40,8 @@
     @include box-shadow;
     border: 3px solid #ffff;
 
+    background-size: 115% !important;
+    background-position: center !important;
     @media screen and (max-width: 768px) {
         width: 290px;
         height: 290px;

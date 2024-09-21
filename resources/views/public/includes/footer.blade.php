@@ -25,11 +25,11 @@
             <div class="col-12 col-md-3 mt-4">
                 <span class="footer-title">Mapa del sitio</span>
                 <ul class="list-menu t mt-3">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="/propiedades">Propiedades</a></li>
-                    <li><a href="/acercade">Acerca de nosotros</a></li>
-                    <li><a href="/agentes">Vendedores</a></li>
-                    <li><a href="/contacto">Contacto</a></li>
+                    <li class="{{ Request::is('/') ? 'active' : '' }}"><a href="{{ route('inicio') }}">Home</a></li>
+                    <li class="{{ Request::is('propiedades') ? 'active' : '' }}"><a href="{{ route('propiedades') }}">Propiedades</a></li>
+                    <li class="{{ Request::is('acercade') ? 'active' : '' }}"><a href="{{ route('acercade') }}">Acerca de nosotros</a></li>
+                    <li class="{{ Request::is('agentes') ? 'active' : '' }}"><a href="{{ route('public.agentes') }}">Agentes</a></li>
+                    <li class="{{ Request::is('contacto') ? 'active' : '' }}"><a href="{{ route('contacto') }}">Contacto</a></li>
                 </ul>
             </div>
             <div class="col-12 col-md-3 mt-4">
