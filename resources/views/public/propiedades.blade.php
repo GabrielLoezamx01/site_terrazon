@@ -17,7 +17,7 @@
             </ol>
         </nav>
         @if (!$searchmode)
-        <div class="row">
+        <div class="row mb-4">
             <div class="col-12 text-center">
                 <h3>¿Dónde quieres comenzar a buscar?</h3>
             </div>

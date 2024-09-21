@@ -606,8 +606,6 @@
                     <a class="text-decoration-none flex-fill text-center" href="https://www.facebook.com/sharer/sharer.php?u={{$shareLink}}" target="_blank"><img class="ms-1" src="{{ asset('svg/svg-share-f.svg') }}"> </a>
                     <a class="text-decoration-none flex-fill text-center" href="https://twitter.com/intent/tweet?url={{$shareLink}}" target="_blank"><img class="ms-1" src="{{ asset('svg/svg-share-x.svg') }}"> </a>
                     <a class="text-decoration-none flex-fill text-center" href="https://www.instagram.com/?url={{$shareLink}}" target="_blank"><img class="ms-1" src="{{ asset('svg/svg-share-i.svg') }}"> </a>
-                    <a class="text-decoration-none flex-fill text-center" href="{{ config('app.link_tiktok') }}" target="_blank"><img class="ms-1" src="{{ asset('svg/svg-share-t.svg') }}"> </a>
-                    <a class="text-decoration-none flex-fill text-center" href="{{ config('app.link_youtube') }}" target="_blank"><img class="ms-1" src="{{ asset('svg/svg-share-y.svg') }}"> </a>
                     <a class="text-decoration-none flex-fill text-center" href="https://api.whatsapp.com/send?text={{$shareLink}}" target="_blank"><img class="ms-1" src="{{ asset('svg/svg-share-w.svg') }}"> </a>
                 </div>
                 <div class="col-12">

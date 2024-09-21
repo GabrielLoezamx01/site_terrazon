@@ -114,7 +114,7 @@
                     <b>Terrazon</b> es una empresa emergente en el sector inmobiliario que busca revolucionar la compra y venta de propiedades mediante el uso de tecnología avanzada. Nuestra misión es simplificar y optimizar cada paso del proceso de adquisición de bienes inmuebles, brindando a nuestros clientes una experiencia transparente, segura y eficiente.
                 </p>
                 <div class="d-grid gap-2 d-md-block text-left py-2">
-                <button type="button" class="btn btn-primary btn-catalogo">EXPLORAR CATÁLOGO</button>
+                <a href="/propiedades" class="btn btn-primary btn-catalogo">EXPLORAR CATÁLOGO</a>
             </div>
             </div>
 

@@ -25695,6 +25695,11 @@ fieldset:before {
   color: #231D46;
   font-size: 26px;
 }
+@media screen and (max-width: 768px) {
+  .ficha-title {
+    font-size: 22px;
+  }
+}
 
 .ficha-title-section {
   font-weight: 600;
