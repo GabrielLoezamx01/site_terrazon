@@ -1360,6 +1360,9 @@ fieldset {
     font-weight: 600;
     color: $title-color;
     font-size: 26px;
+    @media screen and (max-width:768px) {
+        font-size: 22px;
+    }
 }
 
 .ficha-title-section {
@@ -1547,5 +1550,15 @@ ul.ficha {
     border-radius: 50%;
     img{
         width: 30px;
+    }
+}
+
+.acercade{
+    p{
+        font-size: 16px;
+        @media screen and (min-width:668px){
+            font-size: 20px;
+            
+        }
     }
 }

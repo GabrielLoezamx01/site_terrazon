@@ -19,7 +19,7 @@ return [
     'KEYRESEND' => env('KEYRESEND', ''),
     'name' => env('APP_NAME', 'Terrazón'),
     'maxrange' => env('MAXRAGE', '100000000'),
-    'contact_address' => env('CONTACT_ADDRESS', 'C. 12A 310, Santa Gertrudis Copo, 97113 Mérida, Yuc.'),
+    'contact_address' => env('CONTACT_ADDRESS', ' Mérida, Yuc.'),
     'contact_email' => env('CONTAT_EMAIL', 'contacto@terrazon.mx'),
     'contact_to' => env('CONTACT_TO', 'gbetus@gmail.com'),
     'contact_tel' => env('CONTAT_TEL', '+52 999 912 3456'),

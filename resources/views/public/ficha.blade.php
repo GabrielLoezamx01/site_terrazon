@@ -319,9 +319,9 @@
                         <i class="fas fa-quote-left fa-2xl"></i>
                     </div>
                     <div class="testimonial-content">
-                        <h3 class="testimonial-author">Amalia Garza y Garza</h3>
+                        <h3 class="testimonial-author">Roberto Cisneros</h3>
                         <p class="testimonial-text">
-                            "El equipo de Terrazon fue excepcional en cada paso del proceso, brindándome asesoramiento personalizado y asegurándose de que cada detalle estuviera perfectamente cuidado."
+                            "Agradecido con Dios por permitirme conocer gente especial en la vida. Gracias Sr. Ángel por el servicio excelente."
                         </p>
                     </div>
                 </div>
@@ -330,9 +330,9 @@
                         <i class="fas fa-quote-left fa-2xl"></i>
                     </div>
                     <div class="testimonial-content">
-                        <h3 class="testimonial-author">David T.</h3>
+                        <h3 class="testimonial-author">Jacqueline Serrano</h3>
                         <p class="testimonial-text">
-                            "La experiencia de comprar un departamento en Terrazon fue excelente. Desde el primer contacto hasta la entrega final, el proceso fue fluido y profesional. El equipo de Terrazon demostró un alto nivel de conocimiento y compromiso, brindándome opciones que se ajustaban perfectamente a mis necesidades y gustos."
+                            "No puedo estar más contenta con mi nueva propiedad. Desde el primer momento sentí que entendías lo que buscaba y no paraste hasta que lo encontraste. ¡Gracias por toda tu ayuda y profesionalidad!"
                         </p>
                     </div>
                 </div>
@@ -341,9 +341,9 @@
                         <i class="fas fa-quote-left fa-2xl"></i>
                     </div>
                     <div class="testimonial-content">
-                        <h3 class="testimonial-author">Alberto Meza</h3>
+                        <h3 class="testimonial-author">Missael González</h3>
                         <p class="testimonial-text">
-                            "No solo encontré mi nuevo hogar, sino que también descubrí una comunidad cálida y acogedora. Recomiendo encarecidamente a Terrazon a cualquier persona que busque calidad, profesionalismo y un servicio excepcional en bienes raíces."
+                            "Gracias por todo el esfuerzo y dedicación. Siempre estuviste pendiente de cada detalle y nos diste la confianza que necesitábamos. ¡Recomendaré tus servicios sin pensarlo!"
                         </p>
                     </div>
                 </div>
@@ -352,20 +352,9 @@
                         <i class="fas fa-quote-left fa-2xl"></i>
                     </div>
                     <div class="testimonial-content">
-                        <h3 class="testimonial-author">David T.</h3>
+                        <h3 class="testimonial-author">Marco Amparo</h3>
                         <p class="testimonial-text">
-                            "La experiencia de comprar un departamento en Terrazon fue excelente. Desde el primer contacto hasta la entrega final, el proceso fue fluido y profesional. El equipo de Terrazon demostró un alto nivel de conocimiento y compromiso, brindándome opciones que se ajustaban perfectamente a mis necesidades y gustos."
-                        </p>
-                    </div>
-                </div>
-                <div class="testimonial-box">
-                    <div class="quote-icon">
-                        <i class="fas fa-quote-left fa-2xl"></i>
-                    </div>
-                    <div class="testimonial-content">
-                        <h3 class="testimonial-author">Alberto Meza</h3>
-                        <p class="testimonial-text">
-                            "No solo encontré mi nuevo hogar, sino que también descubrí una comunidad cálida y acogedora. Recomiendo encarecidamente a Terrazon a cualquier persona que busque calidad, profesionalismo y un servicio excepcional en bienes raíces."
+                            "Gracias por tu ayuda. No solo vendimos rápido, sino que conseguiste el mejor precio posible. Fuiste honesto, cercano y muy eficiente. ¡Un placer trabajar contigo!"
                         </p>
                     </div>
                 </div>
@@ -606,8 +595,6 @@
                     <a class="text-decoration-none flex-fill text-center" href="https://www.facebook.com/sharer/sharer.php?u={{$shareLink}}" target="_blank"><img class="ms-1" src="{{ asset('svg/svg-share-f.svg') }}"> </a>
                     <a class="text-decoration-none flex-fill text-center" href="https://twitter.com/intent/tweet?url={{$shareLink}}" target="_blank"><img class="ms-1" src="{{ asset('svg/svg-share-x.svg') }}"> </a>
                     <a class="text-decoration-none flex-fill text-center" href="https://www.instagram.com/?url={{$shareLink}}" target="_blank"><img class="ms-1" src="{{ asset('svg/svg-share-i.svg') }}"> </a>
-                    <a class="text-decoration-none flex-fill text-center" href="{{ config('app.link_tiktok') }}" target="_blank"><img class="ms-1" src="{{ asset('svg/svg-share-t.svg') }}"> </a>
-                    <a class="text-decoration-none flex-fill text-center" href="{{ config('app.link_youtube') }}" target="_blank"><img class="ms-1" src="{{ asset('svg/svg-share-y.svg') }}"> </a>
                     <a class="text-decoration-none flex-fill text-center" href="https://api.whatsapp.com/send?text={{$shareLink}}" target="_blank"><img class="ms-1" src="{{ asset('svg/svg-share-w.svg') }}"> </a>
                 </div>
                 <div class="col-12">

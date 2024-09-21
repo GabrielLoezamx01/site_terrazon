@@ -25695,6 +25695,11 @@ fieldset:before {
   color: #231D46;
   font-size: 26px;
 }
+@media screen and (max-width: 768px) {
+  .ficha-title {
+    font-size: 22px;
+  }
+}
 
 .ficha-title-section {
   font-weight: 600;
@@ -25866,6 +25871,15 @@ ul.ficha li::before {
 }
 .icon-plus img {
   width: 30px;
+}
+
+.acercade p {
+  font-size: 16px;
+}
+@media screen and (min-width: 668px) {
+  .acercade p {
+    font-size: 20px;
+  }
 }
 
 .custom-select {
