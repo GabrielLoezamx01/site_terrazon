@@ -54,7 +54,7 @@
                                     </button>
                                 </div>
                                 <!-- Thumbnails -->
-                                <div class="carousel-thumbnails mt-4 ">
+                                <div class="carousel-thumbnails mt-4  d-none d-lg-flex">
                                     <div class="car-nav car-back" id="carr1_back">
                                         <span class="icon-nav fa-stack fa-2x">
                                             <i class="fa-solid fa-circle fa-stack-2x"></i>
