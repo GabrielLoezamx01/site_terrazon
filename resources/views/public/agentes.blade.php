@@ -2,14 +2,14 @@
 @section('title', 'TERRAZÓN - PROPIEDADES')
 @section('content')
 <div class="bg-white pb-5">
-    <div class="container-fluid container-md ">
+    <div class="p-0 container-md ">
 
         <div id="agentesCarousel" class="carousel slide px-1" data-bs-ride="carousel">
             <div class="carousel-inner">
                 @foreach ($agentes as $key => $agente)
                 <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
                     <div class="row">
-                        <div class="col-12 col-md-5">
+                        <div class="col-12 col-md-5 p-4">
                             <h1 class="text-end mt-5 name">{!!$agente["nombre"]!!}</h1>
                             <div class="text-end mb-4 lead">{!!$agente["puesto"]!!}</div>
                             <p class="text-end mb-4 ps-5 description mb-5">{{$agente["info"]}}</p>
