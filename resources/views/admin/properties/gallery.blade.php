@@ -49,6 +49,10 @@
                                     <a href="#tabs-activity-5" class="nav-link" data-bs-toggle="tab" aria-selected="false"
                                         role="tab" tabindex="-1">Distribución</a>
                                 </li>
+                                <li class="nav-item" role="presentation">
+                                    <a href="#tabs-maps-5" class="nav-link" data-bs-toggle="tab" aria-selected="false"
+                                        role="tab" tabindex="-1">Mapa</a>
+                                </li>
                             </ul>
                         </div>
                         <div class="card-body">
@@ -118,8 +122,8 @@
                                             enctype="multipart/form-data" class="p-5">
                                             @csrf
                                             <input type="hidden" name="id" value="{{ $property['folio'] }}">
-                                            <input type="file" name="img[]" class="mt-5 form-control" accept="image/*"
-                                                multiple required>
+                                            <input type="file" name="img[]" class="mt-5 form-control"
+                                                accept="image/*" multiple required>
                                             <button class="mt-5 btn btn-primary">Subir</button>
                                         </form>
                                         <div class="container-xl">
@@ -149,6 +153,27 @@
                                             @endif
                                         </div>
 
+
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="tabs-maps-5" role="tabpanel">
+                                    <div class="row row-cards">
+                                        <form action="{{ route('maps_gallery') }}" method="POST"
+                                            enctype="multipart/form-data" class="p-5">
+                                            @csrf
+                                            <input type="hidden" name="id" value="{{ $property['folio'] }}">
+                                            <input type="file" name="img" class="mt-5 form-control"
+                                                accept="image/*" multiple required>
+                                            <button class="mt-5 btn btn-primary">Subir</button>
+                                        </form>
+                                        <div class="container-xl">
+                                            @if (!is_null($property['map']))
+                                                <div class="row row-cols-3 row-cols-md-4 row-cols-lg-6 g-3">
+                                                    <img src="{{ asset('storage/' . $property['map']) }}" alt="">
+                                                </div>
+                                            @endif
+                                        </div>
+                                        <div class="p-5"></div>
 
                                     </div>
                                 </div>
