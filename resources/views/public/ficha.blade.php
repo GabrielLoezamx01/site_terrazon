@@ -81,10 +81,10 @@
                             <div class="col-12">
                                 <div class="ficha-nav d-flex ">
                                     <div class="list-item cursor" data-bs-toggle="modal" data-bs-target="#locationModal">
-                                        <span class="svg-icon-ficha svg-icon-location d-none d-lg-block"></span><span class="d-none d-lg-block">Ver en </span>Mapa
+                                        <span class="svg-icon-ficha svg-icon-location d-none d-lg-block"></span>Mapa
                                     </div>
                                     <div class="list-item cursor" data-bs-toggle="modal" data-bs-target="#distributionModal">
-                                        <span class="svg-icon-ficha svg-icon-distribution d-none d-lg-block"></span><span class="d-none d-lg-block">Ver </span>Distribución
+                                        <span class="svg-icon-ficha svg-icon-distribution d-none d-lg-block"></span>Distribución
                                     </div>
                                     <div class="list-item cursor" data-bs-toggle="modal" data-bs-target="#tourModal">
                                         <span class="svg-icon-ficha svg-icon-360-degrees d-none d-lg-block"></span> Tour Virtual

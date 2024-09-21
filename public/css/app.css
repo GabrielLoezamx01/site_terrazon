@@ -25844,6 +25844,20 @@ ul.ficha li::before {
   }
 }
 
+.privacy h1, .privacy .h1 {
+  color: #37B052;
+  font-size: 24px;
+  margin-bottom: 2rem;
+}
+.privacy h2, .privacy .h2 {
+  color: #37B052;
+  font-size: 12px;
+  font-weight: bold;
+}
+.privacy p {
+  font-size: 12px;
+}
+
 .custom-select {
   position: relative;
   display: inline-block;

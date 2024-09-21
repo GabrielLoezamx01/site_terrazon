@@ -56,7 +56,8 @@
                 <p class="mb-0">&copy; 2024 Terrazon</p>
             </div>
             <div class="col text-end fs-7">
-                <a href="#">Aviso de privacidad</a> | <a href="#">Términos y condiciones</a> | <a href="#">Permisos</a>
+                <a href="{{ route('public.avisoprivacidad') }}">Aviso de privacidad</a> 
+                <!--  <a href="#">Términos y condiciones</a> | <a href="#">Permisos</a> -->
             </div>
         </div>
     </div>

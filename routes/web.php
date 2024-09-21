@@ -50,6 +50,10 @@ Route::get('/agentes', [App\Http\Controllers\Public\AgentesController::class, 'i
 Route::get('/acercade', function () {
     return view('public.acercade');
 })->name('acercade');
+Route::get('/avisoprivacidad', function () {
+    return view('public.privacy');
+})->name('public.avisoprivacidad');
+
 Route::get('/contacto', function () {
     return view('public.contacto');
 })->name('contacto');
