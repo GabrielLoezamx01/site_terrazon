@@ -42,8 +42,7 @@
                     @endif
 
                     @if (session('success') || session('errors'))
-                        <div class="alert alert-{{ session('success') ? 'success' : 'danger' }} alert-dismissible"
-                            role="alert">
+                        <div class="alert alert-{{ session('success') ? 'success' : 'danger' }} alert-dismissible" role="alert">
                             <div class="d-flex">
                                 <div>
                                     @if (session('success'))
@@ -165,7 +164,11 @@
                                                         aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <p>{{ $item['message'] }}</p>
+                                                    <div class="text-start">
+                                                        <textarea  disabled class="form-control border-0" rows="20" cols="10" >
+                                                            {{ $item['message'] }}
+                                                        </textarea>
+                                                    </div>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"
