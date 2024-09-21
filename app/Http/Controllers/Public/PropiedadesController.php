@@ -164,7 +164,6 @@ class PropiedadesController extends Controller
     {
         Carbon::setLocale('es');
         $property   = Property::with('types', 'amenities', 'conditions', 'details', 'features', 'galleries', 'distributions')->where('folio', $sku)->first();
-        // json_dd($property);
         $galery = [];
         if (isset($property->galleries)) {
             foreach ($property->galleries as $key => $value) {
@@ -179,6 +178,7 @@ class PropiedadesController extends Controller
         $property->fechaCreacion = ucfirst($this->getDateFormat($property->created_at));
         $property->fechaActualizacion = ucfirst($this->getDateFormat($property->updated_at));
         $property->distributionLink = isset($property->distributions[0]) ? asset('storage/' . $property->distributions[0]->url) : '';
+        $property->map = isset($property->map) ? asset('storage/' . $property->map) : '';
 
         $property->increment('view_count');
         $this->addRecentViewPropertie($property);
