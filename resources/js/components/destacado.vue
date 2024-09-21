@@ -28,7 +28,7 @@ export default {
     },
   },
   methods: {
-    addToast(title, message, duration) { 
+    addToast(title, message, duration) {
       this.$root.$refs.toasts.addToast(title, message, duration);
     },
     toggleFeatured() {
@@ -40,12 +40,12 @@ export default {
         .then((response) => {
           this.isFeatured = isFeatured;
           const msg = isFeatured
-            ? "El propiedad ha sido marcada como destacada"
-            : "El propiedad ha sido removida de destacados";
+            ? "La propiedad ha sido marcada como destacada"
+            : "La propiedad ha sido removida de destacados";
           this.addToast("Propiedad destacada", msg, 3000);
         })
         .catch((error) => {
-          this.addToast("Error", "No se pudo actualizar el destacado", 3000); 
+          this.addToast("Error", "No se pudo actualizar el destacado", 3000);
         });
     },
     activeProperty: function (id) {
