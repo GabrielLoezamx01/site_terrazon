@@ -8,7 +8,7 @@ use App\Models\CustomUser;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Session;
-
+use App\Events\CustomRegister;
 class LoginController extends Controller
 {
     public function index()
@@ -82,6 +82,9 @@ class LoginController extends Controller
             Auth::guard('custom_users')->login($customUser);
 
             if (Auth::guard('custom_users')->check()) {
+
+                event(new CustomRegister($request->input('email')));
+
                 return redirect()->route('custom.home')->with('success', 'User registered and logged in successfully');
             } else {
                 return redirect()->back()->withErrors(['error' => 'Failed to authenticate user'])->withInput();

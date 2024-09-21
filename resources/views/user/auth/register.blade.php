@@ -44,7 +44,7 @@
                                         required>
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="apellido" class="form-label">Apellido<span
+                                    <label for="apellido" class="form-label">Apellido Materno<span
                                             class="text-danger">*</span></label>
                                     <input type="text" name="last_name" class="form-control input" id="apellido"
                                         required>

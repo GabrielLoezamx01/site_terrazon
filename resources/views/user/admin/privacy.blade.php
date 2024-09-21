@@ -15,7 +15,7 @@
                 @include('user.admin.sidebar_mobile')
                 @include('user.admin.sidebar')
                 <div class="col-md-9 bg-white order-2">
-                    @include('user.admin.section.favorite')
+                    @include('user.admin.section.privacy')
                 </div>
             </div>
             <div class="p-5">

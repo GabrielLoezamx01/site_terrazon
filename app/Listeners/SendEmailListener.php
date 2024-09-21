@@ -2,14 +2,14 @@
 
 namespace App\Listeners;
 
+use App\Events\CustomRegister;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\View;
-use Illuminate\Support\Facades\Crypt;
 
-class SendVerificationEmail
+class SendEmailListener
 {
     /**
      * Create the event listener.
@@ -24,20 +24,18 @@ class SendVerificationEmail
     /**
      * Handle the event.
      *
-     * @param  object  $event
+     * @param  \App\Events\CustomRegister  $event
      * @return void
      */
-    public function handle($event)
+    public function handle(CustomRegister $event)
     {
-        $email = $event->email;
-        $token = $event->token;
-
-        $htmlContent = View::make('emails.token')->with('token', $token)->render();
+        $email = $event->emailData;
+        $htmlContent = View::make('emails.new_user')->render();
 
         $payload = [
             'from' => 'TERRAZON  <Terrazon@echamelamano.online>',
             'to' => [$email],
-            'subject' => 'Recuperación de contraseña',
+            'subject' => 'Bienvenido a Terrazon',
             'html' => $htmlContent,
             'headers' => [
                 'X-Entity-Ref-ID' => Str::random(6)
@@ -52,5 +50,6 @@ class SendVerificationEmail
         ])->withOptions([
             'verify' => $caCertPath,
         ])->post(env('RESENDAPI'), $payload);
+
     }
 }
