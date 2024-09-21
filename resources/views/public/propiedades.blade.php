@@ -4,6 +4,7 @@
 @if (!$searchmode)
 <div class="banner banner-propiedades"></div>
 @endif
+<input type="hidden" id="maxRange" name="maxRange" value="{{ $maxRange }}">
 <div class="bg-white pt-3 ">
     <div class="container">
         <nav aria-label="breadcrumb">

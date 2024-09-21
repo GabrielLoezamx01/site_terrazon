@@ -14,7 +14,7 @@
             <div class="row g-0">
                 @include('user.admin.sidebar_mobile')
                 @include('user.admin.sidebar')
-                <div class="col-md-9 bg-white order-2">
+                <div class="col-md-9 bg-white order-2 privacy">
                     @include('user.admin.section.privacy')
                 </div>
             </div>

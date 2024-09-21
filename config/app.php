@@ -18,6 +18,7 @@ return [
     'RESENDAPI' => env('RESENDAPI', ''),
     'KEYRESEND' => env('KEYRESEND', ''),
     'name' => env('APP_NAME', 'Terrazón'),
+    'maxrange' => env('MAXRAGE', '20000000'),
     'contact_address' => env('CONTACT_ADDRESS', 'C. 12A 310, Santa Gertrudis Copo, 97113 Mérida, Yuc.'),
     'contact_email' => env('CONTAT_EMAIL', 'contacto@terrazon.mx'),
     'contact_to' => env('CONTACT_TO', 'gbetus@gmail.com'),

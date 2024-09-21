@@ -51,6 +51,7 @@ $(document).ready(function () {
     var startRange = (typeof budgetArray != 'undefined') ? parseFloat(budgetArray[0]) : 0;
     var endRange = (typeof budgetArray != 'undefined') ? parseFloat(budgetArray[1]) : 100000000;
 
+    var magRange = document.getElementById('maxRange').value;
     var budg1 = document.getElementById('budg1');
     var budg2 = document.getElementById('budg2');
     var mbudg1 = document.getElementById('mbudg1');
@@ -82,34 +83,33 @@ $(document).ready(function () {
     });
 
  
-    if (slider && budgetInput) {
+    if (slider) {
         noUiSlider.create(slider, {
             start: [startRange, endRange],
             connect: true,
             step: 500000,
             range: {
                 'min': 0,
-                'max': 100000000
+                'max': parseInt(magRange)
             }
         });
         slider.noUiSlider.on('update', function (values, handle) {
             budg1.innerHTML = formatNumber(formatToNumber(values[0]));
             budg2.innerHTML = formatNumber(formatToNumber(values[1]));
             budget.value = formatToNumber(values[0]) + "-" + formatToNumber(values[1]);
-
         });
         slider.noUiSlider.on('end', function (values, handle) {
             $("#filterForm").submit();
         });
     }
-    if (sliderMobile && budgetInput) {
+    if (sliderMobile) {
         noUiSlider.create(sliderMobile, {
             start: [startRange, endRange],
             connect: true,
             step: 500000,
             range: {
                 'min': 0,
-                'max': 100000000
+                'max': parseInt(magRange)
             }
         });
         sliderMobile.noUiSlider.on('update', function (values, handle) {
