@@ -6,13 +6,12 @@
     </span>
     <div class="card-img-top" style="background: url('{{ $card["imageUrl"] }}');" alt="{{ $card["imageUrl"] }}" title="{{ $card["imageUrl"] }}"></div>
     <div class="card-body">
-
-        <span class="price">$ {{ $card["price"] }} ({{ $isFavorite }})</span>
+        <span class="price">$ {{ $card["price"] }}</span>
         @if(trim($card["area"])!='')
         <span class="area">{{ $card["area"] }} m<sup>2</sup></span>
         @endif
         <div class="clearfix"></div>
-        <h5 class="card-title">{{ $card["title"] }}</h5>
+        <h5 class="card-title text-truncate">{{ $card["title"] }}</h5>
         <h5 class="card-location">
             <a href="https://www.google.com/maps/search/?api=1&query={{ $card['latitude'] }},{{ $card['longitude'] }}" target="_blank">
                 <i class="bi bi-geo-alt"></i> Ubicación
