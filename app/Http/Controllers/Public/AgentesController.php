@@ -17,8 +17,8 @@ class AgentesController extends Controller
         $agentes = [
             [
                 "nombre" => "Ángel<br>Poot",
-                "puesto" => "Team Leader ",
-                "info" => "Nuestro team leader es un profesional altamente experimentado en el sector inmobiliario y en la gestión de proyectos inmobiliarios. Con más de una década de experiencia, ha liderado equipos multidisciplinarios hacia el éxito, combinando habilidades técnicas avanzadas con una visión estratégica clara. Su compromiso con la excelencia, la innovación y la satisfacción del cliente lo convierte en un líder ejemplar, capaz de guiar al equipo de Terrazon hacia nuevas alturas en el mercado.",
+                "puesto" => "Chief Executive Officer<BR>(CEO)",
+                "info" => "Soy un emprendedor tecnológico, experimentado en el sector inmobiliario y en la gestión de proyectos. Con más de 10 años de experiencia, he liderado equipos multidisciplinarios hacia el éxito, combinando habilidades técnicas avanzadas con una visión estratégica clara. Mi compromiso con la excelencia, la innovación y la satisfacción del cliente me convierte en un líder ejemplar, capaz de guiar al equipo de Terrazon hacia nuevas alturas en el mercado.",
                 "picture" => asset('images/agentes/AP.png')
             ],
             [
