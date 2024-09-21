@@ -64,7 +64,7 @@ class FiltersService
             ],
             [
                 "value" => "6000000-10000000",
-                "label" => "A Mas"
+                "label" => "A más de 6 MDP"
             ]
         ];
     }
