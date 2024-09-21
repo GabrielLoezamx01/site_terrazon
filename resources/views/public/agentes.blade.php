@@ -2,7 +2,7 @@
 @section('title', 'TERRAZÓN - PROPIEDADES')
 @section('content')
 <div class="bg-white pb-5">
-    <div class="container ">
+    <div class="container-fluid container-md ">
 
         <div id="agentesCarousel" class="carousel slide px-1" data-bs-ride="carousel">
             <div class="carousel-inner">
@@ -11,7 +11,7 @@
                     <div class="row">
                         <div class="col-12 col-md-5">
                             <h1 class="text-end mt-5 name">{!!$agente["nombre"]!!}</h1>
-                            <div class="text-end mb-4 lead">{{$agente["puesto"]}}</div>
+                            <div class="text-end mb-4 lead">{!!$agente["puesto"]!!}</div>
                             <p class="text-end mb-4 ps-5 description mb-5">{{$agente["info"]}}</p>
                             <!-- <div class="text-end pt-5">
                                 <button class="btn btn-primary">ÚNETE AL EQUIPO</button>
@@ -25,8 +25,7 @@
                         </div>
                         <div class="col-12 col-md-7">
                             <div class="container-avatar">
-                                <div class="center">
-                                    <!-- <img src="profile.jpg" alt="Persona" class="profile-pic"> -->
+                                <div class="center" style="background: url('{{$agente["picture"]}}');"> 
                                 </div>
                                 <div class="circle circle1"></div>
                                 <div class="circle circle2"></div>
