@@ -18,7 +18,7 @@
   <div class="row mt-3">
       <div class="col-md-4">
           <div class="mb-3">
-              <label for="name" class="label-form">Géneros*</label>
+              <label for="name" class="label-form">Género*</label>
               <div class="position-relative">
                   <img src="{{ asset('svg/select.svg') }}" class="icon-left" alt="Icono">
                   <select disabled name="sex" id="sex" class="form-control input">
