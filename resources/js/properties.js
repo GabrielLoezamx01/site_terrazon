@@ -46,7 +46,6 @@ $(document).ready(function () {
     if(budgetInput){
         var budgetArray = budgetInput.value.split('-');
     }
-   
 
     var startRange = (typeof budgetArray != 'undefined') ? parseFloat(budgetArray[0]) : 0;
     var endRange = (typeof budgetArray != 'undefined') ? parseFloat(budgetArray[1]) : 100000000;

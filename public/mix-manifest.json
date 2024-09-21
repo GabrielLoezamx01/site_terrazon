@@ -11,10 +11,11 @@
     "/js/admin/list_property.js": "/js/admin/list_property.js?id=ac208b0e9d5cf4d0f791b49b276acdc0",
     "/js/admin/types.js": "/js/admin/types.js?id=900b1b0e0b3734b47a6c7e2ae0ea9726",
     "/js/home.js": "/js/home.js?id=cec1b28f7d5fbc23def2bd22c5994e8e",
-    "/js/properties.js": "/js/properties.js?id=7483db26e03af032531b75ad7b9d5bc6",
+    "/js/properties.js": "/js/properties.js?id=1e7f34fea195b0e0e18d0b567570a8de",
     "/js/results.js": "/js/results.js?id=d87597c016e36eafd2033c9e00938b30",
     "/js/ficha.js": "/js/ficha.js?id=2a200dc092194bfa0a15cdb9e1665ca5",
     "/js/gallery.js": "/js/gallery.js?id=e2ac0ad03e3eb6073771732a66c706db",
+    "/css/admin.css": "/css/admin.css?id=ea98f39b9319e05f060a76d89d93433f",
     "/css/app.css": "/css/app.css?id=c2bd22c01a1ec280e9f4be46c5deb016",
     "/css/agentes.css": "/css/agentes.css?id=4566f3fc1efd23002be6bef1669772b9",
     "/css/acercade.css": "/css/acercade.css?id=4f16b3cb555b657546677fccfe271bcd",
@@ -34,6 +35,5 @@
     "/js/popper.js": "/js/popper.js?id=063a0fe0ef0e183df9f6d99ad2923f29",
     "/css/owl.carousel.css": "/css/owl.carousel.css?id=c8322bd5bffc8e2856f2cbcd03c61d18",
     "/css/owl.theme.default.css": "/css/owl.theme.default.css?id=6c830c91a0a08fca0fe883504abc7d2b",
-    "/js/owl.carousel.min.js": "/js/owl.carousel.min.js?id=f416f9031fef25ae25ba9756e3eb6978",
-    "/css/admin.css": "/css/admin.css?id=ea98f39b9319e05f060a76d89d93433f"
+    "/js/owl.carousel.min.js": "/js/owl.carousel.min.js?id=f416f9031fef25ae25ba9756e3eb6978"
 }
