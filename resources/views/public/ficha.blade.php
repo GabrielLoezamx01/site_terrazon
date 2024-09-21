@@ -112,7 +112,7 @@
                                             <div class="col-12 col-lg-6">
                                                 <h5 class="ficha-location text-tertiary">
                                                     <a href="https://www.google.com/maps/search/?api=1&query={{ $property->latitude }},{{ $property->longitude }}" target="_blank">
-                                                        <i class="bi bi-geo-alt"></i> Ubicación del desarrollo o propiedad
+                                                        <i class="bi bi-geo-alt"></i> Ubicación
                                                     </a>
                                                 </h5>
                                             </div>
