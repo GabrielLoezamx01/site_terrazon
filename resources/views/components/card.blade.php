@@ -1,10 +1,13 @@
 <div class="card card-property ">
-    <property-favorite  :initial-featured="{{ $isFavorite }}"  :property-id="{{ $card["id"] }}"></property-favorite>
+    <span class="icon-fav fa-stack fa-2x {{ $isFavorite?'active':'' }} favId-{{ $card["id"] }}" onclick="toogleFavorite({{ $card["id"] }},'.favId-{{ $card["id"] }}')">
+        <i class="fa-solid fa-circle fa-stack-2x"></i>
+        <i class="fa-solid fa-heart fa-stack-1x"></i>
+        <i class="fa-regular fa-heart fa-stack-1x"></i>
+    </span>
     <div class="card-img-top" style="background: url('{{ $card["imageUrl"] }}');" alt="{{ $card["imageUrl"] }}" title="{{ $card["imageUrl"] }}"></div>
-
     <div class="card-body">
 
-        <span class="price">$ {{ $card["price"] }}</span>
+        <span class="price">$ {{ $card["price"] }} ({{ $isFavorite }})</span>
         @if(trim($card["area"])!='')
         <span class="area">{{ $card["area"] }} m<sup>2</sup></span>
         @endif

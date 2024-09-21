@@ -12,7 +12,7 @@
     <style>
         :root {
             --asset-path: "{{ asset('') }}";
-           
+
         }
 
         .dropdown-menu-custom::before {
@@ -32,7 +32,8 @@
     @stack('stylesheet')
     @stack('styles')
     <script src="{{ mix('js/app.js') }}" type="application/javascript"></script>
-    <script src="{{ mix('js/vue.public.app.js') }}"></script>
+    <script src="{{ mix('js/favorite.js') }}" type="application/javascript"></script>
+    <!-- <script src="{{ mix('js/vue.public.app.js') }}"></script> -->
     <link rel="shortcat icon" href="{{asset('img/favicon.ico') }}">
 </head>
 
@@ -40,7 +41,17 @@
     @include('public.includes.header')
     <div id="content">
         @yield('content')
-        <Toasts ref="toasts"></Toasts>
+        <!-- Toast -->
+        <div id="toastContainer" class="toast-container position-fixed bottom-0 end-0 p-3">
+            <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <strong class="me-auto" name="title"></strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body message" ></div>
+            </div>
+        </div>
+        <!-- Toast -->
     </div>
     @stack('scripts')
     @include('public.includes.footer')
