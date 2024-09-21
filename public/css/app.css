@@ -25623,6 +25623,14 @@ fieldset:before {
   color: white;
   border-radius: 6px;
 }
+.ficha-nav .ficha-price {
+  font-size: 36px;
+}
+@media screen and (max-width: 568px) {
+  .ficha-nav .ficha-price {
+    font-size: 24px;
+  }
+}
 .ficha-nav .list-item {
   width: 25%;
   padding: 10px;

@@ -99,7 +99,7 @@
                                     <div class="col-12">
                                         <div class="row">
                                             <div class="col-6">
-                                                <h2>$ {{ number_format($property->price,2,'.',',') }}</h2>
+                                                <h2 class="ficha-price text-nowrap">$ {{ number_format($property->price,2,'.',',') }}</h2>
                                             </div>
                                             <div class="col-6 text-end">
                                                 <div class="text-tertiary share-text d-flex align-items-center justify-content-end cursor" data-bs-toggle="modal" data-bs-target="#shareModal"><i class="bi bi-share-fill mx-1 fs-4"></i> Compartir</div>
