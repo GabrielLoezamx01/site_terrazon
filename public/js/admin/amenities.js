@@ -7,6 +7,10 @@
  * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
  */
 /******/ (() => { // webpackBootstrap
+<<<<<<< HEAD
+/******/ 	"use strict";
+/******/ 	
+=======
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./node_modules/axios/index.js":
@@ -444,6 +448,7 @@ module.exports = /*#__PURE__*/JSON.parse('{"name":"axios","version":"0.21.4","de
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval-source-map devtool is used.
 /******/ 	var __webpack_exports__ = __webpack_require__("./resources/js/admin/amenities.js");
+>>>>>>> ff48421f66644cda9eb3ee9e80ca0599e97a6a09
 /******/ 	
 /******/ })()
 ;

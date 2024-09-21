@@ -7,6 +7,10 @@
  * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
  */
 /******/ (() => { // webpackBootstrap
+<<<<<<< HEAD
+/******/ 	"use strict";
+/******/ 	
+=======
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./resources/js/favorite.js":
@@ -27,6 +31,7 @@ eval("//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset
 /******/ 	// This entry module can't be inlined because the eval-source-map devtool is used.
 /******/ 	var __webpack_exports__ = {};
 /******/ 	__webpack_modules__["./resources/js/favorite.js"]();
+>>>>>>> ff48421f66644cda9eb3ee9e80ca0599e97a6a09
 /******/ 	
 /******/ })()
 ;
