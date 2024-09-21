@@ -24722,7 +24722,12 @@ h6,
 .title {
   font-weight: 600;
   color: #231D46;
-  font-size: 32px;
+  font-size: 18px;
+}
+@media screen and (min-width: 768px) {
+  .title {
+    font-size: 32px !important;
+  }
 }
 
 .subtitle {

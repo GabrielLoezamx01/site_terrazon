@@ -16,7 +16,6 @@
     "/js/ficha.js": "/js/ficha.js?id=2a200dc092194bfa0a15cdb9e1665ca5",
     "/js/gallery.js": "/js/gallery.js?id=e2ac0ad03e3eb6073771732a66c706db",
     "/css/admin.css": "/css/admin.css?id=51307cc64f4561b943f4ceb587309aaf",
-    "/css/app.css": "/css/app.css?id=400067358123b252e344ed4ee79c425f",
     "/css/agentes.css": "/css/agentes.css?id=4566f3fc1efd23002be6bef1669772b9",
     "/css/acercade.css": "/css/acercade.css?id=4f16b3cb555b657546677fccfe271bcd",
     "/css/gallery.css": "/css/gallery.css?id=145a2f6f2c335f0c8552c4bf81905278",
@@ -35,5 +34,6 @@
     "/js/popper.js": "/js/popper.js?id=063a0fe0ef0e183df9f6d99ad2923f29",
     "/css/owl.carousel.css": "/css/owl.carousel.css?id=c8322bd5bffc8e2856f2cbcd03c61d18",
     "/css/owl.theme.default.css": "/css/owl.theme.default.css?id=6c830c91a0a08fca0fe883504abc7d2b",
-    "/js/owl.carousel.min.js": "/js/owl.carousel.min.js?id=f416f9031fef25ae25ba9756e3eb6978"
+    "/js/owl.carousel.min.js": "/js/owl.carousel.min.js?id=f416f9031fef25ae25ba9756e3eb6978",
+    "/css/app.css": "/css/app.css?id=eae3d6ca0aee118edaa72480ed138062"
 }

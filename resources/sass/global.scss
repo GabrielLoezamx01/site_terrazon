@@ -268,7 +268,10 @@ h6 {
 .title {
     font-weight: 600;
     color: $title-color;
-    font-size: 32px;
+    font-size: 18px;
+    @media screen and (min-width:768px) {
+        font-size: 32px !important;
+    }
 }
 
 .subtitle {
@@ -585,13 +588,6 @@ ul.list-info {
         @media screen and (min-width: 980px) {
             right: -1%;
         }
-
-        // @media screen and (min-width: 1260px) {
-        //     right: -10px;
-        // }
-        // @media screen and (min-width: 1340px) {
-        //     right: -10px;
-        // }
     }
 }
 
