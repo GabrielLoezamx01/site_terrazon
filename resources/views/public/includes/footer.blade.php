@@ -33,7 +33,7 @@
                 </ul>
             </div>
             <div class="col-12 col-md-3 mt-4">
-                <span class="footer-title">Contactanos</span>
+                <span class="footer-title">Contáctanos</span>
                 <ul class="list-contact mt-3">
                     <li class="d-flex align-items-center"><i class="bi bi-geo-alt"></i>{{ config('app.contact_address') }}</li>
                     <li class="d-flex align-items-center"><a href="tel:{{ config('app.contact_tel') }}"><i class="bi bi-telephone-outbound"></i>{{ config('app.contact_tel') }}</a></li>

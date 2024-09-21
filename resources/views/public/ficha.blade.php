@@ -176,7 +176,7 @@
                                 <div class="row py-3">
                                     <div class="col-12">
                                         <fieldset class="p-3 fielset-ficha">
-                                            <legend>Descripcion de la propiedad</legend>
+                                            <legend>Descripción de la propiedad</legend>
                                             <div id="description" class="truncate-info">
                                                 {{ $property->description }}
                                             </div>

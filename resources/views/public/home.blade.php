@@ -36,7 +36,7 @@
                     </div>
 
                     <div class="col-10">
-                        <div class="info-title">Inversión inteligente:</div>
+                        <div class="info-title">Inversión inteligente</div>
                         <p class="info-description">Nuestras propiedades no sólo ofrecen un espacio habitable de ensueño
                             sino que también prometen una buena inversión para su futuro.</p>
                     </div>
@@ -49,7 +49,7 @@
                         </span>
                     </div>
                     <div class="col-10">
-                        <div class="info-title">Propiedad sin esfuerzo::</div>
+                        <div class="info-title">Propiedad sin esfuerzo</div>
                         <p class="info-description">Disfrute de una experiencia de compra sin complicaciones con nuestro
                             equipo dedicado que lo guiará en cada paso.</p>
                     </div>
@@ -62,7 +62,7 @@
                         </span>
                     </div>
                     <div class="col-10">
-                        <div class="info-title">Una red de afiliados:</div>
+                        <div class="info-title">Una red de afiliados</div>
                         <p class="info-description">Nuestra red de afiliados ofrece acceso exclusivo a una amplia gama de
                             propiedades, respaldada por un equipo experto que te brindará asesoramiento personalizado en
                             cada etapa.</p>
@@ -76,7 +76,7 @@
                         </span>
                     </div>
                     <div class="col-10">
-                        <div class="info-title">Una red de afiliados:</div>
+                        <div class="info-title">Una red de afiliados</div>
                         <p class="info-description">Nuestra red de afiliados ofrece acceso exclusivo a una amplia gama de
                             propiedades, respaldada por un equipo experto que te brindará asesoramiento personalizado en
                             cada etapa.</p>

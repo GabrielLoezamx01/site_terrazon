@@ -18,7 +18,7 @@
         @if (!$searchmode)
         <div class="row">
             <div class="col-12 text-center">
-                <h3>¿Donde quieres comenzar a buscar?</h3>
+                <h3>¿Dónde quieres comenzar a buscar?</h3>
             </div>
             <div class="col-12 text-center">
                 <div class="inline">
