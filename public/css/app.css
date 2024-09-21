@@ -25858,6 +25858,16 @@ ul.ficha li::before {
   font-size: 12px;
 }
 
+.icon-plus {
+  padding: 10px 10px;
+  background: #A3DBAF;
+  width: 50px;
+  border-radius: 50%;
+}
+.icon-plus img {
+  width: 30px;
+}
+
 .custom-select {
   position: relative;
   display: inline-block;

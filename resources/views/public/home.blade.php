@@ -28,10 +28,9 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-2 text-center pt-1">
-                        <span class="info-stack fa-stack fa-2x">
-                            <i class="fa-solid fa-circle fa-stack-2x"></i>
-                            <i class="fa-solid fa-image fa-stack-1x fa-inverse"></i>
+                    <div class="col-2 text-center pt-1 d-flex align-items-center justify-content-center">
+                        <span class="icon-plus">
+                            <img src="{{ asset('images/icons/icon-plus-01.png') }}">
                         </span>
                     </div>
 
@@ -42,10 +41,9 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-2 text-center pt-1">
-                        <span class="info-stack fa-stack fa-2x">
-                            <i class="fa-solid fa-circle fa-stack-2x"></i>
-                            <i class="fa-solid fa-image fa-stack-1x fa-inverse"></i>
+                    <div class="col-2 text-center pt-1 d-flex align-items-center justify-content-center">
+                        <span class="icon-plus">
+                            <img src="{{ asset('images/icons/icon-plus-02.png') }}">
                         </span>
                     </div>
                     <div class="col-10">
@@ -55,24 +53,9 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-2 text-center pt-1">
-                        <span class="info-stack fa-stack fa-2x">
-                            <i class="fa-solid fa-circle fa-stack-2x"></i>
-                            <i class="fa-solid fa-image fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </div>
-                    <div class="col-10">
-                        <div class="info-title">Una red de afiliados</div>
-                        <p class="info-description">Nuestra red de afiliados ofrece acceso exclusivo a una amplia gama de
-                            propiedades, respaldada por un equipo experto que te brindará asesoramiento personalizado en
-                            cada etapa.</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-2 text-center pt-1">
-                        <span class="info-stack fa-stack fa-2x">
-                            <i class="fa-solid fa-circle fa-stack-2x"></i>
-                            <i class="fa-solid fa-image fa-stack-1x fa-inverse"></i>
+                    <div class="col-2 text-center pt-1 d-flex align-items-center justify-content-center">
+                        <span class="icon-plus">
+                            <img src="{{ asset('images/icons/icon-plus-03.png') }}">
                         </span>
                     </div>
                     <div class="col-10">
