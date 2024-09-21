@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\Auth\LoginController;
+use App\Http\Controllers\User\Auth\RetryPasswordController as RetryPassword;
 use App\Http\Controllers\User\Auth\HomeController;
 use App\Http\Controllers\User\Admin\ProfileController;
 use App\Http\Controllers\Admin\Property\FavoriteController;
@@ -14,6 +15,9 @@ use App\Http\Controllers\Admin\Property\FavoriteController;
 Route::get('/custom/login', [LoginController::class, 'index'])->name('custom.login.form');
 Route::view('/custom/register', 'user.auth.register')->name('custom.register.form');
 Route::view('/custom/password', 'user.auth.password')->name('custom.password');
+Route::post('/custom/password', [RetryPassword::class, 'send'])->name('custom.retry');
+Route::post('/custom/password_reset', [RetryPassword::class, 'token'])->name('custom.token');
+
 
 /*
 *
@@ -36,7 +40,7 @@ Route::middleware('custom_user')->group(function () {
 });
 
 Route::prefix('custom')->middleware('custom_user')->group(function () {
-    Route::get('/home', [ProfileController::class, 'index']);
+    Route::get('/home', [ProfileController::class, 'index'])->name('custom.home');
     Route::view('/privacy', 'user.admin.privacy');
     Route::post('/update_profile', [ProfileController::class, 'update'])->name('update_profile');
     // Route::view('/update_profile', 'user.admin.home')->name('custom.home');

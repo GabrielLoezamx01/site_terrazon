@@ -20,11 +20,10 @@
                     </a>
                     <div class="padding-login">
                         <h1 class="color-login">
-                            ¿Olvidaste tu contraseña?
+                            Ingresa el token
                         </h1>
                         <span class="span-login">
-                            No te preocupes, nos pasa a todos. Ingrese su correo electrónico
-                            a continuación para recuperar su contraseña
+                           Se envio un token a tu correo electrónico, por favor ingrésalo
                         </span>
                     </div>
                     <div class="padding-login col-md-12">
@@ -35,16 +34,16 @@
                                 @endforeach
                             </div>
                         @endif
-                        <form method="POST" action="{{ route('custom.retry') }}">
+                        <form method="POST" action="{{ route('custom.token') }}">
                             @csrf
+                            <input type="hidden" value="{{ $email }}" name="ca">
                             <div class="mb-3">
-                                <label for="email" class="form-label">Correo electrónico<span
+                                <label for="email" class="form-label">Ingresa el token<span
                                         class="text-danger">*</span></label>
-                                <input type="email" class="form-control input" id="email" name="email" required
+                                <input type="text" class="form-control input" id="token" name="token" required
                                     placeholder="Ingresa tu correo electrónico">
                             </div>
                             <button type="submit" class=" btn-color w-100 text-white">INGRESAR</button>
-
                         </form>
                         <div class="mb-3 mt-3">
                             <div class="row align-items-center">
@@ -69,6 +68,7 @@
     </div>
 
     <script src="{{ asset('js/app.js') }}?v={{ config('app.version') }}"></script>
+
 </body>
 
 </html>

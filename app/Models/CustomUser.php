@@ -20,7 +20,15 @@ class CustomUser extends Authenticatable
         'email',
         'password',
         'terms_accepted',
+        'gender',
+        'date_of_birth',
+        'occupation_id',
+        'landline',
+        'occupation',
+        'token',
+        'token_expirado',
     ];
+
 
     protected $hidden = [
         'password',

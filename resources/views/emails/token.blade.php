@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro Exitoso</title>
+    <title>Recuperación de Cuenta</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -64,7 +64,6 @@
             border-radius: 5px;
             text-align: center;
             margin: 20px auto;
-            display: block;
         }
 
         .email-footer {
@@ -87,22 +86,16 @@
 <body>
     <div class="container email-container">
         <div class="email-header">
-            <img src="https://terrazon.mx/images/logo-terrazon.png" alt="Terrazon Logo">
-            <h1 class="fw-bold">¡Bienvenido a Terrazon!</h1>
+            <img src="https://terrazon.mx/images/logo-terrazon.png" alt="Logo de Terrazon">
+            <h1 class="fw-bold">Recuperación de Cuenta</h1>
         </div>
 
         <div class="email-body">
-            <h2>¡Registro Exitoso!</h2>
-            <p>Gracias por unirte a nuestra comunidad.</p>
-            <p>Si tienes alguna pregunta o necesitas ayuda, no dudes en contactarnos.</p>
-            <p>¡Estamos aquí para ti!</p>
+            <h2>Tu código de recuperación es:</h2>
+            <span class="token">{{ $token }}</span>
+            <p>Si no solicitaste este código, puedes ignorar este mensaje.</p>
+            <p>Gracias por confiar en Terrazon.</p>
+            <a href="{{ route('custom.password') }}" class="button">Recuperar Cuenta</a>
         </div>
 
-        <div class="email-footer">
-            <p>&copy; {{ date('Y') }} Terrazon. Todos los derechos reservados.</p>
-            <p><a href="https://terrazon.mx/">Términos y Condiciones</a> | <a
-                    href="https://terrazon.mx/">Política de Privacidad</a></p>
-        </div>
-    </div>
-</body>
-</html>
+        <
