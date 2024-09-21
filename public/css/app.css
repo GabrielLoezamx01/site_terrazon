@@ -24826,6 +24826,7 @@ h6, .h6 {
   font-weight: 400;
   margin-bottom: 0;
   line-height: 14px;
+  min-height: 326px;
 }
 .card-property .card-body .card-location {
   color: #1E612D;
