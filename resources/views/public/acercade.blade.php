@@ -112,7 +112,7 @@
                 <div class="col-12 col-md-7 content-margin">
                     <h2 class="my-4">Nuestro compromiso</h2>
                     <p style="padding-right: 4rem;">
-                        <b>Terrazon</b> es una empresa emergente en el sector inmobiliario que busca revolucionar la compra y venta de propiedades mediante el uso de tecnología avanzada. Nuestra misión es simplificar y optimizar cada paso del proceso de adquisición de bienes inmuebles, brindando a nuestros clientes una experiencia transparente, segura y eficiente.
+                        <b>En Terrazon</b>, estamos comprometidos con la satisfacción total de nuestros clientes. Nos dedicamos a superar sus expectativas a través de un servicio excepcional y atención personalizada. Valoramos la confianza que depositan en nosotros y trabajamos con integridad y transparencia para garantizar los mejores resultados.
                     </p>
                     <div class="d-grid gap-2 d-md-block text-left py-2">
                         <a href="/propiedades" class="btn btn-primary btn-catalogo">EXPLORAR CATÁLOGO</a>
