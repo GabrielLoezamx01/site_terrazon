@@ -1,43 +1,41 @@
-<!DOCTYPE html>
-<html lang="es">
+<!doctype html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', config('app.name', 'TERRAZON'))</title>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/login_user.css') }}">
+    <style>
+        :root {
+            --asset-path: "{{ asset('') }}";
+        }
+
+        .dropdown-menu-custom::before {
+            content: "";
+            position: absolute;
+            top: -5px;
+            right: 30px;
+            border-width: 0 7px 7px 7px;
+            border-style: solid;
+            border-color: transparent transparent #094208 transparent;
+        }
+    </style>
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/user_custom.css') }}">
+    @stack('stylesheet')
+    @stack('styles')
+    <script src="{{ mix('js/app.js') }}" type="application/javascript"></script>
+    <link rel="shortcat icon" href="{{ asset('img/favicon.ico') }}">
 </head>
 <body>
-    <div class="container-fluid vh-100">
-        <div class="row h-100">
-            <div class="col-md-6 bg-dark">
-                <div class="m-5">
-                        <a href="{{ url('/') }}">
-                            <img src="{{ asset('images/logo-terrazon.png') }}" class="login-img mt-5">
-                        </a>
-                    <div class="padding-login">
-                        <h1 class="color-login">
-                            @yield('page-title', 'Login')
-                        </h1>
-                        <span class="span-login">
-                            @yield('page-span', 'Terrazon')
-                        </span>
-                    </div>
-                    <div class="padding-login col-md-12">
-                        @if (session('error'))
-                            <div class="alert alert-danger">
-                                {{ session('error') }}
-                            </div>
-                        @endif
-                        @yield('content')
-                    </div>
-                </div>
-            </div>
-            @yield('images')
-        </div>
+    @include('public.includes.header')
+    <div class="container-color">
+        @yield('content')
+        <Toasts ref="toasts"></Toasts>
     </div>
-    <script src="{{ asset('js/app.js') }}?v={{ config('app.version') }}"></script>
-    <script src="{{ asset('js/password.js') }}"></script>
+    @stack('scripts')
+    @include('public.includes.footer')
 </body>
 
 </html>

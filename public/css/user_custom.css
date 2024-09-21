@@ -1,3 +1,7 @@
+.container-color {
+    background: #edf5ef;
+}
+
 .sidebar {
     border-right: 1px solid #dee2e6;
     height: 100%;
@@ -26,11 +30,15 @@
     font-style: bold;
 }
 .list-group-item:hover {
-    color: #2c6d3f;
-    text-decoration: underline;
-    background: #7ae582;
-    text-decoration: none;
     color: #094208;
+    text-decoration: none;
+    font-weight: 700 !important;
+    background: #7ae582;
+}
+
+.list-group-item li > a:hover {
+    color: #094208 !important;
+    font-weight: 700 !important;
 }
 
 .sidebar {
@@ -74,7 +82,7 @@ input::placeholder {
     font-size: 16px;
     color: #333;
     box-shadow: none;
-    position: relative;
+    /* position: relative; */
 }
 .label-form {
     font-weight: 500;
@@ -126,7 +134,83 @@ input::placeholder {
     border-bottom: none; /* Elimina el borde del último elemento */
 }
 
-
 .d-flex::-webkit-scrollbar {
     display: none;
 }
+
+.label-text {
+    font-size: 1.2rem;
+    font-weight: 500;
+    line-height: 15.73px;
+    text-align: left;
+    color: #37b052;
+}
+.edit-btn {
+    all: unset;
+    cursor: pointer;
+    color: #3830d9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.position-relative {
+    width: 100%; /* Asegura que ocupe todo el ancho */
+}
+
+.icon-left {
+    position: absolute;
+    left: 90%; /* Ajusta la distancia desde el borde izquierdo */
+    top: 50%;
+    transform: translateY(-50%); /* Centra verticalmente el ícono */
+    width: 20px;
+    height: 20px;
+    pointer-events: none; /* Evita que interfiera con el clic del select */
+}
+
+.form-select {
+    padding-left: 40px; /* Deja espacio para el ícono a la izquierda */
+    appearance: none; /* Elimina el estilo nativo del select */
+}
+
+.form-select:focus {
+    box-shadow: none; /* Elimina el borde azul en focus */
+    border-color: #e0e0e0; /* Ajusta el color del borde en foco */
+}
+
+.privacy-text {
+    color: #231d46;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 13px;
+    text-align: left;
+    margin-top: 20px;
+}
+
+.privacy-p{
+    color: #231d46;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+    text-align: justify;
+    margin-top: 20px;
+}
+.privacy-list{
+  color: #231d46;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+    text-align: justify;
+    margin-top: 20px;
+}
+.privacy-list ul>li{
+ color: #231d46;
+}
+/* .scrollable-div {
+    max-height: 70%; /* O el valor de altura que prefieras */
+    overflow-y: auto;  /* Para el scroll vertical */
+    overflow-x: hidden; /* Si no quieres scroll horizontal */
+} */

@@ -36,8 +36,8 @@ Route::middleware('custom_user')->group(function () {
 });
 
 Route::prefix('custom')->middleware('custom_user')->group(function () {
-    Route::view('/home', 'user.admin.home')->name('custom.home');
-    Route::view('/home', 'user.admin.home')->name('custom.home');
+    Route::get('/home', [ProfileController::class, 'index']);
+    Route::view('/privacy', 'user.admin.privacy');
     Route::post('/update_profile', [ProfileController::class, 'update'])->name('update_profile');
     // Route::view('/update_profile', 'user.admin.home')->name('custom.home');
     Route::get('/logout', [LoginController::class, 'logout'])->name('custom.logout');
