@@ -128,7 +128,7 @@
                                             <td class="text-start">{{ $item->municipality->name }} ,
                                                 {{ $item->municipality->state->name }}
                                             </td>
-                                            <td class="text-start">${{ number_format($item->price, 2) }}</td>
+                                            <td class="text-start">${{ number_format($item->price, 0) }}</td>
                                             <td>
                                                 @switch($item->available)
                                                     @case(1)

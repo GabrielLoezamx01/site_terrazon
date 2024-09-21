@@ -14,7 +14,7 @@ class CardResource extends JsonResource
  
         $id          = $this->id; 
         $title       = $this->title ?? '';
-        $price       = number_format($this->price ?? 0, 2, '.', ',');
+        $price       = number_format($this->price ?? 0, 0, '.', ',');
         $area        = $this->m2 ?? '';
         $isFavorite  = $this->isFavorite ?? 0;
         $types_id    = $this->types[0]->id ?? '';

@@ -48,7 +48,7 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="col-12 col-md-10 text-center text-md-start">
-                        <h3 class="mb-4">Venta de propiedades</h3>
+                        <h3 class="mb-4 text-white">Venta de propiedades</h3>
                         <p class="fs-description">
                             Disponemos de una amplia cartera de inmuebles para todos los gustos y presupuestos. Con nuestras avanzadas plataformas digitales, encontrar y seleccionar tu propiedad ideal es más fácil que nunca.
                         </p>
@@ -61,7 +61,7 @@
                     <i class="svg-service-icon svg-service-contract mb-4"></i>
                 </div>
                 <div class="col-12 col-md-10 text-center text-md-start">
-                    <h3 class="mb-4">Escrituración</h3>
+                    <h3 class="mb-4 text-white">Escrituración</h3>
                     <p class="fs-description">
                         Gestionamos todos los trámites legales necesarios para asegurar una transacción segura y sin contratiempos. Nuestro equipo de expertos legales se encarga de la documentación y la formalización del proceso de compra.
                     </p>
@@ -74,7 +74,7 @@
                 <i class="svg-service-icon svg-service-online mb-4"></i>
             </div>
             <div class="col-12 col-md-10 text-center text-md-start">
-                <h3 class="mb-4">Tecnología Innovadora</h3>
+                <h3 class="mb-4 text-white">Tecnología Innovadora</h3>
                 <p class="fs-description">
                     Utilizamos tecnologías avanzadas como la realidad virtual y tours 3D para que puedas explorar nuestras propiedades desde la comodidad de tu hogar, ofreciendo una experiencia inmersiva y detallada.
                 </p>
@@ -87,7 +87,7 @@
             <i class="svg-service-icon svg-service-finance mb-4"></i>
         </div>
         <div class="col-12 col-md-10 text-center text-md-start">
-            <h3 class="mb-4">Financiamiento</h3>
+            <h3 class="mb-4 text-white">Financiamiento</h3>
             <p class="fs-description">
                 Ofrecemos opciones de financiamiento personalizadas para nuestros clientes, colaborando con instituciones financieras de prestigio para brindar soluciones de crédito accesibles y competitivas.
             </p>

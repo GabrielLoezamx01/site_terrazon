@@ -130,7 +130,7 @@
                             <div class="description">{{ $recomendations["location"]["featured_msg"]}}</div>
                         </div>
                         <div class="col-12 py-4">
-                            <span class="price">$ {{ number_format($recomendations["price"],2) }}</span>
+                            <span class="price">$ {{ number_format($recomendations["price"],0) }}</span>
                         </div>
                         <div class="col-12">
                             <div class="hightlight">{{ $recomendations["title"] }}</div>
