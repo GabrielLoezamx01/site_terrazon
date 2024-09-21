@@ -32,7 +32,7 @@
     @stack('styles')
     <script src="{{ mix('js/app.js') }}" type="application/javascript"></script>
     <script src="{{ mix('js/vue.public.app.js') }}"></script>
-
+    <link rel="shortcat icon" href="favicon.ico"> 
 </head>
 
 <body>
