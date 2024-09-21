@@ -25631,6 +25631,11 @@ fieldset:before {
   justify-content: center;
   align-items: center;
 }
+@media screen and (max-width: 568px) {
+  .ficha-nav .list-item {
+    font-size: 10px !important;
+  }
+}
 .ficha-nav .list-item .svg-icon-ficha {
   margin-right: 5px;
 }
