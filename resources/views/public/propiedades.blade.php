@@ -17,7 +17,7 @@
             </ol>
         </nav>
         @if (!$searchmode)
-        <div class="row">
+        <div class="row mb-4">
             <div class="col-12 text-center">
                 <h3>¿Dónde quieres comenzar a buscar?</h3>
             </div>
@@ -258,7 +258,7 @@
                         <div> <i class="svg-icon-2  svg-icon-person "></i></div>
                     </div>
                     <div class="col-8">
-                        <div class="title lh-2">1K</div>
+                        <div class="title lh-2">33</div>
                         <div class="subtitle text-secondary fw-400  text-nowrap text-clientes">clientes Satisfechos</div>
                     </div>
                 </div>
@@ -269,7 +269,7 @@
                         <div><i class="svg-icon-2  svg-icon-star-check"></i></div>
                     </div>
                     <div class="col-8">
-                        <div class="title lh-2">2K</div>
+                        <div class="title lh-2">137</div>
                         <div class="subtitle text-secondary fw-400  text-nowrap text-clientes">Propiedades verificadas</div>
                     </div>
                 </div>

@@ -42,24 +42,6 @@
                 </div>
                 @endforeach
             </div>
-            <!-- <button class="carousel-control-prev ml-2 d-none d-md-block" type="button" data-bs-target="#agentesCarousel" data-bs-slide="prev">
-                <span class="visually-hidden">Previous</span>
-                <div class="slider-nav slider-nav-prev-2">
-                    <span class="icon-nav fa-stack fa-2x">
-                        <i class="fa-solid fa-circle fa-stack-2x"></i>
-                        <i class="fa-solid fa-chevron-left fa-stack-1x fa-inverse"></i>
-                    </span>
-                </div>
-            </button>
-            <button class="carousel-control-next mr-2 d-none d-md-block" type="button" data-bs-target="#agentesCarousel" data-bs-slide="next">>
-                <span class="visually-hidden">Next</span>
-                <div class="slider-nav slider-nav-next-2">
-                    <span class="icon-nav fa-stack fa-2x">
-                        <i class="fa-solid fa-circle fa-stack-2x"></i>
-                        <i class="fa-solid fa-chevron-right fa-stack-1x fa-inverse"></i>
-                    </span>
-                </div>
-            </button> -->
         </div>
 
 
