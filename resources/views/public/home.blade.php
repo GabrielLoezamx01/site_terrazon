@@ -322,7 +322,7 @@
                                             <label for="coments">Deja tu comentario</label>
                                         </div>
                                     </div>
-                                    <div class="col-12 py-2">
+                                    <div class="col-12 py-2  d-flex aling-items-center">
                                         <input type="checkbox" required id="check" name="check"><label for="check" class="mx-2">Acepto
                                             los términos y condiciones</label>
                                     </div>
