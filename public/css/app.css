@@ -25360,7 +25360,7 @@ ul.list-info .detail-text {
   text-decoration: none;
 }
 .breadcrumb .active {
-  color: #094208;
+  color: #094208 !important;
 }
 
 .dd-order {

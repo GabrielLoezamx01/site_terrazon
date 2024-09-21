@@ -1009,7 +1009,6 @@ ul.list-info {
 .breadcrumb {
     .breadcrumb-item {
         font-size: 12px;
-
         a {
             color: #8F8F8F;
             text-decoration: none;
@@ -1018,7 +1017,7 @@ ul.list-info {
     }
 
     .active {
-        color: $tertiary;
+        color: $tertiary !important ;
     }
 }
 
