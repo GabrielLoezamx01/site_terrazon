@@ -50,6 +50,7 @@ class PropiedadesController extends Controller
         $searchmode = false;
 
         $range = $this->filtersService->getListBudget();
+
         $ubicaciones = $this->filtersService->getListUbicaciones();
         $typesProperties = $this->filtersService->getListTiposPropiedad();
         $conditionsProperty = $this->filtersService->getConditionsProperty();
@@ -114,6 +115,7 @@ class PropiedadesController extends Controller
 
         $budg1 = 0;
         $budg2 = 100000000;
+        $maxRange = config('app.maxrange');
         if ($bugetQP != '') {
             $bg = explode("-", $bugetQP);
             $budg1 = isset($bg[0]) ? $bg[0] : 0;
@@ -138,6 +140,7 @@ class PropiedadesController extends Controller
             'budg2'              => $budg2,
             'budget'             => $bugetQP,
             'range'              => $range,
+            'maxRange'           => $maxRange,
             "filter"             => $filterOpen,
             'searchmode'         => $searchmode,
             "allTypesQP"         => $allTypesQP,

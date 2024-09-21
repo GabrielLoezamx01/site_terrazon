@@ -4,6 +4,7 @@
 @if (!$searchmode)
 <div class="banner banner-propiedades"></div>
 @endif
+<input type="hidden" id="maxRange" name="maxRange" value="{{ $maxRange }}">
 <div class="bg-white pt-3 ">
     <div class="container">
         <nav aria-label="breadcrumb">
@@ -465,6 +466,6 @@
 </div>
 @endsection
 @push('scripts')
-<script src="{{ asset('js/properties.js') }}"></script>
+<script src="{{ mix('js/properties.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
 @endpush
