@@ -332,7 +332,7 @@
                                                 MENSAJE</button>
                                         </div>
                                     </div>
-                                    <div class="col-12 col-md-8 container-contact">
+                                    <div class="container-contact">
                                         <div class="image-contact" style="background: url({{ asset('images/image-bg-white.png') }});"></div>
                                     </div>
                                 </div>

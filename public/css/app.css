@@ -25262,17 +25262,24 @@ ul.list-info .detail-text {
   position: absolute;
   background-repeat: no-repeat !important;
   background-position: center !important;
-  background-size: 100% !important;
   height: 100%;
   width: 100%;
-  bottom: -44%;
+  bottom: 10%;
   right: 0;
 }
 @media screen and (min-width: 768px) {
   .image-contact {
+    background-size: 100% !important;
     background-size: 50% !important;
     bottom: -42%;
     right: -25%;
+  }
+}
+@media screen and (max-width: 767px) {
+  .image-contact {
+    background-size: contain !important;
+    height: 300px;
+    bottom: -17%;
   }
 }
 
