@@ -42,6 +42,8 @@ use App\Http\Controllers\Auth\ProfileController;
 include __DIR__ . '/home.php';
 
 
+Route::view('/email', 'emails.message');
+
 
 Route::get('/', [App\Http\Controllers\Public\HomeController::class, 'index'])->name('inicio');
 Route::get('/propiedades', [App\Http\Controllers\Public\PropiedadesController::class, 'index'])->name('propiedades');

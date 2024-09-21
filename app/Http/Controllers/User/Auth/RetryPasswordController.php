@@ -9,6 +9,7 @@ use App\Events\UserSendEmail;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\View;
 
 
 class RetryPasswordController extends Controller
@@ -68,12 +69,13 @@ class RetryPasswordController extends Controller
         }
 
         Auth::guard('custom_users')->login($validations);
+        $htmlContent = View::make('emails.message')->render();
 
         if (Auth::guard('custom_users')->check()) {
             $payload = [
                 'from' => 'TERRAZON ' . ' <' . config('app.resend_from') . '>',
                 'to' => [$emailDecrypted],
-                'subject' => 'Cuenta Restablecida',
+                'html' => $htmlContent,
                 'html' => 'Tu cuenta ha sido restablecida',
                 'headers' => [
                     'X-Entity-Ref-ID' => Str::random(6)
