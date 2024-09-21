@@ -316,7 +316,7 @@
                                         </div>
                                     </div>
                                     <div class="container-contact">
-                                        <div class="image-contact" style="background: url({{ asset('images/image-bg-white.png') }});"></div>
+                                        <div class="image-contact" style="background: url({{ asset('images/image-bg-white.png?a=1') }});"></div>
                                     </div>
                                 </div>
                             </form>
