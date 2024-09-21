@@ -99,21 +99,23 @@
     </div>
     @endif
     <div class="bg-divisor py-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 col-md-4 offset-md-2 text-light">
-                    <h5>Suscríbete a nuestro boletín mensual para estar actualizado de las mejores propiedades</h5>
-                </div>
-                <div class="col-12 col-md-4 d-flex align-items-center text-center">
-                    <div class="input-group">
-                        <input type="email" class="form-control input-boletin" placeholder="Escribe tu email para recibir nuestro boletín">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary" type="button">Suscribirme</button>
+        <form id="suscribeForm">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md-4 offset-md-2 text-light">
+                        <h5>Suscríbete a nuestro boletín mensual para estar actualizado de las mejores propiedades</h5>
+                    </div>
+                    <div class="col-12 col-md-4 d-flex align-items-center text-center">
+                        <div class="input-group">
+                            <input type="email" name="email" class="form-control input-boletin" placeholder="Escribe tu email para recibir nuestro boletín" required>
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="submit">Suscribirme</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
     @if($recomendations!=null)
     <div class="bg-teal py-5">

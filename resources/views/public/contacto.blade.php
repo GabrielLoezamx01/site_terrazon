@@ -27,33 +27,38 @@
             </div>
         </div>
         <div class="col-12 col-lg-6">
-            <div class="card card-contact">
-                <div class="row">
-                    <div class="col-12 mb-2">
-                        <h5 class="text-primary">Deja tu mensaje</h5>
-                    </div>
-                    <div class="col-12 col-lg-6 mb-3">
-                        <input type="text" class="form-control" placeholder="Nombre*">
-                    </div>
-                    <div class="col-12 col-lg-6 mb-3">
-                        <input type="text" class="form-control" placeholder="Apellido*">
-                    </div>
-                    <div class="col-12 mb-3">
-                        <input type="text" class="form-control" placeholder="Email*">
-                    </div>
-                    <div class="col-12 mb-3">
-                        <input type="text" class="form-control" placeholder="Teléfono Celular*">
-                    </div>
-                    <div class="col-12 mb-5">
-                        <textarea rows="5" class="form-control" placeholder="Escribe tu mensaje"></textarea>
-                    </div>
-                    <div class="col-12 mb-3">
-                        <div class="d-grid gap-2">
-                            <button class="btn btn-primary btn-lg  px-5">ENVIAR MENSAJE</button>
+            <form id="contactForm">
+                <div class="card card-contact">
+                    <div class="row">
+                        <div class="col-12 mb-2">
+                            <h5 class="text-primary">Deja tu mensaje</h5>
+                        </div>
+                        <div class="col-12 col-lg-6 mb-3">
+                            <input type="text" class="form-control" name="nombre" placeholder="Nombre*" required>
+                        </div>
+                        <div class="col-12 col-lg-6 mb-3">
+                            <input type="text" class="form-control" name="apellido" placeholder="Apellido*" required>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <input type="text" class="form-control" name="email" placeholder="Email*" required>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <input type="text" class="form-control" name="telefono" placeholder="Teléfono Celular*" required>
+                        </div>
+                        <div class="col-12 mb-5">
+                            <textarea rows="5" class="form-control"  name="mensaje" placeholder="Escribe tu mensaje" required></textarea>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary btn-lg  px-5">ENVIAR MENSAJE</button>
+                            </div>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <div id="message"></div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>

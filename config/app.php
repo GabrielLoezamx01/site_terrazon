@@ -14,9 +14,12 @@ return [
     */
 
     'version' => '0.8',
+    'RESENDAPI' => env('RESENDAPI', ''),
+    'KEYRESEND' => env('KEYRESEND', ''),
     'name' => env('APP_NAME', 'Terrazón'),
     'contact_address' => env('CONTACT_ADDRESS', 'C. 12A 310, Santa Gertrudis Copo, 97113 Mérida, Yuc.'),
     'contact_email' => env('CONTAT_EMAIL', 'contacto@terrazon.mx'),
+    'contact_to' => env('CONTACT_TO', 'gbetus@gmail.com'),
     'contact_tel' => env('CONTAT_TEL', '+52 999 912 3456'),
     'contact_tel_scape' => env('CONTAT_TEL_SCAPE', '+529999123456'),
     'link_facebook' => env('LINK_FACEBOOK', 'https://www.facebook.com/share/bz85nrGpXmAPYVZQ/?mibextid=qi2Omg'),

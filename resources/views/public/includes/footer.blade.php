@@ -42,9 +42,9 @@
             </div>
             <div class="col-12 col-md-3 mt-4">
                 <span class="footer-title">Boletín</span>
-                <form class="mt-3">
+                <form class="mt-3" id="suscribeFooter">
                     <div class="mb-3">
-                        <input type="email" class="form-control" placeholder="Escribe tu email para recibir nuestro boletin">
+                        <input type="email" name="email" class="form-control" placeholder="Escribe tu email para recibir nuestro boletin" required>
                     </div>
                     <button type="submit" class="btn btn-primary">SUSCRIBIRME</button>
                 </form>
