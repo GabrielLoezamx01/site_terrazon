@@ -30,6 +30,11 @@
                             </div>
                             <div class="col-12">
                                 <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+                                    <span class="icon-fav fa-stack fa-2x {{ $isFavorite?'active':'' }} favId-{{ $property->id }}" onclick="toogleFavorite({{ $property->id }},'.favId-{{ $property->id }}')">
+                                        <i class="fa-solid fa-circle fa-stack-2x"></i>
+                                        <i class="fa-solid fa-heart fa-stack-1x"></i>
+                                        <i class="fa-regular fa-heart fa-stack-1x"></i>
+                                    </span>
                                     <div class="carousel-indicators d-none d-lg-flex">
                                         @foreach($galery as $item)
                                         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{ $item['id'] }}" class="{{ $loop->first ? 'active' : '' }}" aria-current="{{ $loop->first ? 'true' : 'false' }}" aria-label="{{ $item['label'] }}"></button>

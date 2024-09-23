@@ -312,6 +312,38 @@ h6 {
     border: none;
 }
 
+.icon-fav {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    font-size: 16px;
+    z-index: 2;
+    .fa-circle {
+        color: #ffffff;
+    }
+
+    .fa-solid.fa-heart {
+        display: none;
+    }
+
+    .fa-regular.fa-heart {
+        display: inline;
+    }
+
+    &.active {
+        .fa-solid.fa-heart {
+            display: inline;
+        }
+
+        .fa-regular.fa-heart {
+            display: none;
+        }
+
+        .fa-heart {
+            color: red;
+        }
+    }
+}
 .card-property {
 
     width: 100% !important;
@@ -324,38 +356,7 @@ h6 {
         background-position: center !important;
     }
 
-    .icon-fav {
-        position: absolute;
-        top: 18px;
-        right: 18px;
-        font-size: 16px;
-
-        .fa-circle {
-            color: #ffffff;
-        }
-
-        .fa-solid.fa-heart {
-            display: none;
-        }
-
-        .fa-regular.fa-heart {
-            display: inline;
-        }
-
-        &.active {
-            .fa-solid.fa-heart {
-                display: inline;
-            }
-
-            .fa-regular.fa-heart {
-                display: none;
-            }
-
-            .fa-heart {
-                color: red;
-            }
-        }
-    }
+    
 
     .btn-detalle {
         font-size: 12px;

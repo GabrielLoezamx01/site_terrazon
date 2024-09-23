@@ -1,3 +1,151 @@
-.name{font-size:4em;font-weight:bolder;line-height:1em}.lead,.name{font-family:Inter}.lead{font-size:1.5em;text-transform:uppercase}.container-avatar{height:700px;overflow:hidden;position:relative;width:100%}.center{align-items:center;background-color:#ddd;background-position:50%!important;background-size:115%!important;border:3px solid #fff;border-radius:50%;box-shadow:0 5px 10px 0 rgba(0,0,0,.25);display:flex;height:250px;justify-content:center;left:50%;position:absolute;top:50%;transform:translate(-50%,-50%);width:250px}@media screen and (max-width:768px){.center{height:290px;left:75%!important;top:30%!important;width:290px}}.profile-pic{border-radius:50%;height:100%;-o-object-fit:cover;object-fit:cover;width:100%}.circle{border:3px solid #fff;border-radius:50%;box-shadow:0 5px 10px 0 rgba(0,0,0,.25);position:absolute}.circle,.circle1{background-color:#3830d9}.circle1{height:100px;left:22%;top:22%;width:100px}@media screen and (max-width:768px){.circle1{left:10%!important;top:10%!important}}.circle2{background-color:#3830d9;height:100px;left:65%;top:65%;width:100px}.circle3{left:18%;top:65%}.circle3,.circle4{background-color:#159e12;height:150px;width:150px}.circle4{right:16%;top:10%}@media screen and (max-width:768px){.circle4{left:10%!important;top:50%!important}}.circle5{background-color:#7ae582;height:80px;right:40%;top:18%;width:80px}@media screen and (max-width:768px){.circle5{left:5%!important;top:30%!important}}.circle6{background-color:#7ae582;bottom:10%;height:80px;right:40%;width:80px}.circle7{background-color:#37b052;left:8%}.circle7,.circle8{height:80px;top:50%;width:80px}.circle8{background-color:#231d46;right:20%}.circle9{background-color:#3830d9;bottom:2%;height:60px;left:38%;width:60px}
+.name {
+  font-family: "Inter";
+  font-size: 4em;
+  font-weight: bolder;
+  line-height: 1em;
+}
 
-/*# sourceMappingURL=agentes.css.map*/
+.lead {
+  font-family: "Inter";
+  font-size: 1.5em;
+  text-transform: uppercase;
+}
+
+.container-avatar {
+  position: relative;
+  width: 100%;
+  height: 700px;
+  overflow: hidden;
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background-color: #ddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.25);
+  border: 3px solid white;
+  background-size: 115% !important;
+  background-position: center !important;
+}
+@media screen and (max-width: 768px) {
+  .center {
+    width: 290px;
+    height: 290px;
+    top: 30% !important;
+    left: 75% !important;
+  }
+}
+
+.profile-pic {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.circle {
+  position: absolute;
+  border-radius: 50%;
+  background-color: #3830D9;
+  border: 3px solid white;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.25);
+}
+
+.circle1 {
+  width: 100px;
+  height: 100px;
+  top: 22%;
+  left: 22%;
+  background-color: #3830D9;
+}
+@media screen and (max-width: 768px) {
+  .circle1 {
+    top: 10% !important;
+    left: 10% !important;
+  }
+}
+
+.circle2 {
+  width: 100px;
+  height: 100px;
+  top: 65%;
+  left: 65%;
+  background-color: #3830D9;
+}
+
+.circle3 {
+  width: 150px;
+  height: 150px;
+  top: 65%;
+  left: 18%;
+  background-color: #159E12;
+}
+
+.circle4 {
+  width: 150px;
+  height: 150px;
+  top: 10%;
+  right: 16%;
+  background-color: #159E12;
+}
+@media screen and (max-width: 768px) {
+  .circle4 {
+    top: 50% !important;
+    left: 10% !important;
+  }
+}
+
+.circle5 {
+  width: 80px;
+  height: 80px;
+  top: 18%;
+  right: 40%;
+  background-color: #7AE582;
+}
+@media screen and (max-width: 768px) {
+  .circle5 {
+    top: 30% !important;
+    left: 5% !important;
+  }
+}
+
+.circle6 {
+  width: 80px;
+  height: 80px;
+  bottom: 10%;
+  right: 40%;
+  background-color: #7AE582;
+}
+
+.circle7 {
+  width: 80px;
+  height: 80px;
+  top: 50%;
+  left: 8%;
+  background-color: #37B052;
+}
+
+.circle8 {
+  width: 80px;
+  height: 80px;
+  top: 50%;
+  right: 20%;
+  background-color: #231D46;
+}
+
+.circle9 {
+  width: 60px;
+  height: 60px;
+  bottom: 2%;
+  left: 38%;
+  background-color: #3830D9;
+}

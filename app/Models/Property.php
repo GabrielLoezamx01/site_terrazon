@@ -89,7 +89,11 @@ class Property extends Model
 
     public function isFavoritedBy($user)
     {
-        return $this->favorites()->where('custom_user_id', $user->id)->exists();
+        if($user){
+            return $this->favorites()->where('custom_user_id', $user->id)->exists();
+        }else{
+            return false;
+        }
     }
     public function scopeWithFavoriteStatus($query, $userId)
     {

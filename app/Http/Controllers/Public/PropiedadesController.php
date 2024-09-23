@@ -197,7 +197,11 @@ class PropiedadesController extends Controller
         $otros = $this->getOtros();
         $favoritos = $this->getFavoritos();
         $shareLink = url()->current();
+
+        $user = Auth::guard('custom_users')->user() ?? null;
+        $isFavorite = $property->isFavoritedBy($user) ?? 0;
         return view('public.ficha', [
+            'isFavorite' => $isFavorite,
             'shareLink' => $shareLink,
             'sku' => $sku,
             'property' => $property,
@@ -271,7 +275,7 @@ class PropiedadesController extends Controller
         $user = Auth::guard('custom_users')->user();
         if (isset($user->id)) {
             $userid = $user->id;
-            $data = Cache::rememberForever($this->key_cache_favorites_all . $userid, function () use($userid){
+            $data = Cache::rememberForever($this->key_cache_favorites_all . $userid, function () use ($userid) {
                 $favorites = Favorite::where('custom_user_id', $userid)->with('property')->get();
                 $properties = Property::whereIn('id', $favorites->pluck('property_id'))->with('types', 'location', 'amenities', 'conditions', 'details', 'features', 'galleries')->where('available', 1)->get();
                 $data = [];
