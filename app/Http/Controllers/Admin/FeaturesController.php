@@ -103,18 +103,13 @@ class FeaturesController extends Controller
     public function destroy($id)
     {
         try {
-            $validacion = FeatureProperty::where('features_property_id', $id)->exists();
-            if ($validacion) {
-                session()->flash('errors', 'Hay propiedades asignadas');
-            } else {
-                $feature = FeaturesProperty::findOrFail($id);
-                if (!empty($feature->icon)) {
-                    \Storage::delete('public/svg/' . $feature->icon);
-                }
-                $feature->delete();
-                session()->flash('success', 'Operación exitosa');
+            $validacion = FeatureProperty::where('features_property_id', $id)->delete();
+            $feature = FeaturesProperty::findOrFail($id);
+            if (!empty($feature->icon)) {
+                \Storage::delete('public/svg/' . $feature->icon);
             }
-
+            $feature->delete();
+            session()->flash('success', 'Operación exitosa');
         } catch (\Exception $e) {
             session()->flash('errors', ['Error al eliminar ' . $e->getMessage()]);
         }
