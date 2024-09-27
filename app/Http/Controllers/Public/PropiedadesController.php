@@ -166,7 +166,8 @@ class PropiedadesController extends Controller
     public function ficha($sku)
     {
         Carbon::setLocale('es');
-        $property   = Property::with('types', 'amenities', 'conditions', 'details', 'features', 'galleries', 'distributions')->where('folio', $sku)->first();
+        $property   = Property::with('types', 'amenities', 'conditions', 'details', 'features', 'galleries', 'distributions','location')->where('folio', $sku)->first();
+        // json_dd($property);
         $galery = [];
         if (isset($property->galleries)) {
             foreach ($property->galleries as $key => $value) {
